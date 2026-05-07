@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
-import { Menu, X, ChevronDown, Search, Camera } from 'lucide-react';
+import { Menu, X, ChevronDown, Search } from 'lucide-react';
 import Topbar from './Topbar';
 import { allProducts } from '../data/mockData';
 import { spareCategories } from '../data/spareParts';
@@ -107,12 +107,7 @@ export default function Navbar() {
 
             <NavLink to="/urunler" className={navLinkClass}>ÜRÜNLER</NavLink>
             <NavLink to="/yedek-parcalar" className={navLinkClass}>YEDEK PARÇALAR</NavLink>
-            <NavLink to="/galeri" className={({ isActive }) =>
-              `text-[14px] font-semibold uppercase tracking-wide whitespace-nowrap transition-colors flex items-center gap-1 ${
-                isActive ? 'text-[#9fc91a]' : 'text-[#1a1a1a] hover:text-[#9fc91a]'
-              }`}>
-              <Camera size={14} /> GALERİ
-            </NavLink>
+            <NavLink to="/galeri" className={navLinkClass}>GALERİ</NavLink>
             <NavLink to="/iletisim" className={navLinkClass}>İLETİŞİM</NavLink>
           </div>
 
