@@ -85,7 +85,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="shrink-0">
             <img
-              src="https://www.trambolinpark.com/album/trambolinparkyeni/trm.png"
+              src="/logo.png"
               alt="Trambolinpark Logo"
               className="h-10 md:h-11 object-contain"
             />

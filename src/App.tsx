@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
+import CookieBanner from './components/CookieBanner';
+import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import Catalog from './pages/Catalog';
 import YedekParca from './pages/YedekParca';
@@ -21,6 +23,7 @@ function Layout() {
       </main>
       <Footer />
       <WhatsAppButton />
+      <CookieBanner />
     </div>
   );
 }
@@ -42,7 +45,7 @@ function App() {
           <Route path="galeri" element={<Galeri />} />
           <Route path="kvkk" element={<Kvkk />} />
           <Route path="cerez-politikasi" element={<CerezPolitikasi />} />
-          <Route path="*" element={<Catalog />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

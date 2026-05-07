@@ -293,28 +293,6 @@ export default function Home() {
 
       </div>
 
-      {/* 4. CMS WIDGET: REFERANSLAR (Soldan sağa kayan logo şeridi) */}
-      <section className="py-16 bg-[#f8fafc] overflow-hidden">
-        <div className="container mx-auto px-4 lg:px-8 mb-10">
-           <h4 className="text-center text-[#a0afbf] font-bold text-sm tracking-widest uppercase">REFERANSLARIMIZ</h4>
-        </div>
-
-        <div className="relative group">
-           {/* Kenarlardaki yumuşak fade efekti */}
-           <div className="pointer-events-none absolute inset-y-0 left-0 w-24 md:w-40 bg-gradient-to-r from-[#f8fafc] to-transparent z-10" />
-           <div className="pointer-events-none absolute inset-y-0 right-0 w-24 md:w-40 bg-gradient-to-l from-[#f8fafc] to-transparent z-10" />
-
-           <div className="flex w-max animate-marquee [animation-direction:reverse] gap-8 group-hover:[animation-play-state:paused]">
-              {[...Array(2)].flatMap((_, dup) =>
-                ['LOGO 1','LOGO 2','LOGO 3','LOGO 4','LOGO 5','LOGO 6','LOGO 7','LOGO 8'].map((label, i) => (
-                  <div key={`${dup}-${i}`} className="h-14 w-36 shrink-0 bg-white rounded-xl border border-slate-100 flex items-center justify-center text-slate-400 font-black text-xs uppercase tracking-widest opacity-70 grayscale hover:opacity-100 hover:grayscale-0 hover:border-slate-200 transition-all">
-                    {label}
-                  </div>
-                ))
-              )}
-           </div>
-        </div>
-      </section>
 
     </div>
   );
