@@ -13,9 +13,9 @@ export default function About() {
         <div className="flex flex-col lg:flex-row gap-16 item-center mb-24">
           <div className="w-full lg:w-1/2 relative">
             <div className="absolute -top-6 -left-6 w-32 h-32 bg-[#c3e92d] rounded-2xl z-0 opacity-50"></div>
-            <img 
-              src="https://images.unsplash.com/photo-1542651478-f60bb116f199?auto=format&fit=crop&w=1200&q=80" 
-              alt="Hakkımızda Görsel" 
+            <img
+              src="https://matrax-web-six.vercel.app/images/galeri-yeni/galeri-7.jpg"
+              alt="Trambolinpark kurulum"
               className="w-full h-[500px] object-cover rounded-2xl shadow-xl relative z-10"
             />
           </div>
