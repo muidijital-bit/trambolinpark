@@ -1,4 +1,4 @@
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import ProductCard from '../components/ui/ProductCard';
 import { allProducts } from '../data/mockData';
 
