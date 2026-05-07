@@ -5,7 +5,7 @@ import { ArrowUpRight, SlidersHorizontal, X } from 'lucide-react';
 import { allProducts } from '../data/mockData';
 import type { Product } from '../data/mockData';
 
-// ─── Sidebar yapısı ────────────────────────────────────────────────
+// ─── Veri yapısı ───────────────────────────────────────────────────
 const GROUPS = [
   {
     key: 'trambolinler',
@@ -40,73 +40,99 @@ const GROUPS = [
   },
 ];
 
-const ALL_CAT_IDS = GROUPS.flatMap(g => g.subs.map(s => s.id));
+const GROUP_KEYS  = GROUPS.map(g => g.key);
+const ALL_SUB_IDS = GROUPS.flatMap(g => g.subs.map(s => s.id));
+const ALL_IDS     = [...GROUP_KEYS, ...ALL_SUB_IDS];
 
-// verilen categoryId hangi gruba ait?
-const groupOf = (catId: string) =>
-  GROUPS.find(g => g.subs.some(s => s.id === catId));
+const products = allProducts.filter(p => ALL_SUB_IDS.includes(p.category));
 
-// Default: ilk kategori
-const DEFAULT_CAT = 'tekli-trambolinler';
+const groupOf = (id: string) => GROUPS.find(g => g.key === id || g.subs.some(s => s.id === id))!;
+const subOf   = (id: string) => GROUPS.flatMap(g => g.subs).find(s => s.id === id);
 
-// ─── Bileşen ───────────────────────────────────────────────────────
+const countGroup  = (gKey: string) => products.filter(p => groupOf(p.category)?.key === gKey).length;
+const countSub    = (sId:  string) => products.filter(p => p.category === sId).length;
+
+// ─── Ana bileşen ───────────────────────────────────────────────────
 export default function Catalog() {
   const { categoryId } = useParams();
   const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const activeCatId = categoryId && ALL_CAT_IDS.includes(categoryId)
-    ? categoryId
-    : DEFAULT_CAT;
+  // Geçerli bir ID mi? Değilse default grup
+  const activeId = categoryId && ALL_IDS.includes(categoryId) ? categoryId : 'trambolinler';
 
-  const activeGroup = groupOf(activeCatId);
-  const activeSub = GROUPS.flatMap(g => g.subs).find(s => s.id === activeCatId);
+  const isGroupView = GROUP_KEYS.includes(activeId);
+  const activeGroup = groupOf(activeId);
+  const activeSub   = subOf(activeId);
 
-  const products = allProducts.filter(p => ALL_CAT_IDS.includes(p.category));
-  const displayed = products.filter(p => p.category === activeCatId);
+  // Görüntülenecek ürünler
+  const displayed = isGroupView
+    ? products.filter(p => groupOf(p.category)?.key === activeId)
+    : products.filter(p => p.category === activeId);
 
-  const countFor = (id: string) => products.filter(p => p.category === id).length;
+  const goTo = (id: string) => { navigate(`/urunler/${id}`); setDrawerOpen(false); };
 
-  const goTo = (id: string) => {
-    navigate(`/urunler/${id}`);
-    setDrawerOpen(false);
-  };
+  // Gruplu görünüm: her alt kategori ayrı bölüm
+  const groupedSections = isGroupView
+    ? activeGroup.subs
+        .map(sub => ({ sub, items: products.filter(p => p.category === sub.id) }))
+        .filter(s => s.items.length > 0)
+    : [];
 
+  const title = activeSub?.name ?? activeGroup?.name ?? 'Ürünler';
+
+  // ─── Sidebar içeriği ─────────────────────────────────────────────
   const SidebarContent = () => (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-1 pt-2">
       {GROUPS.map(group => {
-        const isGroupActive = group.subs.some(s => s.id === activeCatId);
+        const isGroupActive = activeId === group.key || group.subs.some(s => s.id === activeId);
+        const groupCount = countGroup(group.key);
+
         return (
           <div key={group.key}>
-            {/* Grup başlığı */}
-            <div className={`px-3 py-2 text-[11px] font-black uppercase tracking-widest mt-3 first:mt-0 ${
-              isGroupActive ? 'text-[#9fc91a]' : 'text-[#94a3b8]'
-            }`}>
-              {group.name}
-            </div>
-            {/* Alt kategoriler */}
-            <div className="border-l-2 border-slate-200 ml-2 pl-2 flex flex-col gap-0.5">
-              {group.subs.map(sub => {
-                const count = countFor(sub.id);
-                const isActive = activeCatId === sub.id;
-                return (
-                  <button
-                    key={sub.id}
-                    onClick={() => goTo(sub.id)}
-                    className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left transition-all text-sm font-semibold ${
-                      isActive
-                        ? 'bg-[#1a1a1a] text-white shadow-md'
-                        : 'text-slate-600 hover:bg-white hover:text-slate-900 hover:shadow-sm'
-                    }`}
-                  >
-                    <span className="truncate">{sub.name}</span>
-                    <span className={`shrink-0 text-[10px] font-black px-1.5 py-0.5 rounded-full ml-2 ${
-                      isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-400'
-                    }`}>{count}</span>
-                  </button>
-                );
-              })}
-            </div>
+            {/* Ana kategori butonu */}
+            <button
+              onClick={() => goTo(group.key)}
+              className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-black text-sm transition-all text-left ${
+                activeId === group.key
+                  ? 'bg-[#1a1a1a] text-white shadow-md'
+                  : isGroupActive
+                  ? 'bg-slate-100 text-[#1a1a1a]'
+                  : 'text-slate-600 hover:bg-white hover:shadow-sm hover:text-slate-900'
+              }`}
+            >
+              <span>{group.name}</span>
+              <span className={`text-[10px] px-2 py-0.5 rounded-full font-black ${
+                activeId === group.key ? 'bg-white/20 text-white' : 'bg-slate-200 text-slate-500'
+              }`}>{groupCount}</span>
+            </button>
+
+            {/* Alt kategoriler — aktif grup genişlemiş */}
+            {isGroupActive && (
+              <div className="ml-3 mt-1 mb-2 pl-3 border-l-2 border-slate-200 flex flex-col gap-0.5">
+                {group.subs.map(sub => {
+                  const count = countSub(sub.id);
+                  if (count === 0) return null;
+                  const isActiveSub = activeId === sub.id;
+                  return (
+                    <button
+                      key={sub.id}
+                      onClick={() => goTo(sub.id)}
+                      className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition-all text-left ${
+                        isActiveSub
+                          ? 'bg-[#9fc91a] text-white shadow-sm'
+                          : 'text-slate-500 hover:bg-slate-100 hover:text-slate-800'
+                      }`}
+                    >
+                      <span className="truncate">{sub.name}</span>
+                      <span className={`shrink-0 text-[10px] px-1.5 py-0.5 rounded-full ml-1 ${
+                        isActiveSub ? 'bg-white/25 text-white' : 'bg-slate-100 text-slate-400'
+                      }`}>{count}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
           </div>
         );
       })}
@@ -125,9 +151,7 @@ export default function Catalog() {
                 ÜRÜN KATALOĞU
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-4">
-                {activeSub
-                  ? <span className="text-[#9fc91a]">{activeSub.name}</span>
-                  : <>Tüm <span className="text-[#9fc91a]">Ürünler</span></>}
+                <span className="text-[#9fc91a]">{title}</span>
               </h1>
               <p className="text-gray-400 text-base leading-relaxed max-w-md mb-6">
                 Trambolin parkından soft play alanlarına, top havuzlarından şişme parklara — anahtar teslim çözümler.
@@ -160,7 +184,7 @@ export default function Catalog() {
       {/* İÇERİK */}
       <div className="container mx-auto px-4 lg:px-8 py-8 md:py-12">
 
-        {/* Mobil filtre butonu */}
+        {/* Mobil: üst filtre butonu */}
         <div className="flex items-center justify-between mb-5 md:hidden">
           <span className="text-xs font-black text-slate-400">{displayed.length} ürün</span>
           <button
@@ -175,6 +199,7 @@ export default function Catalog() {
 
           {/* Sol sidebar — masaüstü */}
           <aside className="hidden md:block w-52 lg:w-60 shrink-0 sticky top-28">
+            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 px-2">Kategoriler</p>
             <SidebarContent />
           </aside>
 
@@ -192,10 +217,10 @@ export default function Catalog() {
                   transition={{ type: 'spring', stiffness: 320, damping: 32 }}
                   className="fixed left-0 top-0 bottom-0 w-72 bg-[#f8fafc] z-50 p-6 shadow-2xl md:hidden overflow-y-auto"
                 >
-                  <div className="flex items-center justify-between mb-4">
-                    <p className="text-xs font-black text-slate-400 uppercase tracking-widest">Kategoriler</p>
-                    <button onClick={() => setDrawerOpen(false)} className="p-1 text-slate-400 hover:text-slate-700">
-                      <X size={20} />
+                  <div className="flex items-center justify-between mb-3">
+                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Kategoriler</p>
+                    <button onClick={() => setDrawerOpen(false)}>
+                      <X size={20} className="text-slate-400" />
                     </button>
                   </div>
                   <SidebarContent />
@@ -204,9 +229,9 @@ export default function Catalog() {
             )}
           </AnimatePresence>
 
-          {/* Ürün grid */}
+          {/* Ürünler */}
           <div className="flex-1 min-w-0">
-            <p className="hidden md:block text-xs font-black text-slate-400 mb-5">
+            <p className="hidden md:block text-xs font-black text-slate-400 mb-6">
               {displayed.length} ürün listeleniyor
             </p>
 
@@ -215,15 +240,32 @@ export default function Catalog() {
                 <p className="text-lg font-bold text-slate-700 mb-2">Ürün bulunamadı</p>
                 <p className="text-sm text-slate-400">Bu kategori için ürünlerimiz yakında eklenecektir.</p>
               </div>
-            ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
-                {displayed.map((product, i) => (
-                  <CatalogCard key={product.id} product={product} index={i} />
+            ) : isGroupView ? (
+              // GRUP GÖRÜNÜMÜ — alt kategori başlıklı bölümler
+              <div className="flex flex-col gap-12">
+                {groupedSections.map(({ sub, items }) => (
+                  <section key={sub.id} id={sub.id} className="scroll-mt-28">
+                    <div className="flex items-end justify-between gap-3 mb-5 pb-3 border-b-2 border-slate-100">
+                      <h2 className="text-lg md:text-xl font-black text-slate-800 leading-tight">
+                        {sub.name}
+                      </h2>
+                      <span className="shrink-0 text-xs font-black bg-[#9fc91a]/10 text-[#9fc91a] px-3 py-1 rounded-full">
+                        {items.length} ürün
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
+                      {items.map((p, i) => <CatalogCard key={p.id} product={p} index={i} />)}
+                    </div>
+                  </section>
                 ))}
+              </div>
+            ) : (
+              // ALT KATEGORİ GÖRÜNÜMÜ — düz grid
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
+                {displayed.map((p, i) => <CatalogCard key={p.id} product={p} index={i} />)}
               </div>
             )}
           </div>
-
         </div>
       </div>
     </div>
