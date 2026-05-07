@@ -112,7 +112,7 @@ export default function Navbar() {
           </div>
 
           {/* Search — always visible, fixed width */}
-          <div ref={searchRef} className="relative hidden lg:block shrink-0 w-56">
+          <div ref={searchRef} className="relative hidden lg:block shrink-0 w-72">
             <div className="flex items-center gap-2 bg-[#f1f5f9] rounded-full px-4 py-2.5 w-full">
               <Search size={15} className="text-[#94a3b8] shrink-0" />
               <input
