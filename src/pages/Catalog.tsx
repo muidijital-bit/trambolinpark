@@ -52,7 +52,7 @@ export default function Catalog() {
       {/* HERO */}
       <section className="bg-[#1a1a1a] pt-24 md:pt-28 lg:pt-32 overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 pb-10 md:pb-14">
+          <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-12 pb-8 md:pb-12">
 
             {/* Sol — metin */}
             <div className="flex-1">
@@ -69,21 +69,21 @@ export default function Catalog() {
               <p className="text-gray-400 text-base leading-relaxed max-w-md mb-6">
                 Trambolin parkından soft play alanlarına, top havuzlarından şişme parklara — anahtar teslim çözümler.
               </p>
-              <div className="flex items-center gap-4 flex-wrap">
-                <span className="bg-white/10 text-white text-sm font-bold px-4 py-2 rounded-full">
+              <div className="flex items-center gap-2 md:gap-3 flex-wrap">
+                <span className="bg-white/10 text-white text-xs md:text-sm font-bold px-3 md:px-4 py-1.5 md:py-2 rounded-full">
                   {displayedProducts.length} ürün
                 </span>
-                <span className="bg-white/10 text-white text-sm font-bold px-4 py-2 rounded-full">
+                <span className="bg-white/10 text-white text-xs md:text-sm font-bold px-3 md:px-4 py-1.5 md:py-2 rounded-full">
                   EN-1176 Sertifikalı
                 </span>
-                <span className="bg-white/10 text-white text-sm font-bold px-4 py-2 rounded-full">
+                <span className="bg-white/10 text-white text-xs md:text-sm font-bold px-3 md:px-4 py-1.5 md:py-2 rounded-full">
                   Anahtar Teslim
                 </span>
               </div>
             </div>
 
             {/* Sağ — görsel */}
-            <div className="w-full lg:w-[420px] h-52 md:h-64 lg:h-72 rounded-3xl overflow-hidden shrink-0">
+            <div className="w-full lg:w-[420px] h-44 md:h-60 lg:h-72 rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
               <img
                 src="https://matrax-web-six.vercel.app/images/galeri-yeni/galeri-10.jpg"
                 alt="Ürün kataloğu"

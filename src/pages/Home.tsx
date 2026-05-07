@@ -221,7 +221,7 @@ export default function Home() {
             'linear-gradient(rgba(0,0,0,0.10) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.10) 1px, transparent 1px)',
           backgroundSize: '52px 52px',
         }}>
-          <div className="container mx-auto px-6 lg:px-12 py-10 flex flex-col sm:flex-row items-center justify-between gap-8">
+          <div className="container mx-auto px-4 md:px-8 lg:px-12 py-8 md:py-10 flex flex-col sm:flex-row items-center justify-between gap-6 md:gap-8">
 
             {/* Sol rozet */}
             <div
@@ -240,15 +240,15 @@ export default function Home() {
               className="block flex-shrink-0 group"
             >
               <div
-                className="bg-[#1a1a1a] text-white font-black text-2xl md:text-[2rem] px-14 py-5 text-center whitespace-nowrap select-none transition-transform group-hover:translate-x-[3px] group-hover:translate-y-[3px]"
+                className="bg-[#1a1a1a] text-white font-black text-xl md:text-[2rem] px-8 py-4 md:px-14 md:py-5 text-center whitespace-nowrap select-none transition-transform group-hover:translate-x-[3px] group-hover:translate-y-[3px]"
                 style={{
                   borderRadius: 999,
                   border: '3px solid #1a1a1a',
-                  boxShadow: '6px 6px 0 rgba(0,0,0,0.30)',
+                  boxShadow: '5px 5px 0 rgba(0,0,0,0.28)',
                   letterSpacing: '0.01em',
                 }}
               >
-                Teklif Al &nbsp;→
+                Teklif Al →
               </div>
             </a>
 

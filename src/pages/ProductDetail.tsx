@@ -23,32 +23,35 @@ export default function ProductDetail() {
     );
   }
 
-  // Get some related products (just picking random 3 from the same dataset for demo)
-  const relatedProducts = allProducts.filter(p => p.id !== product.id).slice(0, 3);
+  // Same category first, fallback to other products
+  const relatedProducts = [
+    ...allProducts.filter(p => p.id !== product.id && p.category === product.category),
+    ...allProducts.filter(p => p.id !== product.id && p.category !== product.category),
+  ].slice(0, 3);
   
   // Try to determine a category label based on ID
   const categoryLabel = product.id.includes('top-havuzu') ? 'Soft Play' : 
                         product.id.includes('park') ? 'Anahtar Teslim Park' : 'Trambolin Serisi';
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] pt-32 pb-24">
+    <div className="min-h-screen bg-[#f8fafc] pt-20 md:pt-28 lg:pt-32 pb-16 md:pb-24">
       <div className="container mx-auto px-4 lg:px-8">
-        
+
         {/* Back Button */}
-        <button 
-          onClick={() => navigate(-1)} 
-          className="flex items-center gap-2 text-slate-500 hover:text-[#9fc91a] font-bold text-sm uppercase tracking-wider mb-8 transition-colors"
+        <button
+          onClick={() => navigate(-1)}
+          className="flex items-center gap-2 text-slate-500 hover:text-[#9fc91a] font-bold text-sm uppercase tracking-wider mb-6 md:mb-8 transition-colors"
         >
           <ArrowLeft size={16} /> Geri Dön
         </button>
 
         {/* Product Showcase */}
-        <div className="bg-white rounded-[40px] p-6 md:p-12 shadow-[0_8px_30px_rgba(0,0,0,0.04)] mb-16">
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
-            
+        <div className="bg-white rounded-2xl md:rounded-[40px] p-5 md:p-10 lg:p-12 shadow-sm md:shadow-[0_8px_30px_rgba(0,0,0,0.04)] mb-10 md:mb-16">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
+
             {/* Left: Image Box */}
             <div className="w-full lg:w-1/2">
-              <div className="bg-slate-50 rounded-[32px] w-full aspect-square sm:aspect-[4/3] lg:aspect-square flex items-center justify-center p-8 relative border border-slate-100">
+              <div className="bg-slate-50 rounded-xl md:rounded-[32px] w-full aspect-[4/3] md:aspect-square flex items-center justify-center p-5 md:p-8 relative border border-slate-100">
                  {/* Category Badge placed on image like the cards */}
                  <div className="absolute top-6 left-6 bg-[#9fc91a] text-white text-xs font-bold px-4 py-2 rounded-full tracking-widest uppercase shadow-md">
                    {categoryLabel}
@@ -64,13 +67,13 @@ export default function ProductDetail() {
 
             {/* Right: Info Box */}
             <div className="w-full lg:w-1/2 flex flex-col justify-center">
-              <h1 className="text-3xl md:text-5xl font-black text-[#1a1a1a] mb-6 leading-tight">
+              <h1 className="text-2xl md:text-4xl lg:text-5xl font-black text-[#1a1a1a] mb-4 md:mb-6 leading-tight">
                 {product.title}
               </h1>
               
               <div className="w-20 h-1.5 bg-[#9fc91a] mb-8 rounded-full"></div>
               
-              <p className="text-slate-500 text-lg md:text-xl leading-relaxed mb-10 font-medium">
+              <p className="text-slate-500 text-base md:text-lg leading-relaxed mb-8 md:mb-10 font-medium">
                 {product.description}
               </p>
 
@@ -118,10 +121,10 @@ export default function ProductDetail() {
         {/* Similar Products */}
         {relatedProducts.length > 0 && (
           <div>
-            <div className="mb-10 text-center">
-              <h2 className="text-3xl font-black text-[#1a1a1a]">Benzer Sistemler</h2>
+            <div className="mb-6 md:mb-8">
+              <h2 className="text-2xl md:text-3xl font-black text-[#1a1a1a]">Diğer Ürünler</h2>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
               {relatedProducts.map(p => (
                 <ProductCard key={p.id} product={p} />
               ))}
