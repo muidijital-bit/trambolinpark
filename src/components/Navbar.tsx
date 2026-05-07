@@ -183,7 +183,7 @@ export default function Navbar() {
                     )}
                     <div className="px-4 py-2.5 border-t border-gray-100">
                       <Link
-                        to={`/urunler`}
+                        to={productResults.length > 0 ? `/urunler/${productResults[0].category}` : '/urunler'}
                         onClick={() => setQuery('')}
                         className="text-[11px] text-[#9fc91a] font-bold hover:opacity-70"
                       >
