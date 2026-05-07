@@ -5,11 +5,13 @@ import { Link } from 'react-router-dom';
 export default function About() {
   return (
     <div className="bg-[#f8fafc] min-h-screen">
-      <PageHeader 
-        title="Hakkımızda" 
+      <PageHeader
+        title="Hakkımızda"
+        badge="KURUMSAL"
+        description="Trambolinpark olarak eğlence alanları tasarlıyor, üretiyor ve anahtar teslim kuruyoruz."
       />
 
-      <div className="container mx-auto px-4 lg:px-8 py-16">
+      <div className="container mx-auto px-4 lg:px-8 py-12 md:py-16">
         <div className="flex flex-col lg:flex-row gap-16 item-center mb-24">
           <div className="w-full lg:w-1/2 relative">
             <div className="absolute -top-6 -left-6 w-32 h-32 bg-[#c3e92d] rounded-2xl z-0 opacity-50"></div>

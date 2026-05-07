@@ -1,45 +1,27 @@
-import { motion } from 'framer-motion';
-
 interface PageHeaderProps {
   title: string;
   description?: string;
-  bgImage?: string;
+  badge?: string;
 }
 
-export default function PageHeader({ title, description, bgImage }: PageHeaderProps) {
+export default function PageHeader({ title, description, badge }: PageHeaderProps) {
   return (
-    <div className="relative py-16 md:py-20 bg-[#1a1a1a] flex flex-col items-center justify-center mt-[114px] border-b-4 border-[#9fc91a]">
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[#1a1a1a]/90 z-10"></div>
-        {bgImage && (
-          <img 
-            src={bgImage} 
-            alt={title} 
-            className="w-full h-full object-cover object-center opacity-30 mix-blend-overlay"
-          />
+    <section className="bg-[#1a1a1a] pt-24 md:pt-28 lg:pt-32 pb-10 md:pb-12">
+      <div className="container mx-auto px-4 lg:px-8">
+        {badge && (
+          <span className="inline-flex items-center gap-2 text-[#9fc91a] font-extrabold text-[10px] tracking-widest uppercase mb-4 bg-white/5 px-4 py-1.5 rounded-full border border-white/10">
+            {badge}
+          </span>
         )}
-      </div>
-
-      <div className="container mx-auto px-4 relative z-20 text-center">
-        <motion.h1 
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-3xl md:text-5xl font-bold text-white mb-4"
-        >
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mt-2 mb-3">
           {title}
-        </motion.h1>
-        
+        </h1>
         {description && (
-          <motion.p 
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-base text-gray-300 max-w-2xl mx-auto font-medium"
-          >
+          <p className="text-gray-400 text-sm md:text-base max-w-xl leading-relaxed">
             {description}
-          </motion.p>
+          </p>
         )}
       </div>
-    </div>
+    </section>
   );
 }

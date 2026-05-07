@@ -36,12 +36,12 @@ export default function Kvkk() {
     <div className="min-h-screen bg-[#f8fafc]">
 
       {/* Header */}
-      <section className="bg-[#1a1a1a] pt-24 md:pt-32 lg:pt-40 pb-12 md:pb-16">
+      <section className="bg-[#1a1a1a] pt-24 md:pt-28 lg:pt-32 pb-10 md:pb-12">
         <div className="container mx-auto px-4 lg:px-8">
           <span className="inline-flex items-center gap-2 text-[#9fc91a] font-extrabold text-xs tracking-widest uppercase mb-4">
             <ShieldCheck size={13} /> KURUMSAL · KVKK
           </span>
-          <h1 className="text-4xl md:text-5xl font-black text-white leading-tight">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight">
             Kişisel Verilerin Korunması<br />
             <span className="text-[#9fc91a]">Aydınlatma Metni</span>
           </h1>

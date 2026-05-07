@@ -79,8 +79,6 @@ export default function Catalog() {
         .filter(s => s.items.length > 0)
     : [];
 
-  const title = activeSub?.name ?? activeGroup?.name ?? 'Ürünler';
-
   // ─── Sidebar içeriği ─────────────────────────────────────────────
   const SidebarContent = () => (
     <div className="flex flex-col gap-1 pt-2">
@@ -143,41 +141,19 @@ export default function Catalog() {
     <div className="min-h-screen bg-[#f8fafc]">
 
       {/* HERO */}
-      <section className="bg-[#1a1a1a] pt-24 md:pt-28 lg:pt-32 overflow-hidden">
+      <section className="bg-[#1a1a1a] pt-24 md:pt-28 lg:pt-32 pb-10 md:pb-12">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-12 pb-8 md:pb-12">
-            <div className="flex-1">
-              <span className="inline-block text-[#9fc91a] font-extrabold text-xs tracking-widest uppercase mb-4">
-                ÜRÜN KATALOĞU
-              </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-4">
-                <span className="text-[#9fc91a]">{title}</span>
-              </h1>
-              <p className="text-gray-400 text-base leading-relaxed max-w-md mb-6">
-                Trambolin parkından soft play alanlarına, top havuzlarından şişme parklara — anahtar teslim çözümler.
-              </p>
-              <div className="flex items-center gap-2 flex-wrap">
-                <span className="bg-white/10 text-white text-xs font-bold px-3 py-1.5 rounded-full">
-                  {displayed.length} ürün
-                </span>
-                {activeGroup && (
-                  <span className="bg-[#9fc91a]/20 text-[#9fc91a] text-xs font-bold px-3 py-1.5 rounded-full">
-                    {activeGroup.name}
-                  </span>
-                )}
-                <span className="bg-white/10 text-white text-xs font-bold px-3 py-1.5 rounded-full">
-                  EN-1176 Sertifikalı
-                </span>
-              </div>
-            </div>
-            <div className="w-full lg:w-[420px] h-44 md:h-60 lg:h-72 rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
-              <img
-                src="https://matrax-web-six.vercel.app/images/galeri-yeni/galeri-10.jpg"
-                alt="Ürün kataloğu"
-                className="w-full h-full object-cover opacity-80"
-              />
-            </div>
-          </div>
+          <span className="inline-flex items-center gap-2 text-[#9fc91a] font-extrabold text-[10px] tracking-widest uppercase mb-4 bg-white/5 px-4 py-1.5 rounded-full border border-white/10">
+            ÜRÜN KATALOĞU
+          </span>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mt-2 mb-3">
+            {activeSub
+              ? <><span className="text-[#9fc91a]">{activeSub.name}</span></>
+              : <>Ürün <span className="text-[#9fc91a]">Kataloğu</span></>}
+          </h1>
+          <p className="text-gray-400 text-sm md:text-base max-w-xl leading-relaxed">
+            Trambolin parkından soft play alanlarına, top havuzlarından şişme parklara — anahtar teslim çözümler.
+          </p>
         </div>
       </section>
 
