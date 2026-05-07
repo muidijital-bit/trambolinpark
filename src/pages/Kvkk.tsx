@@ -38,14 +38,13 @@ export default function Kvkk() {
       {/* Header */}
       <section className="bg-[#1a1a1a] pt-24 md:pt-28 lg:pt-32 pb-10 md:pb-12">
         <div className="container mx-auto px-4 lg:px-8">
-          <span className="inline-flex items-center gap-2 text-[#9fc91a] font-extrabold text-xs tracking-widest uppercase mb-4">
-            <ShieldCheck size={13} /> KURUMSAL · KVKK
+          <span className="inline-flex items-center gap-2 text-[#9fc91a] font-extrabold text-[10px] tracking-widest uppercase mb-4 bg-white/5 px-4 py-1.5 rounded-full border border-white/10">
+            <ShieldCheck size={12} /> KURUMSAL · KVKK
           </span>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight">
-            Kişisel Verilerin Korunması<br />
-            <span className="text-[#9fc91a]">Aydınlatma Metni</span>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mt-2 mb-3">
+            Kişisel Verilerin <span className="text-[#9fc91a]">Korunması</span>
           </h1>
-          <p className="text-gray-400 mt-4 text-base max-w-2xl leading-relaxed">
+          <p className="text-gray-400 text-sm md:text-base max-w-xl leading-relaxed">
             6698 sayılı Kanun kapsamında kişisel verilerinizi nasıl topladığımızı, işlediğimizi ve haklarınızı şeffaf biçimde açıklıyoruz.
           </p>
         </div>

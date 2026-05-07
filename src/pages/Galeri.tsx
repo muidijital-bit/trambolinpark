@@ -39,11 +39,13 @@ export default function Galeri() {
       {/* Header */}
       <section className="bg-[#1a1a1a] pt-24 md:pt-28 lg:pt-32 pb-10 md:pb-12">
         <div className="container mx-auto px-4 lg:px-8">
-          <span className="inline-flex items-center gap-2 text-[#9fc91a] font-extrabold text-xs tracking-widest uppercase mb-4">
-            <Camera size={13} /> FOTO ALBÜMÜ
+          <span className="inline-flex items-center gap-2 text-[#9fc91a] font-extrabold text-[10px] tracking-widest uppercase mb-4 bg-white/5 px-4 py-1.5 rounded-full border border-white/10">
+            <Camera size={12} /> FOTO ALBÜMÜ
           </span>
-          <h1 className="text-4xl md:text-5xl font-black text-white">Galeri</h1>
-          <p className="text-gray-400 mt-3 text-base max-w-xl">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mt-2 mb-3">
+            Saha <span className="text-[#9fc91a]">Galeri</span>
+          </h1>
+          <p className="text-gray-400 text-sm md:text-base max-w-xl">
             Tamamlanan kurulumlar, saha uygulamaları ve ürünlerimizden kareler.
           </p>
         </div>

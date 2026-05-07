@@ -5,8 +5,9 @@ import { motion } from 'framer-motion';
 export default function Contact() {
   return (
     <div className="min-h-screen bg-slate-50 pb-24">
-      <PageHeader 
-        title="İletişim" 
+      <PageHeader
+        title="İletişim"
+        badge="BİZE ULAŞIN"
         description="Projeleriniz için en uygun çözümleri birlikte tasarlayalım. Bize hemen ulaşın."
       />
       
