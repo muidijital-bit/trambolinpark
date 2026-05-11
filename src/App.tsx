@@ -1,8 +1,23 @@
-import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Outlet, useLocation } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import CookieBanner from './components/CookieBanner';
+
+function CustomCursor() {
+  const dotRef  = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const move = (e: MouseEvent) => {
+      if (dotRef.current)  { dotRef.current.style.left  = e.clientX + 'px'; dotRef.current.style.top  = e.clientY + 'px'; }
+      if (ringRef.current) { ringRef.current.style.left = e.clientX + 'px'; ringRef.current.style.top = e.clientY + 'px'; }
+    };
+    document.addEventListener('mousemove', move, { passive: true });
+    return () => document.removeEventListener('mousemove', move);
+  }, []);
+  return <><div ref={dotRef} className="cursor-dot" /><div ref={ringRef} className="cursor-ring" /></>;
+}
 import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import Catalog from './pages/Catalog';
@@ -15,16 +30,18 @@ import Kvkk from './pages/Kvkk';
 import CerezPolitikasi from './pages/CerezPolitikasi';
 
 function Layout() {
+  const { pathname } = useLocation();
   return (
-    <div className="min-h-screen flex flex-col font-sans">
-      <Navbar />
-      <main className="flex-grow w-full">
+    <>
+      <CustomCursor />
+      <Navbar forceScrolled={pathname !== '/'} />
+      <main className="tp-main">
         <Outlet />
       </main>
       <Footer />
       <WhatsAppButton />
       <CookieBanner />
-    </div>
+    </>
   );
 }
 

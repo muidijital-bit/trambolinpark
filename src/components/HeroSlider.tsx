@@ -1,63 +1,27 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 export default function HeroSlider() {
   return (
-    <div className="relative w-full h-[80vh] md:h-[88vh] bg-black overflow-hidden mt-[72px] md:mt-[90px] lg:mt-[114px]">
-
-      {/* Arka plan video */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-60"
-      >
+    <div className="tp-hero" style={{ height: '88vh', marginTop: 64, background: '#000' }}>
+      <video autoPlay muted loop playsInline style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: .6 }}>
         <source src="/hero.mp4" type="video/mp4" />
       </video>
-
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-[#1a1a1a]/40" />
-
-      {/* İçerik */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="container mx-auto px-5 text-center">
-
-          <motion.h1
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-4 md:mb-6 drop-shadow-2xl"
-          >
+      <div className="tp-hero-overlay" />
+      <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="container text-center px-4">
+          <h1 className="display-3 fw-black text-white mb-3" style={{ textShadow: '0 4px 24px rgba(0,0,0,.5)', lineHeight: 1.1 }}>
             Yeni Nesil Trambolin Parkları
-          </motion.h1>
-
-          <motion.p
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-base md:text-xl lg:text-2xl text-slate-200 mb-8 md:mb-10 max-w-2xl mx-auto drop-shadow-md font-medium"
-          >
+          </h1>
+          <p className="fs-5 text-white mb-5 mx-auto" style={{ maxWidth: 600, opacity: .9, textShadow: '0 2px 8px rgba(0,0,0,.4)' }}>
             Maksimum güvenlik ve sınırsız eğlenceyi bir araya getiriyoruz.
-          </motion.p>
-
-          <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-          >
-            <Link
-              to="/urunler"
-              className="bg-[#c3e92d] text-[#1a1a1a] font-black px-8 py-4 md:px-12 md:py-5 rounded-full hover:bg-white hover:-translate-y-1 transition-all duration-300 inline-flex items-center gap-2 md:gap-3 shadow-[0_10px_30px_rgba(195,233,45,0.3)] text-base md:text-lg"
-            >
-              Kategorileri İncele <ArrowRight size={20} />
-            </Link>
-          </motion.div>
-
+          </p>
+          <Link to="/urunler" className="btn btn-lg rounded-pill px-5 py-3 fw-black d-inline-flex align-items-center gap-2"
+            style={{ background: '#c3e92d', color: '#1a1a1a', boxShadow: '0 10px 30px rgba(195,233,45,.35)', fontSize: '1.05rem' }}>
+            Ürünleri İncele <ArrowRight size={20} />
+          </Link>
         </div>
       </div>
-
     </div>
   );
 }

@@ -3,17 +3,12 @@ import { ArrowRight } from 'lucide-react';
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-[#f8fafc] flex items-center justify-center px-4">
-      <div className="text-center max-w-md">
-        <p className="text-[#9fc91a] font-extrabold text-xs tracking-widest uppercase mb-4">404</p>
-        <h1 className="text-4xl md:text-5xl font-black text-[#1a1a1a] mb-4">Sayfa Bulunamadı</h1>
-        <p className="text-slate-500 mb-8">
-          Aradığınız sayfa taşınmış veya kaldırılmış olabilir.
-        </p>
-        <Link
-          to="/"
-          className="inline-flex items-center gap-2 bg-[#9fc91a] hover:bg-[#8ab516] text-white font-black px-8 py-4 rounded-full transition-colors"
-        >
+    <div className="d-flex align-items-center justify-content-center" style={{ minHeight: '100vh', background: '#f8fafc', paddingTop: 64 }}>
+      <div className="text-center px-4" style={{ maxWidth: 480 }}>
+        <p className="fw-black text-brand mb-3" style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '.2em' }}>404</p>
+        <h1 className="fw-black mb-3" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', color: '#1a1a1a' }}>Sayfa Bulunamadı</h1>
+        <p className="text-secondary mb-4" style={{ fontSize: 16 }}>Aradığınız sayfa taşınmış veya kaldırılmış olabilir.</p>
+        <Link to="/" className="btn btn-brand btn-lg rounded-pill px-5 fw-black d-inline-flex align-items-center gap-2">
           Anasayfaya Dön <ArrowRight size={18} />
         </Link>
       </div>

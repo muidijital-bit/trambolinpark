@@ -1,137 +1,117 @@
-import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, CheckCircle2, Info, MessageCircle } from 'lucide-react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import { CheckCircle2, Info, MessageCircle, ChevronRight } from 'lucide-react';
 import { allProducts } from '../data/mockData';
-import ProductCard from '../components/ui/ProductCard';
 
 export default function ProductDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  
-  // Find the product in our mock database
   const product = allProducts.find(p => p.id === id);
 
-  // If not found, show a simple error
-  if (!product) {
-    return (
-      <div className="min-h-screen pt-40 pb-20 bg-[#f8fafc] flex flex-col items-center justify-center text-center">
-        <h1 className="text-4xl font-black text-[#1a1a1a] mb-4">Ürün Bulunamadı</h1>
-        <p className="text-slate-500 mb-8">Aradığınız ürün yayından kaldırılmış veya taşınmış olabilir.</p>
-        <button onClick={() => navigate('/trambolinler')} className="bg-[#9fc91a] text-white px-8 py-3 rounded-full font-bold">
-          Kataloga Dön
-        </button>
-      </div>
-    );
-  }
+  if (!product) return (
+    <div className="text-center py-5" style={{ paddingTop: '8rem !important' }}>
+      <h1 className="fw-black fs-2 mb-3">Ürün Bulunamadı</h1>
+      <p className="text-muted mb-4">Aradığınız ürün yayından kaldırılmış veya taşınmış olabilir.</p>
+      <button onClick={() => navigate('/urunler')} className="btn btn-brand rounded-pill px-5 py-3 fw-black">Kataloga Dön</button>
+    </div>
+  );
 
-  // Same category first, fallback to other products
-  const relatedProducts = [
+  const related = [
     ...allProducts.filter(p => p.id !== product.id && p.category === product.category),
     ...allProducts.filter(p => p.id !== product.id && p.category !== product.category),
   ].slice(0, 3);
-  
-  // Try to determine a category label based on ID
-  const categoryLabel = product.id.includes('top-havuzu') ? 'Soft Play' : 
-                        product.id.includes('park') ? 'Anahtar Teslim Park' : 'Trambolin Serisi';
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] pt-20 md:pt-28 lg:pt-32 pb-16 md:pb-24">
-      <div className="container mx-auto px-4 lg:px-8">
+    <div style={{ background: '#f8fafc', minHeight: '100vh', paddingTop: 64 }}>
 
-        {/* Back Button */}
-        <button
-          onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-slate-500 hover:text-[#9fc91a] font-bold text-sm uppercase tracking-wider mb-6 md:mb-8 transition-colors"
-        >
-          <ArrowLeft size={16} /> Geri Dön
-        </button>
+      {/* Breadcrumb */}
+      <div style={{ background: '#fff', borderBottom: '1px solid #e2e8f0', padding: '.6rem 0' }}>
+        <div className="container">
+          <nav style={{ fontSize: 12 }} className="d-flex align-items-center gap-1 text-muted">
+            <Link to="/" style={{ color: '#64748b', textDecoration: 'none' }}>Anasayfa</Link>
+            <ChevronRight size={11} />
+            <Link to="/urunler" style={{ color: '#64748b', textDecoration: 'none' }}>Ürünler</Link>
+            <ChevronRight size={11} />
+            <Link to={`/urunler/${product.category}`} style={{ color: '#64748b', textDecoration: 'none' }}>{product.categoryName}</Link>
+            <ChevronRight size={11} />
+            <span className="fw-bold text-dark">{product.title}</span>
+          </nav>
+        </div>
+      </div>
 
-        {/* Product Showcase */}
-        <div className="bg-white rounded-2xl md:rounded-[40px] p-5 md:p-10 lg:p-12 shadow-sm md:shadow-[0_8px_30px_rgba(0,0,0,0.04)] mb-10 md:mb-16">
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
+      <div className="container py-4 py-md-5">
 
-            {/* Left: Image Box */}
-            <div className="w-full lg:w-1/2">
-              <div className="bg-slate-50 rounded-xl md:rounded-[32px] w-full aspect-[4/3] md:aspect-square flex items-center justify-center p-5 md:p-8 relative border border-slate-100">
-                 {/* Category Badge placed on image like the cards */}
-                 <div className="absolute top-6 left-6 bg-[#9fc91a] text-white text-xs font-bold px-4 py-2 rounded-full tracking-widest uppercase shadow-md">
-                   {categoryLabel}
-                 </div>
-                 
-                 <img 
-                   src={product.imageUrl} 
-                   alt={product.title} 
-                   className="w-full h-full object-contain drop-shadow-xl"
-                 />
+        {/* Ürün detay */}
+        <div className="bg-white rounded-4 p-4 p-md-5 mb-5" style={{ boxShadow: '0 4px 24px rgba(0,0,0,.05)' }}>
+          <div className="row g-4 g-lg-5">
+
+            {/* Görsel */}
+            <div className="col-12 col-lg-6">
+              <div className="rounded-4 d-flex align-items-center justify-content-center position-relative" style={{ background: '#f8fafc', border: '1px solid #e2e8f0', aspectRatio: '1/1' }}>
+                <span className="badge rounded-pill position-absolute" style={{ top: 20, left: 20, background: '#9fc91a', color: '#fff', fontSize: 11, fontWeight: 800, padding: '.45rem 1rem' }}>
+                  {product.categoryName}
+                </span>
+                <img src={product.imageUrl} alt={product.title} style={{ maxWidth: '80%', maxHeight: '80%', objectFit: 'contain', filter: 'drop-shadow(0 8px 24px rgba(0,0,0,.12))' }} />
               </div>
             </div>
 
-            {/* Right: Info Box */}
-            <div className="w-full lg:w-1/2 flex flex-col justify-center">
-              <h1 className="text-2xl md:text-4xl lg:text-5xl font-black text-[#1a1a1a] mb-4 md:mb-6 leading-tight">
-                {product.title}
-              </h1>
-              
-              <div className="w-20 h-1.5 bg-[#9fc91a] mb-8 rounded-full"></div>
-              
-              <p className="text-slate-500 text-base md:text-lg leading-relaxed mb-8 md:mb-10 font-medium">
-                {product.description}
-              </p>
+            {/* Bilgi */}
+            <div className="col-12 col-lg-6 d-flex flex-column justify-content-center">
+              <h1 className="fw-black mb-3" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.5rem)', lineHeight: 1.2 }}>{product.title}</h1>
+              <div style={{ width: 56, height: 4, background: '#9fc91a', borderRadius: 2, marginBottom: '1.5rem' }} />
+              <p className="text-secondary mb-4" style={{ fontSize: 16, lineHeight: 1.7 }}>{product.description}</p>
 
-              {/* Features List */}
               {product.features && product.features.length > 0 && (
-                <div className="mb-10">
-                  <h4 className="flex items-center gap-2 font-bold text-[#1a1a1a] uppercase tracking-widest text-sm mb-4">
-                     <Info size={18} className="text-[#9fc91a]" /> Öne Çıkan Özellikler
+                <div className="mb-4">
+                  <h4 className="d-flex align-items-center gap-2 fw-bold mb-3" style={{ fontSize: 13, textTransform: 'uppercase', letterSpacing: '.1em', color: '#1a1a1a' }}>
+                    <Info size={16} color="#9fc91a" /> Öne Çıkan Özellikler
                   </h4>
-                  <ul className="space-y-3">
-                    {product.features.map((feature, i) => (
-                      <li key={i} className="flex items-start gap-3 text-slate-600 font-medium">
-                        <CheckCircle2 size={20} className="text-[#9fc91a] shrink-0 mt-0.5" />
-                        <span>{feature}</span>
+                  <ul className="list-unstyled d-flex flex-column gap-2 mb-0">
+                    {product.features.map((f, i) => (
+                      <li key={i} className="d-flex align-items-start gap-2" style={{ fontSize: 15, color: '#475569' }}>
+                        <CheckCircle2 size={18} color="#9fc91a" style={{ marginTop: 2, flexShrink: 0 }} />
+                        {f}
                       </li>
                     ))}
                   </ul>
                 </div>
               )}
 
-              {/* Actions */}
-              <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-                <a 
-                  href="https://api.whatsapp.com/send?phone=905433494947&text=Merhaba,%20bu%20ürün%20hakkında%20bilgi%20ve%20fiyat%20almak%20istiyorum." 
-                  target="_blank"
-                  rel="noreferrer"
-                  className="bg-[#25D366] text-white font-bold py-4 px-8 rounded-full text-center hover:bg-[#128C7E] transition-all duration-300 flex-1 shadow-lg hover:shadow-xl transform flex justify-center items-center gap-2"
-                >
+              <div className="d-flex flex-column flex-sm-row gap-3 mt-auto">
+                <a href="https://api.whatsapp.com/send?phone=905433494947&text=Merhaba,%20bu%20ürün%20hakkında%20bilgi%20ve%20fiyat%20almak%20istiyorum."
+                  target="_blank" rel="noreferrer"
+                  className="btn btn-lg rounded-pill fw-black d-flex align-items-center justify-content-center gap-2 flex-grow-1"
+                  style={{ background: '#25D366', color: '#fff', border: 'none' }}>
                   <MessageCircle size={20} /> WhatsApp'tan Ulaşın
                 </a>
-                <a 
-                  href="https://api.whatsapp.com/send?phone=905433494947&text=Merhaba,%20fiyat%20teklifi%20almak%20istiyorum." 
-                  target="_blank"
-                  rel="noreferrer"
-                  className="bg-[#1a1a1a] text-white font-bold py-4 px-8 rounded-full text-center hover:bg-black transition-all duration-300 flex-1 shadow-lg hover:shadow-xl transform flex justify-center items-center gap-2"
-                >
+                <a href="https://api.whatsapp.com/send?phone=905433494947&text=Merhaba,%20fiyat%20teklifi%20almak%20istiyorum."
+                  target="_blank" rel="noreferrer"
+                  className="btn btn-lg btn-dark-tp rounded-pill fw-black flex-grow-1">
                   Fiyat Al
                 </a>
               </div>
-
             </div>
           </div>
         </div>
 
-        {/* Similar Products */}
-        {relatedProducts.length > 0 && (
+        {/* Benzer ürünler */}
+        {related.length > 0 && (
           <div>
-            <div className="mb-6 md:mb-8">
-              <h2 className="text-2xl md:text-3xl font-black text-[#1a1a1a]">Diğer Ürünler</h2>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
-              {relatedProducts.map(p => (
-                <ProductCard key={p.id} product={p} />
+            <h2 className="fw-black mb-4" style={{ fontSize: 22 }}>Diğer Ürünler</h2>
+            <div className="row row-cols-2 row-cols-md-3 g-3">
+              {related.map(p => (
+                <div key={p.id} className="col">
+                  <button onClick={() => navigate(`/urun/${p.id}`)} className="tp-card w-100 border-0 text-start" style={{ display: 'block' }}>
+                    <div className="tp-card-img"><img loading="lazy" src={p.imageUrl} alt={p.title} /></div>
+                    <div className="tp-card-body">
+                      <span className="tp-card-cat">{p.categoryName}</span>
+                      <p className="tp-card-title">{p.title}</p>
+                    </div>
+                  </button>
+                </div>
               ))}
             </div>
           </div>
         )}
-
       </div>
     </div>
   );
