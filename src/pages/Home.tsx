@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronLeft, ChevronRight, Play, Phone, Mail, MessageCircle, MapPin } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, Play, Phone, Mail, MessageCircle, MapPin, Zap, Layers, Circle, Star, Wind, Wrench, Triangle, Navigation } from 'lucide-react';
 const TP  = 'https://trampolinpark.com';
 const GAL = 'https://matrax-web-six.vercel.app/images/galeri-yeni';
 
@@ -55,6 +55,7 @@ export default function Home() {
   return (
     <>
       <HeroSection />
+      <CategoryMarquee />
       <ProductsSection />
       <SparePartsSection />
       <ProcessSection />
@@ -120,7 +121,38 @@ function HeroSection() {
   );
 }
 
-/* ── 2. MARQUEE ───────────────────────────────────────────── */
+/* ── 2. CATEGORY MARQUEE ─────────────────────────────────── */
+const CAT_ITEMS = [
+  { label: 'Trambolin Parkları',   icon: <Zap size={14} strokeWidth={1.5} />,        href: '/urunler/trambolin-parklari' },
+  { label: 'Olimpik Trambolinler', icon: <Triangle size={14} strokeWidth={1.5} />,    href: '/urunler/olimpik-trambolinler' },
+  { label: 'Top Havuzları',        icon: <Circle size={14} strokeWidth={1.5} />,      href: '/urunler/kucuk-top-havuzlari' },
+  { label: 'Soft Play Alanları',   icon: <Layers size={14} strokeWidth={1.5} />,      href: '/urunler/soft-play-oyun-alanlari' },
+  { label: 'Şişme Parklar',        icon: <Wind size={14} strokeWidth={1.5} />,        href: '/urunler/sisme-park-junior' },
+  { label: 'Yedek Parçalar',       icon: <Wrench size={14} strokeWidth={1.5} />,      href: '/yedek-parcalar' },
+  { label: 'Foam Pit',             icon: <Star size={14} strokeWidth={1.5} />,        href: '/urunler/trambolin-parklari' },
+  { label: 'Ninja Kursu',          icon: <Navigation size={14} strokeWidth={1.5} />,  href: '/urunler/trambolin-parklari' },
+];
+
+function CategoryMarquee() {
+  const items = [...CAT_ITEMS, ...CAT_ITEMS];
+  return (
+    <div style={{ background: '#9fc91a', overflow: 'hidden', padding: '0.85rem 0' }}>
+      <div style={{ display: 'flex', width: 'max-content', animation: 'marqueeRun 30s linear infinite' }}>
+        {items.map((item, i) => (
+          <Link key={i} to={item.href}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '0 2.25rem', textDecoration: 'none', flexShrink: 0, color: '#0a0a0a' }}>
+            {item.icon}
+            <span style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 800, fontSize: 11, textTransform: 'uppercase', letterSpacing: '.2em', whiteSpace: 'nowrap' }}>
+              {item.label}
+            </span>
+            <span style={{ color: 'rgba(255,255,255,.4)', fontSize: 7, marginLeft: 6 }}>✦</span>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ── 4. PRODUCTS ──────────────────────────────────────────── */
 const BENTO_ROW1 = [
   { tag: '02', name: 'Olimpik Trambolinler',  sub: 'Profesyonel & sertifikalı atlama ekipmanları.',  href: '/urunler/olimpik-trambolinler',    img: `${GAL}/galeri-3.jpg`  },
