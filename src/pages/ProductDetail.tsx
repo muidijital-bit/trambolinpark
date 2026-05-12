@@ -42,7 +42,7 @@ export default function ProductDetail() {
 
       {/* ── Hero (diğer sayfalarla aynı tp-page-hero) ── */}
       <div className="tp-page-hero">
-        <div aria-hidden="true" className="tp-hero-watermark">{product.categoryName.toUpperCase()}</div>
+        <div aria-hidden="true" className="tp-hero-watermark">{(product.categoryName ?? '').toLowerCase()}</div>
 
         {/* Breadcrumb inside hero */}
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, padding: '.6rem 0', borderBottom: '1px solid rgba(255,255,255,.06)', zIndex: 3 }}>

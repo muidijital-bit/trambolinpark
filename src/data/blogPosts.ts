@@ -15,7 +15,7 @@ export interface BlogSection {
   items?: string[];
 }
 
-const TP = 'https://trampolinpark.com';
+
 const GAL = 'https://matrax-web-six.vercel.app/images/galeri-yeni';
 
 export const blogPosts: BlogPost[] = [
