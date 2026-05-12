@@ -22,19 +22,23 @@ import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import Catalog from './pages/Catalog';
 import YedekParca from './pages/YedekParca';
+import YedekParcaDetay from './pages/YedekParcaDetay';
 import ProductDetail from './pages/ProductDetail';
 import Contact from './pages/Contact';
 import About from './pages/About';
 import Galeri from './pages/Galeri';
 import Kvkk from './pages/Kvkk';
 import CerezPolitikasi from './pages/CerezPolitikasi';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 
 function Layout() {
   const { pathname } = useLocation();
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
   return (
     <>
       <CustomCursor />
-      <Navbar forceScrolled={pathname !== '/'} />
+      <Navbar />
       <main className="tp-main">
         <Outlet />
       </main>
@@ -55,6 +59,7 @@ function App() {
           <Route path="urunler" element={<Catalog />} />
           <Route path="urunler/:categoryId" element={<Catalog />} />
           <Route path="yedek-parcalar" element={<YedekParca />} />
+          <Route path="yedek-parcalar/:key" element={<YedekParcaDetay />} />
           {/* backward compat */}
           <Route path="kategori/:categoryId" element={<Catalog />} />
           <Route path="iletisim" element={<Contact />} />
@@ -62,6 +67,8 @@ function App() {
           <Route path="galeri" element={<Galeri />} />
           <Route path="kvkk" element={<Kvkk />} />
           <Route path="cerez-politikasi" element={<CerezPolitikasi />} />
+          <Route path="blog" element={<Blog />} />
+          <Route path="blog/:slug" element={<BlogPost />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

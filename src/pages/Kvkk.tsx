@@ -1,7 +1,7 @@
 import { FileText, Lock, Mail } from 'lucide-react';
 
 const sections = [
-  { title: '1. Veri Sorumlusu', body: 'Trambolinpark (Makrokey®) olarak; 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") kapsamında veri sorumlusu sıfatıyla, kişisel verilerinizin işlenmesine ilişkin usul ve esasları aşağıda bilgilerinize sunarız.' },
+  { title: '1. Veri Sorumlusu', body: 'Trambolinpark olarak; 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") kapsamında veri sorumlusu sıfatıyla, kişisel verilerinizin işlenmesine ilişkin usul ve esasları aşağıda bilgilerinize sunarız.' },
   { title: '2. İşlenen Kişisel Veriler', body: 'İletişim formu, telefon görüşmesi, e-posta yazışması ve sözleşme süreçleri kapsamında ad-soyad, telefon, e-posta, firma bilgisi, mesaj içeriği ve teslimat adresi gibi kimlik ve iletişim verileri işlenebilir.' },
   { title: '3. Kişisel Verilerin İşlenme Amaçları', body: 'Talep ve şikâyetlerin değerlendirilmesi, ürün/hizmet teklifi sunulması, sözleşme süreçlerinin yürütülmesi, satış sonrası destek, faturalandırma ve yasal yükümlülüklerin yerine getirilmesi amaçlarıyla işlenir.' },
   { title: '4. Kişisel Verilerin Aktarımı', body: 'Kişisel verileriniz; yasal yükümlülüklerimiz çerçevesinde resmi kurum ve kuruluşlar ile hizmet aldığımız iş ortakları ve tedarikçilere, yalnızca işin gerektirdiği ölçüde ve KVKK md. 8-9 hükümleri uyarınca aktarılabilir.' },
@@ -14,9 +14,11 @@ export default function Kvkk() {
   return (
     <div style={{ background: '#f8fafc', minHeight: '100vh' }}>
       <div className="tp-page-hero">
+        <div aria-hidden="true" className="tp-hero-watermark">KVKK</div>
         <div className="container">
-          <span className="badge rounded-pill mb-3" style={{ background: 'rgba(159,201,26,.15)', color: '#9fc91a', fontSize: 11, fontWeight: 800, letterSpacing: '.1em', padding: '.4rem 1rem' }}>KURUMSAL · KVKK</span>
-          <h1 className="display-5 fw-black text-white mb-2">Kişisel Verilerin <span style={{ color: '#9fc91a' }}>Korunması</span></h1>
+          <span className="badge rounded-pill mb-3" style={{ background: 'rgba(195,233,45,.15)', color: '#c3e92d', fontSize: 11, fontWeight: 800, letterSpacing: '.1em', padding: '.4rem 1rem' }}>KURUMSAL · KVKK</span>
+          <div className="tp-hero-line" />
+          <h1 className="display-5 fw-black text-white mb-2">Kişisel Verilerin <span style={{ color: '#c3e92d' }}>Korunması</span></h1>
           <p style={{ color: '#94a3b8', fontSize: 15, maxWidth: 520 }}>6698 sayılı Kanun kapsamında kişisel verilerinizi nasıl işlediğimizi ve haklarınızı şeffaf biçimde açıklıyoruz.</p>
         </div>
       </div>

@@ -18,9 +18,11 @@ export default function CerezPolitikasi() {
   return (
     <div style={{ background: '#f8fafc', minHeight: '100vh' }}>
       <div className="tp-page-hero">
+        <div aria-hidden="true" className="tp-hero-watermark">ÇEREZ</div>
         <div className="container">
-          <span className="badge rounded-pill mb-3" style={{ background: 'rgba(159,201,26,.15)', color: '#9fc91a', fontSize: 11, fontWeight: 800, letterSpacing: '.1em', padding: '.4rem 1rem' }}>KURUMSAL · ÇEREZ POLİTİKASI</span>
-          <h1 className="display-5 fw-black text-white mb-2">Çerez <span style={{ color: '#9fc91a' }}>Politikası</span></h1>
+          <span className="badge rounded-pill mb-3" style={{ background: 'rgba(195,233,45,.15)', color: '#c3e92d', fontSize: 11, fontWeight: 800, letterSpacing: '.1em', padding: '.4rem 1rem' }}>KURUMSAL · ÇEREZ POLİTİKASI</span>
+          <div className="tp-hero-line" />
+          <h1 className="display-5 fw-black text-white mb-2">Çerez <span style={{ color: '#c3e92d' }}>Politikası</span></h1>
           <p style={{ color: '#94a3b8', fontSize: 15, maxWidth: 520 }}>Kullandığımız çerez türleri, amaçları ve tercihlerinizi nasıl yönetebileceğiniz hakkında bilgiler.</p>
         </div>
       </div>

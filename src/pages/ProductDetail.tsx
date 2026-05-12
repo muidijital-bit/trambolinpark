@@ -1,14 +1,26 @@
+import { useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { CheckCircle2, Info, MessageCircle, ChevronRight } from 'lucide-react';
+import { CheckCircle2, ChevronRight, ChevronLeft, Tag } from 'lucide-react';
 import { allProducts } from '../data/mockData';
+
+const WA = '905433494947';
+const buildWa = (title: string, msg = 'hakkında bilgi almak istiyorum') =>
+  `https://api.whatsapp.com/send?phone=${WA}&text=${encodeURIComponent(`Merhaba, "${title}" ${msg}.`)}`;
+
+const WaIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 16, height: 16 }}>
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+  </svg>
+);
 
 export default function ProductDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const carouselRef = useRef<HTMLDivElement>(null);
   const product = allProducts.find(p => p.id === id);
 
   if (!product) return (
-    <div className="text-center py-5" style={{ paddingTop: '8rem !important' }}>
+    <div className="text-center py-5" style={{ paddingTop: '8rem' }}>
       <h1 className="fw-black fs-2 mb-3">Ürün Bulunamadı</h1>
       <p className="text-muted mb-4">Aradığınız ürün yayından kaldırılmış veya taşınmış olabilir.</p>
       <button onClick={() => navigate('/urunler')} className="btn btn-brand rounded-pill px-5 py-3 fw-black">Kataloga Dön</button>
@@ -18,101 +30,148 @@ export default function ProductDetail() {
   const related = [
     ...allProducts.filter(p => p.id !== product.id && p.category === product.category),
     ...allProducts.filter(p => p.id !== product.id && p.category !== product.category),
-  ].slice(0, 3);
+  ].slice(0, 8);
+
+  const scroll = (dir: 'left' | 'right') => {
+    if (!carouselRef.current) return;
+    carouselRef.current.scrollBy({ left: dir === 'right' ? 280 : -280, behavior: 'smooth' });
+  };
 
   return (
-    <div style={{ background: '#f8fafc', minHeight: '100vh', paddingTop: 64 }}>
+    <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
 
-      {/* Breadcrumb */}
-      <div style={{ background: '#fff', borderBottom: '1px solid #e2e8f0', padding: '.6rem 0' }}>
-        <div className="container">
-          <nav style={{ fontSize: 12 }} className="d-flex align-items-center gap-1 text-muted">
-            <Link to="/" style={{ color: '#64748b', textDecoration: 'none' }}>Anasayfa</Link>
-            <ChevronRight size={11} />
-            <Link to="/urunler" style={{ color: '#64748b', textDecoration: 'none' }}>Ürünler</Link>
-            <ChevronRight size={11} />
-            <Link to={`/urunler/${product.category}`} style={{ color: '#64748b', textDecoration: 'none' }}>{product.categoryName}</Link>
-            <ChevronRight size={11} />
-            <span className="fw-bold text-dark">{product.title}</span>
-          </nav>
+      {/* ── Hero (diğer sayfalarla aynı tp-page-hero) ── */}
+      <div className="tp-page-hero">
+        <div aria-hidden="true" className="tp-hero-watermark">{product.categoryName.toUpperCase()}</div>
+
+        {/* Breadcrumb inside hero */}
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, padding: '.6rem 0', borderBottom: '1px solid rgba(255,255,255,.06)', zIndex: 3 }}>
+          <div className="container">
+            <nav className="d-flex align-items-center gap-1 flex-wrap" style={{ fontSize: 12 }}>
+              <Link to="/" style={{ color: 'rgba(255,255,255,.45)', textDecoration: 'none' }}>Anasayfa</Link>
+              <ChevronRight size={11} color="rgba(255,255,255,.3)" />
+              <Link to="/urunler" style={{ color: 'rgba(255,255,255,.45)', textDecoration: 'none' }}>Ürünler</Link>
+              <ChevronRight size={11} color="rgba(255,255,255,.3)" />
+              <Link to={`/urunler/${product.category}`} style={{ color: 'rgba(255,255,255,.45)', textDecoration: 'none' }}>{product.categoryName}</Link>
+              <ChevronRight size={11} color="rgba(255,255,255,.3)" />
+              <span style={{ color: 'rgba(255,255,255,.8)', fontWeight: 700 }}>{product.title}</span>
+            </nav>
+          </div>
         </div>
-      </div>
 
-      <div className="container py-4 py-md-5">
+        <div className="container">
+          <div className="row g-0 g-lg-5 align-items-center">
 
-        {/* Ürün detay */}
-        <div className="bg-white rounded-4 p-4 p-md-5 mb-5" style={{ boxShadow: '0 4px 24px rgba(0,0,0,.05)' }}>
-          <div className="row g-4 g-lg-5">
-
-            {/* Görsel */}
-            <div className="col-12 col-lg-6">
-              <div className="rounded-4 d-flex align-items-center justify-content-center position-relative" style={{ background: '#f8fafc', border: '1px solid #e2e8f0', aspectRatio: '1/1' }}>
-                <span className="badge rounded-pill position-absolute" style={{ top: 20, left: 20, background: '#9fc91a', color: '#fff', fontSize: 11, fontWeight: 800, padding: '.45rem 1rem' }}>
-                  {product.categoryName}
-                </span>
-                <img src={product.imageUrl} alt={product.title} style={{ maxWidth: '80%', maxHeight: '80%', objectFit: 'contain', filter: 'drop-shadow(0 8px 24px rgba(0,0,0,.12))' }} />
+            {/* Image */}
+            <div className="col-12 col-lg-5 d-flex justify-content-center mb-4 mb-lg-0">
+              <div style={{ position: 'relative', width: '100%', maxWidth: 420 }}>
+                <div style={{
+                  position: 'absolute', inset: '10%', borderRadius: '50%',
+                  background: 'radial-gradient(circle, rgba(195,233,45,.22) 0%, transparent 70%)',
+                  filter: 'blur(40px)', pointerEvents: 'none',
+                }} />
+                <div style={{
+                  aspectRatio: '1/1', borderRadius: 24,
+                  border: '1px solid rgba(255,255,255,.08)',
+                  background: 'rgba(255,255,255,.04)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}>
+                  <img src={product.imageUrl} alt={product.title}
+                    style={{ maxWidth: '78%', maxHeight: '78%', objectFit: 'contain', filter: 'drop-shadow(0 16px 40px rgba(0,0,0,.5))' }} />
+                </div>
               </div>
             </div>
 
-            {/* Bilgi */}
-            <div className="col-12 col-lg-6 d-flex flex-column justify-content-center">
-              <h1 className="fw-black mb-3" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.5rem)', lineHeight: 1.2 }}>{product.title}</h1>
-              <div style={{ width: 56, height: 4, background: '#9fc91a', borderRadius: 2, marginBottom: '1.5rem' }} />
-              <p className="text-secondary mb-4" style={{ fontSize: 16, lineHeight: 1.7 }}>{product.description}</p>
+            {/* Info */}
+            <div className="col-12 col-lg-7">
+              <span className="badge rounded-pill mb-3" style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.1em', padding: '.4rem 1rem' }}>
+                <Tag size={10} style={{ marginRight: 4 }} />{product.categoryName}
+              </span>
+              <div className="tp-hero-line" />
+              <h1>{product.title}</h1>
+              <p>{product.description}</p>
 
               {product.features && product.features.length > 0 && (
-                <div className="mb-4">
-                  <h4 className="d-flex align-items-center gap-2 fw-bold mb-3" style={{ fontSize: 13, textTransform: 'uppercase', letterSpacing: '.1em', color: '#1a1a1a' }}>
-                    <Info size={16} color="#9fc91a" /> Öne Çıkan Özellikler
-                  </h4>
-                  <ul className="list-unstyled d-flex flex-column gap-2 mb-0">
-                    {product.features.map((f, i) => (
-                      <li key={i} className="d-flex align-items-start gap-2" style={{ fontSize: 15, color: '#475569' }}>
-                        <CheckCircle2 size={18} color="#9fc91a" style={{ marginTop: 2, flexShrink: 0 }} />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
+                <div className="d-flex flex-wrap gap-2 mb-4">
+                  {product.features.map((f, i) => (
+                    <span key={i} className="d-inline-flex align-items-center gap-1" style={{
+                      background: 'rgba(255,255,255,.07)', border: '1px solid rgba(255,255,255,.15)',
+                      color: 'rgba(255,255,255,.85)', fontSize: 12, fontWeight: 600,
+                      padding: '.4rem .85rem', borderRadius: 100,
+                    }}>
+                      <CheckCircle2 size={12} color="#c3e92d" style={{ flexShrink: 0 }} />
+                      {f}
+                    </span>
+                  ))}
                 </div>
               )}
 
-              <div className="d-flex flex-column flex-sm-row gap-3 mt-auto">
-                <a href="https://api.whatsapp.com/send?phone=905433494947&text=Merhaba,%20bu%20ürün%20hakkında%20bilgi%20ve%20fiyat%20almak%20istiyorum."
-                  target="_blank" rel="noreferrer"
-                  className="btn btn-lg rounded-pill fw-black d-flex align-items-center justify-content-center gap-2 flex-grow-1"
-                  style={{ background: '#25D366', color: '#fff', border: 'none' }}>
-                  <MessageCircle size={20} /> WhatsApp'tan Ulaşın
+              <div className="d-flex flex-wrap gap-3">
+                <a href={buildWa(product.title)} target="_blank" rel="noreferrer"
+                  className="btn btn-brand rounded-pill px-4 py-3 fw-black d-flex align-items-center gap-2"
+                  style={{ fontSize: 14 }}>
+                  <WaIcon /> WhatsApp ile Sor
                 </a>
-                <a href="https://api.whatsapp.com/send?phone=905433494947&text=Merhaba,%20fiyat%20teklifi%20almak%20istiyorum."
-                  target="_blank" rel="noreferrer"
-                  className="btn btn-lg btn-dark-tp rounded-pill fw-black flex-grow-1">
+                <a href={buildWa(product.title, 'için fiyat teklifi almak istiyorum')} target="_blank" rel="noreferrer"
+                  className="btn rounded-pill px-4 py-3 fw-black d-flex align-items-center gap-2"
+                  style={{ background: 'rgba(255,255,255,.08)', border: '1px solid rgba(255,255,255,.2)', color: '#fff', fontSize: 14 }}>
                   Fiyat Al
                 </a>
               </div>
             </div>
+
           </div>
         </div>
+      </div>
 
-        {/* Benzer ürünler */}
-        {related.length > 0 && (
-          <div>
-            <h2 className="fw-black mb-4" style={{ fontSize: 22 }}>Diğer Ürünler</h2>
-            <div className="row row-cols-2 row-cols-md-3 g-3">
-              {related.map(p => (
-                <div key={p.id} className="col">
-                  <button onClick={() => navigate(`/urun/${p.id}`)} className="tp-card w-100 border-0 text-start" style={{ display: 'block' }}>
-                    <div className="tp-card-img"><img loading="lazy" src={p.imageUrl} alt={p.title} /></div>
-                    <div className="tp-card-body">
-                      <span className="tp-card-cat">{p.categoryName}</span>
-                      <p className="tp-card-title">{p.title}</p>
-                    </div>
-                  </button>
-                </div>
-              ))}
+      {/* ── Diğer Ürünler Carousel ── */}
+      {related.length > 0 && (
+        <div className="container py-5">
+          <div className="d-flex align-items-center justify-content-between mb-4">
+            <div>
+              <p className="mb-1 section-label">Keşfet</p>
+              <h2 className="font-poppins fw-black mb-0" style={{ fontSize: 'clamp(1.3rem, 3vw, 1.8rem)', color: '#1a1a1a' }}>
+                Diğer Ürünler
+              </h2>
+            </div>
+            <div className="d-flex gap-2">
+              <button onClick={() => scroll('left')} aria-label="Geri" style={{
+                width: 44, height: 44, borderRadius: '50%', border: '2px solid #e0e0e0',
+                background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                cursor: 'pointer', flexShrink: 0,
+              }}>
+                <ChevronLeft size={18} />
+              </button>
+              <button onClick={() => scroll('right')} aria-label="İleri" style={{
+                width: 44, height: 44, borderRadius: '50%', border: '2px solid #1a1a1a',
+                background: '#1a1a1a', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                cursor: 'pointer', flexShrink: 0,
+              }}>
+                <ChevronRight size={18} />
+              </button>
             </div>
           </div>
-        )}
-      </div>
+
+          <div ref={carouselRef} style={{
+            display: 'flex', gap: 16, overflowX: 'auto', scrollbarWidth: 'none',
+            paddingBottom: 4, scrollSnapType: 'x mandatory',
+          }}>
+            {related.map(p => (
+              <button key={p.id} onClick={() => navigate(`/urun/${p.id}`)}
+                className="tp-card border-0 text-start flex-shrink-0"
+                style={{ width: 220, scrollSnapAlign: 'start', display: 'block', cursor: 'pointer' }}>
+                <div className="tp-card-img">
+                  <img loading="lazy" src={p.imageUrl} alt={p.title} />
+                </div>
+                <div className="tp-card-body">
+                  <span className="tp-card-cat">{p.categoryName}</span>
+                  <p className="tp-card-title">{p.title}</p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

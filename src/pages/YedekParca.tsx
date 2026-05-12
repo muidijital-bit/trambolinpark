@@ -1,76 +1,193 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronDown, ChevronLeft, ChevronRight, X, Wrench } from 'lucide-react';
+import { ChevronDown, ChevronLeft, ChevronRight, X, Wrench, ArrowRight } from 'lucide-react';
 import { spareCategories } from '../data/spareParts';
 import type { SparePart } from '../data/spareParts';
+import SidebarSearch from '../components/SidebarSearch';
+import type { SearchItem } from '../components/SidebarSearch';
 
 const WA = '905433494947';
-const buildWa = (title: string) => `https://api.whatsapp.com/send?phone=${WA}&text=${encodeURIComponent(`Merhaba, "${title}" hakkında bilgi almak istiyorum.`)}`;
+
+function allItems(cat: typeof spareCategories[0]) {
+  if (cat.subcategories?.length) return cat.subcategories.flatMap(s => s.items);
+  return cat.items;
+}
+
+const searchItems: SearchItem[] = spareCategories.flatMap(cat => {
+  const items = allItems(cat);
+  return items.map(p => ({
+    key: p.key,
+    title: p.title,
+    image: p.image,
+    badge: cat.title,
+    href: `/yedek-parcalar/${p.key}`,
+  }));
+});
 
 export default function YedekParca() {
-  const [openKeys, setOpenKeys] = useState<Set<string>>(new Set());
+  const [activeCat, setActiveCat] = useState(spareCategories[0]?.key ?? '');
+  const [activeSub, setActiveSub] = useState<string | null>(
+    spareCategories[0]?.subcategories?.[0]?.key ?? null
+  );
   const [zoom, setZoom] = useState<{ images: string[]; idx: number; title: string } | null>(null);
 
-  const toggle = (key: string) => setOpenKeys(prev => {
-    const next = new Set(prev);
-    next.has(key) ? next.delete(key) : next.add(key);
-    return next;
-  });
+  const category = spareCategories.find(c => c.key === activeCat)!;
+  const subcat = activeSub ? category?.subcategories?.find(s => s.key === activeSub) : null;
+  const items = subcat ? subcat.items : allItems(category);
+  const heading = subcat ? subcat.title : category?.title;
+
+  const selectCat = (key: string) => {
+    const cat = spareCategories.find(c => c.key === key)!;
+    setActiveCat(key);
+    setActiveSub(cat.subcategories?.[0]?.key ?? null);
+  };
+
+  const totalItems = (cat: typeof spareCategories[0]) => allItems(cat).length;
 
   return (
-    <div style={{ background: '#f8fafc', minHeight: '100vh' }}>
+    <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
 
       {/* Hero */}
       <div className="tp-page-hero">
+        <div aria-hidden="true" className="tp-hero-watermark">YEDEK PARÇA</div>
         <div className="container">
-          <span className="badge rounded-pill mb-3" style={{ background: 'rgba(159,201,26,.15)', color: '#9fc91a', fontSize: 11, fontWeight: 800, letterSpacing: '.1em', padding: '.4rem 1rem' }}>DESTEK & BAKIM</span>
-          <h1 className="display-5 fw-black text-white mb-2">Yedek <span style={{ color: '#9fc91a' }}>Parçalar</span></h1>
-          <p style={{ color: '#94a3b8', fontSize: 15, maxWidth: 520 }}>Yaydan süngere, fileden aksesuara — tüm ürünlerimize ait orijinal yedek parçalar stokta hazır.</p>
+          <span className="badge rounded-pill mb-3" style={{ background: 'rgba(195,233,45,.15)', color: '#c3e92d', fontSize: 11, fontWeight: 800, letterSpacing: '.1em', padding: '.4rem 1rem' }}>DESTEK & BAKIM</span>
+          <div className="tp-hero-line" />
+          <h1 className="display-5 fw-black text-white mb-2">Yedek <span style={{ color: '#c3e92d' }}>Parçalar</span></h1>
+          <p style={{ color: 'rgba(255,255,255,.55)', fontSize: 15, maxWidth: 520 }}>Yaydan süngere, fileden aksesuara — tüm ürünlerimize ait orijinal yedek parçalar stokta hazır.</p>
         </div>
       </div>
 
       <div className="container py-4 py-md-5">
+        <div className="row g-4 align-items-start">
 
-        {/* Accordion */}
-        <div className="d-flex flex-column gap-3">
-          {spareCategories.map((cat, ci) => {
-            const isOpen = openKeys.has(cat.key);
-            return (
-              <motion.div key={cat.key} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.05 }} transition={{ delay: (ci % 5) * 0.04 }}
-                className="bg-white rounded-4 overflow-hidden" style={{ border: '2px solid #f1f5f9', boxShadow: '0 2px 8px rgba(0,0,0,.04)' }}>
-
-                <button onClick={() => toggle(cat.key)} className="tp-acc-btn">
-                  <div style={{ width: 72, height: 72, flexShrink: 0, borderRadius: 12, background: '#f8fafc', overflow: 'hidden' }}>
-                    <img src={cat.cover} alt={cat.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: 8 }} />
-                  </div>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div className="d-flex align-items-center gap-2 mb-1 flex-wrap">
-                      <h3 className="fw-black mb-0" style={{ fontSize: 16, color: '#1a1a1a' }}>{cat.title}</h3>
-                      <span className="badge rounded-pill" style={{ background: 'rgba(159,201,26,.12)', color: '#9fc91a', fontSize: 10, fontWeight: 800 }}>{cat.items.length} parça</span>
-                    </div>
-                    <p className="mb-0 text-muted" style={{ fontSize: 13, lineHeight: 1.4 }}>{cat.short}</p>
-                  </div>
-                  <div className={`tp-acc-chevron ${isOpen ? 'open' : ''}`}><ChevronDown size={18} /></div>
+          {/* ── Mobile: horizontal category tabs ── */}
+          <div className="col-12 d-lg-none">
+            <SidebarSearch items={searchItems} placeholder="Yedek parça ara..." />
+            <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 6, scrollbarWidth: 'none' }}>
+              {spareCategories.map(cat => (
+                <button key={cat.key} onClick={() => selectCat(cat.key)}
+                  style={{
+                    flexShrink: 0, display: 'flex', alignItems: 'center', gap: 8,
+                    padding: '8px 14px', borderRadius: 100, border: '1.5px solid',
+                    borderColor: activeCat === cat.key ? '#5c9200' : '#e0e0e0',
+                    background: activeCat === cat.key ? 'rgba(92,146,0,.08)' : '#fff',
+                    cursor: 'pointer', transition: 'all .15s',
+                  }}>
+                  <img src={cat.cover} alt={cat.title} style={{ width: 22, height: 22, objectFit: 'contain', borderRadius: 4 }} />
+                  <span style={{ fontSize: 12, fontWeight: 700, color: activeCat === cat.key ? '#5c9200' : '#555', whiteSpace: 'nowrap' }}>{cat.title}</span>
                 </button>
+              ))}
+            </div>
+            {/* Mobile subcategory tabs */}
+            {category?.subcategories && (
+              <div style={{ display: 'flex', gap: 6, overflowX: 'auto', paddingBottom: 4, scrollbarWidth: 'none', marginTop: 10 }}>
+                {category.subcategories.map(sub => (
+                  <button key={sub.key} onClick={() => setActiveSub(sub.key)}
+                    style={{
+                      flexShrink: 0, padding: '5px 12px', borderRadius: 100, border: '1.5px solid',
+                      borderColor: activeSub === sub.key ? '#5c9200' : '#e0e0e0',
+                      background: activeSub === sub.key ? 'rgba(92,146,0,.08)' : '#fff',
+                      cursor: 'pointer', fontSize: 11, fontWeight: 700,
+                      color: activeSub === sub.key ? '#5c9200' : '#666',
+                      transition: 'all .15s', whiteSpace: 'nowrap',
+                    }}>
+                    {sub.title} <span style={{ color: '#aaa', fontWeight: 400 }}>({sub.items.length})</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
 
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.25, ease: 'easeOut' }} style={{ overflow: 'hidden' }}>
-                      <div style={{ borderTop: '1px solid #f1f5f9', padding: '1rem 1rem 1.25rem' }}>
-                        <div className="row row-cols-2 row-cols-sm-3 row-cols-lg-4 g-3 mt-1">
-                          {cat.items.map(item => (
-                            <div key={item.key} className="col">
-                              <SparePartCard item={item} onZoom={(imgs, idx) => setZoom({ images: imgs, idx, title: item.title })} />
-                            </div>
-                          ))}
-                        </div>
+          {/* ── Desktop: vertical sidebar ── */}
+          <div className="col-lg-3 d-none d-lg-block">
+            <div style={{ background: '#fff', borderRadius: 16, border: '1.5px solid #ebebeb', overflow: 'hidden', position: 'sticky', top: 90 }}>
+              <div style={{ padding: '1rem 1rem .5rem' }}>
+                <p style={{ fontSize: 10, fontWeight: 900, textTransform: 'uppercase', letterSpacing: '.15em', color: '#aaa', marginBottom: 10 }}>Kategoriler</p>
+                <SidebarSearch items={searchItems} placeholder="Yedek parça ara..." />
+              </div>
+              {spareCategories.map((cat, ci) => {
+                const isActive = activeCat === cat.key;
+                const hasSubs = !!cat.subcategories?.length;
+                return (
+                  <div key={cat.key} style={{ borderBottom: ci < spareCategories.length - 1 ? '1px solid #f0f0f0' : 'none' }}>
+                    {/* Category row */}
+                    <button onClick={() => selectCat(cat.key)}
+                      className="d-flex align-items-center gap-3 w-100 text-start border-0"
+                      style={{
+                        padding: '0.85rem 1rem',
+                        background: isActive ? 'rgba(92,146,0,.06)' : 'transparent',
+                        borderLeft: `3px solid ${isActive ? '#5c9200' : 'transparent'}`,
+                        cursor: 'pointer', transition: 'background .15s, border-color .15s',
+                      }}>
+                      <div style={{ width: 42, height: 42, flexShrink: 0, borderRadius: 10, background: '#f5f5f5', overflow: 'hidden' }}>
+                        <img src={cat.cover} alt={cat.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: 4 }} />
                       </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            );
-          })}
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <p className="fw-bold mb-0" style={{ fontSize: 13, color: isActive ? '#5c9200' : '#1a1a1a', lineHeight: 1.3 }}>{cat.title}</p>
+                        <p className="mb-0" style={{ fontSize: 11, color: '#aaa' }}>{totalItems(cat)} parça</p>
+                      </div>
+                      {hasSubs && (
+                        <ChevronDown size={14} style={{ color: '#aaa', flexShrink: 0, transition: 'transform .2s', transform: isActive ? 'rotate(180deg)' : 'rotate(0)' }} />
+                      )}
+                    </button>
+
+                    {/* Subcategories */}
+                    <AnimatePresence initial={false}>
+                      {isActive && hasSubs && (
+                        <motion.div initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }}
+                          transition={{ duration: 0.2, ease: 'easeOut' }} style={{ overflow: 'hidden' }}>
+                          <div style={{ background: '#fafafa', borderTop: '1px solid #f0f0f0' }}>
+                            {cat.subcategories!.map((sub, si) => (
+                              <button key={sub.key} onClick={() => setActiveSub(sub.key)}
+                                className="d-flex align-items-center justify-content-between w-100 text-start border-0"
+                                style={{
+                                  padding: '0.6rem 1rem 0.6rem 1.5rem',
+                                  background: activeSub === sub.key ? 'rgba(92,146,0,.08)' : 'transparent',
+                                  borderLeft: `2px solid ${activeSub === sub.key ? '#5c9200' : 'transparent'}`,
+                                  borderBottom: si < cat.subcategories!.length - 1 ? '1px solid #f0f0f0' : 'none',
+                                  cursor: 'pointer', transition: 'all .15s',
+                                }}>
+                                <span style={{ fontSize: 12, fontWeight: activeSub === sub.key ? 700 : 500, color: activeSub === sub.key ? '#5c9200' : '#555' }}>
+                                  {sub.title}
+                                </span>
+                                <span style={{ fontSize: 10, color: '#bbb', fontWeight: 600 }}>{sub.items.length}</span>
+                              </button>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* ── Right: parts grid ── */}
+          <div className="col-12 col-lg-9">
+            <div className="mb-4 pb-3" style={{ borderBottom: '1.5px solid #e8e8e8' }}>
+              <p className="mb-1" style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.15em', color: '#5c9200' }}>
+                {category?.title}
+              </p>
+              <h2 className="font-poppins fw-black mb-1" style={{ fontSize: 'clamp(1.4rem, 3vw, 1.85rem)', color: '#1a1a1a' }}>{heading}</h2>
+              <p style={{ color: '#888', fontSize: 14, margin: 0 }}>
+                {subcat ? `${items.length} parça` : category?.short}
+              </p>
+            </div>
+
+            <motion.div key={`${activeCat}-${activeSub}`}
+              initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }}
+              className="row row-cols-2 row-cols-sm-3 row-cols-xl-4 g-3">
+              {items.map(item => (
+                <div key={item.key} className="col">
+                  <SparePartCard item={item} onZoom={(imgs, idx) => setZoom({ images: imgs, idx, title: item.title })} />
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
         </div>
 
         {/* CTA */}
@@ -79,13 +196,13 @@ export default function YedekParca() {
             <h3 className="text-white fw-black mb-2" style={{ fontSize: 20 }}>İhtiyacınız olan parçayı bulamadınız mı?</h3>
             <p className="mb-0" style={{ color: '#94a3b8', fontSize: 14 }}>Bize ulaşın, stok dışı parçaları da temin ediyoruz.</p>
           </div>
-          <a href={`https://api.whatsapp.com/send?phone=${WA}`} target="_blank" rel="noreferrer" className="btn btn-brand rounded-pill px-5 py-3 fw-black flex-shrink-0">
+          <a href={`https://api.whatsapp.com/send?phone=${WA}`} target="_blank" rel="noreferrer"
+            className="btn btn-brand rounded-pill px-5 py-3 fw-black flex-shrink-0">
             WhatsApp ile Sor
           </a>
         </div>
       </div>
 
-      {/* Lightbox */}
       <AnimatePresence>
         {zoom && <PartLightbox images={zoom.images} startIdx={zoom.idx} title={zoom.title} onClose={() => setZoom(null)} />}
       </AnimatePresence>
@@ -97,7 +214,8 @@ function SparePartCard({ item, onZoom }: { item: SparePart; onZoom: (images: str
   const images = item.gallery?.length ? item.gallery : item.image ? [item.image] : [];
   return (
     <div className="tp-spare-card h-100 d-flex flex-column">
-      <button onClick={() => images.length && onZoom(images, 0)} className="tp-spare-card-img border-0 p-0" style={{ cursor: images.length ? 'zoom-in' : 'default', background: 'transparent', width: '100%' }}>
+      <button onClick={() => images.length && onZoom(images, 0)} className="tp-spare-card-img border-0 p-0"
+        style={{ cursor: images.length ? 'zoom-in' : 'default', background: 'transparent', width: '100%' }}>
         {images[0]
           ? <img src={images[0]} alt={item.title} loading="lazy" />
           : <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#cbd5e1' }}><Wrench size={28} /></div>}
@@ -108,12 +226,11 @@ function SparePartCard({ item, onZoom }: { item: SparePart; onZoom: (images: str
       <div className="p-3 d-flex flex-column gap-2 flex-grow-1">
         <h4 className="fw-black mb-0" style={{ fontSize: 13, color: '#1a1a1a', lineHeight: 1.3 }}>{item.title}</h4>
         <p className="mb-0 text-muted flex-grow-1" style={{ fontSize: 12, lineHeight: 1.4 }}>{item.desc}</p>
-        <a href={buildWa(item.title)} target="_blank" rel="noreferrer"
-          className="btn btn-sm rounded-3 fw-black d-flex align-items-center justify-content-center gap-2 mt-1"
-          style={{ background: '#25D366', color: '#fff', border: 'none', fontSize: 11 }}>
-          <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 14, height: 14 }}><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          WhatsApp ile Sor
-        </a>
+        <Link to={`/yedek-parcalar/${item.key}`}
+          className="btn btn-sm rounded-3 fw-black d-flex align-items-center justify-content-center gap-1 mt-1"
+          style={{ background: '#5c9200', color: '#fff', border: 'none', fontSize: 11 }}>
+          İncele <ArrowRight size={12} />
+        </Link>
       </div>
     </div>
   );

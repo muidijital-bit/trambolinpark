@@ -40,18 +40,18 @@ export default function Navbar({ forceScrolled = false }: { forceScrolled?: bool
   return (
     <>
       <nav className={`tp-nav${(scrolled || forceScrolled) ? ' scrolled' : ''}`}>
-        <div className="container-fluid px-3 px-md-5">
-          <div className="d-flex align-items-center gap-4">
+        <div className="container">
+          <div className="d-flex align-items-center gap-3 gap-lg-4">
 
             {/* Logo */}
-            <Link to="/" className="tp-nav nav-logo me-auto me-lg-0">
-              trambolin<span>park</span>
+            <Link to="/" className="tp-nav-logo me-auto me-lg-0 flex-shrink-0">
+              <img src="/logo.png" alt="Trambolinpark" />
             </Link>
 
             {/* Desktop links */}
             <div className="d-none d-lg-flex align-items-center gap-4 flex-grow-1 justify-content-center">
-              {[['/', 'Anasayfa'], ['/hakkimizda', 'Hakkımızda'], ['/urunler', 'Ürünler'], ['/yedek-parcalar', 'Yedek Parçalar'], ['/galeri', 'Galeri'], ['/iletisim', 'İletişim']].map(([to, label]) => (
-                <NavLink key={to} to={to} end={to === '/'} className={({ isActive }) => `tp-nav nav-link-item${isActive ? ' active' : ''}`}>{label}</NavLink>
+              {[['/', 'Anasayfa'], ['/hakkimizda', 'Hakkımızda'], ['/urunler', 'Ürünler'], ['/yedek-parcalar', 'Yedek Parçalar'], ['/galeri', 'Galeri'], ['/blog', 'Blog'], ['/iletisim', 'İletişim']].map(([to, label]) => (
+                <NavLink key={to} to={to} end={to === '/'} className={({ isActive }) => `nav-link-item${isActive ? ' active' : ''}`}>{label}</NavLink>
               ))}
             </div>
 
@@ -106,10 +106,10 @@ export default function Navbar({ forceScrolled = false }: { forceScrolled?: bool
             </div>
 
             {/* CTA */}
-            <Link to="/iletisim" className="btn-accent d-none d-lg-inline-flex" style={{ fontSize: 13, padding: '.6rem 1.4rem' }}>Teklif Al</Link>
+            <Link to="/iletisim" className="btn-accent d-none d-lg-inline-flex flex-shrink-0" style={{ fontSize: 13, padding: '.6rem 1.4rem' }}>Teklif Al</Link>
 
             {/* Hamburger */}
-            <button onClick={() => setMenuOpen(!menuOpen)} className="d-lg-none btn-glass" style={{ padding: '.5rem .75rem', marginLeft: 'auto' }}>
+            <button onClick={() => setMenuOpen(!menuOpen)} className="d-lg-none btn-glass" style={{ padding: '.5rem .75rem' }}>
               {menuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
@@ -119,9 +119,12 @@ export default function Navbar({ forceScrolled = false }: { forceScrolled?: bool
       {/* Mobile Menu */}
       {menuOpen && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(10,10,10,.96)', backdropFilter: 'blur(20px)', zIndex: 999, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '2rem' }}>
+          <div style={{ position: 'absolute', top: 20, left: 24 }}>
+            <img src="/logo.png" alt="Trambolinpark" style={{ height: 36, objectFit: 'contain' }} />
+          </div>
           <button onClick={() => setMenuOpen(false)} style={{ position: 'absolute', top: 24, right: 24, background: 'rgba(255,255,255,.08)', border: 'none', borderRadius: '50%', width: 44, height: 44, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><X size={20} /></button>
           <div className="d-flex flex-column gap-1">
-            {[['/', 'Anasayfa'], ['/hakkimizda', 'Hakkımızda'], ['/urunler', 'Ürünler'], ['/yedek-parcalar', 'Yedek Parçalar'], ['/galeri', 'Galeri'], ['/iletisim', 'İletişim']].map(([to, label]) => (
+            {[['/', 'Anasayfa'], ['/hakkimizda', 'Hakkımızda'], ['/urunler', 'Ürünler'], ['/yedek-parcalar', 'Yedek Parçalar'], ['/galeri', 'Galeri'], ['/blog', 'Blog'], ['/iletisim', 'İletişim']].map(([to, label]) => (
               <Link key={to} to={to} onClick={() => setMenuOpen(false)}
                 style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 900, fontSize: 'clamp(1.75rem, 6vw, 2.5rem)', color: 'rgba(255,255,255,.85)', lineHeight: 1.2, padding: '.35rem 0', borderBottom: '1px solid rgba(255,255,255,.05)', transition: 'color .2s' }}
                 onMouseEnter={e => (e.currentTarget.style.color = '#c3e92d')} onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,.85)')}>

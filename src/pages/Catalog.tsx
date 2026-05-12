@@ -1,29 +1,31 @@
 import { useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { SlidersHorizontal, X, ChevronRight } from 'lucide-react';
+import { X, ChevronRight, ChevronDown, SlidersHorizontal } from 'lucide-react';
 import { allProducts } from '../data/mockData';
 import type { Product } from '../data/mockData';
+import SidebarSearch from '../components/SidebarSearch';
+import type { SearchItem } from '../components/SidebarSearch';
 
 const GROUPS = [
   { key: 'trambolinler', name: 'Trambolinler', subs: [
-    { id: 'tekli-trambolinler', name: 'Tekli Trambolinler' },
-    { id: 'yer-zemin-trambolin', name: 'Yer (Zemin) Trambolinleri' },
-    { id: 'salto-trambolin', name: 'Salto Trambolin' },
-    { id: 'olimpik-trambolinler', name: 'Olimpik Trambolinler' },
-    { id: 'ticari-junior', name: 'Ticari Junior Trambolin' },
+    { id: 'tekli-trambolinler',    name: 'Tekli Trambolinler' },
+    { id: 'yer-zemin-trambolin',   name: 'Yer (Zemin) Trambolinleri' },
+    { id: 'salto-trambolin',       name: 'Salto Trambolin' },
+    { id: 'olimpik-trambolinler',  name: 'Olimpik Trambolinler' },
+    { id: 'ticari-junior',         name: 'Ticari Junior Trambolin' },
     { id: 'profesyonel-trambolin', name: 'Profesyonel Trambolin' },
-    { id: 'trambolin-parklari', name: 'Trambolin Parkları' },
+    { id: 'trambolin-parklari',    name: 'Trambolin Parkları' },
   ]},
   { key: 'soft-play-havuzlar', name: 'Soft Play & Havuzlar', subs: [
-    { id: 'kucuk-top-havuzlari', name: 'Küçük Top Havuzları' },
-    { id: 'isletmelere-top-havuzlari', name: 'İşletmelere Top Havuzları' },
-    { id: 'soft-play-oyun-alanlari', name: 'Soft Play Oyun Alanları' },
-    { id: 'soft-play-oyuncaklar', name: 'Soft Play Oyuncaklar' },
+    { id: 'kucuk-top-havuzlari',        name: 'Küçük Top Havuzları' },
+    { id: 'isletmelere-top-havuzlari',  name: 'İşletmelere Top Havuzları' },
+    { id: 'soft-play-oyun-alanlari',    name: 'Soft Play Oyun Alanları' },
+    { id: 'soft-play-oyuncaklar',       name: 'Soft Play Oyuncaklar' },
   ]},
   { key: 'sisme-park', name: 'Şişme Park', subs: [
     { id: 'sisme-park-junior', name: 'Şişme Park Junior' },
-    { id: 'sisme-buyuk', name: 'Şişme Büyük' },
+    { id: 'sisme-buyuk',       name: 'Şişme Büyük' },
   ]},
 ];
 
@@ -35,6 +37,14 @@ const groupOf     = (id: string) => GROUPS.find(g => g.key === id || g.subs.some
 const subOf       = (id: string) => GROUPS.flatMap(g => g.subs).find(s => s.id === id);
 const countGroup  = (gKey: string) => products.filter(p => groupOf(p.category)?.key === gKey).length;
 const countSub    = (sId: string) => products.filter(p => p.category === sId).length;
+
+const searchItems: SearchItem[] = products.map(p => ({
+  key: p.id,
+  title: p.title,
+  image: p.imageUrl,
+  badge: p.categoryName,
+  href: `/urun/${p.id}`,
+}));
 
 export default function Catalog() {
   const { categoryId } = useParams();
@@ -56,63 +66,26 @@ export default function Catalog() {
 
   const goTo = (id: string) => { navigate(`/urunler/${id}`); setDrawerOpen(false); };
 
-  const SidebarContent = () => (
-    <div>
-      {GROUPS.map(group => {
-        const isGroupActive = activeId === group.key || group.subs.some(s => s.id === activeId);
-        return (
-          <div key={group.key} className="mb-1">
-            <button onClick={() => goTo(group.key)}
-              className={`tp-sidebar-btn w-100 d-flex justify-content-between align-items-center px-3 py-2 rounded-3 border-0 text-start fw-bold mb-1 ${activeId === group.key ? 'active-group' : isGroupActive ? 'bg-light text-dark' : 'bg-transparent text-secondary'}`}
-              style={{ fontSize: 13, transition: 'all .15s', cursor: 'pointer' }}>
-              <span>{group.name}</span>
-              <span className="badge rounded-pill" style={{ background: activeId === group.key ? 'rgba(255,255,255,.2)' : '#e2e8f0', color: activeId === group.key ? '#fff' : '#64748b', fontSize: 10 }}>
-                {countGroup(group.key)}
-              </span>
-            </button>
-            {isGroupActive && (
-              <div className="ms-3 ps-3 border-start border-2 border-light mb-2">
-                {group.subs.map(sub => {
-                  const count = countSub(sub.id);
-                  if (!count) return null;
-                  const isActiveSub = activeId === sub.id;
-                  return (
-                    <button key={sub.id} onClick={() => goTo(sub.id)}
-                      className={`w-100 d-flex justify-content-between align-items-center px-3 py-1 rounded-3 border-0 text-start mb-0.5 ${isActiveSub ? 'active-sub' : 'bg-transparent text-secondary'}`}
-                      style={{ fontSize: 12, fontWeight: 700, cursor: 'pointer', transition: 'all .15s' }}>
-                      <span className="text-truncate">{sub.name}</span>
-                      <span className="badge rounded-pill ms-1" style={{ background: isActiveSub ? 'rgba(255,255,255,.25)' : '#f1f5f9', color: isActiveSub ? '#fff' : '#94a3b8', fontSize: 9, flexShrink: 0 }}>
-                        {count}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-        );
-      })}
-    </div>
-  );
-
   return (
-    <div style={{ background: '#f8fafc', minHeight: '100vh' }}>
+    <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
 
       {/* Hero */}
       <div className="tp-page-hero">
+        <div aria-hidden="true" className="tp-hero-watermark">KATALOG</div>
         <div className="container">
-          <nav style={{ fontSize: 11 }} className="mb-3">
-            <span style={{ color: '#64748b' }}>
-              <Link to="/urunler" style={{ color: '#64748b', textDecoration: 'none' }}>Ürünler</Link>
-              {activeSub && (<><ChevronRight size={11} className="mx-1" /><Link to={`/urunler/${activeGroup.key}`} style={{ color: '#64748b', textDecoration: 'none' }}>{activeGroup.name}</Link></>)}
+          <nav className="mb-3" style={{ fontSize: 11 }}>
+            <span style={{ color: 'rgba(255,255,255,.5)' }}>
+              <Link to="/urunler" style={{ color: 'rgba(255,255,255,.5)', textDecoration: 'none' }}>Ürünler</Link>
+              {activeSub && (<><ChevronRight size={11} className="mx-1" /><Link to={`/urunler/${activeGroup.key}`} style={{ color: 'rgba(255,255,255,.5)', textDecoration: 'none' }}>{activeGroup.name}</Link></>)}
               <ChevronRight size={11} className="mx-1" />
               <span className="text-white fw-bold">{activeSub ? activeSub.name : activeGroup.name}</span>
             </span>
           </nav>
+          <div className="tp-hero-line" />
           <h1 className="display-5 fw-black text-white mb-2">
-            {activeSub ? <span style={{ color: '#9fc91a' }}>{activeSub.name}</span> : <>Ürün <span style={{ color: '#9fc91a' }}>Kataloğu</span></>}
+            {activeSub ? <span style={{ color: '#c3e92d' }}>{activeSub.name}</span> : <>Ürün <span style={{ color: '#c3e92d' }}>Kataloğu</span></>}
           </h1>
-          <p style={{ color: '#94a3b8', fontSize: 15, maxWidth: 500 }}>
+          <p style={{ color: 'rgba(255,255,255,.55)', fontSize: 15, maxWidth: 500 }}>
             Trambolin parkından soft play alanlarına — ürünlerimizi inceleyin.
           </p>
         </div>
@@ -120,25 +93,32 @@ export default function Catalog() {
 
       <div className="container py-4 py-md-5">
 
-        {/* Mobil filtre */}
+        {/* Mobile filter button */}
         <div className="d-flex align-items-center justify-content-between mb-3 d-lg-none">
-          <span style={{ fontSize: 12, fontWeight: 700, color: '#64748b' }}>{displayed.length} ürün</span>
-          <button onClick={() => setDrawerOpen(true)} className="btn btn-sm btn-outline-secondary rounded-pill d-flex align-items-center gap-2">
-            <SlidersHorizontal size={14} /> Filtrele
+          <span style={{ fontSize: 12, fontWeight: 700, color: '#888' }}>{displayed.length} ürün</span>
+          <button onClick={() => setDrawerOpen(true)}
+            className="d-flex align-items-center gap-2 border-0 rounded-pill"
+            style={{ background: '#fff', border: '1.5px solid #e0e0e0', padding: '7px 14px', fontSize: 12, fontWeight: 700, color: '#555', cursor: 'pointer' }}>
+            <SlidersHorizontal size={13} /> Kategoriler
           </button>
         </div>
 
         <div className="row g-4 align-items-start">
 
-          {/* Sidebar — masaüstü */}
+          {/* Sidebar — desktop */}
           <div className="d-none d-lg-block col-lg-3">
-            <div className="tp-sidebar" style={{ position: 'sticky', top: 88 }}>
-              <p style={{ fontSize: 10, fontWeight: 900, textTransform: 'uppercase', letterSpacing: '.15em', color: '#94a3b8', marginBottom: '.75rem' }}>Kategoriler</p>
-              <SidebarContent />
+            <div style={{ background: '#fff', borderRadius: 16, border: '1.5px solid #ebebeb', overflow: 'hidden', position: 'sticky', top: 90 }}>
+              <div style={{ padding: '1rem 1rem 0' }}>
+                <p style={{ fontSize: 10, fontWeight: 900, textTransform: 'uppercase', letterSpacing: '.15em', color: '#aaa', marginBottom: 10 }}>Kategoriler</p>
+              </div>
+              <div style={{ padding: '0 1rem .75rem' }}>
+                <SidebarSearch items={searchItems} placeholder="Ürün ara..." />
+              </div>
+              <SidebarContentInner activeId={activeId} goTo={goTo} />
             </div>
           </div>
 
-          {/* Drawer — mobil */}
+          {/* Drawer — mobile */}
           <AnimatePresence>
             {drawerOpen && (
               <>
@@ -147,34 +127,36 @@ export default function Catalog() {
                   onClick={() => setDrawerOpen(false)} />
                 <motion.div initial={{ x: '-100%' }} animate={{ x: 0 }} exit={{ x: '-100%' }}
                   transition={{ type: 'spring', stiffness: 320, damping: 32 }}
-                  style={{ position: 'fixed', left: 0, top: 0, bottom: 0, width: 280, background: '#f8fafc', zIndex: 1050, padding: '1.25rem', overflowY: 'auto' }}
-                  className="tp-sidebar shadow-lg">
-                  <div className="d-flex align-items-center justify-content-between mb-3">
-                    <p style={{ fontSize: 10, fontWeight: 900, textTransform: 'uppercase', letterSpacing: '.15em', color: '#94a3b8', margin: 0 }}>Kategoriler</p>
-                    <button onClick={() => setDrawerOpen(false)} className="btn btn-link p-0"><X size={20} color="#94a3b8" /></button>
+                  style={{ position: 'fixed', left: 0, top: 0, bottom: 0, width: 300, background: '#fff', zIndex: 1050, overflowY: 'auto', borderRight: '1.5px solid #ebebeb' }}>
+                  <div style={{ padding: '1rem', borderBottom: '1px solid #f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <p style={{ fontSize: 10, fontWeight: 900, textTransform: 'uppercase', letterSpacing: '.15em', color: '#aaa', margin: 0 }}>Kategoriler</p>
+                    <button onClick={() => setDrawerOpen(false)} style={{ border: 'none', background: 'transparent', cursor: 'pointer', display: 'flex', padding: 4 }}><X size={18} color="#aaa" /></button>
                   </div>
-                  <SidebarContent />
+                  <div style={{ padding: '1rem 1rem 0' }}>
+                    <SidebarSearch items={searchItems} placeholder="Ürün ara..." />
+                  </div>
+                  <SidebarContentInner activeId={activeId} goTo={goTo} />
                 </motion.div>
               </>
             )}
           </AnimatePresence>
 
-          {/* Ürünler */}
+          {/* Products */}
           <div className="col-lg-9">
-            <p className="d-none d-lg-block mb-3" style={{ fontSize: 12, fontWeight: 700, color: '#94a3b8' }}>{displayed.length} ürün listeleniyor</p>
+            <p className="d-none d-lg-block mb-3" style={{ fontSize: 12, fontWeight: 700, color: '#aaa' }}>{displayed.length} ürün listeleniyor</p>
 
             {displayed.length === 0 ? (
-              <div className="text-center py-5 border-2 border-dashed rounded-4" style={{ border: '2px dashed #e2e8f0' }}>
-                <p className="fw-bold text-secondary mb-1">Ürün bulunamadı</p>
-                <p className="text-muted" style={{ fontSize: 13 }}>Bu kategori için ürünler yakında eklenecektir.</p>
+              <div className="text-center py-5 rounded-4" style={{ border: '2px dashed #e8e8e8', background: '#fff' }}>
+                <p className="fw-bold mb-1" style={{ color: '#888' }}>Ürün bulunamadı</p>
+                <p style={{ fontSize: 13, color: '#bbb' }}>Bu kategori için ürünler yakında eklenecektir.</p>
               </div>
             ) : isGroupView ? (
               <div className="d-flex flex-column gap-5">
                 {groupedSections.map(({ sub, items }) => (
                   <section key={sub.id} id={sub.id}>
-                    <div className="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom border-2">
-                      <h2 className="fw-black mb-0" style={{ fontSize: 18, color: '#1a1a1a' }}>{sub.name}</h2>
-                      <span className="badge rounded-pill" style={{ background: 'rgba(159,201,26,.12)', color: '#9fc91a', fontSize: 11, fontWeight: 800 }}>{items.length} ürün</span>
+                    <div className="d-flex align-items-center justify-content-between mb-3 pb-2" style={{ borderBottom: '1.5px solid #e8e8e8' }}>
+                      <h2 className="font-poppins fw-black mb-0" style={{ fontSize: 17, color: '#1a1a1a' }}>{sub.name}</h2>
+                      <span style={{ fontSize: 10, fontWeight: 800, color: '#5c9200', background: 'rgba(92,146,0,.08)', borderRadius: 100, padding: '3px 10px' }}>{items.length} ürün</span>
                     </div>
                     <div className="row row-cols-1 row-cols-sm-2 row-cols-xl-3 g-3">
                       {items.map((p, i) => <div key={p.id} className="col"><CatalogCard product={p} index={i} /></div>)}
@@ -191,6 +173,63 @@ export default function Catalog() {
         </div>
       </div>
     </div>
+  );
+}
+
+function SidebarContentInner({ activeId, goTo }: { activeId: string; goTo: (id: string) => void }) {
+  return (
+    <>
+      {GROUPS.map((group, gi) => {
+        const isGroupActive = activeId === group.key || group.subs.some(s => s.id === activeId);
+        return (
+          <div key={group.key} style={{ borderBottom: gi < GROUPS.length - 1 ? '1px solid #f0f0f0' : 'none' }}>
+            <button onClick={() => goTo(group.key)}
+              className="d-flex align-items-center gap-2 w-100 text-start border-0"
+              style={{
+                padding: '0.85rem 1rem',
+                background: activeId === group.key ? 'rgba(92,146,0,.06)' : 'transparent',
+                borderLeft: `3px solid ${activeId === group.key ? '#5c9200' : 'transparent'}`,
+                cursor: 'pointer', transition: 'background .15s, border-color .15s',
+              }}>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <p className="fw-bold mb-0" style={{ fontSize: 13, color: activeId === group.key ? '#5c9200' : '#1a1a1a', lineHeight: 1.3 }}>{group.name}</p>
+                <p className="mb-0" style={{ fontSize: 11, color: '#aaa' }}>{countGroup(group.key)} ürün</p>
+              </div>
+              <ChevronDown size={14} style={{ color: '#aaa', flexShrink: 0, transition: 'transform .2s', transform: isGroupActive ? 'rotate(180deg)' : 'rotate(0)' }} />
+            </button>
+
+            <AnimatePresence initial={false}>
+              {isGroupActive && (
+                <motion.div initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }}
+                  transition={{ duration: 0.2, ease: 'easeOut' }} style={{ overflow: 'hidden' }}>
+                  <div style={{ background: '#fafafa', borderTop: '1px solid #f0f0f0' }}>
+                    {group.subs.map((sub, si) => {
+                      const count = countSub(sub.id);
+                      if (!count) return null;
+                      const isActiveSub = activeId === sub.id;
+                      return (
+                        <button key={sub.id} onClick={() => goTo(sub.id)}
+                          className="d-flex align-items-center justify-content-between w-100 text-start border-0"
+                          style={{
+                            padding: '0.6rem 1rem 0.6rem 1.5rem',
+                            background: isActiveSub ? 'rgba(92,146,0,.08)' : 'transparent',
+                            borderLeft: `2px solid ${isActiveSub ? '#5c9200' : 'transparent'}`,
+                            borderBottom: si < group.subs.length - 1 ? '1px solid #f0f0f0' : 'none',
+                            cursor: 'pointer', transition: 'all .15s',
+                          }}>
+                          <span style={{ fontSize: 12, fontWeight: isActiveSub ? 700 : 500, color: isActiveSub ? '#5c9200' : '#555' }}>{sub.name}</span>
+                          <span style={{ fontSize: 10, color: '#bbb', fontWeight: 600 }}>{count}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        );
+      })}
+    </>
   );
 }
 
