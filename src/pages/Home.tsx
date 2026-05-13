@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight, Play, Phone, Mail, MessageCircle, MapPin, Zap, Layers, Circle, Star, Wind, Wrench, Triangle, Navigation } from 'lucide-react';
-const TP  = 'https://trampolinpark.com';
+const TP  = 'https://trambolinpark.com';
 const GAL = 'https://matrax-web-six.vercel.app/images/galeri-yeni';
 
 /* ── Data ─────────────────────────────────────────────────── */

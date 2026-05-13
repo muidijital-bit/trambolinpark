@@ -7,7 +7,8 @@
       "Bash(curl -s -o /dev/null *)",
       "Bash(curl -v *)",
       "Bash(ls -t ~/.claude/projects/*/*.jsonl *)",
-      "Read(//Users/mui/.claude/projects/**)"
+      "Read(//Users/mui/.claude/projects/**)",
+      "Bash(curl -sI \"https://trambolinpark.com/album/trambolinparkyeni/urunler/D5zm4LhjhgfrjDS0CdSl.jpg\")"
     ]
   }
 }

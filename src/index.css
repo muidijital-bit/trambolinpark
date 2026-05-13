@@ -181,23 +181,26 @@ img { display: block; max-width: 100%; }
 
 /* ── Responsive Navbar ───────────────────────── */
 @media (max-width: 991.98px) {
-  .tp-nav { padding: .4rem 0; }
-  .tp-nav.scrolled { padding: .3rem 0; }
-  .tp-nav-logo img { height: 34px; }
+  .tp-nav { padding: .5rem 0; }
+  .tp-nav.scrolled { padding: .4rem 0; }
+  .tp-nav-logo img { height: 52px; }
 }
 @media (max-width: 575.98px) {
-  .tp-nav-logo img { height: 30px; }
+  .tp-nav-logo img { height: 46px; }
 }
 
 /* Navbar-height top offset — for pages without a full hero */
 .tp-pt-nav { padding-top: 76px; }
-@media (max-width: 991.98px) { .tp-pt-nav { padding-top: 54px; } }
-@media (max-width: 575.98px)  { .tp-pt-nav { padding-top: 50px; } }
+@media (max-width: 991.98px) { .tp-pt-nav { padding-top: 70px; } }
+@media (max-width: 575.98px)  { .tp-pt-nav { padding-top: 64px; } }
 
 /* ── Hero ────────────────────────────────────── */
 .tp-hero {
   position: relative; width: 100vw; height: 100vh;
   overflow: hidden; background: var(--black);
+}
+@media (max-width: 575.98px) {
+  .tp-hero { height: 72vh; min-height: 480px; }
 }
 .tp-hero-slide {
   position: absolute; inset: 0;
@@ -221,6 +224,9 @@ img { display: block; max-width: 100%; }
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 0 0 5rem;
 }
+@media (max-width: 575.98px) {
+  .tp-hero-content { padding: 0 0 2.5rem; }
+}
 .tp-hero-badge {
   display: inline-flex; align-items: center; gap: .5rem;
   font-size: 12px; font-weight: 500; color: rgba(255,255,255,.8);
@@ -235,7 +241,7 @@ img { display: block; max-width: 100%; }
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
 .tp-hero-title {
   font-family: "Poppins", sans-serif;
-  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-size: clamp(2rem, 6vw, 5.5rem);
   font-weight: 900; line-height: 1.05; color: #fff;
   margin-bottom: 1.25rem;
 }
@@ -504,10 +510,10 @@ img { display: block; max-width: 100%; }
   overflow: hidden;
 }
 @media (max-width: 991.98px) {
-  .tp-page-hero { padding: calc(54px + 2.5rem) 0 3rem; }
+  .tp-page-hero { padding: calc(70px + 1.5rem) 0 3rem; }
 }
 @media (max-width: 575.98px) {
-  .tp-page-hero { padding: calc(50px + 2rem) 0 2.5rem; }
+  .tp-page-hero { padding: calc(64px + 1.25rem) 0 2rem; }
   .tp-hero-watermark { display: none; }
 }
 /* Breadcrumb bar'ı olan sayfalarda hero'nun kendi offset'i gerekmez */
@@ -797,14 +803,14 @@ img { display: block; max-width: 100%; }
 
 /* ── Responsive: Hero ────────────────────────── */
 @media (max-width: 991.98px) {
-  .tp-hero-content { padding: 0 0 4.5rem; }
+  .tp-hero-content { padding: 0 0 4rem; }
   .tp-hero-title { margin-bottom: 1rem; }
   .tp-hero-desc { font-size: 14px; margin-bottom: 1.5rem; }
 }
 @media (max-width: 575.98px) {
-  .tp-hero-content { padding: 0 0 3.5rem; }
-  .tp-hero-title { font-size: clamp(2rem, 10vw, 3rem); }
-  .tp-hero-desc { font-size: 13px; max-width: 100%; }
+  .tp-hero-content { padding: 0 0 2rem; }
+  .tp-hero-title { font-size: clamp(1.55rem, 7.5vw, 2.2rem); margin-bottom: .75rem; }
+  .tp-hero-desc { font-size: 13px; max-width: 100%; margin-bottom: 1.25rem; }
 }
 
 /* ── Responsive: About floating card ────────── */

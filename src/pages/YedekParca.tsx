@@ -182,7 +182,7 @@ export default function YedekParca() {
               className="row row-cols-2 row-cols-sm-3 row-cols-xl-4 g-3">
               {items.map(item => (
                 <div key={item.key} className="col">
-                  <SparePartCard item={item} onZoom={(imgs, idx) => setZoom({ images: imgs, idx, title: item.title })} />
+                  <SparePartCard item={item} fallbackImage={category?.cover} onZoom={(imgs, idx) => setZoom({ images: imgs, idx, title: item.title })} />
                 </div>
               ))}
             </motion.div>
@@ -210,14 +210,15 @@ export default function YedekParca() {
   );
 }
 
-function SparePartCard({ item, onZoom }: { item: SparePart; onZoom: (images: string[], idx: number) => void }) {
+function SparePartCard({ item, fallbackImage, onZoom }: { item: SparePart; fallbackImage?: string; onZoom: (images: string[], idx: number) => void }) {
   const images = item.gallery?.length ? item.gallery : item.image ? [item.image] : [];
+  const displayImg = images[0] ?? fallbackImage;
   return (
     <div className="tp-spare-card h-100 d-flex flex-column">
       <button onClick={() => images.length && onZoom(images, 0)} className="tp-spare-card-img border-0 p-0"
         style={{ cursor: images.length ? 'zoom-in' : 'default', background: 'transparent', width: '100%' }}>
-        {images[0]
-          ? <img src={images[0]} alt={item.title} loading="lazy" />
+        {displayImg
+          ? <img src={displayImg} alt={item.title} loading="lazy" style={{ opacity: images[0] ? 1 : 0.45 }} />
           : <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#cbd5e1' }}><Wrench size={28} /></div>}
         {images.length > 1 && (
           <span style={{ position: 'absolute', top: 6, right: 6, fontSize: 9, fontWeight: 900, background: 'rgba(15,23,42,.75)', color: '#fff', borderRadius: 100, padding: '2px 6px' }}>+{images.length - 1}</span>
