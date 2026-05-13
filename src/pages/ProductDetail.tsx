@@ -40,31 +40,31 @@ export default function ProductDetail() {
   return (
     <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
 
-      {/* ── Hero (diğer sayfalarla aynı tp-page-hero) ── */}
-      <div className="tp-page-hero">
-        <div aria-hidden="true" className="tp-hero-watermark">{(product.categoryName ?? '').toLowerCase()}</div>
-
-        {/* Breadcrumb inside hero */}
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, padding: '.6rem 0', borderBottom: '1px solid rgba(255,255,255,.06)', zIndex: 3 }}>
-          <div className="container">
-            <nav className="d-flex align-items-center gap-1 flex-wrap" style={{ fontSize: 12 }}>
-              <Link to="/" style={{ color: 'rgba(255,255,255,.45)', textDecoration: 'none' }}>Anasayfa</Link>
-              <ChevronRight size={11} color="rgba(255,255,255,.3)" />
-              <Link to="/urunler" style={{ color: 'rgba(255,255,255,.45)', textDecoration: 'none' }}>Ürünler</Link>
-              <ChevronRight size={11} color="rgba(255,255,255,.3)" />
-              <Link to={`/urunler/${product.category}`} style={{ color: 'rgba(255,255,255,.45)', textDecoration: 'none' }}>{product.categoryName}</Link>
-              <ChevronRight size={11} color="rgba(255,255,255,.3)" />
-              <span style={{ color: 'rgba(255,255,255,.8)', fontWeight: 700 }}>{product.title}</span>
-            </nav>
-          </div>
+      {/* Breadcrumb — normal flow, navbar altında */}
+      <div className="tp-pt-nav" style={{ background: '#080808', borderBottom: '1px solid rgba(255,255,255,.06)', paddingBottom: 0 }}>
+        <div className="container py-2">
+          <nav className="d-flex align-items-center gap-1 flex-wrap" style={{ fontSize: 11, lineHeight: 1.6 }}>
+            <Link to="/" style={{ color: 'rgba(255,255,255,.45)', textDecoration: 'none' }}>Anasayfa</Link>
+            <ChevronRight size={11} color="rgba(255,255,255,.3)" />
+            <Link to="/urunler" style={{ color: 'rgba(255,255,255,.45)', textDecoration: 'none' }}>Ürünler</Link>
+            <ChevronRight size={11} color="rgba(255,255,255,.3)" />
+            <Link to={`/urunler/${product.category}`} style={{ color: 'rgba(255,255,255,.45)', textDecoration: 'none' }}>{product.categoryName}</Link>
+            <ChevronRight size={11} color="rgba(255,255,255,.3)" />
+            <span style={{ color: 'rgba(255,255,255,.8)', fontWeight: 700 }}>{product.title}</span>
+          </nav>
         </div>
+      </div>
+
+      {/* ── Hero ── */}
+      <div className="tp-page-hero tp-page-hero--after-breadcrumb">
+        <div aria-hidden="true" className="tp-hero-watermark">{(product.categoryName ?? '').toUpperCase()}</div>
 
         <div className="container">
           <div className="row g-0 g-lg-5 align-items-center">
 
             {/* Image */}
             <div className="col-12 col-lg-5 d-flex justify-content-center mb-4 mb-lg-0">
-              <div style={{ position: 'relative', width: '100%', maxWidth: 420 }}>
+              <div style={{ position: 'relative', width: '100%', maxWidth: 420, maxHeight: '55vw' }}>
                 <div style={{
                   position: 'absolute', inset: '10%', borderRadius: '50%',
                   background: 'radial-gradient(circle, rgba(195,233,45,.22) 0%, transparent 70%)',
@@ -77,7 +77,7 @@ export default function ProductDetail() {
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                 }}>
                   <img src={product.imageUrl} alt={product.title}
-                    style={{ maxWidth: '78%', maxHeight: '78%', objectFit: 'contain', filter: 'drop-shadow(0 16px 40px rgba(0,0,0,.5))' }} />
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'drop-shadow(0 16px 40px rgba(0,0,0,.5))' }} />
                 </div>
               </div>
             </div>
@@ -159,7 +159,7 @@ export default function ProductDetail() {
             {related.map(p => (
               <button key={p.id} onClick={() => navigate(`/urun/${p.id}`)}
                 className="tp-card border-0 text-start flex-shrink-0"
-                style={{ width: 220, scrollSnapAlign: 'start', display: 'block', cursor: 'pointer' }}>
+                style={{ width: 'clamp(160px, 55vw, 220px)', scrollSnapAlign: 'start', display: 'block', cursor: 'pointer' }}>
                 <div className="tp-card-img">
                   <img loading="lazy" src={p.imageUrl} alt={p.title} />
                 </div>

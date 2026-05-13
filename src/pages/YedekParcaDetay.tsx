@@ -56,36 +56,36 @@ export default function YedekParcaDetay() {
   return (
     <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
 
-      {/* ── Hero ── */}
-      <div className="tp-page-hero">
-        <div aria-hidden="true" className="tp-hero-watermark">{(subcategory?.title ?? category.title).toUpperCase()}</div>
-
-        {/* Breadcrumb */}
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, padding: '.6rem 0', borderBottom: '1px solid rgba(255,255,255,.06)', zIndex: 3 }}>
-          <div className="container">
-            <nav className="d-flex align-items-center gap-1 flex-wrap" style={{ fontSize: 12 }}>
-              <Link to="/" style={{ color: 'rgba(255,255,255,.45)', textDecoration: 'none' }}>Anasayfa</Link>
+      {/* Breadcrumb — normal flow, navbar altında */}
+      <div className="tp-pt-nav" style={{ background: '#080808', borderBottom: '1px solid rgba(255,255,255,.06)', paddingBottom: 0 }}>
+        <div className="container py-2">
+          <nav className="d-flex align-items-center gap-1 flex-wrap" style={{ fontSize: 11, lineHeight: 1.6 }}>
+            <Link to="/" style={{ color: 'rgba(255,255,255,.45)', textDecoration: 'none' }}>Anasayfa</Link>
+            <ChevronRight size={11} color="rgba(255,255,255,.3)" />
+            <Link to="/yedek-parcalar" style={{ color: 'rgba(255,255,255,.45)', textDecoration: 'none' }}>Yedek Parçalar</Link>
+            <ChevronRight size={11} color="rgba(255,255,255,.3)" />
+            <Link to="/yedek-parcalar" state={{ cat: category.key, sub: subcategory?.key ?? null }}
+              style={{ color: 'rgba(255,255,255,.45)', textDecoration: 'none' }}>{category.title}</Link>
+            {subcategory && <>
               <ChevronRight size={11} color="rgba(255,255,255,.3)" />
-              <Link to="/yedek-parcalar" style={{ color: 'rgba(255,255,255,.45)', textDecoration: 'none' }}>Yedek Parçalar</Link>
-              <ChevronRight size={11} color="rgba(255,255,255,.3)" />
-              <Link to="/yedek-parcalar" state={{ cat: category.key, sub: subcategory?.key ?? null }}
-                style={{ color: 'rgba(255,255,255,.45)', textDecoration: 'none' }}>{category.title}</Link>
-              {subcategory && <>
-                <ChevronRight size={11} color="rgba(255,255,255,.3)" />
-                <span style={{ color: 'rgba(255,255,255,.45)' }}>{subcategory.title}</span>
-              </>}
-              <ChevronRight size={11} color="rgba(255,255,255,.3)" />
-              <span style={{ color: 'rgba(255,255,255,.8)', fontWeight: 700 }}>{part.title}</span>
-            </nav>
-          </div>
+              <span style={{ color: 'rgba(255,255,255,.45)' }}>{subcategory.title}</span>
+            </>}
+            <ChevronRight size={11} color="rgba(255,255,255,.3)" />
+            <span style={{ color: 'rgba(255,255,255,.8)', fontWeight: 700 }}>{part.title}</span>
+          </nav>
         </div>
+      </div>
+
+      {/* ── Hero ── */}
+      <div className="tp-page-hero tp-page-hero--after-breadcrumb">
+        <div aria-hidden="true" className="tp-hero-watermark">{(subcategory?.title ?? category.title).toUpperCase()}</div>
 
         <div className="container">
           <div className="row g-0 g-lg-5 align-items-center">
 
             {/* Image */}
             <div className="col-12 col-lg-5 d-flex justify-content-center mb-4 mb-lg-0">
-              <div style={{ position: 'relative', width: '100%', maxWidth: 420 }}>
+              <div style={{ position: 'relative', width: '100%', maxWidth: 420, maxHeight: '55vw' }}>
                 <div style={{
                   position: 'absolute', inset: '10%', borderRadius: '50%',
                   background: 'radial-gradient(circle, rgba(195,233,45,.22) 0%, transparent 70%)',
@@ -101,7 +101,7 @@ export default function YedekParcaDetay() {
                   }}
                   onClick={() => images.length && setLightboxIdx(0)}>
                   {images[0]
-                    ? <img src={images[0]} alt={part.title} style={{ maxWidth: '75%', maxHeight: '75%', objectFit: 'contain', filter: 'drop-shadow(0 12px 32px rgba(0,0,0,.5))' }} />
+                    ? <img src={images[0]} alt={part.title} style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'drop-shadow(0 12px 32px rgba(0,0,0,.5))' }} />
                     : <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12, color: 'rgba(255,255,255,.3)' }}>
                         <Wrench size={48} />
                         <span style={{ fontSize: 12 }}>Görsel mevcut değil</span>
@@ -190,7 +190,7 @@ export default function YedekParcaDetay() {
               return (
                 <Link key={item.key} to={`/yedek-parcalar/${item.key}`}
                   className="tp-spare-card flex-shrink-0 text-decoration-none"
-                  style={{ width: 200, scrollSnapAlign: 'start', display: 'flex', flexDirection: 'column' }}>
+                  style={{ width: 'clamp(150px, 50vw, 200px)', scrollSnapAlign: 'start', display: 'flex', flexDirection: 'column' }}>
                   <div className="tp-spare-card-img" style={{ cursor: 'pointer' }}>
                     {itemImg
                       ? <img src={itemImg} alt={item.title} loading="lazy" />

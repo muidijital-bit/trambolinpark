@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Clock, Tag, ArrowRight } from 'lucide-react';
+import { ArrowLeft, Clock, Tag, ArrowRight, ChevronRight } from 'lucide-react';
 import { getBlogPost, blogPosts, type BlogSection } from '../data/blogPosts';
 
 function formatDate(d: string) {
@@ -55,22 +55,22 @@ export default function BlogPost() {
   return (
     <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
 
-      {/* Hero */}
-      <div className="tp-page-hero" style={{ paddingBottom: '3rem' }}>
-        <div aria-hidden="true" className="tp-hero-watermark">{post.category.toUpperCase()}</div>
-
-        {/* Breadcrumb */}
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, padding: '.6rem 0', borderBottom: '1px solid rgba(255,255,255,.06)', zIndex: 3 }}>
-          <div className="container">
-            <nav className="d-flex align-items-center gap-1 flex-wrap" style={{ fontSize: 12 }}>
-              <Link to="/" style={{ color: 'rgba(255,255,255,.45)', textDecoration: 'none' }}>Anasayfa</Link>
-              <span style={{ color: 'rgba(255,255,255,.25)', fontSize: 10 }}>›</span>
-              <Link to="/blog" style={{ color: 'rgba(255,255,255,.45)', textDecoration: 'none' }}>Blog</Link>
-              <span style={{ color: 'rgba(255,255,255,.25)', fontSize: 10 }}>›</span>
-              <span style={{ color: 'rgba(255,255,255,.75)', fontWeight: 600 }}>{post.title}</span>
-            </nav>
-          </div>
+      {/* Breadcrumb — normal flow */}
+      <div className="tp-pt-nav" style={{ background: '#080808', borderBottom: '1px solid rgba(255,255,255,.06)', paddingBottom: 0 }}>
+        <div className="container py-2">
+          <nav className="d-flex align-items-center gap-1 flex-wrap" style={{ fontSize: 11, lineHeight: 1.6 }}>
+            <Link to="/" style={{ color: 'rgba(255,255,255,.45)', textDecoration: 'none' }}>Anasayfa</Link>
+            <ChevronRight size={11} color="rgba(255,255,255,.3)" />
+            <Link to="/blog" style={{ color: 'rgba(255,255,255,.45)', textDecoration: 'none' }}>Blog</Link>
+            <ChevronRight size={11} color="rgba(255,255,255,.3)" />
+            <span style={{ color: 'rgba(255,255,255,.8)', fontWeight: 700 }}>{post.title}</span>
+          </nav>
         </div>
+      </div>
+
+      {/* Hero */}
+      <div className="tp-page-hero tp-page-hero--after-breadcrumb" style={{ paddingBottom: '3rem' }}>
+        <div aria-hidden="true" className="tp-hero-watermark">{post.category.toUpperCase()}</div>
 
         <div className="container">
           <div className="d-flex align-items-center gap-3 mb-3">
@@ -89,10 +89,10 @@ export default function BlogPost() {
       </div>
 
       <div className="container py-5">
-        <div className="row g-5 justify-content-center">
+        <div className="row g-4 g-lg-5 justify-content-center">
 
           {/* Article */}
-          <div className="col-12 col-lg-8">
+          <div className="col-12 col-lg-8 order-2 order-lg-1">
 
             {/* Cover image */}
             <div className="rounded-4 overflow-hidden mb-5" style={{ boxShadow: '0 8px 40px rgba(0,0,0,.1)' }}>
@@ -115,8 +115,8 @@ export default function BlogPost() {
           </div>
 
           {/* Sidebar */}
-          <div className="col-12 col-lg-4">
-            <div style={{ position: 'sticky', top: 100 }}>
+          <div className="col-12 col-lg-4 order-1 order-lg-2">
+            <div className="tp-sidebar-sticky">
 
               {/* CTA */}
               <div className="rounded-4 p-4 mb-4" style={{ background: '#1a1a1a' }}>

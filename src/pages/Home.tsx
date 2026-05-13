@@ -196,9 +196,11 @@ function ProductsSection() {
               <img src={`${GAL}/galeri-1.jpg`} alt="Trambolin Parkları" loading="lazy" />
               <div className="tp-bento-overlay" />
               <div className="tp-bento-content">
-                <p className="tp-bento-tag">01 · Trambolin Parkları</p>
-                <p className="tp-bento-name tp-bento-name--lg">Tam Kapsamlı<br />Atlama Deneyimi.</p>
-                <p className="tp-bento-sub">Dodgeball, foam pit, slam dunk — eksiksiz park çözümleri.</p>
+                <div className="tp-bento-text">
+                  <p className="tp-bento-tag">01 · Trambolin Parkları</p>
+                  <p className="tp-bento-name tp-bento-name--lg">Tam Kapsamlı<br />Atlama Deneyimi.</p>
+                  <p className="tp-bento-sub">Dodgeball, foam pit, slam dunk — eksiksiz park çözümleri.</p>
+                </div>
                 <span className="tp-bento-cta">Keşfet <ArrowRight size={12} /></span>
               </div>
             </Link>
@@ -212,9 +214,11 @@ function ProductsSection() {
                   <img src={c.img} alt={c.name} loading="lazy" />
                   <div className="tp-bento-overlay" />
                   <div className="tp-bento-content">
-                    <p className="tp-bento-tag">{c.tag} · {c.name}</p>
-                    <p className="tp-bento-name">{c.name}</p>
-                    <p className="tp-bento-sub">{c.sub}</p>
+                    <div className="tp-bento-text">
+                      <p className="tp-bento-tag">{c.tag} · {c.name}</p>
+                      <p className="tp-bento-name">{c.name}</p>
+                      <p className="tp-bento-sub">{c.sub}</p>
+                    </div>
                     <span className="tp-bento-cta">Keşfet <ArrowRight size={12} /></span>
                   </div>
                 </Link>
@@ -231,9 +235,11 @@ function ProductsSection() {
                 <img src={c.img} alt={c.name} loading="lazy" />
                 <div className="tp-bento-overlay" />
                 <div className="tp-bento-content">
-                  <p className="tp-bento-tag">{c.tag} · {c.name}</p>
-                  <p className="tp-bento-name">{c.name}</p>
-                  <p className="tp-bento-sub">{c.sub}</p>
+                  <div className="tp-bento-text">
+                    <p className="tp-bento-tag">{c.tag} · {c.name}</p>
+                    <p className="tp-bento-name">{c.name}</p>
+                    <p className="tp-bento-sub">{c.sub}</p>
+                  </div>
                   <span className="tp-bento-cta">Keşfet <ArrowRight size={12} /></span>
                 </div>
               </Link>
@@ -331,7 +337,7 @@ function ProcessSection() {
 
         {/* Header */}
         <Reveal>
-          <div className="d-flex flex-column flex-md-row align-items-start align-items-md-end justify-content-between gap-4 mb-5">
+          <div className="d-flex flex-column flex-lg-row align-items-start align-items-lg-end justify-content-between gap-3 mb-5">
             <div>
               <span className="section-label" style={{ color: 'rgba(195,233,45,.8)' }}>Nasıl Çalışıyoruz</span>
               <h2 className="font-poppins fw-black mb-0 text-white" style={{ fontSize: 'clamp(2rem, 4.5vw, 3.5rem)', lineHeight: 1.05 }}>
@@ -509,12 +515,40 @@ function SparePartsBanner() {
 /* ── 8. FOOTER CTA ────────────────────────────────────────── */
 function FooterCTA() {
   return (
-    <section style={{ background: '#0a0a0a', padding: '7rem 0', position: 'relative', overflow: 'hidden' }}>
+    <section style={{ background: '#060a04', padding: '7rem 0', position: 'relative', overflow: 'hidden' }}>
+
+      {/* Animated green glow orbs */}
+      <div aria-hidden="true" style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+      }}>
+        <div style={{
+          position: 'absolute', top: '-10%', left: '20%',
+          width: 'clamp(280px, 40vw, 520px)', height: 'clamp(280px, 40vw, 520px)',
+          background: 'radial-gradient(circle, rgba(139,197,10,.22) 0%, transparent 65%)',
+          filter: 'blur(60px)',
+          animation: 'ctaOrb1 9s ease-in-out infinite',
+        }} />
+        <div style={{
+          position: 'absolute', bottom: '-5%', right: '15%',
+          width: 'clamp(200px, 30vw, 400px)', height: 'clamp(200px, 30vw, 400px)',
+          background: 'radial-gradient(circle, rgba(195,233,45,.14) 0%, transparent 65%)',
+          filter: 'blur(50px)',
+          animation: 'ctaOrb2 12s ease-in-out infinite',
+        }} />
+        <div style={{
+          position: 'absolute', top: '40%', left: '-5%',
+          width: 'clamp(150px, 20vw, 280px)', height: 'clamp(150px, 20vw, 280px)',
+          background: 'radial-gradient(circle, rgba(92,146,0,.12) 0%, transparent 65%)',
+          filter: 'blur(40px)',
+          animation: 'ctaOrb3 15s ease-in-out infinite',
+        }} />
+      </div>
+
       <div aria-hidden="true" style={{
         position: 'absolute', bottom: '-.1em', left: '50%', transform: 'translateX(-50%)',
         fontFamily: 'Poppins, sans-serif', fontWeight: 900,
         fontSize: 'clamp(5rem, 16vw, 14rem)', lineHeight: 1,
-        color: 'rgba(255,255,255,.03)', pointerEvents: 'none', userSelect: 'none',
+        color: 'rgba(255,255,255,.025)', pointerEvents: 'none', userSelect: 'none',
         whiteSpace: 'nowrap', letterSpacing: '-.02em',
       }}>
         TRAMBOLINPARK
