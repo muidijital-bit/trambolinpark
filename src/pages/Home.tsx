@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight, Play, Phone, Mail, MessageCircle, MapPin, Zap, Layers, Circle, Star, Wind, Wrench, Triangle, Navigation } from 'lucide-react';
 const TP  = 'https://trambolinpark.com';
-const GAL = 'https://matrax-web-six.vercel.app/images/galeri-yeni';
 
 /* ── Data ─────────────────────────────────────────────────── */
 const YT_ID = 'RMm3bn3koO0';
@@ -134,7 +133,7 @@ const CAT_ITEMS = [
 function CategoryMarquee() {
   const items = [...CAT_ITEMS, ...CAT_ITEMS];
   return (
-    <div style={{ background: '#9fc91a', overflow: 'hidden', padding: '0.85rem 0' }}>
+    <div style={{ background: 'var(--accent)', overflow: 'hidden', padding: '0.85rem 0' }}>
       <div style={{ display: 'flex', width: 'max-content', animation: 'marqueeRun 30s linear infinite' }}>
         {items.map((item, i) => (
           <Link key={i} to={item.href}
@@ -153,13 +152,13 @@ function CategoryMarquee() {
 
 /* ── 4. PRODUCTS ──────────────────────────────────────────── */
 const BENTO_ROW1 = [
-  { tag: '02', name: 'Olimpik Trambolinler',  sub: 'Profesyonel & sertifikalı atlama ekipmanları.',  href: '/urunler/olimpik-trambolinler',    img: `${GAL}/galeri-3.jpg`  },
-  { tag: '03', name: 'Top Havuzları',         sub: 'Rengarenk, güvenli eğlence havuzları.',          href: '/urunler/kucuk-top-havuzlari',     img: `${GAL}/galeri-15.jpg` },
+  { tag: '02', name: 'Olimpik Trambolinler',  sub: 'Profesyonel & sertifikalı atlama ekipmanları.',  href: '/urunler/olimpik-trambolinler',    img: `${TP}/album/trambolinparkyeni/coklualbumler/1-kisilik-olimpik-trambolin-tp-110-EAr.jpg`  },
+  { tag: '03', name: 'Top Havuzları',         sub: 'Rengarenk, güvenli eğlence havuzları.',          href: '/urunler/kucuk-top-havuzlari',     img: `${TP}/album/trambolinparkyeni/coklualbumler/-Wao.png` },
 ];
 const BENTO_ROW2 = [
-  { tag: '04', name: 'Soft Play Alanları',    sub: 'Mini kahramanlar için güvenli oyun dünyası.',    href: '/urunler/soft-play-oyun-alanlari', img: `${GAL}/galeri-22.jpg` },
-  { tag: '05', name: 'Şişme Parklar',         sub: 'Junior ve büyük boy şişme oyun alanları.',       href: '/urunler/sisme-park-junior',       img: `${GAL}/galeri-8.jpg`  },
-  { tag: '06', name: 'Yedek Parçalar',        sub: 'Orijinal parçalar, hızlı kargo garantisi.',      href: '/yedek-parcalar',                  img: `${GAL}/galeri-11.jpg` },
+  { tag: '04', name: 'Soft Play Alanları',    sub: 'Mini kahramanlar için güvenli oyun dünyası.',    href: '/urunler/soft-play-oyun-alanlari', img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$kjgxoxbLjL8vG5l.jpeg` },
+  { tag: '05', name: 'Şişme Parklar',         sub: 'Junior ve büyük boy şişme oyun alanları.',       href: '/urunler/sisme-park-junior',       img: `${TP}/album/trambolinparkyeni/coklualbumler/-ymA.jpg`  },
+  { tag: '06', name: 'Yedek Parçalar',        sub: 'Orijinal parçalar, hızlı kargo garantisi.',      href: '/yedek-parcalar',                  img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$JOPdARVPbJTIL2YMKgtL.jpg` },
 ];
 
 function ProductsSection() {
@@ -191,7 +190,7 @@ function ProductsSection() {
           {/* Hero card */}
           <div className="col-12 col-lg-7 d-flex flex-column">
             <Link to="/urunler/trambolin-parklari" className="tp-bento-card" style={{ flex: 1, minHeight: 460 }}>
-              <img src={`${GAL}/galeri-1.jpg`} alt="Trambolin Parkları" loading="lazy" />
+              <img src={`${TP}/album/trambolinparkyeni/coklualbumler/-VkT.jpg`} alt="Trambolin Parkları" loading="lazy" />
               <div className="tp-bento-overlay" />
               <div className="tp-bento-content">
                 <div className="tp-bento-text">
@@ -457,10 +456,10 @@ function ProcessSection() {
 
 /* ── 7. SPARE PARTS BANNER ────────────────────────────────── */
 const BANNER_TILES = [
-  { name: 'Trambolinler',       sub: 'Tekli & Olimpik',  href: '/urunler/olimpik-trambolinler',    img: `${GAL}/galeri-1.jpg`  },
-  { name: 'Trambolin Parkları', sub: 'Tam Ekipman',       href: '/urunler/trambolin-parklari',      img: `${GAL}/galeri-6.jpg`  },
-  { name: 'Soft Play',          sub: 'Renkli Oyun Alanı', href: '/urunler/soft-play-oyun-alanlari', img: `${GAL}/galeri-22.jpg` },
-  { name: 'Top Havuzları',      sub: 'Junior & İşletme',  href: '/urunler/kucuk-top-havuzlari',     img: `${GAL}/galeri-15.jpg` },
+  { name: 'Trambolinler',       sub: 'Tekli & Olimpik',  href: '/urunler/olimpik-trambolinler',    img: `${TP}/album/trambolinparkyeni/coklualbumler/1-kisilik-olimpik-trambolin-tp-110-EAr.jpg`  },
+  { name: 'Trambolin Parkları', sub: 'Tam Ekipman',       href: '/urunler/trambolin-parklari',      img: `${TP}/album/trambolinparkyeni/coklualbumler/-VkT.jpg`  },
+  { name: 'Soft Play',          sub: 'Renkli Oyun Alanı', href: '/urunler/soft-play-oyun-alanlari', img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$kjgxoxbLjL8vG5l.jpeg` },
+  { name: 'Top Havuzları',      sub: 'Junior & İşletme',  href: '/urunler/kucuk-top-havuzlari',     img: `${TP}/album/trambolinparkyeni/coklualbumler/-Wao.png` },
 ];
 
 function SparePartsBanner() {

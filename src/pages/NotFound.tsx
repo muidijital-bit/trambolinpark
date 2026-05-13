@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react';
 
 export default function NotFound() {
   return (
-    <div className="d-flex align-items-center justify-content-center" style={{ minHeight: '100vh', background: '#f8fafc', paddingTop: 64 }}>
+    <div className="d-flex align-items-center justify-content-center" style={{ minHeight: '100vh', background: '#f5f5f5', paddingTop: 64 }}>
       <div className="text-center px-4" style={{ maxWidth: 480 }}>
         <p className="fw-black text-brand mb-3" style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '.2em' }}>404</p>
         <h1 className="fw-black mb-3" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', color: '#1a1a1a' }}>Sayfa Bulunamadı</h1>

@@ -16,7 +16,7 @@ export interface BlogSection {
 }
 
 
-const GAL = 'https://matrax-web-six.vercel.app/images/galeri-yeni';
+const TP = 'https://trambolinpark.com';
 
 export const blogPosts: BlogPost[] = [
   {
@@ -26,7 +26,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Yatırım & İşletme',
     readTime: 8,
     date: '2025-04-10',
-    coverImage: `${GAL}/galeri-1.jpg`,
+    coverImage: `${TP}/album/trambolinparkyeni/coklualbumler/-VkT.jpg`,
     content: [
       { type: 'paragraph', text: 'Eğlence sektörü, pandemi sonrası hızla toparlanarak Türkiye\'de yılda %18 büyüme kaydetti. Bu büyümenin en dinamik kolu ticari trambolin parkları. Düşük işletme maliyeti, yüksek metrekare başı gelir ve geniş hedef kitle bu alanı cazip bir yatırım haline getiriyor.' },
       { type: 'heading', text: 'Kaç Metrekareye İhtiyacınız Var?' },
@@ -46,7 +46,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Güvenlik & Standartlar',
     readTime: 6,
     date: '2025-03-22',
-    coverImage: `${GAL}/galeri-6.jpg`,
+    coverImage: `${TP}/album/trambolinparkyeni/coklualbumler/-ymA.jpg`,
     content: [
       { type: 'paragraph', text: 'Güvenlik standartları, trambolin parkı işletmecilerinin en sık kafa karıştırdığı konuların başında gelir. Avrupa\'da EN-1176 zorunlu iken ABD\'de ASTM F2970 esas alınır. Türkiye\'de ise AB uyum süreci kapsamında EN-1176 geçerlidir.' },
       { type: 'heading', text: 'EN-1176 Neler Kapsar?' },
@@ -65,7 +65,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Tasarım & Konsept',
     readTime: 5,
     date: '2025-03-05',
-    coverImage: `${GAL}/galeri-22.jpg`,
+    coverImage: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$kjgxoxbLjL8vG5l.jpeg`,
     content: [
       { type: 'paragraph', text: 'Soft play alanları, küçük yaş grubuna yönelik en hızlı büyüyen eğlence segmentlerinden biri. Alışveriş merkezi içi kurulumdan bağımsız çocuk eğlence merkezlerine kadar geniş bir yelpazede uygulama alanı buluyor.' },
       { type: 'heading', text: '1. Yaş Gruplarını Birbirinden Ayırın' },
@@ -83,7 +83,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Yatırım & İşletme',
     readTime: 7,
     date: '2025-02-18',
-    coverImage: `${GAL}/galeri-8.jpg`,
+    coverImage: `${TP}/album/trambolinparkyeni/coklualbumler/1-kisilik-olimpik-trambolin-tp-110-EAr.jpg`,
     content: [
       { type: 'paragraph', text: 'Trambolin parkı işletmecilerinin çoğu ilk yılın sonunda benzer bir sorunla karşılaşır: Hafta sonu doluluk %90\'ın üzerinde, hafta içi ise boş. Bu dengesizliği gidermek karlılığın anahtarıdır.' },
       { type: 'heading', text: '1. Dinamik Fiyatlandırma' },

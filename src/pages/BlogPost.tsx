@@ -18,7 +18,7 @@ function RenderSection({ section }: { section: BlogSection }) {
       <ul style={{ paddingLeft: 0, listStyle: 'none', marginBottom: '1.5rem', display: 'flex', flexDirection: 'column', gap: 10 }}>
         {section.items?.map((item, i) => (
           <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 15, color: '#444', lineHeight: 1.65 }}>
-            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#9fc91a', flexShrink: 0, marginTop: 9 }} />
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--accent)', flexShrink: 0, marginTop: 9 }} />
             {item}
           </li>
         ))}

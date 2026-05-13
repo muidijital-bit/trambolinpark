@@ -36,7 +36,7 @@ export default function Footer() {
         <div style={{
           position: 'absolute', top: '-100px', left: '-80px',
           width: 500, height: 400,
-          background: 'radial-gradient(circle, rgba(159,201,26,.13) 0%, transparent 65%)',
+          background: 'radial-gradient(circle, rgba(195,233,45,.13) 0%, transparent 65%)',
           filter: 'blur(80px)',
         }} />
         <div style={{
@@ -72,7 +72,7 @@ export default function Footer() {
               {SOCIAL.map(s => (
                 <a key={s.label} href={s.href} target="_blank" rel="noreferrer" aria-label={s.label}
                   style={{ width: 38, height: 38, borderRadius: '50%', border: '1.5px solid #e8e8e8', background: '#fafafa', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999', transition: 'border-color .2s, background .2s, color .2s' }}
-                  onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background = 'rgba(159,201,26,.1)'; el.style.borderColor = 'rgba(159,201,26,.5)'; el.style.color = '#5c9200'; }}
+                  onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background = 'rgba(195,233,45,.1)'; el.style.borderColor = 'rgba(195,233,45,.5)'; el.style.color = '#5c9200'; }}
                   onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background = '#fafafa'; el.style.borderColor = '#e8e8e8'; el.style.color = '#999'; }}>
                   <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 14, height: 14 }}><path d={s.path} /></svg>
                 </a>

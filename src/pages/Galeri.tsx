@@ -2,11 +2,42 @@ import { useState, useMemo } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
 
-const BASE = 'https://matrax-web-six.vercel.app';
+const TP = 'https://trambolinpark.com';
 const allImages = [
-  ...Array.from({ length: 28 }, (_, i) => `${BASE}/images/galeri-yeni/galeri-${i + 1}.jpg`),
-  `${BASE}/images/galeri-yeni/galeri-29.png`,
-  `${BASE}/images/galeri-yeni/galeri-30.jpg`,
+  // 0-13: Saha Kurulumları (trambolin parkları + olimpik)
+  `${TP}/album/trambolinparkyeni/coklualbumler/-VkT.jpg`,
+  `${TP}/album/trambolinparkyeni/coklualbumler/-ymA.jpg`,
+  `${TP}/album/trambolinparkyeni/coklualbumler/-lk6.jpg`,
+  `${TP}/album/trambolinparkyeni/coklualbumler/-3l3.jpg`,
+  `${TP}/album/trambolinparkyeni/coklualbumler/1-kisilik-olimpik-trambolin-tp-110-EAr.jpg`,
+  `${TP}/album/trambolinparkyeni/coklualbumler/2-kisilik-olimpik-trambolin-tp-111-CMr.jpg`,
+  `${TP}/album/trambolinparkyeni/coklualbumler/3-kisilik-olimpik-trmbolin-tp-112-r2B.jpg`,
+  `${TP}/album/trambolinparkyeni/coklualbumler/4-kisilik-olimpik-trambolin-tp-114-ZUr.jpg`,
+  `${TP}/album/trambolinparkyeni/coklualbumler/6-kisilik-olimpik-trambolin-tp-116-nnc.jpg`,
+  `${TP}/album/trambolinparkyeni/coklualbumler/8-kisilik-olimpik-trambolin-tp-119-fDa.jpg`,
+  `${TP}/album/trambolinparkyeni/coklualbumler/10-kisilik-olimpik-trambolin-tp-120-6C2.jpg`,
+  `${TP}/album/trambolinparkyeni/coklualbumler/12-kisilik-olimpik-trambolin-tp-121-dx6.jpg`,
+  `${TP}/album/trambolinparkyeni/coklualbumler/4-kisilik-ince-uzun-olimpik-trambolin-tp-113-CZK.jpg`,
+  `${TP}/album/trambolinparkyeni/coklualbumler/5-kisilik-ince-uzun-olimpik-trambolin-tp-115-JCZ.jpg`,
+  // 14-20: Top Havuzları
+  `${TP}/album/trambolinparkyeni/coklualbumler/-Wao.png`,
+  `${TP}/album/trambolinparkyeni/coklualbumler/-WbD.jpg`,
+  `${TP}/album/trambolinparkyeni/coklualbumler/-JvF.jpg`,
+  `${TP}/album/trambolinparkyeni/coklualbumler/-I6R.jpg`,
+  `${TP}/album/trambolinparkyeni/coklualbumler/-uET.jpg`,
+  `${TP}/album/trambolinparkyeni/coklualbumler/-Zwu.jpg`,
+  `${TP}/album/trambolinparkyeni/coklualbumler/-xwg.jpg`,
+  // 21-27: Soft Play
+  `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$kjgxoxbLjL8vG5l.jpeg`,
+  `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$FV3OamzHMw8iR61.jpeg`,
+  `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$4IgH4UwNDa1tQMs.jpg`,
+  `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$Uqt8gLiSjgA6pon.jpg`,
+  `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$hlsMpXHkFC2OtM2.jpg`,
+  `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$Zw8A7X6eAOlXDUI.jpg`,
+  `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$FOrSGnRGStPYr1Q.jpg`,
+  // 28-29: Tamamlanan Projeler
+  `${TP}/album/trambolinparkyeni/coklualbumler/6-kisilik-ince-uzun-olimpik-trambolin-tp-117-y6M.jpg`,
+  `${TP}/album/trambolinparkyeni/coklualbumler/8-kisilik-ince-uzun-olimpik-trmbolin-tp-118-TI6.jpg`,
 ];
 
 const CATEGORIES = [

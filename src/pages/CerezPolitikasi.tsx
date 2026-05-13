@@ -1,7 +1,7 @@
 import { Settings2, BarChart3, Megaphone, ToggleRight } from 'lucide-react';
 
 const types = [
-  { icon: <Settings2 size={18} />, title: 'Zorunlu Çerezler', desc: 'Sitenin çalışması için gerekli; oturum, dil tercihi ve güvenlik gibi temel işlevleri sağlar. Devre dışı bırakılamazlar.', color: 'rgba(159,201,26,.1)', textColor: '#9fc91a' },
+  { icon: <Settings2 size={18} />, title: 'Zorunlu Çerezler', desc: 'Sitenin çalışması için gerekli; oturum, dil tercihi ve güvenlik gibi temel işlevleri sağlar. Devre dışı bırakılamazlar.', color: 'rgba(195,233,45,.1)', textColor: 'var(--accent)' },
   { icon: <BarChart3 size={18} />, title: 'Performans / Analitik', desc: 'Site trafiğini anonim olarak analiz ederek kullanıcı deneyimini iyileştirmek için kullanılır.', color: 'rgba(30,30,30,.08)', textColor: '#1a1a1a' },
   { icon: <ToggleRight size={18} />, title: 'İşlevsel Çerezler', desc: 'Tercihlerinizi (dil, görünüm vb.) hatırlayarak kişiselleştirilmiş bir deneyim sunar.', color: 'rgba(59,130,246,.1)', textColor: '#3b82f6' },
   { icon: <Megaphone size={18} />, title: 'Pazarlama Çerezleri', desc: 'Reklam ve yeniden hedefleme amacıyla üçüncü taraf iş ortaklarımızca yerleştirilebilir.', color: 'rgba(249,115,22,.1)', textColor: '#f97316' },
@@ -16,7 +16,7 @@ const sections = [
 
 export default function CerezPolitikasi() {
   return (
-    <div style={{ background: '#f8fafc', minHeight: '100vh' }}>
+    <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
       <div className="tp-page-hero">
         <div aria-hidden="true" className="tp-hero-watermark">ÇEREZ</div>
         <div className="container">

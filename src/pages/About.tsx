@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, ShieldCheck, Zap, Wrench, Palette, Medal, Users, Target, Compass } from 'lucide-react';
 
-const BASE = 'https://matrax-web-six.vercel.app';
+const TP = 'https://trambolinpark.com';
 
 const STATS = [
   { value: '15+',  label: 'Yıllık Deneyim' },
@@ -80,13 +80,13 @@ export default function About() {
 
               {/* Main image */}
               <div style={{ borderRadius: 20, overflow: 'hidden', boxShadow: '0 28px 72px rgba(0,0,0,.18)', aspectRatio: '4/3' }}>
-                <img src={`${BASE}/images/galeri-yeni/galeri-7.jpg`} alt="Kurulum sahası"
+                <img src={`${TP}/album/trambolinparkyeni/coklualbumler/-VkT.jpg`} alt="Kurulum sahası"
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
               </div>
 
               {/* Floating secondary image */}
               <div style={{ position: 'absolute', bottom: 0, right: 0, width: '52%', borderRadius: 16, overflow: 'hidden', boxShadow: '0 20px 56px rgba(0,0,0,.22)', border: '4px solid #f5f5f5', aspectRatio: '4/3' }}>
-                <img src={`${BASE}/images/galeri-yeni/galeri-3.jpg`} alt="Saha detay"
+                <img src={`${TP}/album/trambolinparkyeni/coklualbumler/1-kisilik-olimpik-trambolin-tp-110-EAr.jpg`} alt="Saha detay"
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
               </div>
 
@@ -175,7 +175,7 @@ export default function About() {
 
       {/* ── Full-bleed gallery strip ── */}
       <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', height: 360, overflow: 'hidden' }}>
-        {[`${BASE}/images/galeri-yeni/galeri-1.jpg`, `${BASE}/images/galeri-yeni/galeri-10.jpg`, `${BASE}/images/galeri-yeni/galeri-22.jpg`].map((src, i) => (
+        {[`${TP}/album/trambolinparkyeni/coklualbumler/-VkT.jpg`, `${TP}/album/trambolinparkyeni/coklualbumler/-Wao.png`, `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$kjgxoxbLjL8vG5l.jpeg`].map((src, i) => (
           <div key={i} style={{ overflow: 'hidden', position: 'relative' }}>
             <img src={src} alt="" loading="lazy"
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: i > 0 ? 'brightness(.85)' : 'none', transition: 'transform .6s ease' }}
