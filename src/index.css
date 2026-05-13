@@ -291,6 +291,21 @@ img { display: block; max-width: 100%; }
 .tp-marquee-item::after { content: "✦"; font-size: 10px; }
 @keyframes marqueeRun { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
+@keyframes ctaOrb1 {
+  0%,100% { transform: translate(0,0) scale(1); opacity: .9; }
+  33%     { transform: translate(6%, 8%) scale(1.12); opacity: .7; }
+  66%     { transform: translate(-4%, 4%) scale(.92); opacity: 1; }
+}
+@keyframes ctaOrb2 {
+  0%,100% { transform: translate(0,0) scale(1); opacity: .8; }
+  40%     { transform: translate(-8%, -6%) scale(1.15); opacity: .6; }
+  70%     { transform: translate(5%, 5%) scale(.88); opacity: 1; }
+}
+@keyframes ctaOrb3 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50%     { transform: translate(10%, -8%) scale(1.2); opacity: .5; }
+}
+
 /* ── About section ───────────────────────────── */
 .tp-feature-row {
   display: flex; align-items: flex-start; gap: 1rem;
