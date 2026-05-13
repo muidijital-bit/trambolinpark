@@ -71,13 +71,19 @@ function HeroSection() {
 
   return (
     <section className="tp-hero">
-      {/* YouTube background */}
+      {/* YouTube arka plan — kenarlar taşırılıp kırpılır, UI gizlenir */}
       <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', background: '#0a0a0a' }}>
         <iframe
-          src={`https://www.youtube.com/embed/${YT_ID}?autoplay=1&mute=1&loop=1&playlist=${YT_ID}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=0`}
+          src={`https://www.youtube.com/embed/${YT_ID}?autoplay=1&mute=1&loop=1&playlist=${YT_ID}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1`}
           frameBorder="0"
           allow="autoplay; encrypted-media"
-          style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: '177.78vh', minWidth: '100%', height: '56.25vw', minHeight: '100%', pointerEvents: 'none' }}
+          style={{
+            position: 'absolute',
+            top: '-80px', bottom: '-80px', left: '-80px', right: '-80px',
+            width: 'calc(100% + 160px)',
+            height: 'calc(100% + 160px)',
+            pointerEvents: 'none',
+          }}
         />
       </div>
       <div className="tp-hero-overlay" />
