@@ -998,3 +998,20 @@ img { display: block; max-width: 100%; }
   .tp-process-card, .tp-carousel-btn, .tp-wa, .tp-acc-btn,
   .tp-dot, .tp-feature-row, .nav-link-item { cursor: pointer; }
 }
+
+/* ── Admin panel: restore default cursor ──────── */
+body:has([data-admin]),
+body:has([data-admin]) * {
+  cursor: auto !important;
+}
+body:has([data-admin]) button,
+body:has([data-admin]) a,
+body:has([data-admin]) select,
+body:has([data-admin]) input,
+body:has([data-admin]) textarea {
+  cursor: pointer !important;
+}
+body:has([data-admin]) input,
+body:has([data-admin]) textarea {
+  cursor: text !important;
+}

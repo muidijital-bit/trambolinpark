@@ -18,7 +18,7 @@ export default function AdminLayout() {
   };
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', background: '#f5f7fa' }}>
+    <div data-admin style={{ display: 'flex', minHeight: '100vh', background: '#f5f7fa' }}>
       {/* Sidebar */}
       <aside style={{ width: 230, background: '#fff', borderRight: '1px solid #e8e8e8', display: 'flex', flexDirection: 'column', flexShrink: 0 }}>
         {/* Logo */}

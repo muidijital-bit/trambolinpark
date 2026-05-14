@@ -17,7 +17,7 @@ export default function AdminLogin() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f5f5f5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div data-admin style={{ minHeight: '100vh', background: '#f5f5f5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <div style={{ width: '100%', maxWidth: 400, padding: '0 1rem' }}>
         <div style={{ background: '#fff', borderRadius: 16, padding: '2.5rem', border: '1px solid #e8e8e8', boxShadow: '0 4px 24px rgba(0,0,0,.06)' }}>
           <div className="text-center mb-4">

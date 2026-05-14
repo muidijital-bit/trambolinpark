@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
 import { AdminPageHeader } from './AdminLayout';
 import { Package, Wrench, Search, ExternalLink } from 'lucide-react';
@@ -31,7 +32,7 @@ export default function Dashboard() {
       <div style={{ padding: '2rem' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
           {cards.map(card => (
-            <a key={card.label} href={card.href} style={{ textDecoration: 'none' }}>
+            <Link key={card.label} to={card.href} style={{ textDecoration: 'none' }}>
               <div style={{ background: '#fff', border: '1px solid #e8e8e8', borderRadius: 12, padding: '1.5rem', transition: 'box-shadow .15s, border-color .15s', cursor: 'pointer' }}
                 onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,.08)'; e.currentTarget.style.borderColor = card.color; }}
                 onMouseLeave={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = '#e8e8e8'; }}>
@@ -41,7 +42,7 @@ export default function Dashboard() {
                 <p style={{ color: '#1a1a1a', fontSize: 28, fontWeight: 800, margin: 0 }}>{card.value}</p>
                 <p style={{ color: '#888', fontSize: 12, margin: '4px 0 0' }}>{card.label}</p>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
 
