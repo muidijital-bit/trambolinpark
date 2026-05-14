@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronRight, ChevronDown, SlidersHorizontal } from 'lucide-react';
-import { allProducts } from '../data/mockData';
 import type { Product } from '../data/mockData';
+import { useProducts } from '../hooks/useProducts';
 import SidebarSearch from '../components/SidebarSearch';
 import type { SearchItem } from '../components/SidebarSearch';
 
@@ -32,37 +32,42 @@ const GROUPS = [
 const GROUP_KEYS  = GROUPS.map(g => g.key);
 const ALL_SUB_IDS = GROUPS.flatMap(g => g.subs.map(s => s.id));
 const ALL_IDS     = [...GROUP_KEYS, ...ALL_SUB_IDS];
-const products    = allProducts.filter(p => ALL_SUB_IDS.includes(p.category));
 const groupOf     = (id: string) => GROUPS.find(g => g.key === id || g.subs.some(s => s.id === id))!;
 const subOf       = (id: string) => GROUPS.flatMap(g => g.subs).find(s => s.id === id);
-const countGroup  = (gKey: string) => products.filter(p => groupOf(p.category)?.key === gKey).length;
-const countSub    = (sId: string) => products.filter(p => p.category === sId).length;
-
-const searchItems: SearchItem[] = products.map(p => ({
-  key: p.id,
-  title: p.title,
-  image: p.imageUrl,
-  badge: p.categoryName,
-  href: `/urun/${p.id}`,
-}));
 
 export default function Catalog() {
   const { categoryId } = useParams();
   const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const { products, loading } = useProducts();
 
   const activeId    = categoryId && ALL_IDS.includes(categoryId) ? categoryId : 'trambolinler';
   const isGroupView = GROUP_KEYS.includes(activeId);
   const activeGroup = groupOf(activeId);
   const activeSub   = subOf(activeId);
 
-  const displayed = isGroupView
-    ? products.filter(p => groupOf(p.category)?.key === activeId)
-    : products.filter(p => p.category === activeId);
+  const filteredProducts = useMemo(() => products.filter(p => ALL_SUB_IDS.includes(p.category)), [products]);
 
-  const groupedSections = isGroupView
-    ? activeGroup.subs.map(sub => ({ sub, items: products.filter(p => p.category === sub.id) })).filter(s => s.items.length > 0)
-    : [];
+  const displayed = useMemo(() => isGroupView
+    ? filteredProducts.filter(p => groupOf(p.category)?.key === activeId)
+    : filteredProducts.filter(p => p.category === activeId),
+  [filteredProducts, isGroupView, activeId]);
+
+  const groupedSections = useMemo(() => isGroupView
+    ? activeGroup.subs.map(sub => ({ sub, items: filteredProducts.filter(p => p.category === sub.id) })).filter(s => s.items.length > 0)
+    : [],
+  [isGroupView, activeGroup, filteredProducts]);
+
+  const countGroup = (gKey: string) => filteredProducts.filter(p => groupOf(p.category)?.key === gKey).length;
+  const countSub   = (sId: string)  => filteredProducts.filter(p => p.category === sId).length;
+
+  const searchItems: SearchItem[] = filteredProducts.map(p => ({
+    key: p.id,
+    title: p.title,
+    image: p.imageUrl,
+    badge: p.categoryName,
+    href: `/urun/${p.id}`,
+  }));
 
   const goTo = (id: string) => { navigate(`/urunler/${id}`); setDrawerOpen(false); };
 
@@ -114,7 +119,7 @@ export default function Catalog() {
               <div style={{ padding: '0 1rem .75rem' }}>
                 <SidebarSearch items={searchItems} placeholder="Ürün ara..." />
               </div>
-              <SidebarContentInner activeId={activeId} goTo={goTo} />
+              <SidebarContentInner activeId={activeId} goTo={goTo} countGroup={countGroup} countSub={countSub} />
             </div>
           </div>
 
@@ -135,7 +140,7 @@ export default function Catalog() {
                   <div style={{ padding: '1rem 1rem 0' }}>
                     <SidebarSearch items={searchItems} placeholder="Ürün ara..." />
                   </div>
-                  <SidebarContentInner activeId={activeId} goTo={goTo} />
+                  <SidebarContentInner activeId={activeId} goTo={goTo} countGroup={countGroup} countSub={countSub} />
                 </motion.div>
               </>
             )}
@@ -145,7 +150,12 @@ export default function Catalog() {
           <div className="col-lg-9">
             <p className="d-none d-lg-block mb-3" style={{ fontSize: 12, fontWeight: 700, color: '#aaa' }}>{displayed.length} ürün listeleniyor</p>
 
-            {displayed.length === 0 ? (
+            {loading ? (
+              <div className="text-center py-5">
+                <div className="spinner-border" style={{ color: '#5c9200', width: 32, height: 32, borderWidth: 3 }} role="status" />
+                <p className="mt-3" style={{ fontSize: 13, color: '#aaa' }}>Ürünler yükleniyor...</p>
+              </div>
+            ) : displayed.length === 0 ? (
               <div className="text-center py-5 rounded-4" style={{ border: '2px dashed #e8e8e8', background: '#fff' }}>
                 <p className="fw-bold mb-1" style={{ color: '#888' }}>Ürün bulunamadı</p>
                 <p style={{ fontSize: 13, color: '#bbb' }}>Bu kategori için ürünler yakında eklenecektir.</p>
@@ -176,7 +186,7 @@ export default function Catalog() {
   );
 }
 
-function SidebarContentInner({ activeId, goTo }: { activeId: string; goTo: (id: string) => void }) {
+function SidebarContentInner({ activeId, goTo, countGroup, countSub }: { activeId: string; goTo: (id: string) => void; countGroup: (k: string) => number; countSub: (k: string) => number }) {
   return (
     <>
       {GROUPS.map((group, gi) => {

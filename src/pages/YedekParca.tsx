@@ -1,35 +1,23 @@
-import { useState } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown, ChevronLeft, ChevronRight, X, Wrench, ArrowRight } from 'lucide-react';
-import { spareCategories } from '../data/spareParts';
 import type { SparePart } from '../data/spareParts';
+import { useSpareParts } from '../hooks/useSpareParts';
 import SidebarSearch from '../components/SidebarSearch';
 import type { SearchItem } from '../components/SidebarSearch';
 
 const WA = '905433494947';
 
-function allItems(cat: typeof spareCategories[0]) {
+function allItems(cat: { items: SparePart[]; subcategories?: { items: SparePart[] }[] }) {
   if (cat.subcategories?.length) return cat.subcategories.flatMap(s => s.items);
   return cat.items;
 }
 
-const searchItems: SearchItem[] = spareCategories.flatMap(cat => {
-  const items = allItems(cat);
-  return items.map(p => ({
-    key: p.key,
-    title: p.title,
-    image: p.image,
-    badge: cat.title,
-    href: `/yedek-parcalar/${p.key}`,
-  }));
-});
-
 export default function YedekParca() {
-  const [activeCat, setActiveCat] = useState(spareCategories[0]?.key ?? '');
-  const [activeSub, setActiveSub] = useState<string | null>(
-    spareCategories[0]?.subcategories?.[0]?.key ?? null
-  );
+  const { categories: spareCategories, loading } = useSpareParts();
+  const [activeCat, setActiveCat] = useState('');
+  const [activeSub, setActiveSub] = useState<string | null>(null);
   const [zoom, setZoom] = useState<{ images: string[]; idx: number; title: string } | null>(null);
 
   const category = spareCategories.find(c => c.key === activeCat)!;
@@ -37,13 +25,31 @@ export default function YedekParca() {
   const items = subcat ? subcat.items : allItems(category);
   const heading = subcat ? subcat.title : category?.title;
 
+  useEffect(() => {
+    if (spareCategories.length && !activeCat) {
+      setActiveCat(spareCategories[0].key);
+      setActiveSub(spareCategories[0].subcategories?.[0]?.key ?? null);
+    }
+  }, [spareCategories]);
+
   const selectCat = (key: string) => {
     const cat = spareCategories.find(c => c.key === key)!;
     setActiveCat(key);
-    setActiveSub(cat.subcategories?.[0]?.key ?? null);
+    setActiveSub(cat?.subcategories?.[0]?.key ?? null);
   };
 
-  const totalItems = (cat: typeof spareCategories[0]) => allItems(cat).length;
+  const totalItems = (cat: { items: SparePart[]; subcategories?: { items: SparePart[] }[] }) => allItems(cat).length;
+
+  const searchItems: SearchItem[] = useMemo(() => spareCategories.flatMap(cat => {
+    const items = allItems(cat);
+    return items.map(p => ({
+      key: p.key,
+      title: p.title,
+      image: p.image,
+      badge: cat.title,
+      href: `/yedek-parcalar/${p.key}`,
+    }));
+  }), [spareCategories]);
 
   return (
     <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
@@ -167,25 +173,32 @@ export default function YedekParca() {
 
           {/* ── Right: parts grid ── */}
           <div className="col-12 col-lg-9">
-            <div className="mb-4 pb-3" style={{ borderBottom: '1.5px solid #e8e8e8' }}>
-              <p className="mb-1" style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.15em', color: '#5c9200' }}>
-                {category?.title}
-              </p>
-              <h2 className="font-poppins fw-black mb-1" style={{ fontSize: 'clamp(1.4rem, 3vw, 1.85rem)', color: '#1a1a1a' }}>{heading}</h2>
-              <p style={{ color: '#888', fontSize: 14, margin: 0 }}>
-                {subcat ? `${items.length} parça` : category?.short}
-              </p>
-            </div>
-
-            <motion.div key={`${activeCat}-${activeSub}`}
-              initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }}
-              className="row row-cols-2 row-cols-sm-3 row-cols-xl-4 g-3">
-              {items.map(item => (
-                <div key={item.key} className="col">
-                  <SparePartCard item={item} fallbackImage={category?.cover} onZoom={(imgs, idx) => setZoom({ images: imgs, idx, title: item.title })} />
-                </div>
-              ))}
-            </motion.div>
+            {loading && (
+              <div className="text-center py-5">
+                <div className="spinner-border" style={{ color: '#5c9200', width: 32, height: 32, borderWidth: 3 }} role="status" />
+                <p className="mt-3" style={{ fontSize: 13, color: '#aaa' }}>Yedek parçalar yükleniyor...</p>
+              </div>
+            )}
+            {!loading && <>
+              <div className="mb-4 pb-3" style={{ borderBottom: '1.5px solid #e8e8e8' }}>
+                <p className="mb-1" style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.15em', color: '#5c9200' }}>
+                  {category?.title}
+                </p>
+                <h2 className="font-poppins fw-black mb-1" style={{ fontSize: 'clamp(1.4rem, 3vw, 1.85rem)', color: '#1a1a1a' }}>{heading}</h2>
+                <p style={{ color: '#888', fontSize: 14, margin: 0 }}>
+                  {subcat ? `${items.length} parça` : category?.short}
+                </p>
+              </div>
+              <motion.div key={`${activeCat}-${activeSub}`}
+                initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }}
+                className="row row-cols-2 row-cols-sm-3 row-cols-xl-4 g-3">
+                {items.map(item => (
+                  <div key={item.key} className="col">
+                    <SparePartCard item={item} fallbackImage={category?.cover} onZoom={(imgs, idx) => setZoom({ images: imgs, idx, title: item.title })} />
+                  </div>
+                ))}
+              </motion.div>
+            </>}
           </div>
 
         </div>
