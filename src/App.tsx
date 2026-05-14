@@ -1,5 +1,7 @@
-import { BrowserRouter, Routes, Route, Outlet, useLocation } from 'react-router-dom';
-import { useEffect, useRef } from 'react';
+import { BrowserRouter, Routes, Route, Outlet, useLocation, Navigate } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { supabase } from './lib/supabase';
+import type { Session } from '@supabase/supabase-js';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
@@ -18,6 +20,12 @@ function CustomCursor() {
   }, []);
   return <><div ref={dotRef} className="cursor-dot" /><div ref={ringRef} className="cursor-ring" /></>;
 }
+import AdminLogin from './pages/admin/AdminLogin';
+import AdminLayout from './pages/admin/AdminLayout';
+import Dashboard from './pages/admin/Dashboard';
+import AdminProducts from './pages/admin/AdminProducts';
+import AdminSpareParts from './pages/admin/AdminSpareParts';
+import AdminSeo from './pages/admin/AdminSeo';
 import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import Catalog from './pages/Catalog';
@@ -49,10 +57,34 @@ function Layout() {
   );
 }
 
+function AdminGuard({ session }: { session: Session | null }) {
+  if (session === undefined) return null;
+  if (!session) return <Navigate to="/admin/login" replace />;
+  return <AdminLayout />;
+}
+
 function App() {
+  const [session, setSession] = useState<Session | null | undefined>(undefined);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => setSession(data.session));
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, s) => setSession(s));
+    return () => subscription.unsubscribe();
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
+        {/* Admin routes */}
+        <Route path="/admin/login" element={session ? <Navigate to="/admin" replace /> : <AdminLogin />} />
+        <Route path="/admin" element={<AdminGuard session={session ?? null} />}>
+          <Route index element={<Dashboard />} />
+          <Route path="urunler" element={<AdminProducts />} />
+          <Route path="yedek-parcalar" element={<AdminSpareParts />} />
+          <Route path="seo" element={<AdminSeo />} />
+        </Route>
+
+        {/* Public site */}
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="urun/:id" element={<ProductDetail />} />
