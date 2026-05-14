@@ -45,3 +45,12 @@ export type SeoRow = {
   og_image: string;
   updated_at?: string;
 };
+
+export type SiteSettings = {
+  site_title: string;
+  site_description: string;
+  keywords: string;
+  og_image: string;
+  favicon_url: string;
+  google_analytics_id: string;
+};

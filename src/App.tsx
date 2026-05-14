@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route, Outlet, useLocation, Navigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
+import { HelmetProvider, Helmet } from 'react-helmet-async';
 import { supabase } from './lib/supabase';
+import { useSiteSettings } from './hooks/useSiteSettings';
 import type { Session } from '@supabase/supabase-js';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -63,6 +65,32 @@ function AdminGuard({ session }: { session: Session | null }) {
   return <AdminLayout />;
 }
 
+function SiteHelmet() {
+  const s = useSiteSettings();
+  return (
+    <Helmet>
+      <title>{s.site_title}</title>
+      <meta name="description" content={s.site_description} />
+      <meta name="keywords" content={s.keywords} />
+      <meta property="og:title" content={s.site_title} />
+      <meta property="og:description" content={s.site_description} />
+      {s.og_image && <meta property="og:image" content={s.og_image} />}
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://trambolinpark.com" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={s.site_title} />
+      <meta name="twitter:description" content={s.site_description} />
+      {s.og_image && <meta name="twitter:image" content={s.og_image} />}
+      {s.google_analytics_id && (
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${s.google_analytics_id}`} />
+      )}
+      {s.google_analytics_id && (
+        <script>{`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${s.google_analytics_id}');`}</script>
+      )}
+    </Helmet>
+  );
+}
+
 function App() {
   const [session, setSession] = useState<Session | null | undefined>(undefined);
 
@@ -73,7 +101,9 @@ function App() {
   }, []);
 
   return (
+    <HelmetProvider>
     <BrowserRouter>
+      <SiteHelmet />
       <Routes>
         {/* Admin routes */}
         <Route path="/admin/login" element={session ? <Navigate to="/admin" replace /> : <AdminLogin />} />
@@ -105,6 +135,7 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+    </HelmetProvider>
   );
 }
 
