@@ -20,10 +20,10 @@ export default function YedekParca() {
   const [activeSub, setActiveSub] = useState<string | null>(null);
   const [zoom, setZoom] = useState<{ images: string[]; idx: number; title: string } | null>(null);
 
-  const category = spareCategories.find(c => c.key === activeCat)!;
-  const subcat = activeSub ? category?.subcategories?.find(s => s.key === activeSub) : null;
-  const items = subcat ? subcat.items : allItems(category);
-  const heading = subcat ? subcat.title : category?.title;
+  const category = spareCategories.find(c => c.key === activeCat);
+  const subcat = activeSub && category ? category.subcategories?.find(s => s.key === activeSub) : null;
+  const items = category ? (subcat ? subcat.items : allItems(category)) : [];
+  const heading = subcat ? subcat.title : category?.title ?? '';
 
   useEffect(() => {
     if (spareCategories.length && !activeCat) {

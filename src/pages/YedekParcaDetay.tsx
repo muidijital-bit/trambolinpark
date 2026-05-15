@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ChevronRight, ChevronLeft, ChevronRight as ChevronRightIcon, X, ArrowLeft, Wrench, Tag } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { findPartByKey, spareCategories } from '../data/spareParts';
+import { useSparePartByKey } from '../hooks/useSparePartByKey';
 
 const WA = '905433494947';
 const buildWa = (title: string) =>
@@ -14,18 +14,18 @@ const WaIcon = () => (
   </svg>
 );
 
-function allCategoryItems(cat: (typeof spareCategories)[0]) {
-  if (cat.subcategories?.length) return cat.subcategories.flatMap(s => s.items);
-  return cat.items;
-}
-
 export default function YedekParcaDetay() {
   const { key } = useParams<{ key: string }>();
   const navigate = useNavigate();
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
+  const { result, loading } = useSparePartByKey(key);
 
-  const result = key ? findPartByKey(key) : null;
+  if (loading) return (
+    <div className="text-center" style={{ paddingTop: '12rem' }}>
+      <div className="spinner-border" style={{ color: '#5c9200', width: 32, height: 32, borderWidth: 3 }} role="status" />
+    </div>
+  );
 
   if (!result) {
     return (
@@ -39,14 +39,8 @@ export default function YedekParcaDetay() {
     );
   }
 
-  const { part, category, subcategory } = result;
+  const { part, category, subcategory, relatedItems } = result;
   const images = part.gallery?.length ? part.gallery : part.image ? [part.image] : [];
-
-  const relatedItems = (
-    subcategory
-      ? subcategory.items.filter(p => p.key !== part.key)
-      : allCategoryItems(category).filter(p => p.key !== part.key)
-  ).slice(0, 8);
 
   const scroll = (dir: 'left' | 'right') => {
     if (!carouselRef.current) return;
@@ -186,7 +180,7 @@ export default function YedekParcaDetay() {
             paddingBottom: 4, scrollSnapType: 'x mandatory',
           }}>
             {relatedItems.map(item => {
-              const itemImg = item.gallery?.[0] ?? item.image;
+              const itemImg = item.image;
               return (
                 <Link key={item.key} to={`/yedek-parcalar/${item.key}`}
                   className="tp-spare-card flex-shrink-0 text-decoration-none"
@@ -198,7 +192,7 @@ export default function YedekParcaDetay() {
                   </div>
                   <div className="p-3 d-flex flex-column gap-1 flex-grow-1">
                     <h4 className="fw-black mb-0" style={{ fontSize: 13, color: '#1a1a1a', lineHeight: 1.3 }}>{item.title}</h4>
-                    <p className="mb-0 text-muted" style={{ fontSize: 12, lineHeight: 1.4 }}>{item.desc}</p>
+                    <p className="mb-0 text-muted" style={{ fontSize: 12, lineHeight: 1.4 }}>{(item as any).desc ?? ''}</p>
                   </div>
                 </Link>
               );

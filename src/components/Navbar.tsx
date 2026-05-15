@@ -1,20 +1,29 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { Search, X, Menu } from 'lucide-react';
-import { allProducts } from '../data/mockData';
-import { spareCategories } from '../data/spareParts';
+import { supabase } from '../lib/supabase';
 
-const allSpareParts = spareCategories.flatMap(cat =>
-  cat.items.map(item => ({ key: item.key, title: item.title, catKey: cat.key, catTitle: cat.title, image: item.image }))
-);
+type SearchProduct = { id: string; title: string; imageUrl: string; categoryName: string };
+type SearchPart = { key: string; title: string; catTitle: string; image: string };
 
 export default function Navbar({ forceScrolled = false }: { forceScrolled?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [searchOpen, setSearchOpen] = useState(false);
+  const [allProducts, setAllProducts] = useState<SearchProduct[]>([]);
+  const [allSpareParts, setAllSpareParts] = useState<SearchPart[]>([]);
   const searchRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    supabase.from('products').select('id, title, image_url, category_name').then(({ data }) => {
+      setAllProducts((data ?? []).map(r => ({ id: r.id, title: r.title, imageUrl: r.image_url, categoryName: r.category_name })));
+    });
+    supabase.from('spare_parts').select('item_key, title, category_title, image').then(({ data }) => {
+      setAllSpareParts((data ?? []).map(r => ({ key: r.item_key, title: r.title, catTitle: r.category_title, image: r.image })));
+    });
+  }, []);
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 80);
@@ -87,7 +96,7 @@ export default function Navbar({ forceScrolled = false }: { forceScrolled?: bool
                       {spareResults.length > 0 && <>
                         <div className="px-3 pt-2 pb-1" style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.12em', color: 'rgba(255,255,255,.35)', borderTop: prodResults.length ? '1px solid rgba(255,255,255,.06)' : undefined, marginTop: prodResults.length ? '.5rem' : 0, paddingTop: '.75rem' }}>Yedek Parçalar</div>
                         {spareResults.map(p => (
-                          <button key={p.key} onClick={() => go(`/yedek-parcalar#${p.catKey}`)} className="d-flex align-items-center gap-3 w-100 border-0 text-start px-3 py-2" style={{ background: 'transparent', color: '#fff', transition: 'background .15s' }}
+                          <button key={p.key} onClick={() => go(`/yedek-parcalar/${p.key}`)} className="d-flex align-items-center gap-3 w-100 border-0 text-start px-3 py-2" style={{ background: 'transparent', color: '#fff', transition: 'background .15s' }}
                             onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,.06)')} onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}>
                             {p.image && <img src={p.image} alt="" style={{ width: 36, height: 36, objectFit: 'contain', borderRadius: 8, background: 'rgba(255,255,255,.05)', flexShrink: 0 }} />}
                             <div><p className="mb-0 fw-bold" style={{ fontSize: 13 }}>{p.title}</p><p className="mb-0" style={{ fontSize: 11, color: '#c3e92d' }}>{p.catTitle}</p></div>
