@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { CheckCircle2, ChevronRight, ChevronLeft, Tag } from 'lucide-react';
-import { allProducts } from '../data/mockData';
+import { useProduct } from '../hooks/useProduct';
 
 const WA = '905433494947';
 const buildWa = (title: string, msg = 'hakkında bilgi almak istiyorum') =>
@@ -17,7 +17,13 @@ export default function ProductDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const carouselRef = useRef<HTMLDivElement>(null);
-  const product = allProducts.find(p => p.id === id);
+  const { product, related, loading } = useProduct(id);
+
+  if (loading) return (
+    <div className="text-center" style={{ paddingTop: '12rem' }}>
+      <div className="spinner-border" style={{ color: '#5c9200', width: 32, height: 32, borderWidth: 3 }} role="status" />
+    </div>
+  );
 
   if (!product) return (
     <div className="text-center py-5" style={{ paddingTop: '8rem' }}>
@@ -26,11 +32,6 @@ export default function ProductDetail() {
       <button onClick={() => navigate('/urunler')} className="btn btn-brand rounded-pill px-5 py-3 fw-black">Kataloga Dön</button>
     </div>
   );
-
-  const related = [
-    ...allProducts.filter(p => p.id !== product.id && p.category === product.category),
-    ...allProducts.filter(p => p.id !== product.id && p.category !== product.category),
-  ].slice(0, 8);
 
   const scroll = (dir: 'left' | 'right') => {
     if (!carouselRef.current) return;
