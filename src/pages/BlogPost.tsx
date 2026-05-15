@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Clock, Tag, ArrowRight, ChevronRight } from 'lucide-react';
-import { getBlogPost, blogPosts, type BlogSection } from '../data/blogPosts';
+import { useBlogPost, useBlogPosts } from '../hooks/useBlogPosts';
+type BlogSection = { type: string; text?: string; items?: string[] };
 
 function formatDate(d: string) {
   return new Date(d).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -37,7 +38,14 @@ function RenderSection({ section }: { section: BlogSection }) {
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
-  const post = slug ? getBlogPost(slug) : null;
+  const { post, loading } = useBlogPost(slug);
+  const { posts: allPosts } = useBlogPosts();
+
+  if (loading) return (
+    <div className="text-center" style={{ paddingTop: '12rem' }}>
+      <div className="spinner-border" style={{ color: '#5c9200', width: 32, height: 32, borderWidth: 3 }} role="status" />
+    </div>
+  );
 
   if (!post) {
     return (
@@ -48,8 +56,8 @@ export default function BlogPost() {
     );
   }
 
-  const related = blogPosts.filter(p => p.slug !== post.slug && p.category === post.category).concat(
-    blogPosts.filter(p => p.slug !== post.slug && p.category !== post.category)
+  const related = allPosts.filter(p => p.slug !== post.slug && p.category === post.category).concat(
+    allPosts.filter(p => p.slug !== post.slug && p.category !== post.category)
   ).slice(0, 3);
 
   return (
@@ -78,7 +86,7 @@ export default function BlogPost() {
               <Tag size={9} style={{ marginRight: 4 }} />{post.category}
             </span>
             <span className="d-flex align-items-center gap-1" style={{ fontSize: 12, color: 'rgba(255,255,255,.45)' }}>
-              <Clock size={12} /> {post.readTime} dk okuma
+              <Clock size={12} /> {post.read_time} dk okuma
             </span>
           </div>
           <div className="tp-hero-line" />
@@ -96,7 +104,7 @@ export default function BlogPost() {
 
             {/* Cover image */}
             <div className="rounded-4 overflow-hidden mb-5" style={{ boxShadow: '0 8px 40px rgba(0,0,0,.1)' }}>
-              <img src={post.coverImage} alt={post.title} style={{ width: '100%', aspectRatio: '16/8', objectFit: 'cover' }} />
+              <img src={post.cover_image} alt={post.title} style={{ width: '100%', aspectRatio: '16/8', objectFit: 'cover' }} />
             </div>
 
             {/* Content */}
@@ -146,7 +154,7 @@ export default function BlogPost() {
                         onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)')}
                         onMouseLeave={e => (e.currentTarget.style.transform = '')}>
                         <div style={{ width: 72, flexShrink: 0, background: '#f5f5f5' }}>
-                          <img src={r.coverImage} alt={r.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                          <img src={r.cover_image} alt={r.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                         </div>
                         <div className="py-2 pe-3" style={{ flex: 1, minWidth: 0 }}>
                           <p style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '.1em', color: '#5c9200', marginBottom: 4 }}>{r.category}</p>

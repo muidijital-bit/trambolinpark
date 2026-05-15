@@ -1,11 +1,12 @@
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
-import { LayoutDashboard, Package, Wrench, Search, LogOut, ChevronRight } from 'lucide-react';
+import { LayoutDashboard, Package, Wrench, Search, LogOut, ChevronRight, BookOpen } from 'lucide-react';
 
 const NAV = [
   { to: '/admin',                label: 'Dashboard',       icon: <LayoutDashboard size={16} />, end: true },
   { to: '/admin/urunler',        label: 'Ürünler',         icon: <Package size={16} /> },
   { to: '/admin/yedek-parcalar', label: 'Yedek Parçalar',  icon: <Wrench size={16} /> },
+  { to: '/admin/blog',           label: 'Blog',            icon: <BookOpen size={16} /> },
   { to: '/admin/seo',            label: 'SEO Ayarları',    icon: <Search size={16} /> },
 ];
 

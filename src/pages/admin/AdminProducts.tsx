@@ -32,9 +32,12 @@ export default function AdminProducts() {
   const [search, setSearch] = useState('');
   const [modal, setModal] = useState<Partial<ProductRow & { gallery: string[] }> | null>(null);
   const [saving, setSaving] = useState(false);
+  const [toast, setToast] = useState('');
   const [featInput, setFeatInput] = useState('');
   const [delConfirm, setDelConfirm] = useState<string | null>(null);
   const [customCategory, setCustomCategory] = useState(false);
+
+  const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 2500); };
   const [uploading, setUploading] = useState(false);
   const [galleryUrlInput, setGalleryUrlInput] = useState('');
   const fileRef = useRef<HTMLInputElement>(null);
@@ -129,12 +132,13 @@ export default function AdminProducts() {
       const preset = PRESET_CATEGORIES.find(c => c.key === modal.category);
       if (preset) payload.category_name = preset.label;
     }
-    if (rows.find(r => r.id === modal.id)) {
-      await supabase.from('products').update(payload).eq('id', modal.id);
-    } else {
-      await supabase.from('products').insert([payload]);
-    }
+    const isEdit = rows.find(r => r.id === modal.id);
+    const { error } = isEdit
+      ? await supabase.from('products').update(payload).eq('id', modal.id!)
+      : await supabase.from('products').insert([payload]);
     setSaving(false);
+    if (error) { alert('Hata: ' + error.message); return; }
+    showToast(isEdit ? 'Ürün güncellendi ✓' : 'Ürün eklendi ✓');
     setModal(null);
     load();
   };
@@ -153,6 +157,11 @@ export default function AdminProducts() {
 
   return (
     <div style={{ background: '#f5f7fa', minHeight: '100vh' }}>
+      {toast && (
+        <div style={{ position: 'fixed', top: 20, right: 20, background: '#dcfce7', border: '1px solid #86efac', borderRadius: 10, padding: '10px 18px', fontSize: 13, fontWeight: 600, color: '#16a34a', zIndex: 99999, boxShadow: '0 4px 16px rgba(0,0,0,.1)' }}>
+          {toast}
+        </div>
+      )}
       <AdminPageHeader
         title="Ürünler"
         sub={`${rows.length} ürün`}

@@ -1,21 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight, Play, Phone, Mail, MessageCircle, MapPin, Zap, Layers, Circle, Star, Wind, Wrench, Triangle, Navigation } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 const TP  = 'https://trambolinpark.com';
 
 /* ── Data ─────────────────────────────────────────────────── */
 const YT_ID = 'RMm3bn3koO0';
 
-const SPARE_PARTS = [
-  { name: 'Trambolin Yayı',         desc: 'Galvaniz kaplı, farklı sertlik seçenekleri',       img: `${TP}/album/trambolinparkyeni/urunler/D5zm4LhjhgfrjDS0CdSl.jpg` },
-  { name: 'Atlama Yüzeyi (Mat)',    desc: 'UV dayanımlı, çift dikişli polipropilen',           img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$aV21Z34gSPnTk89Hn3qX.jpg` },
-  { name: 'Koruma Pedi',            desc: 'Yay ve çelik çerçeve üstü darbe emici',             img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$75pLpRx6IWjwkvlu3hsd.jpg` },
-  { name: 'Güvenlik Ağı',           desc: 'Yüksek dayanımlı PE örgü, UV korumalı',            img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$KtDHS3kg8rkGghkUJJDz.jpg` },
-  { name: 'Çelik Çerçeve Bağlantı', desc: 'Galvaniz / toz boya kaplı bağlantı elemanları',   img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$chAZQZMg5X9ke4lSvxVx.jpg` },
-  { name: 'Foam Pit Küpleri',       desc: 'Yanmaz sertifikalı, yüksek yoğunluklu sünger',    img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$1lv1MIWxeLn03m4P0m60.jpeg` },
-  { name: 'Soft Play Panel',        desc: 'Farklı renk ve şekillerde EVA kaplı paneller',     img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$03UxdqFQy1mlU5xTZEQc.jpg` },
-  { name: 'Top Havuzu Topları',     desc: 'CE sertifikalı, 8 cm, crush-proof toplar',         img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$7IqBTPuyBSbrW8yD2nQm.jpg` },
-];
 
 const PROCESS = [
   { num: '01', title: 'Keşif & Analiz', desc: 'Mekanınızı ve hedef kitlenizi analiz ederek projeye özgü konsept geliştiriyoruz.' },
@@ -250,8 +241,17 @@ function ProductsSection() {
 }
 
 /* ── 5. SPARE PARTS ───────────────────────────────────────── */
+type HomePart = { key: string; name: string; desc: string; img: string };
+
 function SparePartsSection() {
   const trackRef = useRef<HTMLDivElement>(null);
+  const [parts, setParts] = useState<HomePart[]>([]);
+
+  useEffect(() => {
+    supabase.from('spare_parts').select('item_key, title, description, image').limit(10).then(({ data }) => {
+      setParts((data ?? []).map(r => ({ key: r.item_key, name: r.title, desc: r.description, img: r.image })));
+    });
+  }, []);
 
   const scroll = (dir: 'left' | 'right') => {
     if (trackRef.current) trackRef.current.scrollBy({ left: dir === 'right' ? 270 : -270, behavior: 'smooth' });
@@ -289,15 +289,15 @@ function SparePartsSection() {
         </Reveal>
 
         <div ref={trackRef} className="tp-spare-track">
-          {SPARE_PARTS.map((p, i) => (
-            <div key={i} className="tp-spare-glass">
+          {parts.map(p => (
+            <div key={p.key} className="tp-spare-glass">
               <div className="tp-spare-glass-img">
                 <img src={p.img} alt={p.name} loading="lazy" />
               </div>
               <div className="tp-spare-glass-body">
                 <p className="tp-spare-glass-name">{p.name}</p>
                 <p className="tp-spare-glass-desc">{p.desc}</p>
-                <Link to="/yedek-parcalar" className="btn-accent" style={{ fontSize: 12, padding: '.45rem 1rem' }}>Sipariş Ver <ArrowRight size={13} /></Link>
+                <Link to={`/yedek-parcalar/${p.key}`} className="btn-accent" style={{ fontSize: 12, padding: '.45rem 1rem' }}>Sipariş Ver <ArrowRight size={13} /></Link>
               </div>
             </div>
           ))}

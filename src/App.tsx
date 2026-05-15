@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Outlet, useLocation, Navigate } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, lazy, Suspense } from 'react';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import { supabase } from './lib/supabase';
 import { useSiteSettings } from './hooks/useSiteSettings';
@@ -22,12 +22,13 @@ function CustomCursor() {
   }, []);
   return <><div ref={dotRef} className="cursor-dot" /><div ref={ringRef} className="cursor-ring" /></>;
 }
-import AdminLogin from './pages/admin/AdminLogin';
-import AdminLayout from './pages/admin/AdminLayout';
-import Dashboard from './pages/admin/Dashboard';
-import AdminProducts from './pages/admin/AdminProducts';
-import AdminSpareParts from './pages/admin/AdminSpareParts';
-import AdminSeo from './pages/admin/AdminSeo';
+const AdminLogin      = lazy(() => import('./pages/admin/AdminLogin'));
+const AdminLayout     = lazy(() => import('./pages/admin/AdminLayout'));
+const Dashboard       = lazy(() => import('./pages/admin/Dashboard'));
+const AdminProducts   = lazy(() => import('./pages/admin/AdminProducts'));
+const AdminSpareParts = lazy(() => import('./pages/admin/AdminSpareParts'));
+const AdminBlog       = lazy(() => import('./pages/admin/AdminBlog'));
+const AdminSeo        = lazy(() => import('./pages/admin/AdminSeo'));
 import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import Catalog from './pages/Catalog';
@@ -105,12 +106,21 @@ function App() {
     <BrowserRouter>
       <SiteHelmet />
       <Routes>
-        {/* Admin routes */}
-        <Route path="/admin/login" element={session ? <Navigate to="/admin" replace /> : <AdminLogin />} />
-        <Route path="/admin" element={<AdminGuard session={session ?? null} />}>
+        {/* Admin routes — lazy loaded */}
+        <Route path="/admin/login" element={
+          <Suspense fallback={null}>
+            {session ? <Navigate to="/admin" replace /> : <AdminLogin />}
+          </Suspense>
+        } />
+        <Route path="/admin" element={
+          <Suspense fallback={<div style={{ minHeight: '100vh', background: '#f5f7fa' }} />}>
+            <AdminGuard session={session ?? null} />
+          </Suspense>
+        }>
           <Route index element={<Dashboard />} />
           <Route path="urunler" element={<AdminProducts />} />
           <Route path="yedek-parcalar" element={<AdminSpareParts />} />
+          <Route path="blog" element={<AdminBlog />} />
           <Route path="seo" element={<AdminSeo />} />
         </Route>
 

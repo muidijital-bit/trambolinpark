@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { supabase } from '../../lib/supabase';
 import type { SparePartRow } from '../../lib/supabase';
+import { optimizeImage } from '../../lib/imageUtils';
 import { AdminPageHeader } from './AdminLayout';
-import { Plus, Pencil, Trash2, X, Check, Search } from 'lucide-react';
+import { Plus, Pencil, Trash2, X, Check, Search, Upload, Link } from 'lucide-react';
 
 const CAT_OPTIONS = [
   { key: 'trambolin-yedek', label: 'Trambolin Yedek' },
@@ -23,7 +24,12 @@ export default function AdminSpareParts() {
   const [search, setSearch] = useState('');
   const [modal, setModal] = useState<Partial<SparePartRow> | null>(null);
   const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [delConfirm, setDelConfirm] = useState<string | null>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
+
+  const [toast, setToast] = useState('');
+  const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 2500); };
 
   const load = async () => {
     setLoading(true);
@@ -47,19 +53,19 @@ export default function AdminSpareParts() {
     return acc;
   }, {});
 
-  const save = async () => {
-    if (!modal) return;
-    setSaving(true);
-    const cat = CAT_OPTIONS.find(c => c.key === modal.category_key);
-    const payload = { ...modal, category_title: cat?.label ?? modal.category_title };
-    if (modal.id) {
-      await supabase.from('spare_parts').update(payload).eq('id', modal.id);
-    } else {
-      await supabase.from('spare_parts').insert([payload]);
+  const uploadImage = async (file: File) => {
+    setUploading(true);
+    try {
+      const optimized = await optimizeImage(file);
+      const path = `spare-parts/${Date.now()}-${optimized.name}`;
+      const { error } = await supabase.storage.from('urunler').upload(path, optimized, { upsert: true });
+      if (error) throw error;
+      const { data } = supabase.storage.from('urunler').getPublicUrl(path);
+      setModal(prev => ({ ...prev!, image: data.publicUrl }));
+    } catch (e: any) {
+      alert('Yükleme hatası: ' + e.message);
     }
-    setSaving(false);
-    setModal(null);
-    load();
+    setUploading(false);
   };
 
   const del = async (id: string) => {
@@ -68,8 +74,28 @@ export default function AdminSpareParts() {
     load();
   };
 
+  const save = async () => {
+    if (!modal) return;
+    setSaving(true);
+    const cat = CAT_OPTIONS.find(c => c.key === modal.category_key);
+    const payload = { ...modal, category_title: cat?.label ?? modal.category_title };
+    const { error } = modal.id
+      ? await supabase.from('spare_parts').update(payload).eq('id', modal.id)
+      : await supabase.from('spare_parts').insert([payload]);
+    setSaving(false);
+    if (error) { alert('Hata: ' + error.message); return; }
+    showToast(modal.id ? 'Parça güncellendi ✓' : 'Parça eklendi ✓');
+    setModal(null);
+    load();
+  };
+
   return (
     <div style={{ background: '#f5f7fa', minHeight: '100vh' }}>
+      {toast && (
+        <div style={{ position: 'fixed', top: 20, right: 20, background: '#dcfce7', border: '1px solid #86efac', borderRadius: 10, padding: '10px 18px', fontSize: 13, fontWeight: 600, color: '#16a34a', zIndex: 99999, boxShadow: '0 4px 16px rgba(0,0,0,.1)' }}>
+          {toast}
+        </div>
+      )}
       <AdminPageHeader
         title="Yedek Parçalar"
         sub={`${rows.length} parça`}
@@ -155,7 +181,32 @@ export default function AdminSpareParts() {
               </div>
               <F label="Alt Kategori Key (opsiyonel)" value={modal.sub_key ?? ''} onChange={v => setModal({ ...modal, sub_key: v || null })} placeholder="yaylar" />
               <F label="Alt Kategori Başlığı (opsiyonel)" value={modal.sub_title ?? ''} onChange={v => setModal({ ...modal, sub_title: v || null })} placeholder="Trambolin Yayları" />
-              <F label="Görsel URL" value={modal.image ?? ''} onChange={v => setModal({ ...modal, image: v })} placeholder="https://trambolinpark.com/..." />
+              <div className="mb-3">
+                <label style={lbl}>GÖRSEL</label>
+                {modal.image && (
+                  <div style={{ marginBottom: 8, position: 'relative', display: 'inline-block' }}>
+                    <img src={modal.image} alt="" style={{ width: 72, height: 72, objectFit: 'cover', borderRadius: 8, border: '1px solid #e8e8e8' }} />
+                    <button onClick={() => setModal(prev => ({ ...prev!, image: '' }))}
+                      style={{ position: 'absolute', top: -6, right: -6, background: '#dc2626', border: 'none', borderRadius: '50%', width: 18, height: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: '#fff', padding: 0 }}>
+                      <X size={10} />
+                    </button>
+                  </div>
+                )}
+                <div style={{ display: 'flex', gap: 8, marginBottom: 6 }}>
+                  <button onClick={() => fileRef.current?.click()} disabled={uploading}
+                    style={{ ...inp, display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer', color: '#555', fontWeight: 600, fontSize: 12, border: '1.5px dashed #d0d0d0', background: '#fafafa', flex: 1, justifyContent: 'center', padding: '10px' }}>
+                    <Upload size={14} /> {uploading ? 'Yükleniyor...' : 'Dosya Yükle'}
+                  </button>
+                  <input ref={fileRef} type="file" accept="image/*" style={{ display: 'none' }}
+                    onChange={e => e.target.files?.[0] && uploadImage(e.target.files[0])} />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <Link size={12} style={{ color: '#aaa', flexShrink: 0 }} />
+                  <input value={modal.image ?? ''} onChange={e => setModal({ ...modal, image: e.target.value })}
+                    placeholder="veya görsel URL yapıştır" style={{ ...inp, flex: 1, fontSize: 12 }} />
+                </div>
+                <p style={{ color: '#bbb', fontSize: 11, margin: '4px 0 0' }}>200 KB üzeri görseller otomatik WebP'ye dönüştürülür.</p>
+              </div>
               <div className="mb-3">
                 <label style={lbl}>AÇIKLAMA</label>
                 <textarea value={modal.description ?? ''} onChange={e => setModal({ ...modal, description: e.target.value })}

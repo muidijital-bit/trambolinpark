@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Clock, Tag } from 'lucide-react';
-import { blogPosts } from '../data/blogPosts';
+import { useBlogPosts } from '../hooks/useBlogPosts';
 
 function formatDate(d: string) {
   return new Date(d).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
 }
 
 export default function Blog() {
+  const { posts: blogPosts, loading } = useBlogPosts();
   const [featured, ...rest] = blogPosts;
 
   return (
@@ -26,9 +27,11 @@ export default function Blog() {
       </div>
 
       <div className="container py-5">
+        {loading && <div className="text-center py-5"><div className="spinner-border" style={{ color: '#5c9200', width: 32, height: 32, borderWidth: 3 }} role="status" /></div>}
+        {!loading && blogPosts.length === 0 && <div className="text-center py-5" style={{ color: '#aaa' }}>Henüz blog yazısı yok.</div>}
 
         {/* Featured post */}
-        <div className="mb-5">
+        {!loading && featured && <div className="mb-5">
           <Link to={`/blog/${featured.slug}`} className="text-decoration-none d-block">
             <div className="row g-0 rounded-4 overflow-hidden bg-white" style={{ boxShadow: '0 4px 32px rgba(0,0,0,.07)', transition: 'transform .25s, box-shadow .25s' }}
               onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-4px)'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 16px 48px rgba(0,0,0,.12)'; }}
@@ -36,7 +39,7 @@ export default function Blog() {
 
               <div className="col-12 col-lg-6">
                 <div style={{ aspectRatio: '16/10', overflow: 'hidden', height: '100%', minHeight: 200 }}>
-                  <img src={featured.coverImage} alt={featured.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform .45s' }}
+                  <img src={featured.cover_image} alt={featured.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform .45s' }}
                     onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.04)')}
                     onMouseLeave={e => (e.currentTarget.style.transform = '')} />
                 </div>
@@ -48,7 +51,7 @@ export default function Blog() {
                     {featured.category}
                   </span>
                   <span className="d-flex align-items-center gap-1" style={{ fontSize: 12, color: '#aaa' }}>
-                    <Clock size={12} /> {featured.readTime} dk okuma
+                    <Clock size={12} /> {featured.read_time} dk okuma
                   </span>
                 </div>
                 <h2 className="font-poppins fw-black mb-3" style={{ fontSize: 'clamp(1.3rem, 2.5vw, 1.9rem)', lineHeight: 1.25, color: '#1a1a1a' }}>
@@ -65,7 +68,7 @@ export default function Blog() {
 
             </div>
           </Link>
-        </div>
+        </div>}
 
         {/* Rest of posts */}
         <div className="row g-4">
@@ -78,7 +81,7 @@ export default function Blog() {
                   onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.transform = ''; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 2px 16px rgba(0,0,0,.06)'; }}>
 
                   <div style={{ aspectRatio: '16/9', overflow: 'hidden' }}>
-                    <img src={post.coverImage} alt={post.title} loading="lazy"
+                    <img src={post.cover_image} alt={post.title} loading="lazy"
                       style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform .45s' }}
                       onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.05)')}
                       onMouseLeave={e => (e.currentTarget.style.transform = '')} />
@@ -90,7 +93,7 @@ export default function Blog() {
                         <Tag size={8} style={{ marginRight: 3 }} />{post.category}
                       </span>
                       <span className="d-flex align-items-center gap-1" style={{ fontSize: 11, color: '#bbb' }}>
-                        <Clock size={10} /> {post.readTime} dk
+                        <Clock size={10} /> {post.read_time} dk
                       </span>
                     </div>
 
