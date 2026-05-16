@@ -42,6 +42,8 @@ import Kvkk from './pages/Kvkk';
 import CerezPolitikasi from './pages/CerezPolitikasi';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
+import Giris from './pages/Giris';
+import Hesabim from './pages/Hesabim';
 
 function Layout() {
   const { pathname } = useLocation();
@@ -141,6 +143,8 @@ function App() {
           <Route path="cerez-politikasi" element={<CerezPolitikasi />} />
           <Route path="blog" element={<Blog />} />
           <Route path="blog/:slug" element={<BlogPost />} />
+          <Route path="giris" element={<Giris />} />
+          <Route path="hesabim" element={<Hesabim />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
