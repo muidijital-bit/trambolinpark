@@ -3,7 +3,7 @@ import { supabase } from '../../lib/supabase';
 import type { SparePartRow } from '../../lib/supabase';
 import { optimizeImage } from '../../lib/imageUtils';
 import { AdminPageHeader } from './AdminLayout';
-import { Plus, Pencil, Trash2, X, Check, Search, Upload, Link } from 'lucide-react';
+import { Plus, Pencil, Trash2, X, Check, Search, Upload, Link, Wrench } from 'lucide-react';
 
 const CAT_OPTIONS = [
   { key: 'trambolin-yedek', label: 'Trambolin Yedek' },
@@ -133,8 +133,15 @@ export default function AdminSpareParts() {
                         onMouseEnter={e => (e.currentTarget.style.background = '#fafafa')}
                         onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}>
                         <td style={{ padding: '10px 14px', width: 52 }}>
-                          <img src={row.image} alt="" style={{ width: 40, height: 40, objectFit: 'cover', borderRadius: 8, background: '#f0f0f0' }}
-                            onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+                          {row.image ? (
+                            <img src={row.image} alt="" referrerPolicy="no-referrer"
+                              style={{ width: 40, height: 40, objectFit: 'cover', borderRadius: 8, background: '#f0f0f0' }}
+                              onError={e => { (e.target as HTMLImageElement).src = ''; (e.target as HTMLImageElement).style.display = 'none'; (e.target as HTMLImageElement).parentElement!.style.background = '#f0f0f0'; }} />
+                          ) : (
+                            <div style={{ width: 40, height: 40, borderRadius: 8, background: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                              <Wrench size={16} style={{ color: '#ccc' }} />
+                            </div>
+                          )}
                         </td>
                         <td style={{ padding: '10px 14px' }}>
                           <p style={{ margin: 0, fontWeight: 600, fontSize: 13, color: '#1a1a1a' }}>{row.title}</p>
