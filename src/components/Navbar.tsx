@@ -11,6 +11,7 @@ export default function Navbar({ forceScrolled = false }: { forceScrolled?: bool
   const [menuOpen, setMenuOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [searchOpen, setSearchOpen] = useState(false);
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [allProducts, setAllProducts] = useState<SearchProduct[]>([]);
   const [allSpareParts, setAllSpareParts] = useState<SearchPart[]>([]);
   const searchRef = useRef<HTMLDivElement>(null);
@@ -44,7 +45,7 @@ export default function Navbar({ forceScrolled = false }: { forceScrolled?: bool
   const spareResults = q ? allSpareParts.filter(p => p.title.toLowerCase().includes(q) || p.catTitle.toLowerCase().includes(q)).slice(0, 3) : [];
   const hasResults   = prodResults.length > 0 || spareResults.length > 0;
 
-  const go = (path: string) => { navigate(path); setQuery(''); setSearchOpen(false); setMenuOpen(false); };
+  const go = (path: string) => { navigate(path); setQuery(''); setSearchOpen(false); setMenuOpen(false); setMobileSearchOpen(false); };
 
   return (
     <>
@@ -117,6 +118,11 @@ export default function Navbar({ forceScrolled = false }: { forceScrolled?: bool
             {/* CTA */}
             <Link to="/iletisim" className="btn-accent d-none d-lg-inline-flex flex-shrink-0" style={{ fontSize: 13, padding: '.6rem 1.4rem' }}>Teklif Al</Link>
 
+            {/* Mobile search icon */}
+            <button onClick={() => { setMobileSearchOpen(true); setMenuOpen(false); }} className="d-lg-none btn-glass" style={{ padding: '.5rem .75rem' }}>
+              <Search size={18} />
+            </button>
+
             {/* Hamburger */}
             <button onClick={() => setMenuOpen(!menuOpen)} className="d-lg-none btn-glass" style={{ padding: '.5rem .75rem' }}>
               {menuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -124,6 +130,76 @@ export default function Navbar({ forceScrolled = false }: { forceScrolled?: bool
           </div>
         </div>
       </nav>
+
+      {/* Mobile Search Overlay */}
+      {mobileSearchOpen && (
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(10,10,10,.97)', backdropFilter: 'blur(20px)', zIndex: 1100, display: 'flex', flexDirection: 'column' }}>
+          {/* Search input row */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '1rem 1.25rem', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
+            <Search size={18} style={{ color: 'rgba(255,255,255,.4)', flexShrink: 0 }} />
+            <input
+              autoFocus
+              value={query}
+              onChange={e => setQuery(e.target.value)}
+              placeholder="Ürün veya yedek parça ara..."
+              style={{ flex: 1, background: 'transparent', border: 'none', outline: 'none', color: '#fff', fontSize: 17, fontFamily: 'Inter, sans-serif' }}
+            />
+            <button onClick={() => { setMobileSearchOpen(false); setQuery(''); }}
+              style={{ background: 'rgba(255,255,255,.08)', border: 'none', borderRadius: '50%', width: 38, height: 38, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <X size={16} />
+            </button>
+          </div>
+
+          {/* Results */}
+          <div style={{ flex: 1, overflowY: 'auto' }}>
+            {q ? (
+              hasResults ? (
+                <>
+                  {prodResults.length > 0 && (
+                    <>
+                      <div style={{ padding: '1rem 1.25rem .5rem', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.12em', color: 'rgba(255,255,255,.35)' }}>Ürünler</div>
+                      {prodResults.map(p => (
+                        <button key={p.id} onClick={() => go(`/urun/${p.id}`)}
+                          style={{ display: 'flex', alignItems: 'center', gap: '1rem', width: '100%', border: 'none', background: 'transparent', color: '#fff', textAlign: 'left', padding: '.85rem 1.25rem', transition: 'background .15s' }}
+                          onTouchStart={e => (e.currentTarget.style.background = 'rgba(255,255,255,.06)')} onTouchEnd={e => (e.currentTarget.style.background = 'transparent')}>
+                          <img src={p.imageUrl} alt="" style={{ width: 48, height: 48, objectFit: 'contain', borderRadius: 10, background: 'rgba(255,255,255,.05)', flexShrink: 0 }} />
+                          <div>
+                            <p style={{ margin: 0, fontWeight: 600, fontSize: 15 }}>{p.title}</p>
+                            <p style={{ margin: 0, fontSize: 12, color: '#c3e92d', marginTop: 2 }}>{p.categoryName}</p>
+                          </div>
+                        </button>
+                      ))}
+                    </>
+                  )}
+                  {spareResults.length > 0 && (
+                    <>
+                      <div style={{ padding: '1rem 1.25rem .5rem', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.12em', color: 'rgba(255,255,255,.35)', borderTop: prodResults.length ? '1px solid rgba(255,255,255,.06)' : undefined }}>Yedek Parçalar</div>
+                      {spareResults.map(p => (
+                        <button key={p.key} onClick={() => go(`/yedek-parcalar/${p.key}`)}
+                          style={{ display: 'flex', alignItems: 'center', gap: '1rem', width: '100%', border: 'none', background: 'transparent', color: '#fff', textAlign: 'left', padding: '.85rem 1.25rem', transition: 'background .15s' }}
+                          onTouchStart={e => (e.currentTarget.style.background = 'rgba(255,255,255,.06)')} onTouchEnd={e => (e.currentTarget.style.background = 'transparent')}>
+                          {p.image && <img src={p.image} alt="" style={{ width: 48, height: 48, objectFit: 'contain', borderRadius: 10, background: 'rgba(255,255,255,.05)', flexShrink: 0 }} />}
+                          <div>
+                            <p style={{ margin: 0, fontWeight: 600, fontSize: 15 }}>{p.title}</p>
+                            <p style={{ margin: 0, fontSize: 12, color: '#c3e92d', marginTop: 2 }}>{p.catTitle}</p>
+                          </div>
+                        </button>
+                      ))}
+                    </>
+                  )}
+                  <div style={{ padding: '.85rem 1.25rem', borderTop: '1px solid rgba(255,255,255,.06)' }}>
+                    <button onClick={() => go('/urunler')} style={{ background: 'transparent', border: 'none', color: '#c3e92d', fontSize: 13, fontWeight: 700 }}>Tüm ürünlerde ara →</button>
+                  </div>
+                </>
+              ) : (
+                <div style={{ textAlign: 'center', padding: '3rem 1rem', fontSize: 14, color: 'rgba(255,255,255,.4)' }}>Sonuç bulunamadı</div>
+              )
+            ) : (
+              <div style={{ padding: '2rem 1.25rem', fontSize: 14, color: 'rgba(255,255,255,.4)' }}>Aramak istediğiniz ürünü yazın...</div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Mobile Menu */}
       {menuOpen && (

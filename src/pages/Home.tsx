@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronLeft, ChevronRight, Play, Phone, Mail, MessageCircle, MapPin, Zap, Layers, Circle, Star, Wind, Wrench, Triangle, Navigation } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, Play, Phone, Mail, MessageCircle, MapPin, Zap, Layers, Circle, Wind, Wrench, Triangle } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 const TP  = 'https://trambolinpark.com';
 
@@ -82,8 +82,7 @@ function HeroSection() {
               Ticari trambolin parkları, soft play alanları ve top havuzları. Tasarımdan kuruluma anahtar teslim çözümler.
             </p>
             <div className="d-flex flex-wrap gap-3">
-              <Link to="/iletisim" className="btn-accent">Ücretsiz Teklif Al <ArrowRight size={16} /></Link>
-              <button onClick={() => setVideoModal(true)} className="btn-glass">
+              <button onClick={() => setVideoModal(true)} className="btn-accent">
                 <Play size={15} fill="currentColor" /> Tanıtım Filmi
               </button>
             </div>
@@ -117,8 +116,6 @@ const CAT_ITEMS = [
   { label: 'Soft Play Alanları',   icon: <Layers size={14} strokeWidth={1.5} />,      href: '/urunler/soft-play-oyun-alanlari' },
   { label: 'Şişme Parklar',        icon: <Wind size={14} strokeWidth={1.5} />,        href: '/urunler/sisme-park-junior' },
   { label: 'Yedek Parçalar',       icon: <Wrench size={14} strokeWidth={1.5} />,      href: '/yedek-parcalar' },
-  { label: 'Foam Pit',             icon: <Star size={14} strokeWidth={1.5} />,        href: '/urunler/trambolin-parklari' },
-  { label: 'Ninja Kursu',          icon: <Navigation size={14} strokeWidth={1.5} />,  href: '/urunler/trambolin-parklari' },
 ];
 
 function CategoryMarquee() {
@@ -127,10 +124,10 @@ function CategoryMarquee() {
     <div style={{ background: 'var(--accent)', overflow: 'hidden', padding: '0.85rem 0' }}>
       <div style={{ display: 'flex', width: 'max-content', animation: 'marqueeRun 30s linear infinite' }}>
         {items.map((item, i) => (
-          <Link key={i} to={item.href}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '0 2.25rem', textDecoration: 'none', flexShrink: 0, color: '#0a0a0a' }}>
+          <Link key={i} to={item.href} className="tp-marquee-link"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration: 'none', flexShrink: 0, color: '#0a0a0a' }}>
             {item.icon}
-            <span style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 800, fontSize: 11, textTransform: 'uppercase', letterSpacing: '.2em', whiteSpace: 'nowrap' }}>
+            <span style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 800, fontSize: 14, textTransform: 'uppercase', letterSpacing: '.18em', whiteSpace: 'nowrap' }}>
               {item.label}
             </span>
             <span style={{ color: 'rgba(255,255,255,.4)', fontSize: 7, marginLeft: 6 }}>✦</span>
@@ -154,7 +151,7 @@ const BENTO_ROW2 = [
 
 function ProductsSection() {
   return (
-    <section style={{ background: '#fff', padding: '7rem 0' }}>
+    <section className="tp-home-sec" style={{ background: '#fff', padding: '7rem 0' }}>
       <div className="container">
 
         {/* Header */}
@@ -180,7 +177,7 @@ function ProductsSection() {
 
           {/* Hero card */}
           <div className="col-12 col-lg-7 d-flex flex-column">
-            <Link to="/urunler/trambolin-parklari" className="tp-bento-card" style={{ flex: 1, minHeight: 460 }}>
+            <Link to="/urunler/trambolin-parklari" className="tp-bento-card tp-bento-hero" style={{ flex: 1, minHeight: 460 }}>
               <img src={`${TP}/album/trambolinparkyeni/coklualbumler/-VkT.jpg`} alt="Trambolin Parkları" loading="lazy" />
               <div className="tp-bento-overlay" />
               <div className="tp-bento-content">
@@ -198,7 +195,7 @@ function ProductsSection() {
           <div className="col-12 col-lg-5 d-flex flex-column">
             <div className="d-flex flex-column gap-3 flex-grow-1">
               {BENTO_ROW1.map(c => (
-                <Link key={c.tag} to={c.href} className="tp-bento-card" style={{ flex: 1, minHeight: 216 }}>
+                <Link key={c.tag} to={c.href} className="tp-bento-card tp-bento-mid" style={{ flex: 1, minHeight: 216 }}>
                   <img src={c.img} alt={c.name} loading="lazy" />
                   <div className="tp-bento-overlay" />
                   <div className="tp-bento-content">
@@ -219,7 +216,7 @@ function ProductsSection() {
         <div className="row g-3">
           {BENTO_ROW2.map(c => (
             <div key={c.tag} className="col-12 col-sm-6 col-lg-4">
-              <Link to={c.href} className="tp-bento-card" style={{ minHeight: 290 }}>
+              <Link to={c.href} className="tp-bento-card tp-bento-sm" style={{ minHeight: 290 }}>
                 <img src={c.img} alt={c.name} loading="lazy" />
                 <div className="tp-bento-overlay" />
                 <div className="tp-bento-content">
@@ -269,17 +266,17 @@ function SparePartsSection() {
   }, []);
 
   return (
-    <section style={{ background: '#f5f5f5', padding: '6rem 0', position: 'relative', overflow: 'hidden' }}>
+    <section className="tp-home-sec" style={{ background: '#f5f5f5', padding: '6rem 0', position: 'relative', overflow: 'hidden' }}>
 
       <div className="container position-relative">
         <Reveal>
-          <div className="d-flex align-items-end justify-content-between mb-5 flex-wrap gap-3">
+          <div className="tp-spare-header d-flex align-items-end justify-content-between mb-5 flex-wrap gap-3">
             <div>
               <span className="section-label">Yedek Parçalar</span>
               <h2 className="font-poppins fw-black mb-1" style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)', lineHeight: 1.15 }}>
                 Orijinal Yedek Parça Mağazası
               </h2>
-              <p style={{ fontSize: 14, color: '#888', margin: 0 }}>Parkınızın ömrünü uzatın. Tüm parçalar orijinal üretim, hızlı kargo.</p>
+              <p style={{ fontSize: 14, color: '#888', margin: 0 }}>Oyun alanlarınızın ömrünü uzatın. Tüm parçalar orijinal üretim, hızlı kargo.</p>
             </div>
             <div className="d-flex gap-2">
               <button onClick={() => scroll('left')} className="tp-carousel-btn"><ChevronLeft size={20} /></button>
@@ -314,7 +311,7 @@ function SparePartsSection() {
 /* ── 6. PROCESS SECTION ───────────────────────────────────── */
 function ProcessSection() {
   return (
-    <section style={{ background: '#0a0a0a', padding: '7rem 0', position: 'relative', overflow: 'hidden' }}>
+    <section className="tp-home-sec" style={{ background: '#0a0a0a', padding: '7rem 0', position: 'relative', overflow: 'hidden' }}>
 
       {/* Dot grid texture */}
       <div aria-hidden="true" style={{
@@ -456,23 +453,23 @@ function ProcessSection() {
 
 /* ── 7. SPARE PARTS BANNER ────────────────────────────────── */
 const BANNER_TILES = [
-  { name: 'Trambolinler',       sub: 'Tekli & Olimpik',  href: '/urunler/olimpik-trambolinler',    img: `${TP}/album/trambolinparkyeni/coklualbumler/1-kisilik-olimpik-trambolin-tp-110-EAr.jpg`  },
-  { name: 'Trambolin Parkları', sub: 'Tam Ekipman',       href: '/urunler/trambolin-parklari',      img: `${TP}/album/trambolinparkyeni/coklualbumler/-VkT.jpg`  },
-  { name: 'Soft Play',          sub: 'Renkli Oyun Alanı', href: '/urunler/soft-play-oyun-alanlari', img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$kjgxoxbLjL8vG5l.jpeg` },
-  { name: 'Top Havuzları',      sub: 'Junior & İşletme',  href: '/urunler/kucuk-top-havuzlari',     img: `${TP}/album/trambolinparkyeni/coklualbumler/-Wao.png` },
+  { name: 'Olimpik Trambolinler', sub: 'Tekli & Çoklu',        href: '/urunler/olimpik-trambolinler',    img: `${TP}/album/trambolinparkyeni/coklualbumler/4-kisilik-olimpik-trambolin-tp-114-ZUr.jpg` },
+  { name: 'Trambolin Parkları',   sub: 'Anahtar Teslim',       href: '/urunler/trambolin-parklari',      img: `${TP}/album/trambolinparkyeni/coklualbumler/-lk6.jpg` },
+  { name: 'Soft Play',            sub: 'Renkli Oyun Alanı',    href: '/urunler/soft-play-oyun-alanlari', img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$hlsMpXHkFC2OtM2.jpg` },
+  { name: 'Top Havuzları',        sub: 'Junior & İşletme',     href: '/urunler/kucuk-top-havuzlari',     img: `${TP}/album/trambolinparkyeni/coklualbumler/-uET.jpg` },
 ];
 
 function SparePartsBanner() {
   return (
-    <section style={{ background: '#fff', padding: '5.5rem 0', position: 'relative', overflow: 'hidden' }}>
+    <section className="tp-home-sec" style={{ background: '#fff', padding: '5.5rem 0', position: 'relative', overflow: 'hidden' }}>
       <div className="container position-relative">
-        <div className="row align-items-center g-5">
+        <div className="row align-items-center g-4 g-lg-5">
 
           <div className="col-12 col-lg-6">
             <Reveal dir="left">
-              <span className="section-label">Yedek Parça</span>
+              <span className="section-label">Ürünler</span>
               <h2 className="font-poppins fw-black mb-3" style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', lineHeight: 1.1 }}>
-                Orijinal Parçalar,<br />
+                Ürünlerimiz,<br />
                 <span style={{ color: '#5c9200' }}>Hızlı Teslimat</span>
               </h2>
               <p style={{ color: '#666', fontSize: 15, lineHeight: 1.75, maxWidth: 440, marginBottom: '2rem' }}>
@@ -512,7 +509,7 @@ function SparePartsBanner() {
 /* ── 8. FOOTER CTA ────────────────────────────────────────── */
 function FooterCTA() {
   return (
-    <section style={{ background: '#060a04', padding: '7rem 0', position: 'relative', overflow: 'hidden' }}>
+    <section className="tp-home-sec" style={{ background: '#060a04', padding: '7rem 0', position: 'relative', overflow: 'hidden' }}>
 
       {/* Animated green glow orbs */}
       <div aria-hidden="true" style={{
