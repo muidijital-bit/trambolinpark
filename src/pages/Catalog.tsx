@@ -135,7 +135,7 @@ export default function Catalog() {
               <div style={{ padding: '0 1rem .75rem' }}>
                 <SidebarSearch items={searchItems} placeholder="Ürün ara..." />
               </div>
-              <SidebarContentInner activeId={activeId} goTo={goTo} countGroup={countGroup} countSub={countSub} />
+              <SidebarContentInner activeId={activeId ?? ''} goTo={goTo} countGroup={countGroup} countSub={countSub} />
             </div>
           </div>
 
@@ -156,7 +156,7 @@ export default function Catalog() {
                   <div style={{ padding: '1rem 1rem 0' }}>
                     <SidebarSearch items={searchItems} placeholder="Ürün ara..." />
                   </div>
-                  <SidebarContentInner activeId={activeId} goTo={goTo} countGroup={countGroup} countSub={countSub} />
+                  <SidebarContentInner activeId={activeId ?? ''} goTo={goTo} countGroup={countGroup} countSub={countSub} />
                 </motion.div>
               </>
             )}
