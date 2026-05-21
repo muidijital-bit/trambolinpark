@@ -171,7 +171,17 @@ export default function Catalog() {
 
           {/* Products */}
           <div className="col-lg-9">
-            <p className="d-none d-lg-block mb-3" style={{ fontSize: 12, fontWeight: 700, color: '#aaa' }}>{displayed.length} ürün listeleniyor</p>
+            {activeSub && (
+              <div className="mb-4 pb-3" style={{ borderBottom: '1.5px solid #e8e8e8' }}>
+                <p style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.15em', color: '#5c9200', marginBottom: 4 }}>
+                  {activeGroup.name}
+                </p>
+                <h2 className="font-poppins fw-black mb-1" style={{ fontSize: 'clamp(1.4rem, 3vw, 1.85rem)', color: '#1a1a1a' }}>
+                  {activeSub.name}
+                </h2>
+                <p style={{ color: '#aaa', fontSize: 13, margin: 0 }}>{displayed.length} ürün</p>
+              </div>
+            )}
 
             {loading ? (
               <div className="text-center py-5">
