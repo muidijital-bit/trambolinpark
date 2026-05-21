@@ -28,13 +28,14 @@ export default function YedekParca() {
   useEffect(() => {
     if (spareCategories.length && !activeCat) {
       setActiveCat(spareCategories[0].key);
-      setActiveSub(null);
+      setActiveSub(spareCategories[0].subcategories?.[0]?.key ?? null);
     }
   }, [spareCategories]);
 
   const selectCat = (key: string) => {
+    const cat = spareCategories.find(c => c.key === key)!;
     setActiveCat(key);
-    setActiveSub(null);
+    setActiveSub(cat?.subcategories?.[0]?.key ?? null);
   };
 
   const totalItems = (cat: { items: SparePart[]; subcategories?: { items: SparePart[] }[] }) => allItems(cat).length;
@@ -189,36 +190,15 @@ export default function YedekParca() {
                 </p>
               </div>
 
-              {/* Gruplu görünüm: alt kategori seçilmemişse tüm alt kategoriler başlıklı gösterilir */}
-              {!subcat && category?.subcategories?.length ? (
-                <div className="d-flex flex-column gap-5">
-                  {category.subcategories.map(sub => (
-                    <section key={sub.key}>
-                      <div className="d-flex align-items-center justify-content-between mb-3 pb-2" style={{ borderBottom: '1.5px solid #e8e8e8' }}>
-                        <h3 className="font-poppins fw-black mb-0" style={{ fontSize: 17, color: '#1a1a1a' }}>{sub.title}</h3>
-                        <span style={{ fontSize: 10, fontWeight: 800, color: '#5c9200', background: 'rgba(92,146,0,.08)', borderRadius: 100, padding: '3px 10px' }}>{sub.items.length} parça</span>
-                      </div>
-                      <div className="row row-cols-2 row-cols-sm-3 row-cols-xl-4 g-3">
-                        {sub.items.map(item => (
-                          <div key={item.key} className="col">
-                            <SparePartCard item={item} fallbackImage={category?.cover} onZoom={(imgs, idx) => setZoom({ images: imgs, idx, title: item.title })} />
-                          </div>
-                        ))}
-                      </div>
-                    </section>
-                  ))}
-                </div>
-              ) : (
-                <motion.div key={`${activeCat}-${activeSub}`}
-                  initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }}
-                  className="row row-cols-2 row-cols-sm-3 row-cols-xl-4 g-3">
-                  {items.map(item => (
-                    <div key={item.key} className="col">
-                      <SparePartCard item={item} fallbackImage={category?.cover} onZoom={(imgs, idx) => setZoom({ images: imgs, idx, title: item.title })} />
-                    </div>
-                  ))}
-                </motion.div>
-              )}
+              <motion.div key={`${activeCat}-${activeSub}`}
+                initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }}
+                className="row row-cols-2 row-cols-sm-3 row-cols-xl-4 g-3">
+                {items.map(item => (
+                  <div key={item.key} className="col">
+                    <SparePartCard item={item} fallbackImage={category?.cover} onZoom={(imgs, idx) => setZoom({ images: imgs, idx, title: item.title })} />
+                  </div>
+                ))}
+              </motion.div>
             </>}
           </div>
 

@@ -39,7 +39,11 @@ export default function Catalog() {
   const { categoryId } = useParams();
   const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
   const { products, loading } = useProducts();
+
+  const toggleSection = (id: string) =>
+    setOpenSections(prev => ({ ...prev, [id]: !prev[id] }));
 
   const activeId    = categoryId && ALL_IDS.includes(categoryId) ? categoryId : 'trambolinler';
   const isGroupView = GROUP_KEYS.includes(activeId);
@@ -53,10 +57,15 @@ export default function Catalog() {
     : filteredProducts.filter(p => p.category === activeId),
   [filteredProducts, isGroupView, activeId]);
 
-  const groupedSections = useMemo(() => isGroupView
-    ? activeGroup.subs.map(sub => ({ sub, items: filteredProducts.filter(p => p.category === sub.id) })).filter(s => s.items.length > 0)
-    : [],
-  [isGroupView, activeGroup, filteredProducts]);
+  const groupedSections = useMemo(() => {
+    const sections = isGroupView
+      ? activeGroup.subs.map(sub => ({ sub, items: filteredProducts.filter(p => p.category === sub.id) })).filter(s => s.items.length > 0)
+      : [];
+    // Yeni grup seçilince tüm section'ları açık başlat
+    setOpenSections(Object.fromEntries(sections.map(s => [s.sub.id, true])));
+    return sections;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isGroupView, activeGroup, filteredProducts]);
 
   const countGroup = (gKey: string) => filteredProducts.filter(p => groupOf(p.category)?.key === gKey).length;
   const countSub   = (sId: string)  => filteredProducts.filter(p => p.category === sId).length;
@@ -161,18 +170,34 @@ export default function Catalog() {
                 <p style={{ fontSize: 13, color: '#bbb' }}>Bu kategori için ürünler yakında eklenecektir.</p>
               </div>
             ) : isGroupView ? (
-              <div className="d-flex flex-column gap-5">
-                {groupedSections.map(({ sub, items }) => (
-                  <section key={sub.id} id={sub.id}>
-                    <div className="d-flex align-items-center justify-content-between mb-3 pb-2" style={{ borderBottom: '1.5px solid #e8e8e8' }}>
-                      <h2 className="font-poppins fw-black mb-0" style={{ fontSize: 17, color: '#1a1a1a' }}>{sub.name}</h2>
-                      <span style={{ fontSize: 10, fontWeight: 800, color: '#5c9200', background: 'rgba(92,146,0,.08)', borderRadius: 100, padding: '3px 10px' }}>{items.length} ürün</span>
-                    </div>
-                    <div className="row row-cols-1 row-cols-sm-2 row-cols-xl-3 g-3">
-                      {items.map((p, i) => <div key={p.id} className="col"><CatalogCard product={p} index={i} /></div>)}
-                    </div>
-                  </section>
-                ))}
+              <div className="d-flex flex-column gap-3">
+                {groupedSections.map(({ sub, items }) => {
+                  const isOpen = openSections[sub.id] !== false;
+                  return (
+                    <section key={sub.id} id={sub.id} style={{ background: '#fff', borderRadius: 14, border: '1.5px solid #ebebeb', overflow: 'hidden' }}>
+                      <button
+                        onClick={() => toggleSection(sub.id)}
+                        className="d-flex align-items-center justify-content-between w-100 border-0 text-start"
+                        style={{ padding: '1rem 1.25rem', background: 'transparent', cursor: 'pointer' }}>
+                        <div className="d-flex align-items-center gap-3">
+                          <h2 className="font-poppins fw-black mb-0" style={{ fontSize: 16, color: '#1a1a1a' }}>{sub.name}</h2>
+                          <span style={{ fontSize: 10, fontWeight: 800, color: '#5c9200', background: 'rgba(92,146,0,.08)', borderRadius: 100, padding: '3px 10px' }}>{items.length} ürün</span>
+                        </div>
+                        <ChevronDown size={18} style={{ color: '#aaa', flexShrink: 0, transition: 'transform .25s', transform: isOpen ? 'rotate(180deg)' : 'rotate(0)' }} />
+                      </button>
+                      <AnimatePresence initial={false}>
+                        {isOpen && (
+                          <motion.div initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }}
+                            transition={{ duration: 0.25, ease: 'easeOut' }} style={{ overflow: 'hidden' }}>
+                            <div className="row row-cols-1 row-cols-sm-2 row-cols-xl-3 g-3" style={{ padding: '0 1rem 1rem' }}>
+                              {items.map((p, i) => <div key={p.id} className="col"><CatalogCard product={p} index={i} /></div>)}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </section>
+                  );
+                })}
               </div>
             ) : (
               <div className="row row-cols-1 row-cols-sm-2 row-cols-xl-3 g-3">
