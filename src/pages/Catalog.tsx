@@ -51,14 +51,21 @@ export default function Catalog() {
   const countGroup = (gKey: string) => filteredProducts.filter(p => groupOf(p.category)?.key === gKey).length;
   const countSub   = (sId: string)  => filteredProducts.filter(p => p.category === sId).length;
 
-  // Grup URL'sine doğrudan girilirse ilk alt kategoriye yönlendir
+  // Kategori seçilmemişse veya grup URL'si girilmişse ilk alt kategoriye yönlendir
   useEffect(() => {
-    if (isGroupView && filteredProducts.length > 0) {
+    if (filteredProducts.length === 0) return;
+    if (!activeId) {
+      // /urunler açıldı, ilk grubun ilk alt kategorisine git
+      const firstGroup = GROUPS[0];
+      const firstSub = firstGroup.subs.find(s => countSub(s.id) > 0) ?? firstGroup.subs[0];
+      navigate(`/urunler/${firstSub.id}`, { replace: true });
+    } else if (isGroupView) {
+      // /urunler/trambolinler gibi grup URL'si girildi
       const firstSub = activeGroup.subs.find(s => countSub(s.id) > 0) ?? activeGroup.subs[0];
       navigate(`/urunler/${firstSub.id}`, { replace: true });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isGroupView, activeGroup, filteredProducts.length]);
+  }, [activeId, isGroupView, activeGroup, filteredProducts.length]);
 
   // Ana kategoriye tıklanınca ürünü olan ilk alt kategoriye git
   const goTo = (id: string) => {
