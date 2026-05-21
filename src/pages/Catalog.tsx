@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronRight, ChevronDown, SlidersHorizontal } from 'lucide-react';
+import { X, ChevronRight, SlidersHorizontal } from 'lucide-react';
 import type { Product } from '../data/mockData';
 import { useProducts } from '../hooks/useProducts';
 import SidebarSearch from '../components/SidebarSearch';
@@ -207,37 +207,31 @@ function SidebarContentInner({ activeId, goTo, countGroup, countSub }: { activeI
                 <p className="fw-bold mb-0" style={{ fontSize: 13, color: isGroupActive ? '#5c9200' : '#1a1a1a', lineHeight: 1.3 }}>{group.name}</p>
                 <p className="mb-0" style={{ fontSize: 11, color: '#aaa' }}>{countGroup(group.key)} ürün</p>
               </div>
-              <ChevronDown size={14} style={{ color: '#aaa', flexShrink: 0, transition: 'transform .2s', transform: isGroupActive ? 'rotate(180deg)' : 'rotate(0)' }} />
-            </button>
+              </button>
 
-            <AnimatePresence initial={false}>
-              {isGroupActive && (
-                <motion.div initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }}
-                  transition={{ duration: 0.2, ease: 'easeOut' }} style={{ overflow: 'hidden' }}>
-                  <div style={{ background: '#fafafa', borderTop: '1px solid #f0f0f0' }}>
-                    {group.subs.map((sub, si) => {
-                      const count = countSub(sub.id);
-                      if (!count) return null;
-                      const isActiveSub = activeId === sub.id;
-                      return (
-                        <button key={sub.id} onClick={() => goTo(sub.id)}
-                          className="d-flex align-items-center justify-content-between w-100 text-start border-0"
-                          style={{
-                            padding: '0.6rem 1rem 0.6rem 1.5rem',
-                            background: isActiveSub ? 'rgba(92,146,0,.08)' : 'transparent',
-                            borderLeft: `2px solid ${isActiveSub ? '#5c9200' : 'transparent'}`,
-                            borderBottom: si < group.subs.length - 1 ? '1px solid #f0f0f0' : 'none',
-                            cursor: 'pointer', transition: 'all .15s',
-                          }}>
-                          <span style={{ fontSize: 12, fontWeight: isActiveSub ? 700 : 500, color: isActiveSub ? '#5c9200' : '#555' }}>{sub.name}</span>
-                          <span style={{ fontSize: 10, color: '#bbb', fontWeight: 600 }}>{count}</span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {isGroupActive && (
+              <div style={{ background: '#fafafa', borderTop: '1px solid #f0f0f0' }}>
+                {group.subs.map((sub, si) => {
+                  const count = countSub(sub.id);
+                  if (!count) return null;
+                  const isActiveSub = activeId === sub.id;
+                  return (
+                    <button key={sub.id} onClick={() => goTo(sub.id)}
+                      className="d-flex align-items-center justify-content-between w-100 text-start border-0"
+                      style={{
+                        padding: '0.6rem 1rem 0.6rem 1.5rem',
+                        background: isActiveSub ? 'rgba(92,146,0,.08)' : 'transparent',
+                        borderLeft: `2px solid ${isActiveSub ? '#5c9200' : 'transparent'}`,
+                        borderBottom: si < group.subs.length - 1 ? '1px solid #f0f0f0' : 'none',
+                        cursor: 'pointer', transition: 'all .15s',
+                      }}>
+                      <span style={{ fontSize: 12, fontWeight: isActiveSub ? 700 : 500, color: isActiveSub ? '#5c9200' : '#555' }}>{sub.name}</span>
+                      <span style={{ fontSize: 10, color: '#bbb', fontWeight: 600 }}>{count}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
           </div>
         );
       })}
