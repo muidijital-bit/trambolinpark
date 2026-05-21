@@ -53,6 +53,11 @@ export default function Catalog() {
     : filteredProducts.filter(p => p.category === activeId),
   [filteredProducts, isGroupView, activeId]);
 
+  const groupedSections = useMemo(() => isGroupView
+    ? activeGroup.subs.map(sub => ({ sub, items: filteredProducts.filter(p => p.category === sub.id) })).filter(s => s.items.length > 0)
+    : [],
+  [isGroupView, activeGroup, filteredProducts]);
+
   const countGroup = (gKey: string) => filteredProducts.filter(p => groupOf(p.category)?.key === gKey).length;
   const countSub   = (sId: string)  => filteredProducts.filter(p => p.category === sId).length;
 
@@ -154,6 +159,20 @@ export default function Catalog() {
               <div className="text-center py-5 rounded-4" style={{ border: '2px dashed #e8e8e8', background: '#fff' }}>
                 <p className="fw-bold mb-1" style={{ color: '#888' }}>Ürün bulunamadı</p>
                 <p style={{ fontSize: 13, color: '#bbb' }}>Bu kategori için ürünler yakında eklenecektir.</p>
+              </div>
+            ) : isGroupView ? (
+              <div className="d-flex flex-column gap-5">
+                {groupedSections.map(({ sub, items }) => (
+                  <section key={sub.id} id={sub.id}>
+                    <div className="d-flex align-items-center justify-content-between mb-3 pb-2" style={{ borderBottom: '1.5px solid #e8e8e8' }}>
+                      <h2 className="font-poppins fw-black mb-0" style={{ fontSize: 17, color: '#1a1a1a' }}>{sub.name}</h2>
+                      <span style={{ fontSize: 10, fontWeight: 800, color: '#5c9200', background: 'rgba(92,146,0,.08)', borderRadius: 100, padding: '3px 10px' }}>{items.length} ürün</span>
+                    </div>
+                    <div className="row row-cols-1 row-cols-sm-2 row-cols-xl-3 g-3">
+                      {items.map((p, i) => <div key={p.id} className="col"><CatalogCard product={p} index={i} /></div>)}
+                    </div>
+                  </section>
+                ))}
               </div>
             ) : (
               <div className="row row-cols-1 row-cols-sm-2 row-cols-xl-3 g-3">
