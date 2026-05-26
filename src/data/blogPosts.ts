@@ -17,6 +17,7 @@ export interface BlogSection {
 
 
 const TP = 'https://trambolinpark.com';
+const IMG = (id: string, ext = 'jpeg') => `${TP}/media/image/800x500/album$trambolinparkyeni$urunler$${id}.${ext}`;
 
 export const blogPosts: BlogPost[] = [
   {
@@ -26,7 +27,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Yatırım & İşletme',
     readTime: 8,
     date: '2025-04-10',
-    coverImage: `${TP}/album/trambolinparkyeni/coklualbumler/-VkT.jpg`,
+    coverImage: IMG('8M6YGA0KNryK3LbzUqEl'),
     content: [
       { type: 'paragraph', text: 'Eğlence sektörü, pandemi sonrası hızla toparlanarak Türkiye\'de yılda %18 büyüme kaydetti. Bu büyümenin en dinamik kolu ticari trambolin parkları. Düşük işletme maliyeti, yüksek metrekare başı gelir ve geniş hedef kitle bu alanı cazip bir yatırım haline getiriyor.' },
       { type: 'heading', text: 'Kaç Metrekareye İhtiyacınız Var?' },
@@ -46,7 +47,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Güvenlik & Standartlar',
     readTime: 6,
     date: '2025-03-22',
-    coverImage: `${TP}/album/trambolinparkyeni/coklualbumler/-ymA.jpg`,
+    coverImage: IMG('DlXD2Wdsdk2r4lCwaY8j'),
     content: [
       { type: 'paragraph', text: 'Güvenlik standartları, trambolin parkı işletmecilerinin en sık kafa karıştırdığı konuların başında gelir. Avrupa\'da EN-1176 zorunlu iken ABD\'de ASTM F2970 esas alınır. Türkiye\'de ise AB uyum süreci kapsamında EN-1176 geçerlidir.' },
       { type: 'heading', text: 'EN-1176 Neler Kapsar?' },
@@ -65,7 +66,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Tasarım & Konsept',
     readTime: 5,
     date: '2025-03-05',
-    coverImage: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$kjgxoxbLjL8vG5l.jpeg`,
+    coverImage: IMG('UHRZeR2KHgjuW2R', 'jpg'),
     content: [
       { type: 'paragraph', text: 'Soft play alanları, küçük yaş grubuna yönelik en hızlı büyüyen eğlence segmentlerinden biri. Alışveriş merkezi içi kurulumdan bağımsız çocuk eğlence merkezlerine kadar geniş bir yelpazede uygulama alanı buluyor.' },
       { type: 'heading', text: '1. Yaş Gruplarını Birbirinden Ayırın' },
@@ -83,7 +84,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Yatırım & İşletme',
     readTime: 7,
     date: '2025-02-18',
-    coverImage: `${TP}/album/trambolinparkyeni/coklualbumler/1-kisilik-olimpik-trambolin-tp-110-EAr.jpg`,
+    coverImage: IMG('7VMAV2MqIC8Ykz3AFNaL'),
     content: [
       { type: 'paragraph', text: 'Trambolin parkı işletmecilerinin çoğu ilk yılın sonunda benzer bir sorunla karşılaşır: Hafta sonu doluluk %90\'ın üzerinde, hafta içi ise boş. Bu dengesizliği gidermek karlılığın anahtarıdır.' },
       { type: 'heading', text: '1. Dinamik Fiyatlandırma' },
@@ -106,7 +107,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Tasarım & Konsept',
     readTime: 5,
     date: '2026-01-20',
-    coverImage: 'https://trambolinpark.com/media/image/350x350/album$trambolinparkyeni$urunler$UHRZeR2KHgjuW2R.jpg',
+    coverImage: IMG('oBrVgw55cR4daPj', 'jpg'),
     content: [
       { type: 'paragraph', text: 'Çocukların güvenli şekilde zaman geçirdiği alanlar oluşturmak isteyen kurumlar için şişme oyun parkları, 2026 yılında da yoğun ilgi görmeye devam ediyor. Belediyeler, kreşler, eğlence merkezleri ve organizasyon firmaları; dayanıklı yapıları, renkli tasarımları ve geniş kullanım alanlarıyla öne çıkan bu ürünleri tercih ediyor.' },
       { type: 'heading', text: 'Neden Tercih Ediliyor?' },
@@ -151,7 +152,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Yatırım & İşletme',
     readTime: 4,
     date: '2026-02-10',
-    coverImage: 'https://trambolinpark.com/media/image/350x350/album$trambolinparkyeni$urunler$Bj271qGKDBHbrWw.jpg',
+    coverImage: IMG('azuGgL4fyTrntGJ', 'jpg'),
     content: [
       { type: 'paragraph', text: 'Şişme oyun parkları; doğum günü organizasyonları, okul etkinlikleri, AVM aktiviteleri ve açık hava organizasyonları gibi pek çok alanda giderek yaygınlaşıyor. 2026 yılında fiyatlar; park büyüklüğü, model özellikleri ve malzeme kalitesine göre farklılık göstermektedir.' },
       { type: 'heading', text: 'Fiyatları Etkileyen Temel Faktörler' },
@@ -175,7 +176,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Sektör Haberleri',
     readTime: 4,
     date: '2026-02-25',
-    coverImage: 'https://trambolinpark.com/media/image/350x350/album$trambolinparkyeni$urunler$Ettx61wN3HQQFWU.jpg',
+    coverImage: IMG('CULJue03JsWgZrtOdHgO'),
     content: [
       { type: 'paragraph', text: 'Çocuk oyun alanları, eğlence ve gelişim açısından kritik öneme sahiptir. Bu alanlarda kullanılan ekipmanların güvenliği, dayanıklılığı ve estetiği doğru üretici seçimiyle mümkün olur. 2026 yılında Ankara oyun parkı üreticileri, farklı yaş gruplarına ve kullanım alanlarına uygun ekipmanlar üretmeye devam etmektedir.' },
       { type: 'heading', text: 'Üretim Alanları' },
