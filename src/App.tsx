@@ -44,6 +44,7 @@ import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Giris from './pages/Giris';
 import Hesabim from './pages/Hesabim';
+import SeoPage from './pages/SeoPage';
 
 function Layout() {
   const { pathname } = useLocation();
@@ -145,6 +146,7 @@ function App() {
           <Route path="blog/:slug" element={<BlogPost />} />
           <Route path="giris" element={<Giris />} />
           <Route path="hesabim" element={<Hesabim />} />
+          <Route path=":slug" element={<SeoPage />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
