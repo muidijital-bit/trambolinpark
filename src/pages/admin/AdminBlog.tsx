@@ -3,6 +3,7 @@ import { supabase } from '../../lib/supabase';
 import { optimizeImage, toSlug } from '../../lib/imageUtils';
 import { AdminPageHeader } from './AdminLayout';
 import { Plus, Pencil, Trash2, X, Check, Search, Upload, Link, Eye, EyeOff } from 'lucide-react';
+import { blogPosts as staticPosts } from '../../data/blogPosts';
 
 type BlogRow = {
   id?: string;
@@ -15,6 +16,10 @@ type BlogRow = {
   date: string;
   published: boolean;
 };
+
+function staticToRow(p: typeof staticPosts[number]): BlogRow {
+  return { slug: p.slug, title: p.title, excerpt: p.excerpt, category: p.category, cover_image: p.coverImage, read_time: p.readTime, date: p.date, published: true };
+}
 
 const emptyPost = (): BlogRow => ({
   slug: '', title: '', excerpt: '', category: '',
@@ -39,7 +44,11 @@ export default function AdminBlog() {
   const load = async () => {
     setLoading(true);
     const { data } = await supabase.from('blog_posts').select('*').order('date', { ascending: false });
-    setRows(data ?? []);
+    const remote = data ?? [];
+    const remoteSlugs = new Set(remote.map((r: BlogRow) => r.slug));
+    const local = staticPosts.map(staticToRow).filter(r => !remoteSlugs.has(r.slug));
+    const merged = [...remote, ...local].sort((a, b) => b.date.localeCompare(a.date));
+    setRows(merged);
     setLoading(false);
   };
 
@@ -159,21 +168,27 @@ export default function AdminBlog() {
                     </td>
                     <td style={{ padding: '10px 14px', color: '#888', fontSize: 12 }}>{row.date}</td>
                     <td style={{ padding: '10px 14px' }}>
-                      <button onClick={() => togglePublish(row)}
-                        style={{ display: 'flex', alignItems: 'center', gap: 5, background: row.published ? '#dcfce7' : '#f5f5f5', border: 'none', borderRadius: 20, padding: '4px 10px', fontSize: 11, fontWeight: 700, color: row.published ? '#16a34a' : '#888', cursor: 'pointer' }}>
-                        {row.published ? <><Eye size={11} /> Yayında</> : <><EyeOff size={11} /> Gizli</>}
-                      </button>
+                      {row.id ? (
+                        <button onClick={() => togglePublish(row)}
+                          style={{ display: 'flex', alignItems: 'center', gap: 5, background: row.published ? '#dcfce7' : '#f5f5f5', border: 'none', borderRadius: 20, padding: '4px 10px', fontSize: 11, fontWeight: 700, color: row.published ? '#16a34a' : '#888', cursor: 'pointer' }}>
+                          {row.published ? <><Eye size={11} /> Yayında</> : <><EyeOff size={11} /> Gizli</>}
+                        </button>
+                      ) : (
+                        <span style={{ background: '#fff7e6', color: '#b45309', fontSize: 11, fontWeight: 700, padding: '4px 10px', borderRadius: 20 }}>Yerel</span>
+                      )}
                     </td>
                     <td style={{ padding: '10px 14px' }}>
                       <div style={{ display: 'flex', gap: 6, justifyContent: 'flex-end' }}>
-                        <button onClick={() => setModal({ ...row })} style={btn('#f5f5f5', '#555')}><Pencil size={13} /></button>
-                        {delConfirm === (row as any).id ? (
-                          <>
-                            <button onClick={() => del((row as any).id)} style={btn('#fee2e2', '#dc2626')}><Check size={13} /></button>
-                            <button onClick={() => setDelConfirm(null)} style={btn('#f5f5f5', '#888')}><X size={13} /></button>
-                          </>
-                        ) : (
-                          <button onClick={() => setDelConfirm((row as any).id)} style={btn('#f5f5f5', '#aaa')}><Trash2 size={13} /></button>
+                        <button onClick={() => setModal({ ...row })} style={btn('#f5f5f5', '#555')} title={row.id ? 'Düzenle' : 'Supabase\'e aktar'}><Pencil size={13} /></button>
+                        {row.id && (
+                          delConfirm === row.id ? (
+                            <>
+                              <button onClick={() => del(row.id!)} style={btn('#fee2e2', '#dc2626')}><Check size={13} /></button>
+                              <button onClick={() => setDelConfirm(null)} style={btn('#f5f5f5', '#888')}><X size={13} /></button>
+                            </>
+                          ) : (
+                            <button onClick={() => setDelConfirm(row.id!)} style={btn('#f5f5f5', '#aaa')}><Trash2 size={13} /></button>
+                          )
                         )}
                       </div>
                     </td>
@@ -189,7 +204,9 @@ export default function AdminBlog() {
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,.4)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
           <div style={{ background: '#fff', borderRadius: 16, width: '100%', maxWidth: 560, maxHeight: '92vh', overflow: 'auto', boxShadow: '0 20px 60px rgba(0,0,0,.15)' }}>
             <div style={{ padding: '1.25rem 1.5rem', borderBottom: '1px solid #f0f0f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h3 style={{ color: '#1a1a1a', margin: 0, fontSize: 16, fontWeight: 800 }}>{(modal as any).id ? 'Yazı Düzenle' : 'Yeni Blog Yazısı'}</h3>
+              <h3 style={{ color: '#1a1a1a', margin: 0, fontSize: 16, fontWeight: 800 }}>
+                {(modal as any).id ? 'Yazı Düzenle' : (modal.slug ? 'Yerel Yazıyı Aktar' : 'Yeni Blog Yazısı')}
+              </h3>
               <button onClick={() => setModal(null)} style={{ background: 'none', border: 'none', color: '#aaa', cursor: 'pointer' }}><X size={18} /></button>
             </div>
 
