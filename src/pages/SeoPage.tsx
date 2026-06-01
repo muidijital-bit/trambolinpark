@@ -5,22 +5,9 @@ import NotFound from './NotFound';
 
 /* ── Cities ── */
 const CITIES: Record<string, string> = {
-  ankara: 'Ankara', istanbul: 'İstanbul', izmir: 'İzmir', bursa: 'Bursa',
-  antalya: 'Antalya', adana: 'Adana', konya: 'Konya', mersin: 'Mersin',
-  eskisehir: 'Eskişehir', gaziantep: 'Gaziantep', kayseri: 'Kayseri',
-  kocaeli: 'Kocaeli', kahramanmaras: 'Kahramanmaraş', usak: 'Uşak',
-  samsun: 'Samsun', trabzon: 'Trabzon', diyarbakir: 'Diyarbakır',
-  erzurum: 'Erzurum', malatya: 'Malatya', denizli: 'Denizli',
-  sivas: 'Sivas', sakarya: 'Sakarya', manisa: 'Manisa', hatay: 'Hatay',
-  van: 'Van', sanliurfa: 'Şanlıurfa', canakkale: 'Çanakkale',
-  edirne: 'Edirne', tekirdag: 'Tekirdağ', balikesir: 'Balıkesir',
-  aydin: 'Aydın', mugla: 'Muğla', isparta: 'Isparta', kutahya: 'Kütahya',
-  aksaray: 'Aksaray', nevsehir: 'Nevşehir', nigde: 'Niğde', karaman: 'Karaman',
-  kirikkale: 'Kırıkkale', kastamonu: 'Kastamonu', bolu: 'Bolu',
-  zonguldak: 'Zonguldak', karabuk: 'Karabük', bartin: 'Bartın',
-  sinop: 'Sinop', ordu: 'Ordu', giresun: 'Giresun', rize: 'Rize',
-  artvin: 'Artvin', elazig: 'Elazığ', batman: 'Batman', mardin: 'Mardin',
-  siirt: 'Siirt', afyonkarahisar: 'Afyonkarahisar',
+  ankara: 'Ankara',
+  istanbul: 'İstanbul',
+  izmir: 'İzmir',
 };
 
 /* ── Types ── */
