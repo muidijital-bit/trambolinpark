@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { Search, X, Menu } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
@@ -16,6 +16,14 @@ export default function Navbar({ forceScrolled = false }: { forceScrolled?: bool
   const [allSpareParts, setAllSpareParts] = useState<SearchPart[]>([]);
   const searchRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    setMobileSearchOpen(false);
+    setMenuOpen(false);
+    setQuery('');
+    setSearchOpen(false);
+  }, [location.pathname]);
 
   const fetchSearchData = () => {
     supabase.from('products').select('id, title, image_url, category_name, category, slug').then(({ data }) => {
