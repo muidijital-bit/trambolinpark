@@ -612,9 +612,9 @@ export default function SeoPage() {
           <div aria-hidden="true" className="tp-hero-watermark">{cityName || 'TR'}</div>
           <div className="container">
             <nav aria-label="breadcrumb" style={{ marginBottom: '1rem' }}>
-              <ol className="breadcrumb mb-0" style={{ fontSize: 12, opacity: .7 }}>
-                <li className="breadcrumb-item"><Link to="/" style={{ color: 'inherit' }}>Ana Sayfa</Link></li>
-                <li className="breadcrumb-item active">{hero}</li>
+              <ol className="breadcrumb mb-0" style={{ fontSize: 12, opacity: .7, color: 'rgba(255,255,255,.7)' }}>
+                <li className="breadcrumb-item"><Link to="/" style={{ color: 'rgba(255,255,255,.7)', textDecoration: 'none' }}>Ana Sayfa</Link></li>
+                <li className="breadcrumb-item active" style={{ color: '#fff' }}>{hero}</li>
               </ol>
             </nav>
             <div className="tp-hero-line" />

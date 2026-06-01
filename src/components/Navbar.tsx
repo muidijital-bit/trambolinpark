@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { Search, X, Menu } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
@@ -16,14 +16,6 @@ export default function Navbar({ forceScrolled = false }: { forceScrolled?: bool
   const [allSpareParts, setAllSpareParts] = useState<SearchPart[]>([]);
   const searchRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-  const location = useLocation();
-
-  useEffect(() => {
-    setMobileSearchOpen(false);
-    setMenuOpen(false);
-    setQuery('');
-    setSearchOpen(false);
-  }, [location.pathname]);
 
   const fetchSearchData = () => {
     supabase.from('products').select('id, title, image_url, category_name, category, slug').then(({ data }) => {
@@ -55,7 +47,7 @@ export default function Navbar({ forceScrolled = false }: { forceScrolled?: bool
   const spareResults = q ? allSpareParts.filter(p => p.title.toLowerCase().includes(q) || p.catTitle.toLowerCase().includes(q)).slice(0, 3) : [];
   const hasResults   = prodResults.length > 0 || spareResults.length > 0;
 
-  const go = (path: string) => { navigate(path); setQuery(''); setSearchOpen(false); setMenuOpen(false); setMobileSearchOpen(false); };
+  const go = (path: string) => { setQuery(''); setSearchOpen(false); setMenuOpen(false); setMobileSearchOpen(false); navigate(path); };
 
   return (
     <>
@@ -169,9 +161,10 @@ export default function Navbar({ forceScrolled = false }: { forceScrolled?: bool
                     <>
                       <div style={{ padding: '1rem 1.25rem .5rem', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.12em', color: 'rgba(255,255,255,.35)' }}>Ürünler</div>
                       {prodResults.map(p => (
-                        <button key={p.id} onClick={() => go(`/urunler/${p.category}/${p.id}`)}
-                          style={{ display: 'flex', alignItems: 'center', gap: '1rem', width: '100%', border: 'none', background: 'transparent', color: '#fff', textAlign: 'left', padding: '.85rem 1.25rem', transition: 'background .15s' }}
-                          onTouchStart={e => (e.currentTarget.style.background = 'rgba(255,255,255,.06)')} onTouchEnd={e => (e.currentTarget.style.background = 'transparent')}>
+                        <button key={p.id}
+                          onClick={() => go(`/urunler/${p.category}/${p.id}`)}
+                          onTouchEnd={e => { e.preventDefault(); go(`/urunler/${p.category}/${p.id}`); }}
+                          style={{ display: 'flex', alignItems: 'center', gap: '1rem', width: '100%', border: 'none', background: 'transparent', color: '#fff', textAlign: 'left', padding: '.85rem 1.25rem' }}>
                           <img src={p.imageUrl} alt="" style={{ width: 48, height: 48, objectFit: 'contain', borderRadius: 10, background: 'rgba(255,255,255,.05)', flexShrink: 0 }} />
                           <div>
                             <p style={{ margin: 0, fontWeight: 600, fontSize: 15 }}>{p.title}</p>
@@ -185,9 +178,10 @@ export default function Navbar({ forceScrolled = false }: { forceScrolled?: bool
                     <>
                       <div style={{ padding: '1rem 1.25rem .5rem', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.12em', color: 'rgba(255,255,255,.35)', borderTop: prodResults.length ? '1px solid rgba(255,255,255,.06)' : undefined }}>Yedek Parçalar</div>
                       {spareResults.map(p => (
-                        <button key={p.key} onClick={() => go(`/yedek-parcalar/${p.key}`)}
-                          style={{ display: 'flex', alignItems: 'center', gap: '1rem', width: '100%', border: 'none', background: 'transparent', color: '#fff', textAlign: 'left', padding: '.85rem 1.25rem', transition: 'background .15s' }}
-                          onTouchStart={e => (e.currentTarget.style.background = 'rgba(255,255,255,.06)')} onTouchEnd={e => (e.currentTarget.style.background = 'transparent')}>
+                        <button key={p.key}
+                          onClick={() => go(`/yedek-parcalar/${p.key}`)}
+                          onTouchEnd={e => { e.preventDefault(); go(`/yedek-parcalar/${p.key}`); }}
+                          style={{ display: 'flex', alignItems: 'center', gap: '1rem', width: '100%', border: 'none', background: 'transparent', color: '#fff', textAlign: 'left', padding: '.85rem 1.25rem' }}>
                           {p.image && <img src={p.image} alt="" style={{ width: 48, height: 48, objectFit: 'contain', borderRadius: 10, background: 'rgba(255,255,255,.05)', flexShrink: 0 }} />}
                           <div>
                             <p style={{ margin: 0, fontWeight: 600, fontSize: 15 }}>{p.title}</p>
