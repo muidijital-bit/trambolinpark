@@ -1,12 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronLeft, ChevronRight, Play, Phone, Mail, MessageCircle, MapPin, Zap, Layers, Circle, Wind, Wrench, Triangle } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, Phone, Mail, MessageCircle, MapPin, Zap, Layers, Circle, Wind, Wrench, Triangle } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 const TP  = 'https://trambolinpark.com';
 
 /* ── Data ─────────────────────────────────────────────────── */
-const YT_ID = 'RMm3bn3koO0';
-
 
 const PROCESS = [
   { num: '01', title: 'Keşif & Analiz', desc: 'Mekanınızı ve hedef kitlenizi analiz ederek projeye özgü konsept geliştiriyoruz.' },
@@ -49,6 +47,7 @@ export default function Home() {
       <ProductsSection />
       <SparePartsSection />
       <ProcessSection />
+      <TicariTrambolinSection />
       <SparePartsBanner />
       <FooterCTA />
     </>
@@ -57,17 +56,29 @@ export default function Home() {
 
 /* ── 1. HERO ──────────────────────────────────────────────── */
 function HeroSection() {
-  const [videoModal, setVideoModal] = useState(false);
-
   return (
     <section className="tp-hero">
-      {/* Arka plan video */}
-      <video
-        autoPlay muted loop playsInline
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', pointerEvents: 'none' }}
-      >
-        <source src="/hero.mp4" type="video/mp4" />
-      </video>
+      {/* YouTube background */}
+      <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
+        <iframe
+          src="https://www.youtube.com/embed/z968gai3aw8?si=wYtRL_WeXGHnTMgQ&amp;controls=0&amp;autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=z968gai3aw8"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+          style={{
+            position: 'absolute',
+            top: '50%', left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '177.78vh',
+            height: '56.25vw',
+            minWidth: '100%',
+            minHeight: '100%',
+            border: 'none',
+            pointerEvents: 'none',
+          }}
+        />
+      </div>
       <div className="tp-hero-overlay" />
 
       {/* Content */}
@@ -82,9 +93,12 @@ function HeroSection() {
               Ticari trambolin parkları, soft play alanları ve top havuzları. Tasarımdan kuruluma anahtar teslim çözümler.
             </p>
             <div className="d-flex flex-wrap gap-3">
-              <button onClick={() => setVideoModal(true)} className="btn-accent">
-                <Play size={15} fill="currentColor" /> Tanıtım Filmi
-              </button>
+              <Link to="/urunler" className="btn-accent">
+                Ürünler <ArrowRight size={15} />
+              </Link>
+              <Link to="/yedek-parcalar" className="btn fw-bold" style={{ background: 'rgba(255,255,255,.12)', color: '#fff', borderRadius: 100, padding: '.75rem 1.75rem', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,.18)' }}>
+                Yedek Parçalar
+              </Link>
             </div>
           </div>
         </div>
@@ -95,15 +109,6 @@ function HeroSection() {
         <span>Keşfet</span>
         <div className="tp-scroll-line" />
       </div>
-
-      {/* Video modal */}
-      {videoModal && (
-        <div onClick={() => setVideoModal(false)} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,.9)', zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
-          <div onClick={e => e.stopPropagation()} style={{ width: '100%', maxWidth: 900, aspectRatio: '16/9', borderRadius: 16, overflow: 'hidden', background: '#000' }}>
-            <iframe width="100%" height="100%" src={`https://www.youtube.com/embed/${YT_ID}?autoplay=1`} title="Trambolinpark" allow="autoplay; fullscreen" />
-          </div>
-        </div>
-      )}
     </section>
   );
 }
@@ -112,8 +117,9 @@ function HeroSection() {
 const CAT_ITEMS = [
   { label: 'Trambolin Parkları',   icon: <Zap size={14} strokeWidth={1.5} />,        href: '/urunler/trambolin-parklari' },
   { label: 'Olimpik Trambolinler', icon: <Triangle size={14} strokeWidth={1.5} />,    href: '/urunler/olimpik-trambolinler' },
+  { label: 'Junior Trambolin',     icon: <Zap size={14} strokeWidth={1.5} />,         href: '/urunler/ticari-junior' },
   { label: 'Top Havuzları',        icon: <Circle size={14} strokeWidth={1.5} />,      href: '/urunler/kucuk-top-havuzlari' },
-  { label: 'Soft Play Alanları',   icon: <Layers size={14} strokeWidth={1.5} />,      href: '/urunler/soft-play-oyun-alanlari' },
+  { label: 'Soft Play',            icon: <Layers size={14} strokeWidth={1.5} />,      href: '/urunler/soft-play-oyun-alanlari' },
   { label: 'Şişme Parklar',        icon: <Wind size={14} strokeWidth={1.5} />,        href: '/urunler/sisme-park-junior' },
   { label: 'Yedek Parçalar',       icon: <Wrench size={14} strokeWidth={1.5} />,      href: '/yedek-parcalar' },
 ];
@@ -151,7 +157,7 @@ const BENTO_ROW2 = [
 
 function ProductsSection() {
   return (
-    <section className="tp-home-sec" style={{ background: '#fff', padding: '7rem 0' }}>
+    <section className="tp-home-sec" style={{ background: '#f5f5f5', padding: '7rem 0' }}>
       <div className="container">
 
         {/* Header */}
@@ -160,7 +166,7 @@ function ProductsSection() {
             <p className="font-poppins fw-black text-uppercase mb-2" style={{ fontSize: 10, letterSpacing: '.22em', color: '#5c9200' }}>Ürün Kataloğu</p>
             <h2 className="font-poppins fw-black mb-0"
               style={{ fontSize: 'clamp(2.25rem, 5vw, 4rem)', lineHeight: 1.05, letterSpacing: '-.03em', color: '#0a0a0a' }}>
-              Trambolin, Soft Play,<br /><span style={{ color: '#5c9200' }}>Top Havuzu & Daha Fazlası.</span>
+              Trambolin, Softplay,<br /><span style={{ color: '#5c9200' }}>Top Havuzu & Daha Fazlası.</span>
             </h2>
           </Reveal>
           <Link to="/urunler"
@@ -459,9 +465,102 @@ const BANNER_TILES = [
   { name: 'Top Havuzları',        sub: 'Junior & İşletme',     href: '/urunler/kucuk-top-havuzlari',     img: `${TP}/album/trambolinparkyeni/coklualbumler/-uET.jpg` },
 ];
 
+/* ── TİCARİ TRAMBOLİNLER ─────────────────────────────────── */
+function TicariTrambolinSection() {
+  return (
+    <section style={{ background: '#fff', padding: '5.5rem 0', position: 'relative', overflow: 'hidden' }}>
+      {/* orb */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: '10%', left: '50%', transform: 'translateX(-50%)', width: 700, height: 400, background: 'radial-gradient(ellipse, rgba(92,146,0,.07) 0%, transparent 65%)', filter: 'blur(60px)', pointerEvents: 'none' }} />
+
+      <div className="container position-relative">
+        <Reveal>
+          <p style={{ fontFamily: '"Poppins",sans-serif', fontWeight: 800, fontSize: 10, letterSpacing: '.25em', textTransform: 'uppercase', color: '#5c9200', marginBottom: '.75rem' }}>Profesyonel Çözümler</p>
+          <h2 style={{ fontFamily: '"Poppins",sans-serif', fontWeight: 900, fontSize: 'clamp(2rem,4vw,3rem)', color: '#111', lineHeight: 1.1, marginBottom: '1rem' }}>
+            Ticari Trambolinler
+          </h2>
+          <p style={{ color: '#888', fontSize: 15, maxWidth: 520, lineHeight: 1.8, marginBottom: '3rem' }}>
+            Eğlence merkezleri, AVM'ler ve trambolin parkları için EN-1176 sertifikalı, yüksek kapasiteli ticari trambolin sistemleri. Anahtar teslim kurulum ve garanti.
+          </p>
+        </Reveal>
+
+        <div className="row g-4">
+          {/* Olimpik */}
+          <div className="col-12 col-md-6">
+            <Reveal delay={0.1}>
+              <Link to="/urunler/olimpik-trambolinler" style={{ textDecoration: 'none', display: 'block' }}>
+                <div style={{ borderRadius: 20, overflow: 'hidden', position: 'relative', aspectRatio: '16/9', background: '#111' }}
+                  onMouseEnter={e => (e.currentTarget.querySelector('img')! as HTMLImageElement).style.transform = 'scale(1.05)'}
+                  onMouseLeave={e => (e.currentTarget.querySelector('img')! as HTMLImageElement).style.transform = 'scale(1)'}>
+                  <img src={`${TP}/album/trambolinparkyeni/coklualbumler/1-kisilik-olimpik-trambolin-tp-110-EAr.jpg`} alt="Olimpik Trambolin"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform .5s ease' }} />
+                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 50%)' }} />
+                  <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', right: '1.5rem' }}>
+                    <p style={{ color: '#c3e92d', fontSize: 11, fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', marginBottom: '.35rem' }}>Olimpik Seri</p>
+                    <h3 style={{ color: '#fff', fontFamily: '"Poppins",sans-serif', fontWeight: 800, fontSize: '1.3rem', margin: 0 }}>Olimpik Trambolinler</h3>
+                    <p style={{ color: 'rgba(255,255,255,.6)', fontSize: 13, margin: '.4rem 0 0' }}>1'den 12 kişiliğe profesyonel modeller</p>
+                  </div>
+                </div>
+              </Link>
+            </Reveal>
+          </div>
+
+          {/* Junior */}
+          <div className="col-12 col-md-6">
+            <Reveal delay={0.2}>
+              <Link to="/urunler/ticari-junior" style={{ textDecoration: 'none', display: 'block' }}>
+                <div style={{ borderRadius: 20, overflow: 'hidden', position: 'relative', aspectRatio: '16/9', background: '#111' }}
+                  onMouseEnter={e => (e.currentTarget.querySelector('img')! as HTMLImageElement).style.transform = 'scale(1.05)'}
+                  onMouseLeave={e => (e.currentTarget.querySelector('img')! as HTMLImageElement).style.transform = 'scale(1)'}>
+                  <img src={`${TP}/album/trambolinparkyeni/coklualbumler/-Wao.png`} alt="Junior Trambolin"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform .5s ease' }} />
+                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 50%)' }} />
+                  <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', right: '1.5rem' }}>
+                    <p style={{ color: '#c3e92d', fontSize: 11, fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', marginBottom: '.35rem' }}>Junior Seri</p>
+                    <h3 style={{ color: '#fff', fontFamily: '"Poppins",sans-serif', fontWeight: 800, fontSize: '1.3rem', margin: 0 }}>Junior Trambolinler</h3>
+                    <p style={{ color: 'rgba(255,255,255,.6)', fontSize: 13, margin: '.4rem 0 0' }}>Çocuklar için güvenli, dayanıklı modeller</p>
+                  </div>
+                </div>
+              </Link>
+            </Reveal>
+          </div>
+
+          {/* Alt özellikler */}
+          {[
+            { title: 'EN-1176 Sertifikalı', desc: 'Uluslararası güvenlik standartları' },
+            { title: 'Yüksek Kapasite', desc: '1\'den 12 kişilik modeller' },
+            { title: 'Anahtar Teslim', desc: 'Kurulum ve garanti dahil' },
+            { title: 'Yerli Üretim', desc: 'Hızlı teslimat, orijinal yedek parça' },
+          ].map((f, i) => (
+            <div key={f.title} className="col-6 col-md-3">
+              <Reveal delay={0.1 * i}>
+                <div style={{ background: '#f8f8f8', border: '1px solid #eee', borderRadius: 14, padding: '1.25rem' }}>
+                  <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#5c9200', marginBottom: '.75rem' }} />
+                  <p style={{ fontFamily: '"Poppins",sans-serif', fontWeight: 700, color: '#111', fontSize: 14, margin: '0 0 .25rem' }}>{f.title}</p>
+                  <p style={{ color: '#888', fontSize: 13, margin: 0 }}>{f.desc}</p>
+                </div>
+              </Reveal>
+            </div>
+          ))}
+        </div>
+
+        <Reveal delay={0.3}>
+          <div style={{ marginTop: '2.5rem', display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <Link to="/urunler/olimpik-trambolinler" className="btn fw-bold" style={{ background: '#5c9200', color: '#fff', borderRadius: 10, padding: '12px 28px' }}>
+              Kataloğu İncele <ArrowRight size={15} style={{ marginLeft: 6 }} />
+            </Link>
+            <Link to="/iletisim" className="btn fw-bold" style={{ background: '#f0f0f0', color: '#111', borderRadius: 10, padding: '12px 28px', border: '1px solid #e0e0e0' }}>
+              Teklif Al
+            </Link>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 function SparePartsBanner() {
   return (
-    <section className="tp-home-sec" style={{ background: '#fff', padding: '5.5rem 0', position: 'relative', overflow: 'hidden' }}>
+    <section className="tp-home-sec" style={{ background: '#f5f5f5', padding: '5.5rem 0', position: 'relative', overflow: 'hidden' }}>
       <div className="container position-relative">
         <div className="row align-items-center g-4 g-lg-5">
 

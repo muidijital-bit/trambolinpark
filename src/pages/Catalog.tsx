@@ -89,7 +89,7 @@ export default function Catalog() {
     title: p.title,
     image: p.imageUrl,
     badge: p.categoryName,
-    href: `/urun/${p.id}`,
+    href: `/urunler/${p.category}/${p.id}`,
   }));
 
   return (
@@ -261,7 +261,7 @@ function CatalogCard({ product, index }: { product: Product; index: number }) {
   return (
     <motion.div initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.05 }}
       transition={{ delay: (index % 6) * 0.04 }}>
-      <button onClick={() => navigate(`/urun/${product.id}`)} className="tp-card w-100 border-0 text-start" style={{ display: 'block' }}>
+      <button onClick={() => navigate(`/urunler/${product.category}/${product.id}`)} className="tp-card w-100 border-0 text-start" style={{ display: 'block' }}>
         <div className="tp-card-img">
           <img loading="lazy" src={product.imageUrl} alt={product.title} />
         </div>

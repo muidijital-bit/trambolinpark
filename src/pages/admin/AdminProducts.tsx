@@ -127,15 +127,20 @@ export default function AdminProducts() {
   const save = async () => {
     if (!modal) return;
     setSaving(true);
-    const payload: any = { ...modal };
+    const { id: _id, slug: _slug, created_at: _ca, updated_at: _ua, ...payload }: any = { ...modal };
     if (!customCategory) {
       const preset = PRESET_CATEGORIES.find(c => c.key === modal.category);
       if (preset) payload.category_name = preset.label;
     }
     const isEdit = rows.find(r => r.id === modal.id);
-    const { error } = isEdit
-      ? await supabase.from('products').update(payload).eq('id', modal.id!)
-      : await supabase.from('products').insert([payload]);
+    let error: { message: string } | null = null;
+    if (isEdit) {
+      const { error: rpcErr } = await supabase.rpc('update_product', { p_id: modal.id!, p_data: payload });
+      error = rpcErr;
+    } else {
+      const { error: insErr } = await supabase.from('products').insert([payload]);
+      error = insErr;
+    }
     setSaving(false);
     if (error) { alert('Hata: ' + error.message); return; }
     showToast(isEdit ? 'Ürün güncellendi ✓' : 'Ürün eklendi ✓');

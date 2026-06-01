@@ -178,7 +178,6 @@ export default function AdminSpareParts() {
               <button onClick={() => setModal(null)} style={{ background: 'none', border: 'none', color: '#aaa', cursor: 'pointer' }}><X size={18} /></button>
             </div>
             <div style={{ padding: '1.5rem' }}>
-              <F label="Anahtar (benzersiz)" value={modal.item_key ?? ''} onChange={v => setModal({ ...modal, item_key: v })} placeholder="yay-18" />
               <F label="Başlık" value={modal.title ?? ''} onChange={v => setModal({ ...modal, title: v })} />
               <div className="mb-3">
                 <label style={lbl}>KATEGORİ</label>

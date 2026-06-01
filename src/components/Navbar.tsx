@@ -3,7 +3,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { Search, X, Menu } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
-type SearchProduct = { id: string; title: string; imageUrl: string; categoryName: string };
+type SearchProduct = { id: string; title: string; imageUrl: string; categoryName: string; category: string; slug: string };
 type SearchPart = { key: string; title: string; catTitle: string; image: string };
 
 export default function Navbar({ forceScrolled = false }: { forceScrolled?: boolean }) {
@@ -17,14 +17,16 @@ export default function Navbar({ forceScrolled = false }: { forceScrolled?: bool
   const searchRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    supabase.from('products').select('id, title, image_url, category_name').then(({ data }) => {
-      setAllProducts((data ?? []).map(r => ({ id: r.id, title: r.title, imageUrl: r.image_url, categoryName: r.category_name })));
+  const fetchSearchData = () => {
+    supabase.from('products').select('id, title, image_url, category_name, category, slug').then(({ data }) => {
+      setAllProducts((data ?? []).map(r => ({ id: r.slug ?? r.id, title: r.title, imageUrl: r.image_url, categoryName: r.category_name, category: r.category, slug: r.slug ?? r.id })));
     });
     supabase.from('spare_parts').select('item_key, title, category_title, image').then(({ data }) => {
       setAllSpareParts((data ?? []).map(r => ({ key: r.item_key, title: r.title, catTitle: r.category_title, image: r.image })));
     });
-  }, []);
+  };
+
+  useEffect(() => { fetchSearchData(); }, []);
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 80);
@@ -73,7 +75,7 @@ export default function Navbar({ forceScrolled = false }: { forceScrolled?: bool
                   <button onClick={() => { setQuery(''); setSearchOpen(false); }} className="btn-glass" style={{ padding: '.4rem .75rem', fontSize: 12 }}><X size={14} /></button>
                 </div>
               ) : (
-                <button onClick={() => setSearchOpen(true)} className="btn-glass" style={{ padding: '.5rem .85rem' }}>
+                <button onClick={() => { setSearchOpen(true); fetchSearchData(); }} className="btn-glass" style={{ padding: '.5rem .85rem' }}>
                   <Search size={15} />
                 </button>
               )}
@@ -84,7 +86,7 @@ export default function Navbar({ forceScrolled = false }: { forceScrolled?: bool
                       {prodResults.length > 0 && <>
                         <div className="px-3 pt-3 pb-1" style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.12em', color: 'rgba(255,255,255,.35)' }}>Ürünler</div>
                         {prodResults.map(p => (
-                          <button key={p.id} onClick={() => go(`/urun/${p.id}`)} className="d-flex align-items-center gap-3 w-100 border-0 text-start px-3 py-2" style={{ background: 'transparent', color: '#fff', transition: 'background .15s' }}
+                          <button key={p.id} onClick={() => go(`/urunler/${p.category}/${p.id}`)} className="d-flex align-items-center gap-3 w-100 border-0 text-start px-3 py-2" style={{ background: 'transparent', color: '#fff', transition: 'background .15s' }}
                             onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,.06)')} onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}>
                             <img src={p.imageUrl} alt="" style={{ width: 36, height: 36, objectFit: 'contain', borderRadius: 8, background: 'rgba(255,255,255,.05)', flexShrink: 0 }} />
                             <div>
@@ -119,7 +121,7 @@ export default function Navbar({ forceScrolled = false }: { forceScrolled?: bool
             <Link to="/iletisim" className="btn-accent d-none d-lg-inline-flex flex-shrink-0" style={{ fontSize: 13, padding: '.6rem 1.4rem' }}>Teklif Al</Link>
 
             {/* Mobile search icon */}
-            <button onClick={() => { setMobileSearchOpen(true); setMenuOpen(false); }} className="d-lg-none btn-glass" style={{ padding: '.5rem .75rem' }}>
+            <button onClick={() => { setMobileSearchOpen(true); setMenuOpen(false); fetchSearchData(); }} className="d-lg-none btn-glass" style={{ padding: '.5rem .75rem' }}>
               <Search size={18} />
             </button>
 
@@ -159,7 +161,7 @@ export default function Navbar({ forceScrolled = false }: { forceScrolled?: bool
                     <>
                       <div style={{ padding: '1rem 1.25rem .5rem', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.12em', color: 'rgba(255,255,255,.35)' }}>Ürünler</div>
                       {prodResults.map(p => (
-                        <button key={p.id} onClick={() => go(`/urun/${p.id}`)}
+                        <button key={p.id} onClick={() => go(`/urunler/${p.category}/${p.id}`)}
                           style={{ display: 'flex', alignItems: 'center', gap: '1rem', width: '100%', border: 'none', background: 'transparent', color: '#fff', textAlign: 'left', padding: '.85rem 1.25rem', transition: 'background .15s' }}
                           onTouchStart={e => (e.currentTarget.style.background = 'rgba(255,255,255,.06)')} onTouchEnd={e => (e.currentTarget.style.background = 'transparent')}>
                           <img src={p.imageUrl} alt="" style={{ width: 48, height: 48, objectFit: 'contain', borderRadius: 10, background: 'rgba(255,255,255,.05)', flexShrink: 0 }} />

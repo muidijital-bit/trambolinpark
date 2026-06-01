@@ -130,6 +130,8 @@ function App() {
         {/* Public site */}
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="urunler/:categoryId/:id" element={<ProductDetail />} />
+          {/* backward compat */}
           <Route path="urun/:id" element={<ProductDetail />} />
           <Route path="urunler" element={<Catalog />} />
           <Route path="urunler/:categoryId" element={<Catalog />} />

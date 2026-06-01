@@ -37,6 +37,32 @@ type Topic = {
 
 /* ── Topics with real content from trambolinpark.com ── */
 const TOPICS: Record<string, Topic> = {
+  'softplay': {
+    title: (c) => `${c} Softplay – Softplay Üretim ve Kurulum 2026`,
+    metaDesc: (c) => `${c} softplay ekipmanları 2026. Kreş, anaokulu, AVM ve eğlence merkezi için yerli üretim softplay sistemleri. Özel tasarım, CE sertifikalı, anahtar teslim.`,
+    hero: (c) => `${c} Softplay`,
+    intro: (c) => `${c}'deki kreş, anaokulu ve eğlence merkezleri için özel ölçü ve tasarımda softplay ekipmanları üretip kuruyoruz. CE sertifikalı malzemeler, yerli üretim kalitesi ve anahtar teslim montaj hizmetiyle projenizi hayata geçiriyoruz.`,
+    features: ['Yerli üretim, CE sertifikalı', 'Özel ölçü ve tema tasarımı', 'Kaydırak, tünel, tırmanma bölümleri', 'Top havuzu entegrasyonu', 'Satış sonrası bakım desteği'],
+    sections: [
+      { heading: 'Softplay Çeşitleri', items: (c) => [`Klasik Softplay: ${c}'de en yaygın model. Kaydırak, tünel, tırmanma köprüsü ve top havuzu.`, 'Tematik Softplay: Orman, uzay, deniz altı gibi özel temalı tasarımlar.', 'İnteraktif Softplay: Dokunmatik ve sesli panelli modern modeller.', 'Outdoor Softplay: UV ve neme dayanıklı dış mekân versiyonları.'] },
+      { heading: 'Proje Süreci', items: () => ['Ücretsiz keşif ve ölçüm', '3D tasarım ve müşteri onayı', 'CE sertifikalı üretim (3–6 hafta)', 'Anahtar teslim kurulum', 'Garanti ve bakım sözleşmesi'] },
+    ],
+    cta: 'Softplay Teklifi Al',
+  },
+
+  'oyun-parki': {
+    title: (c) => `${c} Oyun Parkı – Çocuk Oyun Parkı Kurulumu 2026`,
+    metaDesc: (c) => `${c} oyun parkı kurulumu ve ekipmanları 2026. Anaokulu, site, AVM ve rekreasyon alanları için güvenli oyun parkı tasarımı ve montajı.`,
+    hero: (c) => `${c} Oyun Parkı`,
+    intro: (c) => `${c}'de anaokulu, konut sitesi, belediye parkı ve alışveriş merkezleri için oyun parkı tasarlıyor, üretiyor ve kuruyoruz. EN-1176 sertifikalı ekipmanlarımız ve profesyonel montaj hizmetimizle çocukların güvenli, renkli oyun alanlarını yaratıyoruz.`,
+    features: ['Anaokulu ve kreş ekipmanları', 'Site ve bahçe oyun parkları', 'Park ve rekreasyon alanları', 'Anahtar teslim montaj', 'Bakım ve yedek parça desteği'],
+    sections: [
+      { heading: 'Hizmet Alanlarımız', items: (c) => [`Anaokulu ve Kreş: ${c}'deki eğitim kurumlarına özel yaş grubuna uygun ekipmanlar`, 'Konut Siteleri: Bahçe ve ortak alan oyun parkları', 'Belediye Parkları: Dış mekan dayanıklı ekipmanlar', 'AVM ve Eğlence Merkezleri: İç mekân aktivite alanları'] },
+      { heading: 'Standartlar', items: () => ['EN-1176 oyun ekipmanı standardı', 'EN-1177 zemin emniyet standardı', 'CE uygunluk belgesi', 'Periyodik güvenlik denetim raporu'] },
+    ],
+    cta: 'Oyun Parkı Keşfi İste',
+  },
+
   'trambolin-modelleri': {
     title: (c) => `${c} Trambolin Modelleri – 2026 Güncel Ürün Rehberi`,
     metaDesc: (c) => `${c} trambolin modelleri 2026. Ev tipi, profesyonel, mini fitness ve büyük bahçe trambolinleri. Güvenlik donanımları ve geniş model seçenekleri.`,
@@ -203,6 +229,228 @@ const TOPICS: Record<string, Topic> = {
     cta: 'Model Kataloğunu İncele',
   },
 
+  'top-havuzu': {
+    title: (c) => `${c} Top Havuzu – Çocuk Oyun Alanları için Top Havuzu Modelleri 2026`,
+    metaDesc: (c) => `${c} top havuzu modelleri 2026. Kreş, anaokulu, AVM ve eğlence merkezi için güvenli top havuzu çeşitleri. Fiyat teklifi için iletişime geçin.`,
+    hero: (c) => `${c} Top Havuzu`,
+    intro: (c) => `Top havuzları, çocukların motor becerilerini geliştiren, eğlenceli ve güvenli oyun alanlarıdır. ${c}'de kreşlerden alışveriş merkezlerine kadar pek çok alanda tercih edilen top havuzları; dayanıklı PVC yapısı, yumuşak zemin kaplaması ve estetik tasarımıyla öne çıkmaktadır.`,
+    features: ['Esnek boyut ve şekil seçenekleri', 'Yumuşak top ve zemin kaplaması', 'Dayanıklı PVC çerçeve', 'Kolay montaj ve demontaj', 'CE sertifikalı güvenli malzemeler'],
+    sections: [
+      { heading: 'Top Havuzu Neden Tercih Edilir?', body: (c) => `${c}'de anaokulu, kreş ve oyun merkezlerinde top havuzu; çocukların denge, koordinasyon ve fiziksel gelişimine katkı sağlar. Aynı zamanda ebeveynler için çocuklarını güvenle bırakabilecekleri denetimli bir alan sunar.` },
+      {
+        heading: 'Top Havuzu Modelleri',
+        items: (c) => [
+          `Kare Top Havuzu: ${c}'de en sık tercih edilen modeldir, köşeli tasarımı mekân içi yerleşime uygundur.`,
+          'Yuvarlak Top Havuzu: Merkezi görünümü ve akıcı tasarımıyla AVM ve açık alanlara uygun.',
+          'Tematik Top Havuzu: Kalp, yıldız, karikatür figür gibi şekillerde özelleştirilebilir.',
+          'Modüler Top Havuzu: Farklı bölümler eklenerek büyütülebilen, esnek yapılı model.',
+        ],
+      },
+      { heading: 'Seçerken Nelere Dikkat Etmeli?', items: () => ['Topu olmayan havuz tehlikelidir — top sayısı ve kalitesi önemli', 'PVC kalınlığı ve köşe dikişleri dayanıklılığı belirler', 'Zemin matının yumuşaklığı ve kalınlığı çocuk güvenliğini etkiler', 'CE / EN-71 güvenlik belgesi olmalı', 'Bakım kolaylığı ve temizlenebilir yüzey tercih edilmeli'] },
+    ],
+    cta: 'Top Havuzu Teklifi Al',
+  },
+
+  'buyuk-top-havuzu': {
+    title: (c) => `${c} Büyük Top Havuzu – Ticari ve Kurumsal Modeller 2026`,
+    metaDesc: (c) => `${c} büyük top havuzu modelleri. AVM, eğlence merkezi ve büyük oyun parkları için ticari top havuzu çözümleri. Özel ölçü ve tasarım.`,
+    hero: (c) => `${c} Büyük Top Havuzu`,
+    intro: (c) => `${c}'de ticari amaçlı kullanılan büyük top havuzları; yüksek kapasiteli PVC çerçeve, bol top ve geniş oyun alanıyla dikkat çeker. Eğlence merkezi, trambolin park ve alışveriş merkezi projelerinde vazgeçilmez bir bölüm oluşturur.`,
+    features: ['Yüksek kapasiteli ticari modeller', 'Özel ölçü ve renk seçenekleri', 'Dayanıklı endüstriyel PVC kaplama', 'Kolay temizlik sistemi', 'Anahtar teslim kurulum'],
+    sections: [
+      { heading: 'Büyük Top Havuzunu Kimler Tercih Eder?', items: (c) => [`AVM ve eğlence merkezleri: ${c}'deki büyük alışveriş merkezleri için geniş alanlı modeller`, 'Trambolin parklar: Foam pit bölümleriyle entegre büyük havuzlar', 'Otel ve tatil köyleri: Çocuk eğlence alanı için özel modeller', 'Belediye ve rekreasyon alanları: Açık hava etkinlik alanları için'] },
+      { heading: 'Teknik Özellikler', items: () => ['Minimum 6 m² — maksimum sınırsız alan', 'PVC duvar kalınlığı: 650–850 g/m²', 'Zemin matı: 6–10 cm yumuşak köpük', 'Top çapı: 6–7 cm plastik veya yumuşak model', 'Renk ve tasarım tamamen özelleştirilebilir'] },
+      { heading: 'Kurulum ve Teslimat', body: (c) => `${c} ve çevresine anahtar teslim kurulum hizmetimizle büyük top havuzunuzu en kısa sürede hazır hale getiriyoruz. Profesyonel montaj ekibimiz teslimat sonrası güvenlik testini de gerçekleştirir.` },
+    ],
+    cta: 'Ticari Teklif Al',
+  },
+
+  'softplay-uretimi': {
+    title: (c) => `${c} Softplay Üretimi – Yerli Üretici ile Özel Softplay Tasarımı 2026`,
+    metaDesc: (c) => `${c} softplay üretimi ve kurulumu. Özel tasarım, yerli üretim softplay ekipmanları. Anaokulu, kreş, AVM ve eğlence merkezi projeleri için fiyat teklifi.`,
+    hero: (c) => `${c} Softplay Üretimi`,
+    intro: (c) => `Trambolinpark olarak ${c} başta olmak üzere Türkiye genelinde softplay ekipmanlarını yerli üretim anlayışıyla tasarlıyor ve üretiyoruz. Tünel, kaydırak, tırmanma bölümü, top havuzu ve köpük engel parkurlarından oluşan softplay sistemlerimiz her yaş grubuna hitap eder.`,
+    features: ['%100 yerli üretim', 'Özel ölçü ve temaya göre tasarım', 'CE / EN-71 sertifikalı malzemeler', 'Anahtar teslim kurulum', 'Yedek parça ve bakım garantisi'],
+    sections: [
+      { heading: 'Softplay Üretim Süreci', items: () => ['Proje keşfi ve ölçüm: Alana özel yerleşim planı hazırlanır', 'Tasarım onayı: 3D görselleştirme ile müşteri onayı alınır', 'Üretim: CE sertifikalı köpük, kumaş ve çelik aksamlarla üretim', 'Kalite kontrol: Her ürün sevk öncesi güvenlik testinden geçirilir', 'Kurulum: Profesyonel montaj ekibiyle anahtar teslim'] },
+      { heading: 'Neden Yerli Üretim?', items: () => ['Döviz riskinden bağımsız fiyatlama', 'Hızlı yedek parça temini', 'Türk güvenlik ve oyun standartlarına tam uyumluluk', 'Yerinde teknik destek ve servis', 'Özel renk ve logo baskısı imkânı'] },
+      { heading: 'Referanslar', body: (c) => `${c} ve çevre illerdeki anaokulu zincirleri, AVM'ler ve eğlence merkezleri için tamamladığımız projelerin detaylarını görüşmek üzere bize ulaşabilirsiniz.` },
+    ],
+    cta: 'Üretim Teklifi Al',
+  },
+
+  'softplay-gruplari': {
+    title: (c) => `${c} Softplay Grupları – Modüler Softplay Sistemleri 2026`,
+    metaDesc: (c) => `${c} softplay grupları ve modüler oyun sistemleri. Küçük, orta ve büyük gruplar için fiyat seçenekleri. Anaokulu ve eğlence merkezi projeleri.`,
+    hero: (c) => `${c} Softplay Grupları`,
+    intro: (c) => `Softplay grupları; tünel, kaydırak, top havuzu, tırmanma köprüsü ve engel parkurundan oluşan modüler oyun sistemleridir. ${c}'de projenizin alanına ve bütçesine göre hazır gruplar arasından seçim yapabilir ya da özel kombinasyon oluşturabilirsiniz.`,
+    features: ['Starter (küçük) gruplar', 'Mid (orta) gruplar', 'Pro (büyük) gruplar', 'Özel kombinasyon tasarımı', 'Modüler genişleme imkânı'],
+    sections: [
+      {
+        heading: 'Softplay Grup Seçenekleri',
+        items: (c) => [
+          `Starter Grup (15–25 m²): ${c}'deki kreş ve anaokulları için ideal başlangıç paketi. Kaydırak, tünel ve mini top havuzu içerir.`,
+          'Mid Grup (25–50 m²): Orta ölçekli eğlence alanları için. Çok katlı kule, geniş kaydırak ve engel bölümü eklenmiştir.',
+          'Pro Grup (50 m²+): AVM ve büyük eğlence merkezleri için. Tam kapsamlı softplay deneyimi, interaktif paneller ve büyük top havuzu dahil.',
+          'Özel Kombinasyon: İhtiyaçlarınıza göre sıfırdan tasarlanmış modüler sistem.',
+        ],
+      },
+      { heading: 'Hangi Grup Size Uygun?', body: (c) => `${c}'deki alanınızın m² ölçüsünü ve günlük kullanıcı kapasitesini belirleyerek doğru grubu seçebilirsiniz. Ekibimiz ücretsiz keşif hizmetiyle en uygun kombinasyonu sizin için planlar.` },
+    ],
+    cta: 'Gruplara Göre Fiyat Al',
+  },
+
+  'softplay-cesitleri': {
+    title: (c) => `${c} Softplay Çeşitleri – Tüm Softplay Modelleri 2026`,
+    metaDesc: (c) => `${c} softplay çeşitleri 2026. Tematik softplay, klasik softplay, interaktif softplay ve outdoor modeller. Güvenli, sertifikalı oyun ekipmanları.`,
+    hero: (c) => `${c} Softplay Çeşitleri`,
+    intro: (c) => `Softplay ekipmanları; yumuşak dolgu, kaplanmış köpük ve esnek çerçevelerden üretilerek çocukların güvenle oynamasını sağlar. ${c}'de yaş grubu, alan büyüklüğü ve bütçeye göre birbirinden farklı softplay çeşitleri mevcuttur.`,
+    features: ['Klasik softplay setleri', 'Tematik softplay (orman, uzay, deniz)', 'İnteraktif dijital panelli modeller', 'Outdoor / dış mekan softplay', 'Mini softplay (ev tipi)'],
+    sections: [
+      {
+        heading: 'Başlıca Softplay Çeşitleri',
+        items: (c) => [
+          `Klasik Softplay: ${c}'de en yaygın model. Kaydırak, tünel, tırmanma köprüsü ve top havuzundan oluşur.`,
+          'Tematik Softplay: Orman macerası, uzay yolculuğu, deniz altı gibi temalarda özelleştirilmiş tasarımlar.',
+          'İnteraktif Softplay: Dokunmatik paneller, sesli ve ışıklı bölümlerle zenginleştirilmiş modern modeller.',
+          'Outdoor Softplay: UV ve neme dayanıklı malzemeyle üretilmiş dış mekân versiyonları.',
+          'Mini Softplay: Ev, apartman ortak alanı ve küçük kreşler için kompakt tasarımlar.',
+        ],
+      },
+      { heading: 'Softplay Seçerken Dikkat Edilmesi Gerekenler', items: () => ['Kullanılacak yaş grubuna uygunluk (0–3 / 3–7 / 7+ yaş)', 'Alan ölçüleri ve çift katlı olup olmayacağı', 'İç mekân mı dış mekân mı kullanılacak', 'Bakım kolaylığı ve temizlenebilir kaplama', 'CE sertifikası ve güvenlik belgeleri'] },
+    ],
+    cta: 'Softplay Kataloğunu İncele',
+  },
+
+  'ticari-trambolin': {
+    title: (c) => `${c} Ticari Trambolin – Profesyonel Trambolin Sistemleri 2026`,
+    metaDesc: (c) => `${c} ticari trambolin sistemleri 2026. Eğlence merkezi, AVM ve trambolin park için EN-1176 sertifikalı profesyonel trambolin çözümleri.`,
+    hero: (c) => `${c} Ticari Trambolin`,
+    intro: (c) => `${c}'de eğlence merkezi, AVM, spor salonu ve trambolin park projelerinde kullanılan ticari trambolinler; yüksek taşıma kapasitesi, EN-1176 güvenlik sertifikası ve uzun ömürlü yapısıyla ev tipi modellerden belirgin biçimde ayrılır.`,
+    features: ['EN-1176 güvenlik sertifikası', 'Yüksek taşıma kapasitesi (120–150 kg/kişi)', 'Galvanizli çelik çerçeve', 'Profesyonel yay sistemi', 'Anahtar teslim kurulum ve garanti'],
+    sections: [
+      { heading: 'Ticari Trambolin ile Ev Tipi Arasındaki Fark', items: () => ['Çerçeve kalınlığı: Ticari modeller en az 2× daha kalın çelik kullanır', 'Yay sayısı ve kalitesi: Daha fazla ve daha güçlü yaylarla uzun ömür', 'Güvenlik belgesi: EN-1176 zorunludur, ev tipi için isteğe bağlı', 'Taşıma kapasitesi: Günlük yoğun kullanıma dayanıklı', 'Bakım kolaylığı: Modüler yedek parça sistemi'] },
+      { heading: 'Hangi İşletmeler Tercih Eder?', items: (c) => [`Trambolin parklar: ${c}'deki büyük eğlence kompleksleri için`, 'AVM aktivite alanları: Kısa süreli eğlence odaklı yerleşimler', 'Spor salonları: Fitness ve jimnastik odaklı kullanım', 'Okul ve kreşler: Çocukların motor gelişimine katkı sağlayan kurumsal projeler'] },
+      { heading: 'Teknik Destek ve Garanti', body: (c) => `${c} ve Türkiye genelinde anahtar teslim kurulum, yıllık bakım sözleşmesi ve orijinal yedek parça teminini garantiliyoruz.` },
+    ],
+    cta: 'Ticari Teklif Al',
+  },
+
+  'olimpik-trambolin': {
+    title: (c) => `${c} Olimpik Trambolin – FIG Onaylı Profesyonel Trambolin 2026`,
+    metaDesc: (c) => `${c} olimpik trambolin modelleri. FIG onaylı, yarışma düzeyinde trambolin sistemleri. Spor kulübü, jimnastik salonu ve milli takım antrenman tesisleri için.`,
+    hero: (c) => `${c} Olimpik Trambolin`,
+    intro: (c) => `Olimpik trambolin, Uluslararası Jimnastik Federasyonu (FIG) standartlarına uygun, yarışma düzeyinde performans için tasarlanmış profesyonel bir spor ekipmanıdır. ${c}'deki jimnastik kulüpleri, spor salonları ve antrenman merkezleri için doğru olimpik trambolin seçimi kritik önem taşır.`,
+    features: ['FIG / Uluslararası standart uyumu', 'Geniş atlama yüzeyi (5×3 m)', 'Yüksek esneklikli yay sistemi', 'Güvenlik düşme matları (spot matı)', 'Profesyonel kurulum ve sertifikasyon'],
+    sections: [
+      { heading: 'Olimpik Trambolin Özellikleri', items: () => ['Atlama yüzeyi: 5×3 m standart ölçü', 'Yükseklik: En az 1,15 m (FIG şartnamesi)', 'Yay sayısı: 110 adet (standart)', 'Çerçeve: Galvanizli veya kaplı çelik', 'Ek güvenlik: Spot matı ve yan güvenlik minderler zorunlu'] },
+      { heading: 'Kimler İçin Uygundur?', items: (c) => [`${c}'deki jimnastik kulüpleri ve spor akademileri`, 'Beden eğitimi altyapısı güçlü okullar', 'Milli takım antrenman merkezleri', 'Profesyonel sporcuların bireysel antrenmanı'] },
+      { heading: 'Kurulum ve Zemin Gereksinimleri', body: (c) => `${c}'de olimpik trambolin kurulumu için tavan yüksekliği minimum 8 m, alan boyutu ise en az 8×5 m olmalıdır. Zemin gereksinimlerini ve doğru model seçimini belirlemek için teknik ekibimizle iletişime geçebilirsiniz.` },
+    ],
+    cta: 'Olimpik Trambolin Teklifi Al',
+  },
+
+  'trambolin-park': {
+    title: (c) => `${c} Trambolin Park – Ticari Trambolin Park Kurulumu 2026`,
+    metaDesc: (c) => `${c} trambolin park kurulumu 2026. Anahtar teslim trambolin park tasarımı, ekipman temini ve işletme danışmanlığı. Fizibilite analizi için iletişime geçin.`,
+    hero: (c) => `${c} Trambolin Park`,
+    intro: (c) => `${c}'de trambolin park açmak isteyenler için anahtar teslim çözümler sunuyoruz. Serbest atlama alanları, foam pit, dodgeball sahası, ninja parkuru ve çocuk bölümünden oluşan tam kapsamlı trambolin park sistemleri tasarlar ve kurarız.`,
+    features: ['Fizibilite ve alan analizi', '3D yerleşim planı', 'Anahtar teslim kurulum', 'EN-1176 sertifikalı ekipmanlar', 'İşletme ve personel eğitimi'],
+    sections: [
+      {
+        heading: 'Trambolin Park Bölümleri',
+        items: () => [
+          'Serbest Atlama Alanı: Birden fazla trambolin yan yana, açık atlama bölümü',
+          'Foam Pit: Köpük dolu çukur, akrobasi ve hava hareketleri için güvenli düşüş alanı',
+          'Dodgeball Sahası: Grup oyunları için yere yerleşik trambolin sahası',
+          'Ninja Parkuru: Denge, güç ve hız gerektiren tırmanma engel parkuru',
+          'Çocuk Bölümü: 6 yaş altı için özel mini trambolin ve softplay entegrasyonu',
+        ],
+      },
+      { heading: 'Yatırım ve Süreç', body: (c) => `${c}'de trambolin park yatırımı için önce fizibilite analizi yapılır, alan ölçümü ve ruhsat gereksinimlerine bakılır. Tasarım onayından kuruluma kadar tüm süreç ortalama 6–10 haftada tamamlanır.` },
+      { heading: 'Geri Dönüş Süresi', body: () => 'Sektör ortalamalarına göre iyi konumlandırılmış bir trambolin park, 24–36 ayda yatırımını amorti eder. Doğum günü paketleri, kurumsal etkinlikler ve üyelik sistemleri ek gelir kapısı oluşturur.' },
+    ],
+    cta: 'Fizibilite Analizi Al',
+  },
+
+  'trambolin-sistemleri': {
+    title: (c) => `${c} Trambolin Sistemleri – Modüler Trambolin Çözümleri 2026`,
+    metaDesc: (c) => `${c} trambolin sistemleri ve modüler trambolin parkı çözümleri. Atlama zemin, duvar trambolinleri, foam pit ve eğim trambolinleri. Teklif alın.`,
+    hero: (c) => `${c} Trambolin Sistemleri`,
+    intro: (c) => `Modern trambolin parkları tek tip atlama alanından ibaret değildir. ${c}'de kurulan trambolin sistemleri; yerden trambolinler, duvara gömülü atlama panelleri, eğimli trambolin kanalları ve foam pit gibi birbirini tamamlayan modüler bileşenlerden oluşur.`,
+    features: ['Zemin trambolinleri (flush floor)', 'Duvar trambolinleri', 'Eğim trambolinleri (angled)', 'Foam pit entegrasyonu', 'Modüler genişleme imkânı'],
+    sections: [
+      {
+        heading: 'Trambolin Sistemi Bileşenleri',
+        items: (c) => [
+          `Zemin Trampolinleri (Flush Floor): ${c}'deki trambolin parklarda en yaygın model. Zemin hizasına gömülü, kesintisiz atlama deneyimi sunar.`,
+          'Duvar Trambolinleri: Duvarlar boyunca yerleştirilen eğimli paneller. Duvardan sekme ve akrobasi hareketlerine olanak tanır.',
+          'Eğim Trambolinleri: Farklı açılarda konumlandırılmış trambolin kanalları, ileri düzey kullanıcılar için.',
+          'Foam Pit Entegrasyonu: Atlama kanalının sonuna bağlanan köpük dolu güvenli düşüş alanı.',
+        ],
+      },
+      { heading: 'Sistem Tasarımı', body: (c) => `${c}'deki projeniz için alanın boyutuna, hedef kitleye ve bütçeye göre optimize edilmiş trambolin sistemi tasarımı hazırlıyoruz. 3D çizim ve CAD dosyaları ile kurulum öncesi görselleştirme sunuyoruz.` },
+    ],
+    cta: 'Sistem Teklifi Al',
+  },
+
+  'trambolin-ureticisi': {
+    title: (c) => `${c} Trambolin Üreticisi – Yerli Trambolin Üretimi 2026`,
+    metaDesc: (c) => `${c} trambolin üreticisi. Türkiye'nin deneyimli yerli trambolin üreticisi Trambolinpark ile tanışın. Özel tasarım, CE sertifikalı üretim ve anahtar teslim kurulum.`,
+    hero: (c) => `${c} Trambolin Üreticisi`,
+    intro: (c) => `Trambolinpark, Ankara merkezli yerli trambolin üreticisi olarak ${c} başta olmak üzere Türkiye genelinde ticari ve bireysel projelere hizmet vermektedir. Kendi atölyemizde üretilen trambolinler CE güvenlik sertifikalıdır ve yedek parça desteğiyle birlikte teslim edilir.`,
+    features: ['Yerli üretim, ithal malzeme kalitesi', 'CE / EN sertifikalı ürünler', 'Özel boyut ve tasarım', 'Anahtar teslim montaj', 'Türkiye geneli servis ağı'],
+    sections: [
+      { heading: 'Üretim Kapasitesi ve Süreç', items: () => ['Çelik çerçeve: TIG kaynak, galvaniz kaplama', 'Yay üretimi: Yüksek karbonlu çelik, 10 000+ çevrim testi', 'Atlama yüzeyi: UV dayanımlı polipropilen dokuma', 'Güvenlik ağı: Polyester örgü, UV stabilizatörlü', 'Kalite kontrol: Her ürün yük ve esneklik testinden geçer'] },
+      { heading: 'Neden Yerli Üretici?', items: (c) => [`${c}'e hızlı teslimat`, 'Döviz kuru riskinden bağımsız fiyat', 'Orijinal yedek parçaya anında erişim', 'Türkiye standartlarına tam uyum', 'Yerinde teknik servis garantisi'] },
+    ],
+    cta: 'Üretici ile İletişime Geç',
+  },
+
+  'softplay-yedek-parca': {
+    title: (c) => `${c} Softplay Yedek Parça – Orijinal Softplay Parçaları 2026`,
+    metaDesc: (c) => `${c} softplay yedek parça temini. Orijinal köpük dolgu, kaplama kumaşı, tünel, kaydırak ve bağlantı elemanları. Hızlı teslimat ve uygun fiyat.`,
+    hero: (c) => `${c} Softplay Yedek Parça`,
+    intro: (c) => `Softplay ekipmanlarının uzun ömürlü kalması için periyodik bakım ve yedek parça değişimi şarttır. ${c}'deki softplay işletmeleri için orijinal köpük dolgu, kaplama kumaşı, tünel borusu, kaydırak bölümü ve tüm bağlantı elemanlarını stoktan temin ediyoruz.`,
+    features: ['Orijinal köpük dolgu ve yenileme', 'Kaplama kumaşı değişimi', 'Tünel ve boru sistemleri', 'Kaydırak bölümleri', 'Bağlantı ve sabitleme elemanları'],
+    sections: [
+      {
+        heading: 'En Çok Aranan Yedek Parçalar',
+        items: () => [
+          'Köpük Dolgu (Rebond Foam): Zamanla sertleşen köpüklerin yenilenmesi',
+          'Kaplama Kumaşı: Yırtık veya solmuş yüzeylerin orijinal renk eşleşmesiyle değişimi',
+          'Tünel Boru ve Bağlantıları: Eklem yerlerinde aşınan parçaların değişimi',
+          'Kaydırak Bölümü: Çizik veya kırık kaydırak panellerinin değişimi',
+          'Cırt-Cırt ve Fermuarlı Kapaklar: Kapak sistemlerinin tamiri ve yenilenmesi',
+          'Plastik Toplar: Top havuzu toplarının yenilenmesi',
+        ],
+      },
+      { heading: 'Bakım Sözleşmesi', body: (c) => `${c}'deki işletmeniz için yıllık bakım sözleşmesiyle düzenli kontrol, erken arıza tespiti ve öncelikli yedek parça temini sunuyoruz. Bakım sözleşmesi ekipman ömrünü %40'a kadar uzatır.` },
+    ],
+    cta: 'Yedek Parça Sipariş Et',
+  },
+
+  'oyun-parki-yedek-parcalari': {
+    title: (c) => `${c} Oyun Parkı Yedek Parçaları – Orijinal Ekipman Parçaları 2026`,
+    metaDesc: (c) => `${c} oyun parkı yedek parçaları. Kaydırak, salıncak, tırmanma sistemi ve trambolin yedek parçaları. Hızlı teslimat, uygun fiyat, garanti.`,
+    hero: (c) => `${c} Oyun Parkı Yedek Parçaları`,
+    intro: (c) => `${c}'deki oyun parkı ekipmanlarının güvenli kalması için düzenli bakım ve zamanında yedek parça değişimi hayati önem taşır. Trambolinpark olarak kaydıraktan tırmanma sistemine, trambolinden softplay ekipmanlarına kadar geniş bir yedek parça yelpazesi sunuyoruz.`,
+    features: ['Kaydırak bölümleri ve bağlantıları', 'Salıncak zincirleri ve oturma yerleri', 'Trambolin yay ve atlama yüzeyleri', 'Softplay köpük ve kaplama', 'Çelik çerçeve ve bağlantı elemanları'],
+    sections: [
+      {
+        heading: 'Ürün Kategorilerine Göre Yedek Parçalar',
+        items: (c) => [
+          `Trambolin Yedek Parçaları: ${c}'de en sık aranan parçalardır. Yay, atlama yüzeyi, güvenlik ağı ve çerçeve bağlantı elemanları stokta mevcuttur.`,
+          'Softplay Yedek Parçaları: Köpük dolgu, kaplama kumaşı, tünel ve kaydırak panelleri.',
+          'Şişme Park Yedek Parçaları: PVC yama kiti, hava motoru, emniyet ipi ve bağlantı elemanları.',
+          'Kaydırak ve Dış Mekan Yedek Parçaları: Polietilen kaydırak panelleri, çelik boru ve galvanizli bağlantılar.',
+        ],
+      },
+      { heading: 'Sipariş ve Teslimat', body: (c) => `${c} ve Türkiye genelinde kargo veya kurye ile hızlı teslimat sağlıyoruz. Ürün kodunuzu veya fotoğrafını göndererek uyumlu yedek parçayı tespit etmemize yardımcı olabilirsiniz.` },
+    ],
+    cta: 'Yedek Parça Sor',
+  },
+
   'oyun-parki-firmalari': {
     title: (c) => `${c} Oyun Parkı Firmaları – 2026 Güncel Rehberi`,
     metaDesc: (c) => `${c} oyun parkı firmaları 2026. Anaokulu, site, park ve rekreasyon alanları için ekipman temini, kurulum ve bakım hizmetleri. Ücretsiz keşif için iletişime geçin.`,
@@ -252,6 +500,70 @@ type StandalonePage = {
 };
 
 const STANDALONE: Record<string, StandalonePage> = {
+  'top-havuzu': {
+    title: 'Top Havuzu – Türkiye Geneli Top Havuzu Modelleri | Trambolinpark',
+    metaDesc: 'Türkiye genelinde top havuzu üretimi ve kurulumu. Kreş, anaokulu, AVM ve eğlence merkezi için güvenli top havuzu çeşitleri. Fiyat teklifi alın.',
+    hero: 'Top Havuzu',
+    intro: 'Top havuzları çocukların motor becerilerini geliştiren, eğlenceli ve güvenli oyun köşeleridir. Kreş, anaokulu, alışveriş merkezi ve eğlence merkezleri için farklı boyut ve renk seçenekleriyle top havuzu üretip kuruyoruz.',
+    features: ['Esnek boyut ve şekil seçenekleri', 'Yumuşak top ve zemin kaplaması', 'Dayanıklı PVC çerçeve', 'CE sertifikalı güvenli malzemeler', 'Anahtar teslim kurulum'],
+    sections: [
+      { heading: 'Top Havuzu Modelleri', items: ['Kare Top Havuzu: En sık tercih edilen klasik model', 'Yuvarlak Top Havuzu: AVM ve açık alanlara uygun', 'Tematik Top Havuzu: Özel şekil ve karakter tasarımı', 'Modüler Top Havuzu: Bölüm ekleyerek büyütülebilir'] },
+      { heading: 'Kullanım Alanları', items: ['Kreş ve anaokulları', 'Alışveriş merkezi aktivite alanları', 'Trambolin ve eğlence parkları', 'Otel çocuk kulüpleri', 'Belediye rekreasyon alanları'] },
+      { heading: 'Teknik Özellikler', items: ['PVC duvar kalınlığı: 650–850 g/m²', 'Zemin matı: 6–10 cm yumuşak köpük', 'Top çapı: 6–7 cm plastik', 'EN-71 güvenlik belgeli', 'Temizlenebilir antimikrobiyal kaplama'] },
+    ],
+    cta: 'Top Havuzu Teklifi Al',
+  },
+
+  'turkiye-geneli-top-havuzu': {
+    title: 'Türkiye Geneli Top Havuzu – Üretim ve Kurulum | Trambolinpark',
+    metaDesc: 'Türkiye\'nin her iline top havuzu üretimi ve kurulum hizmeti. Ankara merkezli üretim, Türkiye geneli anahtar teslim montaj ve satış sonrası destek.',
+    hero: 'Türkiye Geneli Top Havuzu',
+    intro: "Ankara'daki üretim tesisimizden Türkiye'nin her iline top havuzu üretip kuruyoruz. İstanbul'dan Trabzon'a, İzmir'den Diyarbakır'a kadar anahtar teslim teslimat ve montaj hizmetimizle projenizi hayata geçiriyoruz.",
+    features: ['81 ile teslimat ve kurulum', 'Yerli üretim, uygun fiyat', 'CE sertifikalı malzeme', 'Hızlı proje teslimi', 'Satış sonrası bakım desteği'],
+    sections: [
+      { heading: 'Türkiye Genelinde Hizmet Verdiğimiz İller', items: ['Marmara: İstanbul, Tekirdağ, Edirne, Kocaeli, Bursa, Balıkesir', 'Ege: İzmir, Manisa, Aydın, Muğla, Denizli', 'Akdeniz: Antalya, Adana, Mersin, Hatay', 'İç Anadolu: Ankara, Konya, Kayseri, Eskişehir', 'Karadeniz: Samsun, Trabzon, Ordu', 'Doğu ve Güneydoğu: Gaziantep, Diyarbakır, Erzurum'] },
+      { heading: 'Neden Bizi Tercih Etmelisiniz?', items: ['Ankara merkezli yerli üretim', 'Döviz riskinden bağımsız fiyat', 'Türkiye geneli servis ağı', 'Orijinal yedek parça garantisi', 'Proje başlangıcından teslimata tek muhatap'] },
+    ],
+    cta: 'İliniz için Teklif Alın',
+  },
+
+  'turkiye-softplay': {
+    title: 'Türkiye\'de Softplay – Yerli Softplay Üreticisi | Trambolinpark',
+    metaDesc: 'Türkiye\'de softplay üretimi ve kurulumu. Ankara merkezli yerli üretim, CE sertifikalı softplay ekipmanları. Tüm illere teslimat ve anahtar teslim montaj.',
+    hero: 'Türkiye\'de Softplay',
+    intro: "Trambolinpark olarak Türkiye genelinde softplay ekipmanı üretip kuruyoruz. Ankara'daki tesisimizde CE sertifikalı malzemelerle üretilen softplay sistemlerimiz; anaokulu, kreş, AVM ve eğlence merkezi projelerine anahtar teslim olarak teslim edilir.",
+    features: ['Yerli üretim, CE sertifikalı', 'Özel ölçü ve tema tasarımı', '81 ile teslimat', 'Bakım ve yedek parça desteği', 'Rekabetçi fiyat, kaliteli işçilik'],
+    sections: [
+      { heading: 'Softplay Nedir?', body: 'Softplay; yumuşak köpük, kaplanmış PVC ve esnek çerçevelerden oluşan, çocukların güvenle tırmanıp, kayıp, zıplayıp oynayabildiği kapalı alan oyun sistemleridir. Klasik softplay, tematik softplay ve interaktif modeller olarak üçe ayrılır.' },
+      { heading: 'Türkiye\'den Referans Projeler', items: ['AVM aktivite alanları (İstanbul, Ankara, İzmir)', 'Anaokulu ve kreş zincirleri (ulusal ölçekli)', 'Otel çocuk kulüpleri (Antalya, Muğla)', 'Belediye oyun parkları (Ankara, Konya, Bursa)'] },
+      { heading: 'Proje Süreci', items: ['1. Ücretsiz keşif ve ölçüm', '2. 3D tasarım ve onay', '3. Üretim (3–6 hafta)', '4. Anahtar teslim kurulum', '5. Garanti ve bakım desteği'] },
+    ],
+    cta: 'Softplay Projesi Başlat',
+  },
+
+  'trambolin': {
+    title: 'Trambolin – Profesyonel Trambolin Üreticisi | Trambolinpark',
+    metaDesc: 'Trambolinpark — Türkiye\'nin trambolin üreticisi. Ev tipi, ticari ve olimpik trambolin modelleri. CE sertifikalı, anahtar teslim kurulum. Fiyat teklifi alın.',
+    hero: 'Trambolin',
+    intro: 'Trambolinpark olarak Türkiye genelinde ev tipi, ticari ve olimpik trambolin üretimi yapıyoruz. Güvenlik öncelikli tasarımlarımız, CE ve EN-1176 sertifikalarıyla hem bireysel hem kurumsal kullanıcılara hitap eder.',
+    features: ['Ev tipi ve ticari modeller', 'Olimpik ve jimnastik modelleri', 'CE / EN-1176 sertifikalı', 'Geniş yedek parça stoku', 'Türkiye geneli kurulum'],
+    sections: [
+      {
+        heading: 'Trambolin Türleri',
+        items: [
+          'Ev Tipi Trambolin: Güvenlik ağlı, kompakt, aile bahçesi için',
+          'Ticari Trambolin: Yüksek kapasite, EN-1176 sertifikalı, park ve eğlence merkezi için',
+          'Olimpik Trambolin: FIG standartları, yarışma ve antrenman için',
+          'Mini Trambolin: Jumping Fitness, ev ve spor salonu için',
+          'Trambolin Park Sistemi: Modüler zemin trambolinleri, duvar ve eğim panelleri',
+        ],
+      },
+      { heading: 'Güvenlik', items: ['EN-1176 (ticari) ve EN-71 (ev) standartları', 'Yüksek UV dayanımlı atlama yüzeyi', 'Çift katlı güvenlik ağı dikişi', 'Yük testi: 1,5× nominal kapasite', 'Periyodik bakım rehberi ile teslim'] },
+      { heading: 'Satın Alma ve Kurulum', body: 'Ürün seçiminden kuruluma kadar tüm süreçte yanınızdayız. Ücretsiz keşif, teknik danışmanlık ve anahtar teslim montaj ile trambolininizi en kısa sürede kullanıma hazır hale getiriyoruz.' },
+    ],
+    cta: 'Trambolin Teklifi Al',
+  },
+
   'trambolin-parklari': {
     title: 'Trambolin Parkları – Ticari Trambolin Park Ekipmanları | Trambolinpark',
     metaDesc: 'Ticari trambolin parkları için ekipman, tasarım ve kurulum hizmetleri. TP-205, TP-206, TP-207 ve daha fazla model. EN-1176 sertifikalı anahtar teslim çözümler.',

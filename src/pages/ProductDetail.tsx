@@ -158,7 +158,7 @@ export default function ProductDetail() {
             paddingBottom: 4, scrollSnapType: 'x mandatory',
           }}>
             {related.map(p => (
-              <button key={p.id} onClick={() => navigate(`/urun/${p.id}`)}
+              <button key={p.id} onClick={() => navigate(`/urunler/${p.category}/${p.id}`)}
                 className="tp-card border-0 text-start flex-shrink-0"
                 style={{ width: 'clamp(160px, 55vw, 220px)', scrollSnapAlign: 'start', display: 'block', cursor: 'pointer' }}>
                 <div className="tp-card-img">

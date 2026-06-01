@@ -1,0 +1,32 @@
+# SEO URL koruması — eski trambolinpark.com URL'lerini yeni siteye yönlendir
+
+# Kritik: yedek parça sayfaları (#1 sıralama)
+/urunler/trambolin-yedek-parcalar                                           /yedek-parcalar                 301
+/urunler/trambolin-yedek-parcalar/*                                         /yedek-parcalar                 301
+/urunler/salto-trambolin-yedek-parca                                        /yedek-parcalar                 301
+/urunler/salto-trambolin-yedek-parca/*                                      /yedek-parcalar                 301
+
+# Ürün kategorileri
+/urunler/trambolin-parklari                                                 /trambolin-parklari             301
+/urunler/top-havuzlari                                                      /urunler/soft-play-havuzlar     301
+/urunler/top-havuzlari/*                                                    /urunler/soft-play-havuzlar     301
+/urunler/sisme-oyun-gruplari                                                /urunler/sisme-park             301
+/urunler/sisme-oyun-gruplari/*                                              /urunler/sisme-park             301
+/urunler/bahce-ozel-trambolinler                                            /urunler/trambolinler           301
+/urunler/bahce-ozel-trambolinler/*                                          /urunler/trambolinler           301
+/urunler/zemin-yer-trambolini                                               /urunler/trambolinler           301
+/urunler/zemin-yer-trambolini/*                                             /urunler/trambolinler           301
+/urunler/tekli-trambolinler                                                 /urunler/trambolinler           301
+/urunler/tekli-trambolinler/*                                               /urunler/trambolinler           301
+/urunler/ticari-trambolinler                                                /urunler/trambolinler           301
+/urunler/ticari-trambolinler/*                                              /urunler/trambolinler           301
+/urunler/pilsan                                                             /urunler                        301
+/urunler/pilsan/*                                                           /urunler                        301
+/urunler/park-ve-bahce                                                      /urunler                        301
+/urunler/park-ve-bahce/*                                                    /urunler                        301
+/urunler/sallanan-oyuncaklar                                                /urunler                        301
+/urunler/sallanan-oyuncaklar/*                                              /urunler                        301
+
+# Genel fallback — bilinmeyen /urunler/* alt yolları
+/urunler/trambolin-fiyatlari                                                /urunler                        301
+/urunler/cocuk-trambolini                                                   /urunler/trambolinler           301

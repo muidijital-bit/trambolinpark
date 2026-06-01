@@ -23,7 +23,19 @@ const NAV_COLS = [
   },
   {
     title: 'Ürünlerimiz',
-    links: [{ to: '/urunler/trambolinler', l: 'Trambolinler' }, { to: '/urunler/soft-play-havuzlar', l: 'Soft Play & Havuzlar' }, { to: '/urunler/sisme-park', l: 'Şişme Park' }, { to: '/yedek-parcalar', l: 'Yedek Parçalar' }],
+    links: [
+      { to: '/urunler/soft-play-oyun-alanlari', l: 'Softplay' },
+      { to: '/urunler/kucuk-top-havuzlari', l: 'Top Havuzu' },
+      { to: '/urunler/olimpik-trambolinler', l: 'Olimpik Trambolin' },
+      { to: '/urunler/ticari-junior', l: 'Junior Trambolin' },
+      { to: '/urunler/yer-zemin-trambolin', l: 'Zemin Trambolin' },
+      { to: '/urunler/trambolin-parklari', l: 'Trambolin Parkı' },
+      { to: '/urunler/salto-trambolin', l: 'Salto Trambolin' },
+      { to: '/urunler/sisme-park-junior', l: 'Şişme Oyun Grupları' },
+      { to: '/yedek-parcalar', l: 'Tüm Yedek Parçalar' },
+      { to: '/urunler/profesyonel-trambolin', l: 'Profesyonel Trambolin' },
+      { to: '/urunler/tekli-trambolinler', l: '3\'lü Trambolin' },
+    ],
   },
 ];
 

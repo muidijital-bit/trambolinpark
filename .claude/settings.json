@@ -8,7 +8,31 @@
       "Bash(curl -v *)",
       "Bash(ls -t ~/.claude/projects/*/*.jsonl *)",
       "Read(//Users/mui/.claude/projects/**)",
-      "Bash(curl -sI \"https://trambolinpark.com/album/trambolinparkyeni/urunler/D5zm4LhjhgfrjDS0CdSl.jpg\")"
+      "Bash(curl -sI \"https://trambolinpark.com/album/trambolinparkyeni/urunler/D5zm4LhjhgfrjDS0CdSl.jpg\")",
+      "Bash(git add *)",
+      "Bash(git commit -m 'chore: update package-lock.json for Cloudflare CI *)",
+      "Bash(git commit -m 'fix: regenerate package-lock.json with all dependencies *)",
+      "Bash(git push *)",
+      "Bash(git commit -m 'fix: set build command in wrangler.toml to use npm install *)",
+      "Bash(git pull *)",
+      "Bash(git commit -m 'fix: set Node 24 via .nvmrc for Cloudflare compatibility *)",
+      "Bash(curl -s 'https://skucanbrmuceruasvjui.supabase.co/rest/v1/spare_parts?select=key,name&order=name' -H 'apikey: sb_publishable_Zhzymn1Ka6I__twSWJTopg_VPjOP0O3' -H 'Authorization: Bearer sb_publishable_Zhzymn1Ka6I__twSWJTopg_VPjOP0O3')",
+      "Bash(curl -s 'https://skucanbrmuceruasvjui.supabase.co/rest/v1/spare_parts?select=*&limit=1' -H 'apikey: sb_publishable_Zhzymn1Ka6I__twSWJTopg_VPjOP0O3' -H 'Authorization: Bearer sb_publishable_Zhzymn1Ka6I__twSWJTopg_VPjOP0O3')",
+      "Bash(curl -s 'https://skucanbrmuceruasvjui.supabase.co/rest/v1/spare_parts?select=item_key,title,sub_key,category_key&order=category_key,sub_key,item_key&limit=200' -H 'apikey: sb_publishable_Zhzymn1Ka6I__twSWJTopg_VPjOP0O3' -H 'Authorization: Bearer sb_publishable_Zhzymn1Ka6I__twSWJTopg_VPjOP0O3')",
+      "Bash(python3 -c ' *)",
+      "Bash(curl -s 'https://skucanbrmuceruasvjui.supabase.co/rest/v1/spare_parts?select=item_key,title&order=item_key' -H 'apikey: sb_publishable_Zhzymn1Ka6I__twSWJTopg_VPjOP0O3' -H 'Authorization: Bearer sb_publishable_Zhzymn1Ka6I__twSWJTopg_VPjOP0O3')",
+      "Bash(curl -s 'https://skucanbrmuceruasvjui.supabase.co/rest/v1/products?select=id,name,slug&order=name&limit=100' -H 'apikey: sb_publishable_Zhzymn1Ka6I__twSWJTopg_VPjOP0O3' -H 'Authorization: Bearer sb_publishable_Zhzymn1Ka6I__twSWJTopg_VPjOP0O3')",
+      "Bash(curl -s 'https://skucanbrmuceruasvjui.supabase.co/rest/v1/products?select=id,name&order=name&limit=1' -H 'apikey: sb_publishable_Zhzymn1Ka6I__twSWJTopg_VPjOP0O3' -H 'Authorization: Bearer sb_publishable_Zhzymn1Ka6I__twSWJTopg_VPjOP0O3')",
+      "Bash(curl -s 'https://skucanbrmuceruasvjui.supabase.co/rest/v1/products?select=*&limit=1' -H 'apikey: sb_publishable_Zhzymn1Ka6I__twSWJTopg_VPjOP0O3' -H 'Authorization: Bearer sb_publishable_Zhzymn1Ka6I__twSWJTopg_VPjOP0O3')",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(list\\(d[0].keys\\(\\)\\) if d else 'empty'\\)\")",
+      "Bash(curl -s 'https://skucanbrmuceruasvjui.supabase.co/rest/v1/products?select=id,title,category&order=category,title&limit=100' -H 'apikey: sb_publishable_Zhzymn1Ka6I__twSWJTopg_VPjOP0O3' -H 'Authorization: Bearer sb_publishable_Zhzymn1Ka6I__twSWJTopg_VPjOP0O3')",
+      "Bash(curl -s 'https://skucanbrmuceruasvjui.supabase.co/rest/v1/products?select=id,title,slug&order=category,title&limit=10' -H 'apikey: sb_publishable_Zhzymn1Ka6I__twSWJTopg_VPjOP0O3' -H 'Authorization: Bearer sb_publishable_Zhzymn1Ka6I__twSWJTopg_VPjOP0O3')",
+      "Bash(sed -i '' 's|`/urun/${p.id}`|`/urunler/${p.id}`|g' /Users/mui/projects/trambolinpark/src/components/Navbar.tsx)",
+      "Bash(sed -i '' 's|`/urun/${p.id}`|`/urunler/${p.id}`|g' /Users/mui/projects/trambolinpark/src/pages/Catalog.tsx)",
+      "Bash(sed -i '' 's|`/urun/${product.id}`|`/urunler/${product.id}`|g' /Users/mui/projects/trambolinpark/src/pages/Catalog.tsx)",
+      "Bash(sed -i '' 's|`/urun/${p.id}`|`/urunler/${p.id}`|g' /Users/mui/projects/trambolinpark/src/pages/ProductDetail.tsx)",
+      "Bash(curl -s -X PATCH https://skucanbrmuceruasvjui.supabase.co/rest/v1/products?id=eq.spo-704 -H 'apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNrdWNhbmJybXVjZXJ1YXN2anVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg3NTA4NjEsImV4cCI6MjA5NDMyNjg2MX0.-TPEdULQeKrTZDDqa5vwU5Nq7BCyUdIJL9fFhgR93t8' -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNrdWNhbmJybXVjZXJ1YXN2anVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg3NTA4NjEsImV4cCI6MjA5NDMyNjg2MX0.-TPEdULQeKrTZDDqa5vwU5Nq7BCyUdIJL9fFhgR93t8' -H 'Content-Type: application/json' -H 'Prefer: return=minimal' -d '{\"title\": \"test\"}' -w '\\\\nHTTP: %{http_code}')",
+      "Bash(curl -s 'https://skucanbrmuceruasvjui.supabase.co/rest/v1/products?select=id,title,slug&id=eq.spo-703' -H 'apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNrdWNhbmJybXVjZXJ1YXN2anVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg3NTA4NjEsImV4cCI6MjA5NDMyNjg2MX0.-TPEdULQeKrTZDDqa5vwU5Nq7BCyUdIJL9fFhgR93t8')"
     ]
   }
 }

@@ -15,7 +15,7 @@ export function useProducts() {
       .then(({ data, error }) => {
         if (!error && data) {
           setProducts(data.map(r => ({
-            id: r.id,
+            id: r.slug ?? r.id,
             title: r.title,
             description: r.description,
             imageUrl: r.image_url,
