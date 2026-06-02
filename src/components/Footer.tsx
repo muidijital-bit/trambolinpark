@@ -134,9 +134,14 @@ export default function Footer() {
                 <span style={{ width: 32, height: 32, borderRadius: 8, background: 'rgba(92,146,0,.07)', border: '1px solid rgba(92,146,0,.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   <Phone size={14} color="#5c9200" />
                 </span>
-                <a href="tel:+903129112787" style={{ fontSize: 15, fontWeight: 800, color: '#5c9200', textDecoration: 'none', fontFamily: 'Poppins, sans-serif', letterSpacing: '-.01em' }}>
-                  0 (312) 911 27 87
-                </a>
+                <div className="d-flex flex-column gap-1">
+                  <a href="tel:+903129112787" style={{ fontSize: 15, fontWeight: 800, color: '#5c9200', textDecoration: 'none', fontFamily: 'Poppins, sans-serif', letterSpacing: '-.01em' }}>
+                    0 (312) 911 27 87
+                  </a>
+                  <a href="tel:+905433494947" style={{ fontSize: 15, fontWeight: 800, color: '#5c9200', textDecoration: 'none', fontFamily: 'Poppins, sans-serif', letterSpacing: '-.01em' }}>
+                    +90 543 349 49 47
+                  </a>
+                </div>
               </li>
             </ul>
           </div>

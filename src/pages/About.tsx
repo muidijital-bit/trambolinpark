@@ -214,7 +214,7 @@ export default function About() {
                 icon: <Target size={22} strokeWidth={1.5} />,
                 tag: 'Vizyonumuz',
                 heading: 'Sektörün küresel referans markası olmak.',
-                body: 'Teknolojik gelişmeleri ve küresel trendleri yakından takip ederek, güvenli eğlencenin sınırlarını yeniden çizen, uluslararası arenada referans alınan bir dünya markası olmak.',
+                body: 'Teknolojik gelişmeleri ve küresel trendleri yakından takip ederek, güvenli eğlencenin sınırlarını yeniden çizen, Türkiye genelinde referans alınan bir marka olmak.',
               },
               {
                 icon: <Compass size={22} strokeWidth={1.5} />,
