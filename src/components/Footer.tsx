@@ -34,7 +34,7 @@ const NAV_COLS = [
       { to: '/urunler/sisme-park-junior', l: 'Şişme Oyun Grupları' },
       { to: '/yedek-parcalar', l: 'Tüm Yedek Parçalar' },
       { to: '/urunler/profesyonel-trambolin', l: 'Profesyonel Trambolin' },
-      { to: '/urunler/tekli-trambolinler', l: '3\'lü Trambolin' },
+      { to: '/urunler/tekli-trambolinler', l: 'Tekli Trambolin' },
     ],
   },
 ];
@@ -134,14 +134,9 @@ export default function Footer() {
                 <span style={{ width: 32, height: 32, borderRadius: 8, background: 'rgba(92,146,0,.07)', border: '1px solid rgba(92,146,0,.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   <Phone size={14} color="#5c9200" />
                 </span>
-                <div className="d-flex flex-column gap-1">
-                  <a href="tel:+905433494947" style={{ fontSize: 15, fontWeight: 800, color: '#5c9200', textDecoration: 'none', fontFamily: 'Poppins, sans-serif', letterSpacing: '-.01em' }}>
-                    +90 543 349 49 47
-                  </a>
-                  <a href="tel:+903129112787" style={{ fontSize: 15, fontWeight: 800, color: '#5c9200', textDecoration: 'none', fontFamily: 'Poppins, sans-serif', letterSpacing: '-.01em' }}>
-                    0312 911 27 87
-                  </a>
-                </div>
+                <a href="tel:+903129112787" style={{ fontSize: 15, fontWeight: 800, color: '#5c9200', textDecoration: 'none', fontFamily: 'Poppins, sans-serif', letterSpacing: '-.01em' }}>
+                  0 (312) 911 27 87
+                </a>
               </li>
             </ul>
           </div>

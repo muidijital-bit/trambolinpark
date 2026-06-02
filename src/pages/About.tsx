@@ -12,16 +12,16 @@ const STATS = [
 ];
 
 const VALUES = [
-  { icon: <ShieldCheck size={20} strokeWidth={1.75} />, title: 'Güvenlik Standartları', desc: 'EN-1176 uluslararası standartlarını karşılayan CE belgeli tasarımlar.' },
+  { icon: <ShieldCheck size={20} strokeWidth={1.75} />, title: 'Güvenlik Standartları', desc: 'Uluslararası güvenlik standartlarını karşılayan CE belgeli tasarımlar.' },
   { icon: <Palette size={20} strokeWidth={1.75} />,     title: 'Özel Tasarım',          desc: 'Her mekân için sıfırdan hazırlanan özgün proje ve çizimler.' },
-  { icon: <Zap size={20} strokeWidth={1.75} />,         title: 'Hızlı Kurulum',         desc: 'Ortalama 30–45 gün içinde anahtar teslim kurulum garantisi.' },
+  { icon: <Zap size={20} strokeWidth={1.75} />,         title: 'Hızlı Kurulum',         desc: 'Kısa sürede anahtar teslim kurulum garantisi.' },
   { icon: <Medal size={20} strokeWidth={1.75} />,       title: 'Sertifikalı Kalite',    desc: 'Uluslararası kalite belgeleri ile test edilmiş tüm ürünler.' },
   { icon: <Wrench size={20} strokeWidth={1.75} />,      title: 'Satış Sonrası Destek',  desc: 'Bakım, yedek parça temini ve uzaktan teknik destek hizmetleri.' },
-  { icon: <Users size={20} strokeWidth={1.75} />,       title: 'Uzman Mühendis Ekibi',  desc: 'Tasarımdan montaja kadar aynı ekip, kesintisiz proje yönetimi.' },
+  { icon: <Users size={20} strokeWidth={1.75} />,       title: 'Deneyimli Ekibimiz',    desc: 'Tasarımdan montaja kadar aynı ekip, kesintisiz proje yönetimi.' },
 ];
 
 const CHECKS = [
-  'Uluslararası Güvenlik Standartları (EN-1176)',
+  'Uluslararası Güvenlik Standartları',
   '%100 Yerli ve Milli Üretim',
   'Profesyonel Satış Sonrası Destek',
 ];

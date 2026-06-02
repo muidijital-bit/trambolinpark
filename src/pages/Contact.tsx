@@ -10,8 +10,8 @@ const WaIcon = () => (
 );
 
 const INFO = [
-  { icon: <Phone size={16} />, label: 'Telefon',  value: '+90 543 349 49 47',       href: 'tel:+905433494947' },
-  { icon: <Mail size={16} />,  label: 'E-Posta',  value: 'info@trambolinpark.com',  href: 'mailto:info@trambolinpark.com' },
+  { icon: <Phone size={16} />, label: 'Telefon',  value: '0 (312) 911 27 87',        href: 'tel:+903129112787' },
+  { icon: <Mail size={16} />,  label: 'E-Posta',  value: 'info@trambolinpark.com',   href: 'mailto:info@trambolinpark.com' },
   { icon: <MapPin size={16} />,label: 'Adres',    value: 'İvedik OSB 1372 Sok. No. 33/2\nYenimahalle / Ankara', href: null },
 ];
 

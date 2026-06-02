@@ -137,8 +137,8 @@ export default function BlogPost() {
                   <Link to="/iletisim" className="btn-accent d-flex align-items-center justify-content-center gap-2" style={{ fontSize: 13, padding: '.65rem 1rem' }}>
                     Teklif Al <ArrowRight size={14} />
                   </Link>
-                  <a href="tel:+905433494947" className="btn-glass d-flex align-items-center justify-content-center gap-2" style={{ fontSize: 13, padding: '.65rem 1rem' }}>
-                    +90 543 349 49 47
+                  <a href="tel:+903129112787" className="btn-glass d-flex align-items-center justify-content-center gap-2" style={{ fontSize: 13, padding: '.65rem 1rem' }}>
+                    0 (312) 911 27 87
                   </a>
                 </div>
               </div>

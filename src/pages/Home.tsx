@@ -349,7 +349,7 @@ function ProcessSection() {
               <Link to="/iletisim" className="btn-accent" style={{ fontSize: 13, padding: '.65rem 1.5rem' }}>
                 Teklif Al <ArrowRight size={14} />
               </Link>
-              <a href="tel:+905433494947" className="btn-glass" style={{ fontSize: 13, padding: '.65rem 1.5rem' }}>
+              <a href="tel:+903129112787" className="btn-glass" style={{ fontSize: 13, padding: '.65rem 1.5rem' }}>
                 Bizi Arayın
               </a>
             </div>
@@ -447,7 +447,7 @@ function ProcessSection() {
             <Link to="/iletisim" className="btn-accent" style={{ fontSize: 13, padding: '.65rem 1.5rem' }}>
               Teklif Al <ArrowRight size={14} />
             </Link>
-            <a href="tel:+905433494947" className="btn-glass" style={{ fontSize: 13, padding: '.65rem 1.5rem' }}>
+            <a href="tel:+903129112787" className="btn-glass" style={{ fontSize: 13, padding: '.65rem 1.5rem' }}>
               Bizi Arayın
             </a>
           </div>
@@ -577,7 +577,7 @@ function SparePartsBanner() {
               </p>
               <div className="d-flex flex-wrap gap-3">
                 <Link to="/yedek-parcalar" className="btn-accent">Parça Mağazası <ArrowRight size={16} /></Link>
-                <a href="tel:+905433494947" className="btn-outline-dark" style={{ fontSize: 14 }}>+90 543 349 49 47</a>
+                <a href="tel:+903129112787" className="btn-outline-dark" style={{ fontSize: 14 }}>0 (312) 911 27 87</a>
               </div>
             </Reveal>
           </div>
@@ -667,7 +667,7 @@ function FooterCTA() {
         <Reveal delay={0.1}>
           <div className="row g-3 mb-5 justify-content-center">
             {[
-              { icon: <Phone size={22} strokeWidth={1.5} />,          label: 'Telefon',  value: '+90 543 349 49 47',      href: 'tel:+905433494947',                               ext: false },
+              { icon: <Phone size={22} strokeWidth={1.5} />,          label: 'Telefon',  value: '0 (312) 911 27 87',     href: 'tel:+903129112787',                               ext: false },
               { icon: <Mail size={22} strokeWidth={1.5} />,           label: 'E-posta',  value: 'info@trambolinpark.com', href: 'mailto:info@trambolinpark.com',                    ext: false },
               { icon: <MessageCircle size={22} strokeWidth={1.5} />,  label: 'WhatsApp', value: 'Hemen Yaz',              href: 'https://api.whatsapp.com/send?phone=905433494947', ext: true  },
               { icon: <MapPin size={22} strokeWidth={1.5} />,         label: 'Adres',    value: 'İvedik OSB, Ankara',     href: '/iletisim',                                       ext: false },
@@ -688,8 +688,8 @@ function FooterCTA() {
             <Link to="/iletisim" className="btn-accent" style={{ fontSize: 15, padding: '.9rem 2.5rem' }}>
               Ücretsiz Teklif Al <ArrowRight size={17} />
             </Link>
-            <a href="tel:+905433494947" className="btn-glass" style={{ fontSize: 15, padding: '.9rem 2.25rem' }}>
-              +90 543 349 49 47
+            <a href="tel:+903129112787" className="btn-glass" style={{ fontSize: 15, padding: '.9rem 2.25rem' }}>
+              0 (312) 911 27 87
             </a>
           </div>
         </Reveal>

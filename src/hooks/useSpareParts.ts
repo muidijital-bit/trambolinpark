@@ -52,5 +52,10 @@ function buildCategories(rows: any[]): PartCategory[] {
     }
   }
 
-  return Array.from(catMap.values());
+  const ORDER = ['trambolin-yedek', 'salto-trambolin'];
+  const all = Array.from(catMap.values());
+  return [
+    ...ORDER.map(k => all.find(c => c.key === k)).filter(Boolean) as PartCategory[],
+    ...all.filter(c => !ORDER.includes(c.key)),
+  ];
 }

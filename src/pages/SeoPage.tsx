@@ -625,7 +625,7 @@ export default function SeoPage() {
                 style={{ background: '#c3e92d', color: '#0a0a0a', borderRadius: 8, padding: '10px 24px' }}>
                 {cta}
               </Link>
-              <a href="tel:+905327765350" className="btn fw-bold d-flex align-items-center gap-2"
+              <a href="tel:+903129112787" className="btn fw-bold d-flex align-items-center gap-2"
                 style={{ background: 'rgba(255,255,255,.12)', color: '#fff', borderRadius: 8, padding: '10px 24px', border: '1px solid rgba(255,255,255,.2)' }}>
                 <Phone size={15} /> Hemen Ara
               </a>
@@ -688,7 +688,7 @@ export default function SeoPage() {
                   style={{ background: '#c3e92d', color: '#0a0a0a', borderRadius: 8, padding: '12px' }}>
                   {cta} <ChevronRight size={14} style={{ marginLeft: 4 }} />
                 </Link>
-                <a href="tel:+905327765350" className="btn w-100 d-flex align-items-center justify-content-center gap-2"
+                <a href="tel:+903129112787" className="btn w-100 d-flex align-items-center justify-content-center gap-2"
                   style={{ background: 'rgba(255,255,255,.08)', color: '#fff', borderRadius: 8, padding: '12px', border: '1px solid rgba(255,255,255,.1)' }}>
                   <Phone size={14} /> +90 532 776 53 50
                 </a>
