@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import type { Product } from '../data/mockData';
+import { allProducts, type Product } from '../data/mockData';
 
 export function useProducts() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -14,7 +14,7 @@ export function useProducts() {
       .order('title')
       .then(({ data, error }) => {
         if (!error && data) {
-          setProducts(data.map(r => ({
+          const remote = data.map(r => ({
             id: r.slug ?? r.id,
             title: r.title,
             description: r.description,
@@ -22,7 +22,12 @@ export function useProducts() {
             category: r.category,
             categoryName: r.category_name,
             features: r.features ?? [],
-          })));
+          }));
+          const remoteIds = new Set(remote.map(p => p.id));
+          const staticFallback = allProducts.filter(p => !remoteIds.has(p.id));
+          setProducts([...remote, ...staticFallback]);
+        } else {
+          setProducts(allProducts);
         }
         setLoading(false);
       });
