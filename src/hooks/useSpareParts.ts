@@ -3,6 +3,9 @@ import { supabase } from '../lib/supabase';
 import { spareCategories as staticCategories, type PartCategory } from '../data/spareParts';
 
 const ORDER = ['trambolin-yedek', 'salto-yedek', 'top-havuzu-yedek', 'sisme-yedek'];
+const SUB_ITEM_ORDER: Record<string, string[]> = {
+  'trambolin-yedek': ['yaylar', 'fileler', 'aksesuarlar'],
+};
 
 export function useSpareParts() {
   const [categories, setCategories] = useState<PartCategory[]>([]);
@@ -29,10 +32,18 @@ export function useSpareParts() {
 }
 
 function mergeWithStatic(rows: any[]): PartCategory[] {
+  const sorted = [...rows].sort((a, b) => {
+    const order = SUB_ITEM_ORDER[a.category_key];
+    if (!order || a.category_key !== b.category_key) return 0;
+    const ai = order.indexOf(a.sub_key ?? '');
+    const bi = order.indexOf(b.sub_key ?? '');
+    return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+  });
+
   const catMap = new Map<string, PartCategory>();
   const remoteItemKeys = new Set<string>();
 
-  for (const r of rows) {
+  for (const r of sorted) {
     remoteItemKeys.add(r.item_key);
     if (!catMap.has(r.category_key)) {
       catMap.set(r.category_key, {
