@@ -24,9 +24,9 @@ const NAV_COLS = [
   {
     title: 'Ürünlerimiz',
     links: [
-      { to: '/urunler/soft-play-oyun-alanlari', l: 'Softplay' },
+      { to: '/urunler/softplay-oyun-alanlari', l: 'Softplay' },
       { to: '/urunler/kucuk-top-havuzlari', l: 'Top Havuzu' },
-      { to: '/urunler/olimpik-trambolinler', l: 'Olimpik Trambolin' },
+      { to: '/urunler/ticari-olimpik-trambolinler', l: 'Ticari Olimpik Trambolin' },
       { to: '/urunler/ticari-junior', l: 'Junior Trambolin' },
       { to: '/urunler/yer-zemin-trambolin', l: 'Zemin Trambolin' },
       { to: '/urunler/trambolin-parklari', l: 'Trambolin Parkı' },

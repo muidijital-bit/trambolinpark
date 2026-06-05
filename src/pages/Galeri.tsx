@@ -44,7 +44,7 @@ const CATEGORIES = [
   { key: 'tumu',       label: 'Tümü',                  range: [0, 30]  as [number,number] },
   { key: 'kurulum',    label: 'Saha Kurulumları',       range: [0, 14]  as [number,number] },
   { key: 'top-havuzu', label: 'Top Havuzları',          range: [14, 21] as [number,number] },
-  { key: 'soft-play',  label: 'Soft Play',              range: [21, 28] as [number,number] },
+  { key: 'softplay',   label: 'Softplay',               range: [21, 28] as [number,number] },
   { key: 'projeler',   label: 'Tamamlanan Projeler',    range: [28, 30] as [number,number] },
 ];
 

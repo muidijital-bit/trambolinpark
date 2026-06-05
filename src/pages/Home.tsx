@@ -90,7 +90,7 @@ function HeroSection() {
               <span className="accent-text">Güvenle İnşa Ediyoruz.</span>
             </h1>
             <p className="tp-hero-desc">
-              Ticari trambolin parkları, soft play alanları ve top havuzları. Tasarımdan kuruluma anahtar teslim çözümler.
+              Softplay alanları ve top havuzları, ticari trambolinler ile trambolin parklar; tasarımdan kuruluma anahtar teslim çözümler.
             </p>
             <div className="d-flex flex-wrap gap-3">
               <Link to="/urunler" className="btn-accent">
@@ -117,10 +117,10 @@ function HeroSection() {
 /* ── 2. CATEGORY MARQUEE ─────────────────────────────────── */
 const CAT_ITEMS = [
   { label: 'Trambolin Parkları',   icon: <Zap size={14} strokeWidth={1.5} />,        href: '/urunler/trambolin-parklari' },
-  { label: 'Olimpik Trambolinler', icon: <Triangle size={14} strokeWidth={1.5} />,    href: '/urunler/olimpik-trambolinler' },
-  { label: 'Junior Trambolin',     icon: <Zap size={14} strokeWidth={1.5} />,         href: '/urunler/ticari-junior' },
-  { label: 'Top Havuzları',        icon: <Circle size={14} strokeWidth={1.5} />,      href: '/urunler/kucuk-top-havuzlari' },
-  { label: 'Soft Play',            icon: <Layers size={14} strokeWidth={1.5} />,      href: '/urunler/soft-play-oyun-alanlari' },
+  { label: 'Ticari Olimpik Trambolinler', icon: <Triangle size={14} strokeWidth={1.5} />, href: '/urunler/ticari-olimpik-trambolinler' },
+  { label: 'Junior Trambolin',           icon: <Zap size={14} strokeWidth={1.5} />,      href: '/urunler/ticari-junior' },
+  { label: 'Top Havuzları',              icon: <Circle size={14} strokeWidth={1.5} />,   href: '/urunler/kucuk-top-havuzlari' },
+  { label: 'Softplay Alanları',          icon: <Layers size={14} strokeWidth={1.5} />,   href: '/urunler/softplay-oyun-alanlari' },
   { label: 'Şişme Parklar',        icon: <Wind size={14} strokeWidth={1.5} />,        href: '/urunler/sisme-park-junior' },
   { label: 'Yedek Parçalar',       icon: <Wrench size={14} strokeWidth={1.5} />,      href: '/yedek-parcalar' },
 ];
@@ -147,11 +147,11 @@ function CategoryMarquee() {
 
 /* ── 4. PRODUCTS ──────────────────────────────────────────── */
 const BENTO_ROW1 = [
-  { tag: '02', name: 'Olimpik Trambolinler',  sub: 'Profesyonel & sertifikalı atlama ekipmanları.',  href: '/urunler/olimpik-trambolinler',    img: `${TP}/album/trambolinparkyeni/coklualbumler/1-kisilik-olimpik-trambolin-tp-110-EAr.jpg`  },
+  { tag: '02', name: 'Ticari Olimpik Trambolinler',  sub: 'Profesyonel & sertifikalı atlama ekipmanları.',  href: '/urunler/ticari-olimpik-trambolinler',    img: `${TP}/album/trambolinparkyeni/coklualbumler/1-kisilik-olimpik-trambolin-tp-110-EAr.jpg`  },
   { tag: '03', name: 'Top Havuzları',         sub: 'Rengarenk, güvenli eğlence havuzları.',          href: '/urunler/kucuk-top-havuzlari',     img: `${TP}/album/trambolinparkyeni/coklualbumler/-Wao.png` },
 ];
 const BENTO_ROW2 = [
-  { tag: '04', name: 'Soft Play Alanları',    sub: 'Mini kahramanlar için güvenli oyun dünyası.',    href: '/urunler/soft-play-oyun-alanlari', img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$kjgxoxbLjL8vG5l.jpeg` },
+  { tag: '04', name: 'Softplay Alanları',    sub: 'Mini kahramanlar için güvenli oyun dünyası.',    href: '/urunler/softplay-oyun-alanlari', img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$kjgxoxbLjL8vG5l.jpeg` },
   { tag: '05', name: 'Şişme Parklar',         sub: 'Junior ve büyük boy şişme oyun alanları.',       href: '/urunler/sisme-park-junior',       img: `${TP}/album/trambolinparkyeni/coklualbumler/-ymA.jpg`  },
   { tag: '06', name: 'Yedek Parçalar',        sub: 'Orijinal parçalar, hızlı kargo garantisi.',      href: '/yedek-parcalar',                  img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$JOPdARVPbJTIL2YMKgtL.jpg` },
 ];
@@ -460,9 +460,9 @@ function ProcessSection() {
 
 /* ── 7. SPARE PARTS BANNER ────────────────────────────────── */
 const BANNER_TILES = [
-  { name: 'Olimpik Trambolinler', sub: 'Tekli & Çoklu',        href: '/urunler/olimpik-trambolinler',    img: `${TP}/album/trambolinparkyeni/coklualbumler/4-kisilik-olimpik-trambolin-tp-114-ZUr.jpg` },
-  { name: 'Trambolin Parkları',   sub: 'Anahtar Teslim',       href: '/urunler/trambolin-parklari',      img: `${TP}/album/trambolinparkyeni/coklualbumler/-lk6.jpg` },
-  { name: 'Soft Play',            sub: 'Renkli Oyun Alanı',    href: '/urunler/soft-play-oyun-alanlari', img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$hlsMpXHkFC2OtM2.jpg` },
+  { name: 'Ticari Olimpik Trambolinler', sub: 'Tekli & Çoklu',     href: '/urunler/ticari-olimpik-trambolinler', img: `${TP}/album/trambolinparkyeni/coklualbumler/4-kisilik-olimpik-trambolin-tp-114-ZUr.jpg` },
+  { name: 'Trambolin Parkları',         sub: 'Anahtar Teslim',    href: '/urunler/trambolin-parklari',          img: `${TP}/album/trambolinparkyeni/coklualbumler/-lk6.jpg` },
+  { name: 'Softplay',                   sub: 'Renkli Oyun Alanı', href: '/urunler/softplay-oyun-alanlari',      img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$hlsMpXHkFC2OtM2.jpg` },
   { name: 'Top Havuzları',        sub: 'Junior & İşletme',     href: '/urunler/kucuk-top-havuzlari',     img: `${TP}/album/trambolinparkyeni/coklualbumler/-uET.jpg` },
 ];
 

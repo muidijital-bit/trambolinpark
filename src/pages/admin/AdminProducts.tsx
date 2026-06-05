@@ -9,14 +9,14 @@ const PRESET_CATEGORIES = [
   { key: 'tekli-trambolinler',        label: 'Tekli Trambolinler' },
   { key: 'yer-zemin-trambolin',       label: 'Yer/Zemin Trambolin' },
   { key: 'salto-trambolin',           label: 'Salto Trambolin' },
-  { key: 'olimpik-trambolinler',      label: 'Olimpik Trambolinler' },
+  { key: 'ticari-olimpik-trambolinler', label: 'Ticari Olimpik Trambolinler' },
   { key: 'profesyonel-trambolin',     label: 'Profesyonel Trambolin' },
   { key: 'ticari-junior',             label: 'Ticari Junior' },
   { key: 'trambolin-parklari',        label: 'Trambolin Parkları' },
   { key: 'kucuk-top-havuzlari',       label: 'Küçük Top Havuzları' },
   { key: 'isletmelere-top-havuzlari', label: 'İşletmelere Top Havuzları' },
-  { key: 'soft-play-oyun-alanlari',   label: 'Soft Play Oyun Alanları' },
-  { key: 'soft-play-oyuncaklar',      label: 'Soft Play Oyuncaklar' },
+  { key: 'softplay-oyun-alanlari',    label: 'Softplay Oyun Alanları' },
+  { key: 'softplay-oyuncaklar',       label: 'Softplay Oyuncaklar' },
   { key: 'sisme-park-junior',         label: 'Şişme Park Junior' },
 ];
 
