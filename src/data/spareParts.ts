@@ -94,7 +94,23 @@ export const spareCategories: PartCategory[] = [
     ],
   },
 
-  /* ── 3. Şişme Oyun Park Yedek Parça ───────────────────────── */
+  /* ── 3. Top Havuzu Yedek Parça ────────────────────────────── */
+  {
+    key: 'top-havuzu-yedek',
+    title: 'Top Havuzu Yedek Parça',
+    short: 'Top havuzları için yedek toplar, zemin döşemeleri ve aksesuarlar.',
+    cover: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$Ngj4sGXnxD0lC0DpiYC0.jpg`,
+    icon: '🔵',
+    items: [
+      { key: 'top-havuzu-toplar',   title: 'Top Havuzu Plastik Topları 7 cm 500\'lü', desc: 'Top havuzları için CE belgeli, 7 cm çapında renkli plastik top seti (500 adet).', image: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$Ngj4sGXnxD0lC0DpiYC0.jpg` },
+      { key: 'eva-tatami-13',       title: 'Eva Tatami Yer Döşemesi 13 mm',           desc: 'Top havuzu ve oyun alanları için 13 mm kalınlığında darbe emici Eva tatami zemin döşemesi.', image: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$qpUEtxxsUNyxIyqbEUKw.jpg` },
+      { key: 'eva-tatami-26',       title: 'Eva Tatami Yer Döşemesi 26 mm',           desc: 'Yoğun kullanım alanları için 26 mm kalınlığında yüksek darbe emici Eva tatami zemin döşemesi.', image: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$PwWdHv15MDh3MFnSZkRh.jpg` },
+      { key: 'bingo-kaydirak',      title: 'Bingo Kaydırak',                          desc: 'Top havuzu ve oyun alanlarına entegre edilebilen renkli plastik kaydırak.', image: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$tfv3M3ebphIVXRqg244D.png` },
+      { key: 'pilsan-funny-kaydirak', title: 'Pilsan Funny Kaydırak',                 desc: 'Çocuk oyun alanları için Pilsan üretimi dayanıklı plastik kaydırak.', image: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$SyMxISIi8NwVvTN.jpg` },
+    ],
+  },
+
+  /* ── 4. Şişme Oyun Park Yedek Parça ───────────────────────── */
   {
     key: 'sisme-yedek',
     title: 'Şişme Oyun Park Yedek Parça',
