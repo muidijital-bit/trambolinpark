@@ -6,9 +6,10 @@ import { AdminPageHeader } from './AdminLayout';
 import { Plus, Pencil, Trash2, X, Check, Search, Upload, Link, Wrench } from 'lucide-react';
 
 const CAT_OPTIONS = [
-  { key: 'trambolin-yedek', label: 'Trambolin Yedek' },
-  { key: 'salto-yedek',     label: 'Salto Yedek' },
-  { key: 'sisme-yedek',     label: 'Şişme Yedek' },
+  { key: 'trambolin-yedek',  label: 'Trambolin Yedek' },
+  { key: 'salto-yedek',      label: 'Salto Yedek' },
+  { key: 'top-havuzu-yedek', label: 'Top Havuzu Yedek' },
+  { key: 'sisme-yedek',      label: 'Şişme Yedek' },
 ];
 
 const emptyRow = (): Partial<SparePartRow> => ({

@@ -44,7 +44,7 @@ function buildCategories(rows: any[]): PartCategory[] {
     cat.items.push({ key: r.item_key, title: r.title, desc: r.description, image: r.image, gallery: r.gallery ?? [] });
   }
 
-  const ORDER = ['trambolin-yedek', 'salto-yedek', 'sisme-yedek'];
+  const ORDER = ['trambolin-yedek', 'salto-yedek', 'top-havuzu-yedek', 'sisme-yedek'];
   const all = Array.from(catMap.values());
   return [
     ...ORDER.map(k => all.find(c => c.key === k)).filter(Boolean) as PartCategory[],
