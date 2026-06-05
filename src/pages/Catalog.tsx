@@ -9,13 +9,13 @@ import type { SearchItem } from '../components/SidebarSearch';
 
 const GROUPS = [
   { key: 'trambolinler', name: 'Trambolinler', subs: [
-    { id: 'tekli-trambolinler',    name: 'Tekli Trambolinler' },
-    { id: 'yer-zemin-trambolin',   name: 'Yer (Zemin) Trambolinleri' },
-    { id: 'salto-trambolin',       name: 'Salto Trambolin' },
-    { id: 'ticari-olimpik-trambolinler',  name: 'Ticari Olimpik Trambolinler' },
-    { id: 'ticari-junior',         name: 'Ticari Junior Trambolin' },
-    { id: 'profesyonel-trambolin', name: 'Profesyonel Trambolin' },
-    { id: 'trambolin-parklari',    name: 'Trambolin Parkları' },
+    { id: 'ticari-olimpik-trambolinler', name: 'Ticari Olimpik Trambolinler' },
+    { id: 'ticari-junior',              name: 'Ticari Junior Trambolin' },
+    { id: 'trambolin-parklari',         name: 'Trambolin Parkları' },
+    { id: 'yer-zemin-trambolin',        name: 'Yer (Zemin) Trambolinleri' },
+    { id: 'salto-trambolin',            name: 'Salto Trambolin' },
+    { id: 'tekli-trambolinler',         name: 'Tekli Trambolinler' },
+    { id: 'profesyonel-trambolin',      name: 'Profesyonel Trambolin' },
   ]},
   { key: 'softplay-havuzlar', name: 'Softplay & Havuzlar', subs: [
     { id: 'kucuk-top-havuzlari',        name: 'Küçük Top Havuzları' },
