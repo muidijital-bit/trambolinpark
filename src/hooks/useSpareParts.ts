@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import type { PartCategory } from '../data/spareParts';
+import { spareCategories as staticCategories, type PartCategory } from '../data/spareParts';
 
 export function useSpareParts() {
   const [categories, setCategories] = useState<PartCategory[]>([]);
@@ -14,7 +14,11 @@ export function useSpareParts() {
       .order('sub_key')
       .order('title')
       .then(({ data, error }) => {
-        if (!error && data) setCategories(buildCategories(data));
+        if (!error && data && data.length > 0) {
+          setCategories(buildCategories(data));
+        } else {
+          setCategories(staticCategories);
+        }
         setLoading(false);
       });
   }, []);
@@ -34,25 +38,13 @@ function buildCategories(rows: any[]): PartCategory[] {
         cover: r.category_cover,
         icon: r.category_icon,
         items: [],
-        subcategories: [],
       });
     }
     const cat = catMap.get(r.category_key)!;
-    const item = { key: r.item_key, title: r.title, desc: r.description, image: r.image, gallery: r.gallery ?? [] };
-
-    if (r.sub_key) {
-      let sub = cat.subcategories!.find(s => s.key === r.sub_key);
-      if (!sub) {
-        sub = { key: r.sub_key, title: r.sub_title ?? r.sub_key, items: [] };
-        cat.subcategories!.push(sub);
-      }
-      sub.items.push(item);
-    } else {
-      cat.items.push(item);
-    }
+    cat.items.push({ key: r.item_key, title: r.title, desc: r.description, image: r.image, gallery: r.gallery ?? [] });
   }
 
-  const ORDER = ['trambolin-yedek', 'salto-trambolin'];
+  const ORDER = ['trambolin-yedek', 'salto-yedek', 'sisme-yedek'];
   const all = Array.from(catMap.values());
   return [
     ...ORDER.map(k => all.find(c => c.key === k)).filter(Boolean) as PartCategory[],

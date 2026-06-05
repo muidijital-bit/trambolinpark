@@ -679,10 +679,10 @@ export default function SeoPage() {
             <div className="col-lg-4">
               <div style={{ background: '#1a1a1a', borderRadius: 16, padding: '2rem', position: 'sticky', top: 100 }}>
                 <h3 style={{ fontFamily: '"Poppins",sans-serif', fontWeight: 800, fontSize: '1rem', color: '#fff', marginBottom: '.75rem' }}>
-                  Ücretsiz Teklif Alın
+                  Teklif Alın
                 </h3>
                 <p style={{ fontSize: 13.5, color: '#aaa', lineHeight: 1.7, marginBottom: '1.5rem' }}>
-                  Projeniz için özel fiyat teklifi ve ücretsiz danışmanlık hizmeti sunuyoruz.
+                  Projeniz için özel fiyat teklifi ve danışmanlık hizmeti sunuyoruz.
                 </p>
                 <Link to="/iletisim" className="btn w-100 fw-bold mb-3"
                   style={{ background: '#c3e92d', color: '#0a0a0a', borderRadius: 8, padding: '12px' }}>

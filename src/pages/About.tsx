@@ -5,17 +5,17 @@ import { ArrowRight, ShieldCheck, Zap, Wrench, Palette, Medal, Users, Target, Co
 const TP = 'https://trambolinpark.com';
 
 const STATS = [
-  { value: '15+',  label: 'Yıllık Deneyim' },
-  { value: '500+', label: 'Tamamlanan Proje' },
+  { value: '18+',  label: 'Yıllık Deneyim' },
+  { value: '623+', label: 'Tamamlanan Proje' },
   { value: '81',   label: 'İlde Kurulum' },
   { value: '%100', label: 'Yerli Üretim' },
 ];
 
 const VALUES = [
-  { icon: <ShieldCheck size={20} strokeWidth={1.75} />, title: 'Güvenlik Standartları', desc: 'Uluslararası güvenlik standartlarını karşılayan CE belgeli tasarımlar.' },
+  { icon: <ShieldCheck size={20} strokeWidth={1.75} />, title: 'Güvenlik Standartları', desc: 'Uluslararası güvenlik standartlarını karşılayan CE belgeli ürünlerden tasarımlar.' },
   { icon: <Palette size={20} strokeWidth={1.75} />,     title: 'Özel Tasarım',          desc: 'Her mekân için sıfırdan hazırlanan özgün proje ve çizimler.' },
   { icon: <Zap size={20} strokeWidth={1.75} />,         title: 'Hızlı Kurulum',         desc: 'Kısa sürede anahtar teslim kurulum garantisi.' },
-  { icon: <Medal size={20} strokeWidth={1.75} />,       title: 'Sertifikalı Kalite',    desc: 'Uluslararası kalite belgeleri ile test edilmiş tüm ürünler.' },
+  { icon: <Medal size={20} strokeWidth={1.75} />,       title: 'Kalite Güvencesi',      desc: 'Her üründe titiz kalite kontrolü ve uzun ömürlü malzeme seçimi.' },
   { icon: <Wrench size={20} strokeWidth={1.75} />,      title: 'Satış Sonrası Destek',  desc: 'Bakım, yedek parça temini ve uzaktan teknik destek hizmetleri.' },
   { icon: <Users size={20} strokeWidth={1.75} />,       title: 'Deneyimli Ekibimiz',    desc: 'Tasarımdan montaja kadar aynı ekip, kesintisiz proje yönetimi.' },
 ];
@@ -185,7 +185,7 @@ export default function About() {
               <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(10,10,10,.55) 0%, rgba(10,10,10,.1) 60%)', display: 'flex', alignItems: 'flex-end', padding: '2.5rem' }}>
                 <div>
                   <p className="font-poppins fw-black text-uppercase mb-1" style={{ fontSize: 10, color: '#c3e92d', letterSpacing: '.2em' }}>Galeri</p>
-                  <p className="font-poppins fw-black mb-0" style={{ fontSize: 'clamp(1.25rem, 2.5vw, 2rem)', color: '#fff', lineHeight: 1.2 }}>500+ proje,<br />teslim edildi.</p>
+                  <p className="font-poppins fw-black mb-0" style={{ fontSize: 'clamp(1.25rem, 2.5vw, 2rem)', color: '#fff', lineHeight: 1.2 }}>623+ proje,<br />teslim edildi.</p>
                 </div>
               </div>
             )}

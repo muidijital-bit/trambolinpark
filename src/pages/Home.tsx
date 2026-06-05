@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight, Phone, Mail, MessageCircle, MapPin, Zap, Layers, Circle, Wind, Wrench, Triangle } from 'lucide-react';
-import { supabase } from '../lib/supabase';
 const TP  = 'https://trambolinpark.com';
 
 /* ── Data ─────────────────────────────────────────────────── */
@@ -118,7 +117,7 @@ function HeroSection() {
 const CAT_ITEMS = [
   { label: 'Trambolin Parkları',   icon: <Zap size={14} strokeWidth={1.5} />,        href: '/urunler/trambolin-parklari' },
   { label: 'Ticari Olimpik Trambolinler', icon: <Triangle size={14} strokeWidth={1.5} />, href: '/urunler/ticari-olimpik-trambolinler' },
-  { label: 'Junior Trambolin',           icon: <Zap size={14} strokeWidth={1.5} />,      href: '/urunler/ticari-junior' },
+  { label: 'Ticari Junior Trambolinler',   icon: <Zap size={14} strokeWidth={1.5} />,      href: '/urunler/ticari-junior' },
   { label: 'Top Havuzları',              icon: <Circle size={14} strokeWidth={1.5} />,   href: '/urunler/kucuk-top-havuzlari' },
   { label: 'Softplay Alanları',          icon: <Layers size={14} strokeWidth={1.5} />,   href: '/urunler/softplay-oyun-alanlari' },
   { label: 'Şişme Parklar',        icon: <Wind size={14} strokeWidth={1.5} />,        href: '/urunler/sisme-park-junior' },
@@ -146,14 +145,14 @@ function CategoryMarquee() {
 }
 
 /* ── 4. PRODUCTS ──────────────────────────────────────────── */
-const BENTO_ROW1 = [
-  { tag: '02', name: 'Ticari Olimpik Trambolinler',  sub: 'Profesyonel & sertifikalı atlama ekipmanları.',  href: '/urunler/ticari-olimpik-trambolinler',    img: `${TP}/album/trambolinparkyeni/coklualbumler/1-kisilik-olimpik-trambolin-tp-110-EAr.jpg`  },
-  { tag: '03', name: 'Top Havuzları',         sub: 'Rengarenk, güvenli eğlence havuzları.',          href: '/urunler/kucuk-top-havuzlari',     img: `${TP}/album/trambolinparkyeni/coklualbumler/-Wao.png` },
+const BENTO_ROW1: { tag: string; name: string; sub: string; href: string; img: string; imgPos?: string }[] = [
+  { tag: '02', name: 'Ticari Olimpik Trambolinler', sub: 'Profesyonel & sertifikalı atlama ekipmanları.', href: '/urunler/ticari-olimpik-trambolinler', img: '/images/trambolinler.jpeg'   },
+  { tag: '03', name: 'Top Havuzları',               sub: 'Rengarenk, güvenli eğlence havuzları.',        href: '/urunler/kucuk-top-havuzlari',         img: '/images/top-havuzu.jpeg',    imgPos: 'center 40%' },
 ];
 const BENTO_ROW2 = [
-  { tag: '04', name: 'Softplay Alanları',    sub: 'Mini kahramanlar için güvenli oyun dünyası.',    href: '/urunler/softplay-oyun-alanlari', img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$kjgxoxbLjL8vG5l.jpeg` },
-  { tag: '05', name: 'Şişme Parklar',         sub: 'Junior ve büyük boy şişme oyun alanları.',       href: '/urunler/sisme-park-junior',       img: `${TP}/album/trambolinparkyeni/coklualbumler/-ymA.jpg`  },
-  { tag: '06', name: 'Yedek Parçalar',        sub: 'Orijinal parçalar, hızlı kargo garantisi.',      href: '/yedek-parcalar',                  img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$JOPdARVPbJTIL2YMKgtL.jpg` },
+  { tag: '04', name: 'Softplay Alanları',  sub: 'Mini kahramanlar için güvenli oyun dünyası.', href: '/urunler/softplay-oyun-alanlari', img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$kjgxoxbLjL8vG5l.jpeg` },
+  { tag: '05', name: 'Şişme Parklar',      sub: 'Junior ve büyük boy şişme oyun alanları.',   href: '/urunler/sisme-park-junior',       img: '/images/sisme-park.jpeg' },
+  { tag: '06', name: 'Yedek Parçalar',     sub: 'Orijinal parçalar, hızlı kargo garantisi.',  href: '/yedek-parcalar',                  img: '/images/yedek-parcalar.jpeg' },
 ];
 
 function ProductsSection() {
@@ -185,11 +184,11 @@ function ProductsSection() {
           {/* Hero card */}
           <div className="col-12 col-lg-7 d-flex flex-column">
             <Link to="/urunler/trambolin-parklari" className="tp-bento-card tp-bento-hero" style={{ flex: 1, minHeight: 460 }}>
-              <img src={`${TP}/album/trambolinparkyeni/coklualbumler/-VkT.jpg`} alt="Trambolin Parkları" loading="lazy" />
+              <img src="/images/trambolinpark.jpeg" alt="Trambolin Parkları" loading="lazy" />
               <div className="tp-bento-overlay" />
               <div className="tp-bento-content">
                 <div className="tp-bento-text">
-                  <p className="tp-bento-tag">01 · Trambolin Parkları</p>
+                  <p className="tp-bento-tag">Trambolin Parkları</p>
                   <p className="tp-bento-name tp-bento-name--lg">Tam Kapsamlı<br />Atlama Deneyimi.</p>
                   <p className="tp-bento-sub">Dodgeball, foam pit, slam dunk — eksiksiz park çözümleri.</p>
                 </div>
@@ -203,11 +202,10 @@ function ProductsSection() {
             <div className="d-flex flex-column gap-3 flex-grow-1">
               {BENTO_ROW1.map(c => (
                 <Link key={c.tag} to={c.href} className="tp-bento-card tp-bento-mid" style={{ flex: 1, minHeight: 216 }}>
-                  <img src={c.img} alt={c.name} loading="lazy" />
+                  <img src={c.img} alt={c.name} loading="lazy" style={{ objectPosition: c.imgPos }} />
                   <div className="tp-bento-overlay" />
                   <div className="tp-bento-content">
                     <div className="tp-bento-text">
-                      <p className="tp-bento-tag">{c.tag} · {c.name}</p>
                       <p className="tp-bento-name">{c.name}</p>
                       <p className="tp-bento-sub">{c.sub}</p>
                     </div>
@@ -228,7 +226,6 @@ function ProductsSection() {
                 <div className="tp-bento-overlay" />
                 <div className="tp-bento-content">
                   <div className="tp-bento-text">
-                    <p className="tp-bento-tag">{c.tag} · {c.name}</p>
                     <p className="tp-bento-name">{c.name}</p>
                     <p className="tp-bento-sub">{c.sub}</p>
                   </div>
@@ -247,15 +244,18 @@ function ProductsSection() {
 /* ── 5. SPARE PARTS ───────────────────────────────────────── */
 type HomePart = { key: string; name: string; desc: string; img: string };
 
+const FEATURED_PARTS: HomePart[] = [
+  { key: 'file-cevre',          name: 'Düğümsüz Çevre Filesi (4×4)',          desc: 'Sağlam iplik yapısı ve 4×4 cm göz aralığıyla darbelere karşı yüksek direnç.',                img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$KtDHS3kg8rkGghkUJJDz.jpg` },
+  { key: 'file-orme-junior',    name: 'Junior El Örgü Örme Filesi',           desc: 'Junior ölçü trambolinler için el örgüsü örme zıplama ağı.',                                   img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$x1tZikUrUvWJVC0lfR2U.jpg` },
+  { key: 'file-orme-olimpik',   name: 'Olimpik El Örgü Örme Filesi',          desc: 'Olimpik trambolinler için el örgüsü örme zıplama ağı — uzun ömürlü.',                          img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$2foK5oIMuNJYJNXeZLqh.jpg` },
+  { key: 'file-junior-ithal',   name: 'Ticari Junior İthal Zıplama Filesi',   desc: 'Junior ölçü ticari trambolinler için ithal üretim, yüksek dayanımlı zıplama filesi.',           img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$H2o3NCT2olryjl6MoiRR.jpg` },
+  { key: 'file-olimpik-ithal',  name: 'Ticari Olimpik İthal Zıplama Filesi',  desc: 'Olimpik ölçü ticari trambolinler için ithal üretim, yoğun kullanıma uygun zıplama filesi.',    img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$5Tz1YsX1TtB7kjxUYA6W.jpg` },
+  { key: 'file-yuvarlak-cevre', name: 'Yuvarlak Çevre Koruma Filesi',         desc: 'Yuvarlak ev trambolinleri için çevre koruma güvenlik filesi.',                                 img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$yYNskKOCknmt0wHM1tf5.jpg` },
+];
+
 function SparePartsSection() {
   const trackRef = useRef<HTMLDivElement>(null);
-  const [parts, setParts] = useState<HomePart[]>([]);
-
-  useEffect(() => {
-    supabase.from('spare_parts').select('item_key, title, description, image').limit(10).then(({ data }) => {
-      setParts((data ?? []).map(r => ({ key: r.item_key, name: r.title, desc: r.description, img: r.image })));
-    });
-  }, []);
+  const parts = FEATURED_PARTS;
 
   const scroll = (dir: 'left' | 'right') => {
     if (trackRef.current) trackRef.current.scrollBy({ left: dir === 'right' ? 270 : -270, behavior: 'smooth' });
@@ -459,11 +459,11 @@ function ProcessSection() {
 }
 
 /* ── 7. SPARE PARTS BANNER ────────────────────────────────── */
-const BANNER_TILES = [
-  { name: 'Ticari Olimpik Trambolinler', sub: 'Tekli & Çoklu',     href: '/urunler/ticari-olimpik-trambolinler', img: `${TP}/album/trambolinparkyeni/coklualbumler/4-kisilik-olimpik-trambolin-tp-114-ZUr.jpg` },
-  { name: 'Trambolin Parkları',         sub: 'Anahtar Teslim',    href: '/urunler/trambolin-parklari',          img: `${TP}/album/trambolinparkyeni/coklualbumler/-lk6.jpg` },
-  { name: 'Softplay',                   sub: 'Renkli Oyun Alanı', href: '/urunler/softplay-oyun-alanlari',      img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$hlsMpXHkFC2OtM2.jpg` },
-  { name: 'Top Havuzları',        sub: 'Junior & İşletme',     href: '/urunler/kucuk-top-havuzlari',     img: `${TP}/album/trambolinparkyeni/coklualbumler/-uET.jpg` },
+const BANNER_TILES: { name: string; sub: string; href: string; img: string; imgPos?: string }[] = [
+  { name: 'Ticari Olimpik Trambolinler', sub: 'Tekli & Çoklu',     href: '/urunler/ticari-olimpik-trambolinler', img: '/images/trambolinler.jpeg' },
+  { name: 'Trambolin Parkları',          sub: 'Anahtar Teslim',    href: '/urunler/trambolin-parklari',          img: '/images/trambolinpark.jpeg' },
+  { name: 'Softplay',                    sub: 'Renkli Oyun Alanı', href: '/urunler/softplay-oyun-alanlari',      img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$hlsMpXHkFC2OtM2.jpg` },
+  { name: 'Top Havuzları',               sub: 'Junior & İşletme',  href: '/urunler/kucuk-top-havuzlari',         img: '/images/top-havuzu.jpeg',    imgPos: 'center 40%' },
 ];
 
 /* ── TİCARİ TRAMBOLİNLER ─────────────────────────────────── */
@@ -488,16 +488,16 @@ function TicariTrambolinSection() {
           {/* Olimpik */}
           <div className="col-12 col-md-6">
             <Reveal delay={0.1}>
-              <Link to="/urunler/olimpik-trambolinler" style={{ textDecoration: 'none', display: 'block' }}>
+              <Link to="/urunler/ticari-olimpik-trambolinler" style={{ textDecoration: 'none', display: 'block' }}>
                 <div style={{ borderRadius: 20, overflow: 'hidden', position: 'relative', aspectRatio: '16/9', background: '#111' }}
                   onMouseEnter={e => (e.currentTarget.querySelector('img')! as HTMLImageElement).style.transform = 'scale(1.05)'}
                   onMouseLeave={e => (e.currentTarget.querySelector('img')! as HTMLImageElement).style.transform = 'scale(1)'}>
-                  <img src={`${TP}/album/trambolinparkyeni/coklualbumler/1-kisilik-olimpik-trambolin-tp-110-EAr.jpg`} alt="Olimpik Trambolin"
+                  <img src="/images/trambolinler.jpeg" alt="Ticari Olimpik Trambolin"
                     style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform .5s ease' }} />
                   <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 50%)' }} />
                   <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', right: '1.5rem' }}>
                     <p style={{ color: '#c3e92d', fontSize: 11, fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', marginBottom: '.35rem' }}>Olimpik Seri</p>
-                    <h3 style={{ color: '#fff', fontFamily: '"Poppins",sans-serif', fontWeight: 800, fontSize: '1.3rem', margin: 0 }}>Olimpik Trambolinler</h3>
+                    <h3 style={{ color: '#fff', fontFamily: '"Poppins",sans-serif', fontWeight: 800, fontSize: '1.3rem', margin: 0 }}>Ticari Olimpik Trambolinler</h3>
                     <p style={{ color: 'rgba(255,255,255,.6)', fontSize: 13, margin: '.4rem 0 0' }}>1'den 12 kişiliğe profesyonel modeller</p>
                   </div>
                 </div>
@@ -517,7 +517,7 @@ function TicariTrambolinSection() {
                   <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 50%)' }} />
                   <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', right: '1.5rem' }}>
                     <p style={{ color: '#c3e92d', fontSize: 11, fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', marginBottom: '.35rem' }}>Junior Seri</p>
-                    <h3 style={{ color: '#fff', fontFamily: '"Poppins",sans-serif', fontWeight: 800, fontSize: '1.3rem', margin: 0 }}>Junior Trambolinler</h3>
+                    <h3 style={{ color: '#fff', fontFamily: '"Poppins",sans-serif', fontWeight: 800, fontSize: '1.3rem', margin: 0 }}>Ticari Junior Trambolinler</h3>
                     <p style={{ color: 'rgba(255,255,255,.6)', fontSize: 13, margin: '.4rem 0 0' }}>Çocuklar için güvenli, dayanıklı modeller</p>
                   </div>
                 </div>
@@ -527,12 +527,11 @@ function TicariTrambolinSection() {
 
           {/* Alt özellikler */}
           {[
-            { title: 'EN-1176 Sertifikalı', desc: 'Uluslararası güvenlik standartları' },
             { title: 'Yüksek Kapasite', desc: '1\'den 12 kişilik modeller' },
             { title: 'Anahtar Teslim', desc: 'Kurulum ve garanti dahil' },
             { title: 'Yerli Üretim', desc: 'Hızlı teslimat, orijinal yedek parça' },
           ].map((f, i) => (
-            <div key={f.title} className="col-6 col-md-3">
+            <div key={f.title} className="col-6 col-md-4">
               <Reveal delay={0.1 * i}>
                 <div style={{ background: '#f8f8f8', border: '1px solid #eee', borderRadius: 14, padding: '1.25rem' }}>
                   <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#5c9200', marginBottom: '.75rem' }} />
@@ -546,7 +545,7 @@ function TicariTrambolinSection() {
 
         <Reveal delay={0.3}>
           <div style={{ marginTop: '2.5rem', display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <Link to="/urunler/olimpik-trambolinler" className="btn fw-bold" style={{ background: '#5c9200', color: '#fff', borderRadius: 10, padding: '12px 28px' }}>
+            <Link to="/urunler/ticari-olimpik-trambolinler" className="btn fw-bold" style={{ background: '#5c9200', color: '#fff', borderRadius: 10, padding: '12px 28px' }}>
               Kataloğu İncele <ArrowRight size={15} style={{ marginLeft: 6 }} />
             </Link>
             <Link to="/iletisim" className="btn fw-bold" style={{ background: '#f0f0f0', color: '#111', borderRadius: 10, padding: '12px 28px', border: '1px solid #e0e0e0' }}>
@@ -588,7 +587,7 @@ function SparePartsBanner() {
                 {BANNER_TILES.map((tile, i) => (
                   <div key={i} className="col-6">
                     <Link to={tile.href} className="tp-banner-card text-decoration-none">
-                      <img src={tile.img} alt={tile.name} loading="lazy" />
+                      <img src={tile.img} alt={tile.name} loading="lazy" style={tile.imgPos ? { objectPosition: tile.imgPos } : undefined} />
                       <div className="tp-banner-card-overlay">
                         <p className="tp-banner-card-sub">{tile.sub}</p>
                         <p className="tp-banner-card-name">{tile.name}</p>
@@ -686,11 +685,16 @@ function FooterCTA() {
         <Reveal delay={0.15}>
           <div className="d-flex flex-wrap align-items-center justify-content-center gap-3">
             <Link to="/iletisim" className="btn-accent" style={{ fontSize: 15, padding: '.9rem 2.5rem' }}>
-              Ücretsiz Teklif Al <ArrowRight size={17} />
+              Teklif Al <ArrowRight size={17} />
             </Link>
-            <a href="tel:+903129112787" className="btn-glass" style={{ fontSize: 15, padding: '.9rem 2.25rem' }}>
-              0 (312) 911 27 87
-            </a>
+            <div className="d-flex flex-column gap-2">
+              <a href="tel:+903129112787" className="btn-glass" style={{ fontSize: 15, padding: '.9rem 2.25rem', textAlign: 'center' }}>
+                0 (312) 911 27 87
+              </a>
+              <a href="tel:+905433494947" className="btn-glass" style={{ fontSize: 15, padding: '.9rem 2.25rem', textAlign: 'center' }}>
+                0 (543) 349 49 47
+              </a>
+            </div>
           </div>
         </Reveal>
       </div>

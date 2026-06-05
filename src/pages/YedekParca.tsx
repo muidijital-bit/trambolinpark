@@ -232,15 +232,22 @@ function SparePartCard({ item, fallbackImage, onZoom }: { item: SparePart; fallb
       <button onClick={() => images.length && onZoom(images, 0)} className="tp-spare-card-img border-0 p-0"
         style={{ cursor: images.length ? 'zoom-in' : 'default', background: 'transparent', width: '100%' }}>
         {displayImg
-          ? <img src={displayImg} alt={item.title} loading="lazy" style={{ opacity: images[0] ? 1 : 0.45 }} />
-          : <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#cbd5e1' }}><Wrench size={28} /></div>}
+          ? <img src={displayImg} alt={item.title} loading="lazy"
+              style={{ opacity: images[0] ? 1 : 0.45 }}
+              onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none'; (e.currentTarget.nextElementSibling as HTMLElement | null)?.style.setProperty('display', 'flex'); }} />
+          : null}
+        <div style={{ display: displayImg ? 'none' : 'flex', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center', color: '#cbd5e1' }}>
+          <Wrench size={28} />
+        </div>
         {images.length > 1 && (
           <span style={{ position: 'absolute', top: 6, right: 6, fontSize: 9, fontWeight: 900, background: 'rgba(15,23,42,.75)', color: '#fff', borderRadius: 100, padding: '2px 6px' }}>+{images.length - 1}</span>
         )}
       </button>
       <div className="p-3 d-flex flex-column gap-2 flex-grow-1">
         <h4 className="fw-black mb-0" style={{ fontSize: 13, color: '#1a1a1a', lineHeight: 1.3 }}>{item.title}</h4>
-        <p className="mb-0 text-muted flex-grow-1" style={{ fontSize: 12, lineHeight: 1.4 }}>{item.desc}</p>
+        <p className="mb-0 text-muted flex-grow-1" style={{ fontSize: 12, lineHeight: 1.4, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+          {item.desc}
+        </p>
         <Link to={`/yedek-parcalar/${item.key}`}
           className="btn btn-sm rounded-3 fw-black d-flex align-items-center justify-content-center gap-1 mt-1"
           style={{ background: '#5c9200', color: '#fff', border: 'none', fontSize: 11 }}>
