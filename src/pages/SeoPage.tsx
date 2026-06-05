@@ -41,11 +41,11 @@ const TOPICS: Record<string, Topic> = {
     title: (c) => `${c} Oyun Parkı – Çocuk Oyun Parkı Kurulumu 2026`,
     metaDesc: (c) => `${c} oyun parkı kurulumu ve ekipmanları 2026. Anaokulu, site, AVM ve rekreasyon alanları için güvenli oyun parkı tasarımı ve montajı.`,
     hero: (c) => `${c} Oyun Parkı`,
-    intro: (c) => `${c}'de anaokulu, konut sitesi, belediye parkı ve alışveriş merkezleri için oyun parkı tasarlıyor, üretiyor ve kuruyoruz. EN-1176 sertifikalı ekipmanlarımız ve profesyonel montaj hizmetimizle çocukların güvenli, renkli oyun alanlarını yaratıyoruz.`,
+    intro: (c) => `${c}'de anaokulu, konut sitesi, belediye parkı ve alışveriş merkezleri için oyun parkı tasarlıyor, üretiyor ve kuruyoruz. CE belgeli ekipmanlarımız ve profesyonel montaj hizmetimizle çocukların güvenli, renkli oyun alanlarını yaratıyoruz.`,
     features: ['Anaokulu ve kreş ekipmanları', 'Site ve bahçe oyun parkları', 'Park ve rekreasyon alanları', 'Anahtar teslim montaj', 'Bakım ve yedek parça desteği'],
     sections: [
       { heading: 'Hizmet Alanlarımız', items: (c) => [`Anaokulu ve Kreş: ${c}'deki eğitim kurumlarına özel yaş grubuna uygun ekipmanlar`, 'Konut Siteleri: Bahçe ve ortak alan oyun parkları', 'Belediye Parkları: Dış mekan dayanıklı ekipmanlar', 'AVM ve Eğlence Merkezleri: İç mekân aktivite alanları'] },
-      { heading: 'Standartlar', items: () => ['EN-1176 oyun ekipmanı standardı', 'EN-1177 zemin emniyet standardı', 'CE uygunluk belgesi', 'Periyodik güvenlik denetim raporu'] },
+      { heading: 'Standartlar', items: () => ['Uluslararası oyun ekipmanı standartları', 'EN-1177 zemin emniyet standardı', 'CE uygunluk belgesi', 'Periyodik güvenlik denetim raporu'] },
     ],
     cta: 'Oyun Parkı Keşfi İste',
   },
@@ -55,7 +55,7 @@ const TOPICS: Record<string, Topic> = {
     metaDesc: (c) => `${c} trambolin modelleri 2026. Ev tipi, profesyonel, mini fitness ve büyük bahçe trambolinleri. Güvenlik donanımları ve geniş model seçenekleri.`,
     hero: (c) => `${c} Trambolin Modelleri`,
     intro: (c) => `Spor, eğlence ve fiziksel aktiviteyi bir arada sunan trambolinler, son yıllarda hem aileler hem de spor merkezleri tarafından yoğun şekilde tercih edilmeye başladı. ${c}'de trambolin talebinin artmasıyla birlikte ürün kategorileri de genişledi; bugün hem iç mekâna hem dış mekâna uygun pek çok model bulmak mümkün.`,
-    features: ['Güvenlik ağlı ev tipi modeller', 'Profesyonel jimnastik trambolinleri', 'Mini fitness (Jumping) modelleri', 'Büyük bahçe trambolinleri', 'EN-1176 sertifikalı ticari modeller'],
+    features: ['Güvenlik ağlı ev tipi modeller', 'Profesyonel jimnastik trambolinleri', 'Mini fitness (Jumping) modelleri', 'Büyük bahçe trambolinleri', 'CE belgeli ticari modeller'],
     sections: [
       { heading: 'Ev Tipi Trambolin Modelleri', body: (c) => `${c}'de ev tipi trambolinler genellikle daha kompakt, güvenlik ağı bulunan ve çocukların kullanımına uygun seçeneklerdir. Yay sistemi ve zıplama yüzeyi kalitesi uzun ömürlü kullanımı doğrudan etkiler.` },
       { heading: 'Profesyonel Trambolin Modelleri', body: (c) => `${c}'deki spor salonları, jimnastik merkezleri ve fitness stüdyoları için üretilen profesyonel trambolinler çok daha dayanıklı malzemelerden üretilir. Yüksek taşıma kapasitesi ve geniş atlama yüzeyi bu modellerin öne çıkan özellikleri arasındadır.` },
@@ -311,12 +311,12 @@ const TOPICS: Record<string, Topic> = {
 
   'ticari-trambolin': {
     title: (c) => `${c} Ticari Trambolin – Profesyonel Trambolin Sistemleri 2026`,
-    metaDesc: (c) => `${c} ticari trambolin sistemleri 2026. Eğlence merkezi, AVM ve trambolin park için EN-1176 sertifikalı profesyonel trambolin çözümleri.`,
+    metaDesc: (c) => `${c} ticari trambolin sistemleri 2026. Eğlence merkezi, AVM ve trambolin park için profesyonel ticari trambolin çözümleri.`,
     hero: (c) => `${c} Ticari Trambolin`,
-    intro: (c) => `${c}'de eğlence merkezi, AVM, spor salonu ve trambolin park projelerinde kullanılan ticari trambolinler; yüksek taşıma kapasitesi, EN-1176 güvenlik sertifikası ve uzun ömürlü yapısıyla ev tipi modellerden belirgin biçimde ayrılır.`,
-    features: ['EN-1176 güvenlik sertifikası', 'Yüksek taşıma kapasitesi (120–150 kg/kişi)', 'Galvanizli çelik çerçeve', 'Profesyonel yay sistemi', 'Anahtar teslim kurulum ve garanti'],
+    intro: (c) => `${c}'de eğlence merkezi, AVM, spor salonu ve trambolin park projelerinde kullanılan ticari trambolinler; yüksek taşıma kapasitesi, CE güvenlik belgesi ve uzun ömürlü yapısıyla ev tipi modellerden belirgin biçimde ayrılır.`,
+    features: ['CE güvenlik belgesi', 'Yüksek taşıma kapasitesi (120–150 kg/kişi)', 'Galvanizli çelik çerçeve', 'Profesyonel yay sistemi', 'Anahtar teslim kurulum ve garanti'],
     sections: [
-      { heading: 'Ticari Trambolin ile Ev Tipi Arasındaki Fark', items: () => ['Çerçeve kalınlığı: Ticari modeller en az 2× daha kalın çelik kullanır', 'Yay sayısı ve kalitesi: Daha fazla ve daha güçlü yaylarla uzun ömür', 'Güvenlik belgesi: EN-1176 zorunludur, ev tipi için isteğe bağlı', 'Taşıma kapasitesi: Günlük yoğun kullanıma dayanıklı', 'Bakım kolaylığı: Modüler yedek parça sistemi'] },
+      { heading: 'Ticari Trambolin ile Ev Tipi Arasındaki Fark', items: () => ['Çerçeve kalınlığı: Ticari modeller en az 2× daha kalın çelik kullanır', 'Yay sayısı ve kalitesi: Daha fazla ve daha güçlü yaylarla uzun ömür', 'Güvenlik belgesi: Ticari kullanım için CE belgeli, ev tipi için isteğe bağlı', 'Taşıma kapasitesi: Günlük yoğun kullanıma dayanıklı', 'Bakım kolaylığı: Modüler yedek parça sistemi'] },
       { heading: 'Hangi İşletmeler Tercih Eder?', items: (c) => [`Trambolin parklar: ${c}'deki büyük eğlence kompleksleri için`, 'AVM aktivite alanları: Kısa süreli eğlence odaklı yerleşimler', 'Spor salonları: Fitness ve jimnastik odaklı kullanım', 'Okul ve kreşler: Çocukların motor gelişimine katkı sağlayan kurumsal projeler'] },
       { heading: 'Teknik Destek ve Garanti', body: (c) => `${c} ve Türkiye genelinde anahtar teslim kurulum, yıllık bakım sözleşmesi ve orijinal yedek parça teminini garantiliyoruz.` },
     ],
@@ -342,7 +342,7 @@ const TOPICS: Record<string, Topic> = {
     metaDesc: (c) => `${c} trambolin park kurulumu 2026. Anahtar teslim trambolin park tasarımı, ekipman temini ve işletme danışmanlığı. Fizibilite analizi için iletişime geçin.`,
     hero: (c) => `${c} Trambolin Park`,
     intro: (c) => `${c}'de trambolin park açmak isteyenler için anahtar teslim çözümler sunuyoruz. Serbest atlama alanları, foam pit, dodgeball sahası, ninja parkuru ve çocuk bölümünden oluşan tam kapsamlı trambolin park sistemleri tasarlar ve kurarız.`,
-    features: ['Fizibilite ve alan analizi', '3D yerleşim planı', 'Anahtar teslim kurulum', 'EN-1176 sertifikalı ekipmanlar', 'İşletme ve personel eğitimi'],
+    features: ['Fizibilite ve alan analizi', '3D yerleşim planı', 'Anahtar teslim kurulum', 'CE belgeli ekipmanlar', 'İşletme ve personel eğitimi'],
     sections: [
       {
         heading: 'Trambolin Park Bölümleri',
@@ -458,7 +458,7 @@ const TOPICS: Record<string, Topic> = {
       {
         heading: 'Öne Çıkan Özellikler',
         items: () => [
-          'Güvenlik odaklı tasarım (EN-1176 standartları)',
+          'Güvenlik odaklı tasarım',
           'Geniş malzeme ve renk seçenekleri',
           'Alana özel özelleştirilebilir projeler',
           'Yerinde kurulum ve montaj desteği',
@@ -532,20 +532,20 @@ const STANDALONE: Record<string, StandalonePage> = {
     title: 'Trambolin – Profesyonel Trambolin Üreticisi | Trambolinpark',
     metaDesc: 'Trambolinpark — Türkiye\'nin trambolin üreticisi. Ev tipi, ticari ve olimpik trambolin modelleri. CE sertifikalı, anahtar teslim kurulum. Fiyat teklifi alın.',
     hero: 'Trambolin',
-    intro: 'Trambolinpark olarak Türkiye genelinde ev tipi, ticari ve olimpik trambolin üretimi yapıyoruz. Güvenlik öncelikli tasarımlarımız, CE ve EN-1176 sertifikalarıyla hem bireysel hem kurumsal kullanıcılara hitap eder.',
-    features: ['Ev tipi ve ticari modeller', 'Olimpik ve jimnastik modelleri', 'CE / EN-1176 sertifikalı', 'Geniş yedek parça stoku', 'Türkiye geneli kurulum'],
+    intro: 'Trambolinpark olarak Türkiye genelinde ev tipi, ticari ve olimpik trambolin üretimi yapıyoruz. Güvenlik öncelikli tasarımlarımız, CE belgeli yapısıyla hem bireysel hem kurumsal kullanıcılara hitap eder.',
+    features: ['Ev tipi ve ticari modeller', 'Olimpik ve jimnastik modelleri', 'CE belgeli', 'Geniş yedek parça stoku', 'Türkiye geneli kurulum'],
     sections: [
       {
         heading: 'Trambolin Türleri',
         items: [
           'Ev Tipi Trambolin: Güvenlik ağlı, kompakt, aile bahçesi için',
-          'Ticari Trambolin: Yüksek kapasite, EN-1176 sertifikalı, park ve eğlence merkezi için',
+          'Ticari Trambolin: Yüksek kapasite, CE belgeli, park ve eğlence merkezi için',
           'Olimpik Trambolin: FIG standartları, yarışma ve antrenman için',
           'Mini Trambolin: Jumping Fitness, ev ve spor salonu için',
           'Trambolin Park Sistemi: Modüler zemin trambolinleri, duvar ve eğim panelleri',
         ],
       },
-      { heading: 'Güvenlik', items: ['EN-1176 (ticari) ve EN-71 (ev) standartları', 'Yüksek UV dayanımlı atlama yüzeyi', 'Çift katlı güvenlik ağı dikişi', 'Yük testi: 1,5× nominal kapasite', 'Periyodik bakım rehberi ile teslim'] },
+      { heading: 'Güvenlik', items: ['Uluslararası güvenlik standartları', 'Yüksek UV dayanımlı atlama yüzeyi', 'Çift katlı güvenlik ağı dikişi', 'Yük testi: 1,5× nominal kapasite', 'Periyodik bakım rehberi ile teslim'] },
       { heading: 'Satın Alma ve Kurulum', body: 'Ürün seçiminden kuruluma kadar tüm süreçte yanınızdayız. Ücretsiz keşif, teknik danışmanlık ve anahtar teslim montaj ile trambolininizi en kısa sürede kullanıma hazır hale getiriyoruz.' },
     ],
     cta: 'Trambolin Teklifi Al',
@@ -553,10 +553,10 @@ const STANDALONE: Record<string, StandalonePage> = {
 
   'trambolin-parklari': {
     title: 'Trambolin Parkları – Ticari Trambolin Park Ekipmanları | Trambolinpark',
-    metaDesc: 'Ticari trambolin parkları için ekipman, tasarım ve kurulum hizmetleri. TP-205, TP-206, TP-207 ve daha fazla model. EN-1176 sertifikalı anahtar teslim çözümler.',
+    metaDesc: 'Ticari trambolin parkları için ekipman, tasarım ve kurulum hizmetleri. TP-205, TP-206, TP-207 ve daha fazla model. CE belgeli anahtar teslim çözümler.',
     hero: 'Trambolin Parkları',
-    intro: 'Eğlence merkezleri, AVM\'ler ve rekreasyon tesisleri için profesyonel trambolin parkı çözümleri sunuyoruz. TP serisi modellerimiz EN-1176 güvenlik sertifikalıdır.',
-    features: ['EN-1176 sertifikalı TP serisi modeller', 'Özel tasarım ve 3D yerleşim planı', 'Anahtar teslim kurulum', 'Personel eğitimi', 'Yedek parça ve teknik destek'],
+    intro: 'Eğlence merkezleri, AVM\'ler ve rekreasyon tesisleri için profesyonel trambolin parkı çözümleri sunuyoruz. TP serisi modellerimiz CE güvenlik belgeli ve anahtar teslim kuruluma hazırdır.',
+    features: ['CE belgeli TP serisi modeller', 'Özel tasarım ve 3D yerleşim planı', 'Anahtar teslim kurulum', 'Personel eğitimi', 'Yedek parça ve teknik destek'],
     sections: [
       { heading: 'Ticari Trambolin Parkı Nedir?', body: 'Ticari trambolin parkları; eğlence merkezleri, AVM\'ler ve spor tesislerinde kurulan, geniş atlama alanları, foam pit bölümleri, ninja parkurları ve dodgeball sahalarından oluşan çok bölümlü eğlence kompleksleridir.' },
       { heading: 'TP Serisi Modeller', items: ['TP-205: Orta ölçek, 4–6 bölüm', 'TP-206: Geniş atlama alanı, foam pit dahil', 'TP-207: Ninja parkuru entegreli', 'TP-208: Dodgeball sahası dahil', 'TP-209: Tam kapsamlı park sistemi'] },

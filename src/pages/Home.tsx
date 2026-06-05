@@ -8,7 +8,7 @@ const TP  = 'https://trambolinpark.com';
 const PROCESS = [
   { num: '01', title: 'Keşif & Analiz', desc: 'Mekanınızı ve hedef kitlenizi analiz ederek projeye özgü konsept geliştiriyoruz.' },
   { num: '02', title: '3D Tasarım', desc: 'Uzman ekibimiz alanınıza özel 3D modelleme ve yerleşim planı hazırlıyor.' },
-  { num: '03', title: 'Üretim', desc: 'EN-1176 standartlarında, yerli üretim ile yüksek kaliteli ürünler fabrikamızda üretiliyor.' },
+  { num: '03', title: 'Üretim', desc: 'Uluslararası güvenlik standartlarında, yerli üretim ile yüksek kaliteli ürünler fabrikamızda üretiliyor.' },
   { num: '04', title: 'Kurulum & Açılış', desc: 'Profesyonel ekibimiz anahtar teslim kurulum gerçekleştirir, açılışınızda yanınızdayız.' },
 ];
 
@@ -480,7 +480,7 @@ function TicariTrambolinSection() {
             Ticari Trambolinler
           </h2>
           <p style={{ color: '#888', fontSize: 15, maxWidth: 520, lineHeight: 1.8, marginBottom: '3rem' }}>
-            Eğlence merkezleri, AVM'ler ve trambolin parkları için EN-1176 sertifikalı, yüksek kapasiteli ticari trambolin sistemleri. Anahtar teslim kurulum ve garanti.
+            Eğlence merkezleri, AVM'ler ve trambolin parkları için yüksek kapasiteli ticari trambolin sistemleri. Anahtar teslim kurulum ve garanti.
           </p>
         </Reveal>
 
@@ -572,7 +572,7 @@ function SparePartsBanner() {
                 <span style={{ color: '#5c9200' }}>Hızlı Teslimat</span>
               </h2>
               <p style={{ color: '#666', fontSize: 15, lineHeight: 1.75, maxWidth: 440, marginBottom: '2rem' }}>
-                Tüm ürünlerimize ait orijinal yedek parçalar stokta. EN-1176 sertifikalı bileşenler, aynı gün kargo imkânı.
+                Tüm ürünlerimize ait orijinal yedek parçalar stokta. Kaliteli bileşenler, aynı gün kargo imkânı.
               </p>
               <div className="d-flex flex-wrap gap-3">
                 <Link to="/yedek-parcalar" className="btn-accent">Parça Mağazası <ArrowRight size={16} /></Link>

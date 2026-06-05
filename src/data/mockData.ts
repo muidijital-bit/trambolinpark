@@ -11,7 +11,7 @@ export interface Product {
 }
 
 const OLIMPiK_FEATURES = [
-  'EN-1176 / EN-913 Sertifikalı',
+  'CE Belgeli Güvenli Tasarım',
   'Galvanizli Çelik İskelet (Paslanmaz)',
   '6 mm Çelik Yay — Çift Galvaniz Kaplama',
   'A-1 Kalite UV Dayanımlı PVC Yay Pedi',
@@ -21,7 +21,7 @@ const OLIMPiK_FEATURES = [
 ];
 
 const JUNIOR_FEATURES = [
-  'EN-1176 / EN-913 Sertifikalı',
+  'CE Belgeli Güvenli Tasarım',
   '4-10 Yaş Grubuna Özel Junior Ölçü',
   'Galvanizli Çelik İskelet (Paslanmaz)',
   '6 mm Çelik Yay — Çift Galvaniz Kaplama',
@@ -32,7 +32,7 @@ const JUNIOR_FEATURES = [
 ];
 
 const SOFTPLAY_FEATURES = [
-  'EN-1176 Sertifikalı Tasarım',
+  'CE Belgeli Güvenli Tasarım',
   'Yangın Geciktirici (B-s1, d0) Sünger Dolgu',
   'Antibakteriyel & Yıkanabilir PVC Kaplama',
   'Yumuşak Köşe & Kenar Tasarımı',
@@ -41,7 +41,7 @@ const SOFTPLAY_FEATURES = [
 ];
 
 const PARK_FEATURES = [
-  'EN-1176 / EN-913 Sertifikalı Anahtar Teslim Park',
+  'CE Belgeli Anahtar Teslim Park',
   'Yüksek Yoğunluklu Sünger Havuzları',
   'Galvaniz Çelik Konstrüksiyon',
   'Profesyonel İşletme Yoğunluğu için Tasarım',
@@ -51,7 +51,7 @@ const PARK_FEATURES = [
 ];
 
 const HAVUZ_FEATURES = [
-  'EN-1176 Sertifikalı',
+  'CE Belgeli Güvenli Tasarım',
   'Yüksek Yoğunluklu Köpük Duvarlar',
   'Antibakteriyel & Yıkanabilir PVC Kaplama',
   'CE Sertifikalı 8 cm Toplar Dahil',
@@ -159,10 +159,10 @@ export const allProducts: Product[] = [
   {
     id: 'tb-yer-2',
     title: 'Zemin Trambolini — Standart',
-    description: 'Zemine gömülü standart ölçü yer trambolini. Park, oyun alanı ve okul bahçeleri için EN-1176 sertifikalı güvenli çözüm.',
+    description: 'Zemine gömülü standart ölçü yer trambolini. Park, oyun alanı ve okul bahçeleri için güvenli çözüm.',
     imageUrl: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$03UxdqFQy1mlU5xTZEQc.jpg`,
     category: 'yer-zemin-trambolin', categoryName: 'Yer (Zemin) Trambolinleri',
-    features: ['EN-1176 Park Standardı', 'Sıfır Düşme Yüksekliği', 'Galvanizli Çelik Çerçeve', 'UV & Don Dayanımlı PVC Pad', 'Anahtar Teslim Kurulum'],
+    features: ['CE Belgeli Güvenli Tasarım', 'Sıfır Düşme Yüksekliği', 'Galvanizli Çelik Çerçeve', 'UV & Don Dayanımlı PVC Pad', 'Anahtar Teslim Kurulum'],
   },
   {
     id: 'tb-yer-3',
@@ -170,7 +170,7 @@ export const allProducts: Product[] = [
     description: 'Olimpik standart ölçülerde (3×5 m) zemine entegre profesyonel trambolin. Belediye parkları ve spor tesisleri için ideal.',
     imageUrl: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$z70rxGQ4nYF1EgfPtcUz.jpg`,
     category: 'yer-zemin-trambolin', categoryName: 'Yer (Zemin) Trambolinleri',
-    features: ['EN-1176 / EN-913 Sertifikalı', 'Olimpik Standart Ölçü (3×5 m)', 'Sıfır Düşme Yüksekliği', '2 Yıl Üretici Garantisi'],
+    features: ['CE Belgeli Güvenli Tasarım', 'Olimpik Standart Ölçü (3×5 m)', 'Sıfır Düşme Yüksekliği', '2 Yıl Üretici Garantisi'],
   },
 
   // ── SALTO TRAMBOLİN ───────────────────────────────────────────
