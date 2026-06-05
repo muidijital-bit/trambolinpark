@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { spareCategories as staticCategories, type PartCategory } from '../data/spareParts';
 
+const ORDER = ['trambolin-yedek', 'salto-yedek', 'top-havuzu-yedek', 'sisme-yedek'];
+
 export function useSpareParts() {
   const [categories, setCategories] = useState<PartCategory[]>([]);
   const [loading, setLoading] = useState(true);
@@ -15,7 +17,7 @@ export function useSpareParts() {
       .order('title')
       .then(({ data, error }) => {
         if (!error && data && data.length > 0) {
-          setCategories(buildCategories(data));
+          setCategories(mergeWithStatic(data));
         } else {
           setCategories(staticCategories);
         }
@@ -26,10 +28,13 @@ export function useSpareParts() {
   return { categories, loading };
 }
 
-function buildCategories(rows: any[]): PartCategory[] {
+function mergeWithStatic(rows: any[]): PartCategory[] {
+  // Build categories from Supabase rows
   const catMap = new Map<string, PartCategory>();
+  const remoteItemKeys = new Set<string>();
 
   for (const r of rows) {
+    remoteItemKeys.add(r.item_key);
     if (!catMap.has(r.category_key)) {
       catMap.set(r.category_key, {
         key: r.category_key,
@@ -40,11 +45,27 @@ function buildCategories(rows: any[]): PartCategory[] {
         items: [],
       });
     }
-    const cat = catMap.get(r.category_key)!;
-    cat.items.push({ key: r.item_key, title: r.title, desc: r.description, image: r.image, gallery: r.gallery ?? [] });
+    catMap.get(r.category_key)!.items.push({
+      key: r.item_key,
+      title: r.title,
+      desc: r.description,
+      image: r.image,
+      gallery: r.gallery ?? [],
+    });
   }
 
-  const ORDER = ['trambolin-yedek', 'salto-yedek', 'top-havuzu-yedek', 'sisme-yedek'];
+  // Merge static: add categories/items not in Supabase
+  for (const staticCat of staticCategories) {
+    const staticItems = staticCat.items.filter(item => !remoteItemKeys.has(item.key));
+    if (!catMap.has(staticCat.key)) {
+      // Whole category missing from Supabase — add it entirely
+      if (staticItems.length > 0) catMap.set(staticCat.key, { ...staticCat, items: staticItems });
+    } else if (staticItems.length > 0) {
+      // Category exists but has missing items — append them
+      catMap.get(staticCat.key)!.items.push(...staticItems);
+    }
+  }
+
   const all = Array.from(catMap.values());
   return [
     ...ORDER.map(k => all.find(c => c.key === k)).filter(Boolean) as PartCategory[],
