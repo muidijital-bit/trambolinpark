@@ -56,27 +56,11 @@ export default function Home() {
 function HeroSection() {
   return (
     <section className="tp-hero">
-      {/* YouTube background */}
-      <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
-        <iframe
-          src="https://www.youtube.com/embed/z968gai3aw8?si=wYtRL_WeXGHnTMgQ&amp;controls=0&amp;autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=z968gai3aw8"
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-          style={{
-            position: 'absolute',
-            top: '50%', left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: '177.78vh',
-            height: '56.25vw',
-            minWidth: '100%',
-            minHeight: '100%',
-            border: 'none',
-            pointerEvents: 'none',
-          }}
-        />
-      </div>
+      {/* Video background */}
+      <video autoPlay loop muted playsInline crossOrigin="anonymous"
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', pointerEvents: 'none' }}>
+        <source src="https://pub-c08c3bd605204f0ebf774c0daf4622e6.r2.dev/hero.mp4" type="video/mp4" />
+      </video>
       <div className="tp-hero-overlay" />
 
       {/* Content */}
