@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ChevronRight, ChevronLeft, ChevronRight as ChevronRightIcon, X, ArrowLeft, Wrench, Tag } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSparePartByKey } from '../hooks/useSparePartByKey';
+import { thumb } from '../lib/imageUtils';
 
 const WA = '905433494947';
 const buildWa = (title: string) =>
@@ -95,7 +96,7 @@ export default function YedekParcaDetay() {
                   }}
                   onClick={() => images.length && setLightboxIdx(0)}>
                   {images[0]
-                    ? <img src={images[0]} alt={part.title} style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'drop-shadow(0 12px 32px rgba(0,0,0,.5))' }} />
+                    ? <img src={thumb(images[0], 700, 700)} alt={part.title} style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'drop-shadow(0 12px 32px rgba(0,0,0,.5))' }} />
                     : <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12, color: 'rgba(255,255,255,.3)' }}>
                         <Wrench size={48} />
                         <span style={{ fontSize: 12 }}>Görsel mevcut değil</span>
@@ -112,7 +113,7 @@ export default function YedekParcaDetay() {
                     {images.map((img, i) => (
                       <button key={i} onClick={() => setLightboxIdx(i)}
                         style={{ width: 56, height: 56, borderRadius: 10, border: `2px solid ${lightboxIdx === i ? '#c3e92d' : 'rgba(255,255,255,.15)'}`, background: 'rgba(255,255,255,.06)', overflow: 'hidden', padding: 4, cursor: 'zoom-in' }}>
-                        <img src={img} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                        <img src={thumb(img, 120)} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                       </button>
                     ))}
                   </div>

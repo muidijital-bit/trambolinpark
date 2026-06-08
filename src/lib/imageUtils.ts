@@ -44,6 +44,15 @@ export async function optimizeImage(file: File): Promise<File> {
   });
 }
 
+export function thumb(url: string, width: number, height?: number, quality = 70): string {
+  if (!url || !url.includes('/storage/v1/object/public/')) return url;
+  const base = url.replace('/storage/v1/object/public/', '/storage/v1/render/image/public/');
+  const params = height
+    ? `width=${width}&height=${height}&quality=${quality}&resize=cover`
+    : `width=${width}&quality=${quality}`;
+  return `${base}?${params}`;
+}
+
 export function toSlug(title: string): string {
   return title
     .toLowerCase()

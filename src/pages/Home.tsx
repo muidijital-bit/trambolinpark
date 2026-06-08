@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight, Phone, Mail, MessageCircle, MapPin, Zap, Layers, Circle, Wind, Wrench, Triangle } from 'lucide-react';
+import { thumb } from '../lib/imageUtils';
 
 /* ── Data ─────────────────────────────────────────────────── */
 
@@ -185,7 +186,7 @@ function ProductsSection() {
             <div className="d-flex flex-column gap-3 flex-grow-1">
               {BENTO_ROW1.map(c => (
                 <Link key={c.tag} to={c.href} className="tp-bento-card tp-bento-mid" style={{ flex: 1, minHeight: 216 }}>
-                  <img src={c.img} alt={c.name} loading="lazy" style={{ objectPosition: c.imgPos }} />
+                  <img src={thumb(c.img, 700, 460)} alt={c.name} loading="lazy" style={{ objectPosition: c.imgPos }} />
                   <div className="tp-bento-overlay" />
                   <div className="tp-bento-content">
                     <div className="tp-bento-text">
@@ -205,7 +206,7 @@ function ProductsSection() {
           {BENTO_ROW2.map(c => (
             <div key={c.tag} className="col-12 col-sm-6 col-lg-4">
               <Link to={c.href} className="tp-bento-card tp-bento-sm" style={{ minHeight: 290 }}>
-                <img src={c.img} alt={c.name} loading="lazy" />
+                <img src={thumb(c.img, 600, 480)} alt={c.name} loading="lazy" />
                 <div className="tp-bento-overlay" />
                 <div className="tp-bento-content">
                   <div className="tp-bento-text">
@@ -279,7 +280,7 @@ function SparePartsSection() {
           {parts.map(p => (
             <div key={p.key} className="tp-spare-glass">
               <div className="tp-spare-glass-img">
-                <img src={p.img} alt={p.name} loading="lazy" />
+                <img src={thumb(p.img, 320, 320)} alt={p.name} loading="lazy" />
               </div>
               <div className="tp-spare-glass-body">
                 <p className="tp-spare-glass-name">{p.name}</p>
@@ -495,7 +496,7 @@ function TicariTrambolinSection() {
                 <div style={{ borderRadius: 20, overflow: 'hidden', position: 'relative', aspectRatio: '16/9', background: '#111' }}
                   onMouseEnter={e => (e.currentTarget.querySelector('img')! as HTMLImageElement).style.transform = 'scale(1.05)'}
                   onMouseLeave={e => (e.currentTarget.querySelector('img')! as HTMLImageElement).style.transform = 'scale(1)'}>
-                  <img src={`https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/products/migrated--Wao.png`} alt="Junior Trambolin"
+                  <img src={thumb(`https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/products/migrated--Wao.png`, 800, 450)} alt="Junior Trambolin"
                     style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform .5s ease' }} />
                   <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 50%)' }} />
                   <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', right: '1.5rem' }}>
@@ -570,7 +571,7 @@ function SparePartsBanner() {
                 {BANNER_TILES.map((tile, i) => (
                   <div key={i} className="col-6">
                     <Link to={tile.href} className="tp-banner-card text-decoration-none">
-                      <img src={tile.img} alt={tile.name} loading="lazy" style={tile.imgPos ? { objectPosition: tile.imgPos } : undefined} />
+                      <img src={thumb(tile.img, 400, 300)} alt={tile.name} loading="lazy" style={tile.imgPos ? { objectPosition: tile.imgPos } : undefined} />
                       <div className="tp-banner-card-overlay">
                         <p className="tp-banner-card-sub">{tile.sub}</p>
                         <p className="tp-banner-card-name">{tile.name}</p>

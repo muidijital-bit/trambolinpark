@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
+import { thumb } from '../lib/imageUtils';
 
 const allImages = [
   // 0-13: Saha Kurulumları (trambolin parkları + olimpik)
@@ -117,7 +118,7 @@ export default function Galeri() {
                       cursor: 'pointer', transition: 'background .15s, border-color .15s',
                     }}>
                     <div style={{ width: 44, height: 44, flexShrink: 0, borderRadius: 10, overflow: 'hidden', background: '#f0f0f0' }}>
-                      <img src={cover} alt={cat.label} loading="lazy"
+                      <img src={thumb(cover, 100)} alt={cat.label} loading="lazy"
                         style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     </div>
                     <div style={{ minWidth: 0, flex: 1 }}>
@@ -144,7 +145,7 @@ export default function Galeri() {
               className="tp-masonry">
               {images.map((src, i) => (
                 <div key={src} className="tp-masonry-item" onClick={() => setLightbox(i)}>
-                  <img src={src} alt={`${activeCat.label} ${i + 1}`} loading="lazy" />
+                  <img src={thumb(src, 480)} alt={`${activeCat.label} ${i + 1}`} loading="lazy" />
                   <div className="tp-masonry-overlay">
                     <div className="tp-masonry-zoom"><ZoomIn size={18} /></div>
                   </div>
@@ -174,7 +175,7 @@ export default function Galeri() {
               <ChevronRight size={24} />
             </button>
             <motion.img key={lightbox} initial={{ opacity: 0, scale: .95 }} animate={{ opacity: 1, scale: 1 }}
-              src={images[lightbox]} alt="" onClick={e => e.stopPropagation()}
+              src={thumb(images[lightbox], 1400, undefined, 80)} alt="" onClick={e => e.stopPropagation()}
               style={{ maxWidth: '90vw', maxHeight: '85vh', objectFit: 'contain', borderRadius: 12 }} />
             <div style={{ position: 'absolute', bottom: 16, left: '50%', transform: 'translateX(-50%)', background: 'rgba(255,255,255,.1)', backdropFilter: 'blur(8px)', padding: '.35rem 1.25rem', borderRadius: 100, color: '#fff', fontWeight: 800, fontSize: 13 }}>
               {activeCat.label} · {lightbox + 1} / {images.length}

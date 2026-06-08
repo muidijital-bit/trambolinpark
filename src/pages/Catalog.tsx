@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronRight, SlidersHorizontal } from 'lucide-react';
 import type { Product } from '../data/mockData';
 import { useProducts } from '../hooks/useProducts';
+import { thumb } from '../lib/imageUtils';
 import SidebarSearch from '../components/SidebarSearch';
 import type { SearchItem } from '../components/SidebarSearch';
 
@@ -263,7 +264,7 @@ function CatalogCard({ product, index }: { product: Product; index: number }) {
       transition={{ delay: (index % 6) * 0.04 }}>
       <button onClick={() => navigate(`/urunler/${product.category}/${product.id}`)} className="tp-card w-100 border-0 text-start" style={{ display: 'block' }}>
         <div className="tp-card-img">
-          <img loading="lazy" src={product.imageUrl} alt={product.title} />
+          <img loading="lazy" src={thumb(product.imageUrl, 480, 360)} alt={product.title} />
         </div>
         <div className="tp-card-body">
           <span className="tp-card-cat">{product.categoryName}</span>

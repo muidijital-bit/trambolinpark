@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { CheckCircle2, ChevronRight, ChevronLeft, Tag } from 'lucide-react';
 import { useProduct } from '../hooks/useProduct';
+import { thumb } from '../lib/imageUtils';
 
 const WA = '905433494947';
 const buildWa = (title: string, msg = 'hakkında bilgi almak istiyorum') =>
@@ -77,7 +78,7 @@ export default function ProductDetail() {
                   background: 'rgba(255,255,255,.04)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                 }}>
-                  <img src={product.imageUrl} alt={product.title}
+                  <img src={thumb(product.imageUrl, 800, 800)} alt={product.title}
                     style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'drop-shadow(0 16px 40px rgba(0,0,0,.5))' }} />
                 </div>
               </div>
@@ -162,7 +163,7 @@ export default function ProductDetail() {
                 className="tp-card border-0 text-start flex-shrink-0"
                 style={{ width: 'clamp(160px, 55vw, 220px)', scrollSnapAlign: 'start', display: 'block', cursor: 'pointer' }}>
                 <div className="tp-card-img">
-                  <img loading="lazy" src={p.imageUrl} alt={p.title} />
+                  <img loading="lazy" src={thumb(p.imageUrl, 440, 330)} alt={p.title} />
                 </div>
                 <div className="tp-card-body">
                   <span className="tp-card-cat">{p.categoryName}</span>
