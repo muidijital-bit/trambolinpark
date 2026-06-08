@@ -2,8 +2,6 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, ShieldCheck, Zap, Wrench, Palette, Medal, Users, Target, Compass } from 'lucide-react';
 
-const TP = 'https://trambolinpark.com';
-
 const STATS = [
   { value: '18+',  label: 'Yıllık Deneyim' },
   { value: '623+', label: 'Tamamlanan Proje' },
@@ -80,19 +78,19 @@ export default function About() {
 
               {/* Main image */}
               <div style={{ borderRadius: 20, overflow: 'hidden', boxShadow: '0 28px 72px rgba(0,0,0,.18)', aspectRatio: '4/3' }}>
-                <img src={`${TP}/album/trambolinparkyeni/coklualbumler/-VkT.jpg`} alt="Kurulum sahası"
+                <img src={`https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/products/migrated--VkT.jpg`} alt="Kurulum sahası"
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
               </div>
 
               {/* Floating secondary image */}
               <div style={{ position: 'absolute', bottom: 0, right: 0, width: '52%', borderRadius: 16, overflow: 'hidden', boxShadow: '0 20px 56px rgba(0,0,0,.22)', border: '4px solid #f5f5f5', aspectRatio: '4/3' }}>
-                <img src={`${TP}/album/trambolinparkyeni/coklualbumler/1-kisilik-olimpik-trambolin-tp-110-EAr.jpg`} alt="Saha detay"
+                <img src={`https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/products/migrated-1-kisilik-olimpik-trambolin-tp-110-EAr.jpg`} alt="Saha detay"
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
               </div>
 
               {/* Year badge */}
               <div style={{ position: 'absolute', top: 28, left: -24, background: '#c3e92d', borderRadius: 14, padding: '14px 22px', boxShadow: '0 12px 32px rgba(195,233,45,.4)', zIndex: 2 }}>
-                <p className="font-poppins fw-black mb-0" style={{ fontSize: 30, lineHeight: 1, color: '#0a0a0a' }}>2009</p>
+                <p className="font-poppins fw-black mb-0" style={{ fontSize: 30, lineHeight: 1, color: '#0a0a0a' }}>2008</p>
                 <p style={{ fontSize: 9, fontWeight: 900, letterSpacing: '.15em', color: 'rgba(0,0,0,.55)', margin: '3px 0 0', textTransform: 'uppercase' }}>Kuruluş</p>
               </div>
 
@@ -175,7 +173,7 @@ export default function About() {
 
       {/* ── Full-bleed gallery strip ── */}
       <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', height: 360, overflow: 'hidden' }}>
-        {[`${TP}/album/trambolinparkyeni/coklualbumler/-VkT.jpg`, `${TP}/album/trambolinparkyeni/coklualbumler/-Wao.png`, `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$kjgxoxbLjL8vG5l.jpeg`].map((src, i) => (
+        {[`https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/products/migrated--VkT.jpg`, `https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/products/migrated--Wao.png`, `https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/products/migrated-album-trambolinparkyeni-urunler-kjgxoxbLjL8vG5l.jpg`].map((src, i) => (
           <div key={i} style={{ overflow: 'hidden', position: 'relative' }}>
             <img src={src} alt="" loading="lazy"
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: i > 0 ? 'brightness(.85)' : 'none', transition: 'transform .6s ease' }}

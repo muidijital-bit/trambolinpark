@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight, Phone, Mail, MessageCircle, MapPin, Zap, Layers, Circle, Wind, Wrench, Triangle } from 'lucide-react';
-const TP  = 'https://trambolinpark.com';
 
 /* ── Data ─────────────────────────────────────────────────── */
 
@@ -150,7 +149,7 @@ const BENTO_ROW1: { tag: string; name: string; sub: string; href: string; img: s
   { tag: '03', name: 'Top Havuzları',               sub: 'Rengarenk, güvenli eğlence havuzları.',        href: '/urunler/kucuk-top-havuzlari',         img: '/images/top-havuzu.jpeg',    imgPos: 'center 40%' },
 ];
 const BENTO_ROW2 = [
-  { tag: '04', name: 'Softplay Alanları',  sub: 'Mini kahramanlar için güvenli oyun dünyası.', href: '/urunler/softplay-oyun-alanlari', img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$kjgxoxbLjL8vG5l.jpeg` },
+  { tag: '04', name: 'Softplay Alanları',  sub: 'Mini kahramanlar için güvenli oyun dünyası.', href: '/urunler/softplay-oyun-alanlari', img: `https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/products/migrated-album-trambolinparkyeni-urunler-kjgxoxbLjL8vG5l.jpg` },
   { tag: '05', name: 'Şişme Parklar',      sub: 'Junior ve büyük boy şişme oyun alanları.',   href: '/urunler/sisme-park-junior',       img: '/images/sisme-park.jpeg' },
   { tag: '06', name: 'Yedek Parçalar',     sub: 'Orijinal parçalar, hızlı kargo garantisi.',  href: '/yedek-parcalar',                  img: '/images/yedek-parcalar.jpeg' },
 ];
@@ -245,12 +244,12 @@ function ProductsSection() {
 type HomePart = { key: string; name: string; desc: string; img: string };
 
 const FEATURED_PARTS: HomePart[] = [
-  { key: 'file-cevre',          name: 'Düğümsüz Çevre Filesi (4×4)',          desc: 'Sağlam iplik yapısı ve 4×4 cm göz aralığıyla darbelere karşı yüksek direnç.',                img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$KtDHS3kg8rkGghkUJJDz.jpg` },
-  { key: 'file-orme-junior',    name: 'Junior El Örgü Örme Filesi',           desc: 'Junior ölçü trambolinler için el örgüsü örme zıplama ağı.',                                   img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$x1tZikUrUvWJVC0lfR2U.jpg` },
-  { key: 'file-orme-olimpik',   name: 'Olimpik El Örgü Örme Filesi',          desc: 'Olimpik trambolinler için el örgüsü örme zıplama ağı — uzun ömürlü.',                          img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$2foK5oIMuNJYJNXeZLqh.jpg` },
-  { key: 'file-junior-ithal',   name: 'Ticari Junior İthal Zıplama Filesi',   desc: 'Junior ölçü ticari trambolinler için ithal üretim, yüksek dayanımlı zıplama filesi.',           img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$H2o3NCT2olryjl6MoiRR.jpg` },
-  { key: 'file-olimpik-ithal',  name: 'Ticari Olimpik İthal Zıplama Filesi',  desc: 'Olimpik ölçü ticari trambolinler için ithal üretim, yoğun kullanıma uygun zıplama filesi.',    img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$5Tz1YsX1TtB7kjxUYA6W.jpg` },
-  { key: 'file-yuvarlak-cevre', name: 'Yuvarlak Çevre Koruma Filesi',         desc: 'Yuvarlak ev trambolinleri için çevre koruma güvenlik filesi.',                                 img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$yYNskKOCknmt0wHM1tf5.jpg` },
+  { key: 'file-cevre',          name: 'Düğümsüz Çevre Filesi (4×4)',          desc: 'Sağlam iplik yapısı ve 4×4 cm göz aralığıyla darbelere karşı yüksek direnç.',                img: `https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/spare-parts/migrated-album-trambolinparkyeni-urunler-KtDHS3kg8rkGghkUJJDz.jpg` },
+  { key: 'file-orme-junior',    name: 'Junior El Örgü Örme Filesi',           desc: 'Junior ölçü trambolinler için el örgüsü örme zıplama ağı.',                                   img: `https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/spare-parts/migrated-album-trambolinparkyeni-urunler-x1tZikUrUvWJVC0lfR2U.jpg` },
+  { key: 'file-orme-olimpik',   name: 'Olimpik El Örgü Örme Filesi',          desc: 'Olimpik trambolinler için el örgüsü örme zıplama ağı — uzun ömürlü.',                          img: `https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/spare-parts/migrated-album-trambolinparkyeni-urunler-2foK5oIMuNJYJNXeZLqh.jpg` },
+  { key: 'file-junior-ithal',   name: 'Ticari Junior İthal Zıplama Filesi',   desc: 'Junior ölçü ticari trambolinler için ithal üretim, yüksek dayanımlı zıplama filesi.',           img: `https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/spare-parts/migrated-album-trambolinparkyeni-urunler-H2o3NCT2olryjl6MoiRR.jpg` },
+  { key: 'file-olimpik-ithal',  name: 'Ticari Olimpik İthal Zıplama Filesi',  desc: 'Olimpik ölçü ticari trambolinler için ithal üretim, yoğun kullanıma uygun zıplama filesi.',    img: `https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/spare-parts/migrated-album-trambolinparkyeni-urunler-5Tz1YsX1TtB7kjxUYA6W.jpg` },
+  { key: 'file-yuvarlak-cevre', name: 'Yuvarlak Çevre Koruma Filesi',         desc: 'Yuvarlak ev trambolinleri için çevre koruma güvenlik filesi.',                                 img: `https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/spare-parts/migrated-album-trambolinparkyeni-urunler-yYNskKOCknmt0wHM1tf5.jpg` },
 ];
 
 function SparePartsSection() {
@@ -462,7 +461,7 @@ function ProcessSection() {
 const BANNER_TILES: { name: string; sub: string; href: string; img: string; imgPos?: string }[] = [
   { name: 'Ticari Olimpik Trambolinler', sub: 'Tekli & Çoklu',     href: '/urunler/ticari-olimpik-trambolinler', img: '/images/trambolinler.jpeg' },
   { name: 'Trambolin Parkları',          sub: 'Anahtar Teslim',    href: '/urunler/trambolin-parklari',          img: '/images/trambolinpark.jpeg' },
-  { name: 'Softplay',                    sub: 'Renkli Oyun Alanı', href: '/urunler/softplay-oyun-alanlari',      img: `${TP}/media/image/350x350/album$trambolinparkyeni$urunler$hlsMpXHkFC2OtM2.jpg` },
+  { name: 'Softplay',                    sub: 'Renkli Oyun Alanı', href: '/urunler/softplay-oyun-alanlari',      img: `https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/products/migrated-album-trambolinparkyeni-urunler-hlsMpXHkFC2OtM2.jpg` },
   { name: 'Top Havuzları',               sub: 'Junior & İşletme',  href: '/urunler/kucuk-top-havuzlari',         img: '/images/top-havuzu.jpeg',    imgPos: 'center 40%' },
 ];
 
@@ -512,7 +511,7 @@ function TicariTrambolinSection() {
                 <div style={{ borderRadius: 20, overflow: 'hidden', position: 'relative', aspectRatio: '16/9', background: '#111' }}
                   onMouseEnter={e => (e.currentTarget.querySelector('img')! as HTMLImageElement).style.transform = 'scale(1.05)'}
                   onMouseLeave={e => (e.currentTarget.querySelector('img')! as HTMLImageElement).style.transform = 'scale(1)'}>
-                  <img src={`${TP}/album/trambolinparkyeni/coklualbumler/-Wao.png`} alt="Junior Trambolin"
+                  <img src={`https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/products/migrated--Wao.png`} alt="Junior Trambolin"
                     style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform .5s ease' }} />
                   <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 50%)' }} />
                   <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', right: '1.5rem' }}>
