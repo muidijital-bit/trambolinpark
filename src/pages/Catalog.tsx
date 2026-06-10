@@ -18,13 +18,13 @@ const GROUPS = [
     { id: 'tekli-trambolinler',         name: 'Tekli Trambolinler' },
     { id: 'profesyonel-trambolin',      name: 'Profesyonel Trambolin' },
   ]},
-  { key: 'softplay-havuzlar', name: 'Softplay & Havuzlar', subs: [
+  { key: 'softplay-havuzlar', name: 'Softplay Oyun Alanları & Top Havuzları', subs: [
     { id: 'kucuk-top-havuzlari',        name: 'Küçük Top Havuzları' },
     { id: 'isletmelere-top-havuzlari',  name: 'İşletmelere Top Havuzları' },
     { id: 'softplay-oyun-alanlari',     name: 'Softplay Oyun Alanları' },
     { id: 'softplay-oyuncaklar',        name: 'Softplay Oyuncaklar' },
   ]},
-  { key: 'sisme-park', name: 'Şişme Park', subs: [
+  { key: 'sisme-park', name: 'Şişme Oyun Parkları', subs: [
     { id: 'sisme-park-junior', name: 'Şişme Park Junior' },
     { id: 'sisme-buyuk',       name: 'Şişme Büyük' },
   ]},

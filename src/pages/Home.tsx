@@ -103,8 +103,8 @@ const CAT_ITEMS = [
   { label: 'Ticari Olimpik Trambolinler', icon: <Triangle size={14} strokeWidth={1.5} />, href: '/urunler/ticari-olimpik-trambolinler' },
   { label: 'Ticari Junior Trambolinler',   icon: <Zap size={14} strokeWidth={1.5} />,      href: '/urunler/ticari-junior' },
   { label: 'Top Havuzları',              icon: <Circle size={14} strokeWidth={1.5} />,   href: '/urunler/kucuk-top-havuzlari' },
-  { label: 'Softplay Alanları',          icon: <Layers size={14} strokeWidth={1.5} />,   href: '/urunler/softplay-oyun-alanlari' },
-  { label: 'Şişme Parklar',        icon: <Wind size={14} strokeWidth={1.5} />,        href: '/urunler/sisme-park-junior' },
+  { label: 'Softplay Oyun Alanları',     icon: <Layers size={14} strokeWidth={1.5} />,   href: '/urunler/softplay-oyun-alanlari' },
+  { label: 'Şişme Oyun Parkları',  icon: <Wind size={14} strokeWidth={1.5} />,        href: '/urunler/sisme-park-junior' },
   { label: 'Yedek Parçalar',       icon: <Wrench size={14} strokeWidth={1.5} />,      href: '/yedek-parcalar' },
 ];
 
@@ -130,12 +130,12 @@ function CategoryMarquee() {
 
 /* ── 4. PRODUCTS ──────────────────────────────────────────── */
 const BENTO_ROW1: { tag: string; name: string; sub: string; href: string; img: string; imgPos?: string }[] = [
-  { tag: '02', name: 'Ticari Olimpik Trambolinler', sub: 'Profesyonel & sertifikalı atlama ekipmanları.', href: '/urunler/ticari-olimpik-trambolinler', img: '/images/trambolinler.jpeg'   },
+  { tag: '02', name: 'Tüm Trambolinler', sub: 'Profesyonel & sertifikalı atlama ekipmanları.', href: '/urunler/ticari-olimpik-trambolinler', img: '/images/trambolinler.jpeg'   },
   { tag: '03', name: 'Top Havuzları',               sub: 'Rengarenk, güvenli eğlence havuzları.',        href: '/urunler/kucuk-top-havuzlari',         img: '/images/top-havuzu.jpeg',    imgPos: 'center 40%' },
 ];
 const BENTO_ROW2 = [
-  { tag: '04', name: 'Softplay Alanları',  sub: 'Mini kahramanlar için güvenli oyun dünyası.', href: '/urunler/softplay-oyun-alanlari', img: `https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/products/migrated-album-trambolinparkyeni-urunler-kjgxoxbLjL8vG5l.jpg` },
-  { tag: '05', name: 'Şişme Parklar',      sub: 'Junior ve büyük boy şişme oyun alanları.',   href: '/urunler/sisme-park-junior',       img: '/images/sisme-park.jpeg' },
+  { tag: '04', name: 'Softplay Oyun Alanları', sub: 'Mini kahramanlar için güvenli oyun dünyası.', href: '/urunler/softplay-oyun-alanlari', img: `https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/products/migrated-album-trambolinparkyeni-urunler-kjgxoxbLjL8vG5l.jpg` },
+  { tag: '05', name: 'Şişme Oyun Parkları', sub: 'Junior ve büyük boy şişme oyun alanları.',   href: '/urunler/sisme-park-junior',       img: '/images/sisme-park.jpeg' },
   { tag: '06', name: 'Yedek Parçalar',     sub: 'Orijinal parçalar, hızlı kargo garantisi.',  href: '/yedek-parcalar',                  img: '/images/yedek-parcalar.jpeg' },
 ];
 
@@ -444,9 +444,9 @@ function ProcessSection() {
 
 /* ── 7. SPARE PARTS BANNER ────────────────────────────────── */
 const BANNER_TILES: { name: string; sub: string; href: string; img: string; imgPos?: string }[] = [
-  { name: 'Ticari Olimpik Trambolinler', sub: 'Tekli & Çoklu',     href: '/urunler/ticari-olimpik-trambolinler', img: '/images/trambolinler.jpeg' },
+  { name: 'Tüm Trambolinler', sub: 'Tekli & Çoklu',     href: '/urunler/ticari-olimpik-trambolinler', img: '/images/trambolinler.jpeg' },
   { name: 'Trambolin Parkları',          sub: 'Anahtar Teslim',    href: '/urunler/trambolin-parklari',          img: '/images/trambolinpark.jpeg' },
-  { name: 'Softplay',                    sub: 'Renkli Oyun Alanı', href: '/urunler/softplay-oyun-alanlari',      img: `https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/products/migrated-album-trambolinparkyeni-urunler-hlsMpXHkFC2OtM2.jpg` },
+  { name: 'Softplay Oyun Alanları',      sub: 'Renkli Oyun Alanı', href: '/urunler/softplay-oyun-alanlari',      img: `https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/products/migrated-album-trambolinparkyeni-urunler-hlsMpXHkFC2OtM2.jpg` },
   { name: 'Top Havuzları',               sub: 'Junior & İşletme',  href: '/urunler/kucuk-top-havuzlari',         img: '/images/top-havuzu.jpeg',    imgPos: 'center 40%' },
 ];
 
@@ -461,7 +461,7 @@ function TicariTrambolinSection() {
         <Reveal>
           <p style={{ fontFamily: '"Poppins",sans-serif', fontWeight: 800, fontSize: 10, letterSpacing: '.25em', textTransform: 'uppercase', color: '#5c9200', marginBottom: '.75rem' }}>Profesyonel Çözümler</p>
           <h2 style={{ fontFamily: '"Poppins",sans-serif', fontWeight: 900, fontSize: 'clamp(2rem,4vw,3rem)', color: '#111', lineHeight: 1.1, marginBottom: '1rem' }}>
-            Ticari Trambolinler
+            Tüm Trambolinler
           </h2>
           <p style={{ color: '#888', fontSize: 15, maxWidth: 520, lineHeight: 1.8, marginBottom: '3rem' }}>
             Eğlence merkezleri, AVM'ler ve trambolin parkları için yüksek kapasiteli ticari trambolin sistemleri. Anahtar teslim kurulum ve garanti.
@@ -481,7 +481,7 @@ function TicariTrambolinSection() {
                   <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 50%)' }} />
                   <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', right: '1.5rem' }}>
                     <p style={{ color: '#c3e92d', fontSize: 11, fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', marginBottom: '.35rem' }}>Olimpik Seri</p>
-                    <h3 style={{ color: '#fff', fontFamily: '"Poppins",sans-serif', fontWeight: 800, fontSize: '1.3rem', margin: 0 }}>Ticari Olimpik Trambolinler</h3>
+                    <h3 style={{ color: '#fff', fontFamily: '"Poppins",sans-serif', fontWeight: 800, fontSize: '1.3rem', margin: 0 }}>Tüm Trambolinler</h3>
                     <p style={{ color: 'rgba(255,255,255,.6)', fontSize: 13, margin: '.4rem 0 0' }}>1'den 12 kişiliğe profesyonel modeller</p>
                   </div>
                 </div>
@@ -492,17 +492,17 @@ function TicariTrambolinSection() {
           {/* Junior */}
           <div className="col-12 col-md-6">
             <Reveal delay={0.2}>
-              <Link to="/urunler/ticari-junior" style={{ textDecoration: 'none', display: 'block' }}>
+              <Link to="/urunler/kucuk-top-havuzlari" style={{ textDecoration: 'none', display: 'block' }}>
                 <div style={{ borderRadius: 20, overflow: 'hidden', position: 'relative', aspectRatio: '16/9', background: '#111' }}
                   onMouseEnter={e => (e.currentTarget.querySelector('img')! as HTMLImageElement).style.transform = 'scale(1.05)'}
                   onMouseLeave={e => (e.currentTarget.querySelector('img')! as HTMLImageElement).style.transform = 'scale(1)'}>
-                  <img src={thumb(`https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/products/migrated--Wao.png`, 800, 450)} alt="Junior Trambolin"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform .5s ease' }} />
+                  <img src="/images/top-havuzu.jpeg" alt="Top Havuzları"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 40%', transition: 'transform .5s ease' }} />
                   <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 50%)' }} />
                   <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', right: '1.5rem' }}>
-                    <p style={{ color: '#c3e92d', fontSize: 11, fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', marginBottom: '.35rem' }}>Junior Seri</p>
-                    <h3 style={{ color: '#fff', fontFamily: '"Poppins",sans-serif', fontWeight: 800, fontSize: '1.3rem', margin: 0 }}>Ticari Junior Trambolinler</h3>
-                    <p style={{ color: 'rgba(255,255,255,.6)', fontSize: 13, margin: '.4rem 0 0' }}>Çocuklar için güvenli, dayanıklı modeller</p>
+                    <p style={{ color: '#c3e92d', fontSize: 11, fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', marginBottom: '.35rem' }}>Top Havuzu</p>
+                    <h3 style={{ color: '#fff', fontFamily: '"Poppins",sans-serif', fontWeight: 800, fontSize: '1.3rem', margin: 0 }}>Top Havuzları</h3>
+                    <p style={{ color: 'rgba(255,255,255,.6)', fontSize: 13, margin: '.4rem 0 0' }}>Rengarenk, güvenli eğlence havuzları</p>
                   </div>
                 </div>
               </Link>
