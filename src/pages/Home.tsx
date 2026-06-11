@@ -134,7 +134,7 @@ const BENTO_ROW1: { tag: string; name: string; sub: string; href: string; img: s
   { tag: '03', name: 'Top Havuzları',               sub: 'Rengarenk, güvenli eğlence havuzları.',        href: '/urunler/kucuk-top-havuzlari',         img: '/images/top-havuzu.jpeg',    imgPos: 'center 40%' },
 ];
 const BENTO_ROW2 = [
-  { tag: '04', name: 'Softplay Oyun Alanları', sub: 'Mini kahramanlar için güvenli oyun dünyası.', href: '/urunler/softplay-oyun-alanlari', img: `https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/products/migrated-album-trambolinparkyeni-urunler-kjgxoxbLjL8vG5l.jpg` },
+  { tag: '04', name: 'Softplay Oyun Alanları', sub: 'Mini kahramanlar için güvenli oyun dünyası.', href: '/urunler/softplay-oyun-alanlari', img: '/images/softplay2.jpeg' },
   { tag: '05', name: 'Şişme Oyun Parkları', sub: 'Junior ve büyük boy şişme oyun alanları.',   href: '/urunler/sisme-park-junior',       img: '/images/sisme-park.jpeg' },
   { tag: '06', name: 'Yedek Parçalar',     sub: 'Orijinal parçalar, hızlı kargo garantisi.',  href: '/yedek-parcalar',                  img: '/images/yedek-parcalar.jpeg' },
 ];
@@ -174,7 +174,7 @@ function ProductsSection() {
                 <div className="tp-bento-text">
                   <p className="tp-bento-tag">Trambolin Parkları</p>
                   <p className="tp-bento-name tp-bento-name--lg">Tam Kapsamlı<br />Atlama Deneyimi.</p>
-                  <p className="tp-bento-sub">Yakan top, köpük havuzu, smaç — eksiksiz park çözümleri.</p>
+                  <p className="tp-bento-sub">Yakan top, sünger havuzu, smaç — eksiksiz park çözümleri.</p>
                 </div>
                 <span className="tp-bento-cta">Keşfet <ArrowRight size={12} /></span>
               </div>
@@ -446,7 +446,7 @@ function ProcessSection() {
 const BANNER_TILES: { name: string; sub: string; href: string; img: string; imgPos?: string }[] = [
   { name: 'Tüm Trambolinler', sub: 'Tekli & Çoklu',     href: '/urunler/ticari-olimpik-trambolinler', img: '/images/trambolinler.jpeg' },
   { name: 'Trambolin Parkları',          sub: 'Anahtar Teslim',    href: '/urunler/trambolin-parklari',          img: '/images/trambolinpark.jpeg' },
-  { name: 'Softplay Oyun Alanları',      sub: 'Renkli Oyun Alanı', href: '/urunler/softplay-oyun-alanlari',      img: `https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/products/migrated-album-trambolinparkyeni-urunler-hlsMpXHkFC2OtM2.jpg` },
+  { name: 'Softplay Oyun Alanları',      sub: 'Renkli Oyun Alanı', href: '/urunler/softplay-oyun-alanlari',      img: '/images/softplay2.jpeg' },
   { name: 'Top Havuzları',               sub: 'Junior & İşletme',  href: '/urunler/kucuk-top-havuzlari',         img: '/images/top-havuzu.jpeg',    imgPos: 'center 40%' },
 ];
 
