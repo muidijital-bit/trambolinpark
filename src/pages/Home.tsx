@@ -174,7 +174,7 @@ function ProductsSection() {
                 <div className="tp-bento-text">
                   <p className="tp-bento-tag">Trambolin Parkları</p>
                   <p className="tp-bento-name tp-bento-name--lg">Tam Kapsamlı<br />Atlama Deneyimi.</p>
-                  <p className="tp-bento-sub">Dodgeball, foam pit, slam dunk — eksiksiz park çözümleri.</p>
+                  <p className="tp-bento-sub">Yakan top, köpük havuzu, smaç — eksiksiz park çözümleri.</p>
                 </div>
                 <span className="tp-bento-cta">Keşfet <ArrowRight size={12} /></span>
               </div>
