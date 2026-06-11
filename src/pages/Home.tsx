@@ -134,7 +134,7 @@ const BENTO_ROW1: { tag: string; name: string; sub: string; href: string; img: s
   { tag: '03', name: 'Top Havuzları',               sub: 'Rengarenk, güvenli eğlence havuzları.',        href: '/urunler/kucuk-top-havuzlari',         img: '/images/top-havuzu.jpeg',    imgPos: 'center 40%' },
 ];
 const BENTO_ROW2 = [
-  { tag: '04', name: 'Softplay Oyun Alanları', sub: 'Mini kahramanlar için güvenli oyun dünyası.', href: '/urunler/softplay-oyun-alanlari', img: '/images/softplay3.jpeg' },
+  { tag: '04', name: 'Softplay Oyun Alanları', sub: 'Mini kahramanlar için güvenli oyun dünyası.', href: '/urunler/softplay-oyun-alanlari', img: '/images/softplay1.jpeg' },
   { tag: '05', name: 'Şişme Oyun Parkları', sub: 'Junior ve büyük boy şişme oyun alanları.',   href: '/urunler/sisme-park-junior',       img: '/images/sisme-park.jpeg' },
   { tag: '06', name: 'Yedek Parçalar',     sub: 'Orijinal parçalar, hızlı kargo garantisi.',  href: '/yedek-parcalar',                  img: '/images/yedek-parcalar.jpeg' },
 ];
@@ -446,7 +446,7 @@ function ProcessSection() {
 const BANNER_TILES: { name: string; sub: string; href: string; img: string; imgPos?: string }[] = [
   { name: 'Tüm Trambolinler', sub: 'Tekli & Çoklu',     href: '/urunler/ticari-olimpik-trambolinler', img: '/images/trambolinler.jpeg' },
   { name: 'Trambolin Parkları',          sub: 'Anahtar Teslim',    href: '/urunler/trambolin-parklari',          img: '/images/trambolinpark.jpeg' },
-  { name: 'Softplay Oyun Alanları',      sub: 'Renkli Oyun Alanı', href: '/urunler/softplay-oyun-alanlari',      img: '/images/softplay3.jpeg' },
+  { name: 'Softplay Oyun Alanları',      sub: 'Renkli Oyun Alanı', href: '/urunler/softplay-oyun-alanlari',      img: '/images/softplay1.jpeg' },
   { name: 'Top Havuzları',               sub: 'Junior & İşletme',  href: '/urunler/kucuk-top-havuzlari',         img: '/images/top-havuzu.jpeg',    imgPos: 'center 40%' },
 ];
 
