@@ -46,7 +46,6 @@ export default function Home() {
       <ProductsSection />
       <SparePartsSection />
       <ProcessSection />
-      <TicariTrambolinSection />
       <SparePartsBanner />
       <FooterCTA />
     </>
@@ -443,104 +442,12 @@ function ProcessSection() {
 }
 
 /* ── 7. SPARE PARTS BANNER ────────────────────────────────── */
-const BANNER_TILES: { name: string; sub: string; href: string; img: string; imgPos?: string }[] = [
-  { name: 'Tüm Trambolinler', sub: 'Tekli & Çoklu',     href: '/urunler/ticari-olimpik-trambolinler', img: '/images/trambolinler.jpeg' },
-  { name: 'Trambolin Parkları',          sub: 'Anahtar Teslim',    href: '/urunler/trambolin-parklari',          img: '/images/trambolinpark.jpeg' },
-  { name: 'Softplay Oyun Alanları',      sub: 'Renkli Oyun Alanı', href: '/urunler/softplay-oyun-alanlari',      img: '/images/softplay1.jpeg' },
-  { name: 'Top Havuzları',               sub: 'Junior & İşletme',  href: '/urunler/kucuk-top-havuzlari',         img: '/images/top-havuzu.jpeg',    imgPos: 'center 40%' },
+const BANNER_TILES: { name: string; img: string; imgPos?: string }[] = [
+  { name: 'Kiddie Rides',     img: '/images/kiddie-rides.jpeg' },
+  { name: 'Tırmanma Duvarı',  img: '/images/tirmanma-duvari.jpeg' },
+  { name: 'Roller Kaydırak',  img: '/images/roller-kaydirak.jpeg' },
+  { name: 'Softplay Zipline', img: '/images/softplay-zipline.jpeg' },
 ];
-
-/* ── TİCARİ TRAMBOLİNLER ─────────────────────────────────── */
-function TicariTrambolinSection() {
-  return (
-    <section style={{ background: '#fff', padding: '5.5rem 0', position: 'relative', overflow: 'hidden' }}>
-      {/* orb */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: '10%', left: '50%', transform: 'translateX(-50%)', width: 700, height: 400, background: 'radial-gradient(ellipse, rgba(92,146,0,.07) 0%, transparent 65%)', filter: 'blur(60px)', pointerEvents: 'none' }} />
-
-      <div className="container position-relative">
-        <Reveal>
-          <p style={{ fontFamily: '"Poppins",sans-serif', fontWeight: 800, fontSize: 10, letterSpacing: '.25em', textTransform: 'uppercase', color: '#5c9200', marginBottom: '.75rem' }}>Profesyonel Çözümler</p>
-          <h2 style={{ fontFamily: '"Poppins",sans-serif', fontWeight: 900, fontSize: 'clamp(2rem,4vw,3rem)', color: '#111', lineHeight: 1.1, marginBottom: '1rem' }}>
-            Tüm Trambolinler
-          </h2>
-          <p style={{ color: '#888', fontSize: 15, maxWidth: 520, lineHeight: 1.8, marginBottom: '3rem' }}>
-            Eğlence merkezleri, AVM'ler ve trambolin parkları için yüksek kapasiteli ticari trambolin sistemleri. Anahtar teslim kurulum ve garanti.
-          </p>
-        </Reveal>
-
-        <div className="row g-4">
-          {/* Olimpik */}
-          <div className="col-12 col-md-6">
-            <Reveal delay={0.1}>
-              <Link to="/urunler/ticari-olimpik-trambolinler" style={{ textDecoration: 'none', display: 'block' }}>
-                <div style={{ borderRadius: 20, overflow: 'hidden', position: 'relative', aspectRatio: '16/9', background: '#111' }}
-                  onMouseEnter={e => (e.currentTarget.querySelector('img')! as HTMLImageElement).style.transform = 'scale(1.05)'}
-                  onMouseLeave={e => (e.currentTarget.querySelector('img')! as HTMLImageElement).style.transform = 'scale(1)'}>
-                  <img src="/images/trambolinler.jpeg" alt="Ticari Olimpik Trambolin"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform .5s ease' }} />
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 50%)' }} />
-                  <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', right: '1.5rem' }}>
-                    <p style={{ color: '#c3e92d', fontSize: 11, fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', marginBottom: '.35rem' }}>Olimpik Seri</p>
-                    <h3 style={{ color: '#fff', fontFamily: '"Poppins",sans-serif', fontWeight: 800, fontSize: '1.3rem', margin: 0 }}>Tüm Trambolinler</h3>
-                    <p style={{ color: 'rgba(255,255,255,.6)', fontSize: 13, margin: '.4rem 0 0' }}>1'den 12 kişiliğe profesyonel modeller</p>
-                  </div>
-                </div>
-              </Link>
-            </Reveal>
-          </div>
-
-          {/* Junior */}
-          <div className="col-12 col-md-6">
-            <Reveal delay={0.2}>
-              <Link to="/urunler/kucuk-top-havuzlari" style={{ textDecoration: 'none', display: 'block' }}>
-                <div style={{ borderRadius: 20, overflow: 'hidden', position: 'relative', aspectRatio: '16/9', background: '#111' }}
-                  onMouseEnter={e => (e.currentTarget.querySelector('img')! as HTMLImageElement).style.transform = 'scale(1.05)'}
-                  onMouseLeave={e => (e.currentTarget.querySelector('img')! as HTMLImageElement).style.transform = 'scale(1)'}>
-                  <img src="/images/top-havuzu.jpeg" alt="Top Havuzları"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 40%', transition: 'transform .5s ease' }} />
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 50%)' }} />
-                  <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', right: '1.5rem' }}>
-                    <p style={{ color: '#c3e92d', fontSize: 11, fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', marginBottom: '.35rem' }}>Top Havuzu</p>
-                    <h3 style={{ color: '#fff', fontFamily: '"Poppins",sans-serif', fontWeight: 800, fontSize: '1.3rem', margin: 0 }}>Top Havuzları</h3>
-                    <p style={{ color: 'rgba(255,255,255,.6)', fontSize: 13, margin: '.4rem 0 0' }}>Rengarenk, güvenli eğlence havuzları</p>
-                  </div>
-                </div>
-              </Link>
-            </Reveal>
-          </div>
-
-          {/* Alt özellikler */}
-          {[
-            { title: 'Yüksek Kapasite', desc: '1\'den 12 kişilik modeller' },
-            { title: 'Anahtar Teslim', desc: 'Kurulum ve garanti dahil' },
-            { title: 'Yerli Üretim', desc: 'Hızlı teslimat, orijinal yedek parça' },
-          ].map((f, i) => (
-            <div key={f.title} className="col-6 col-md-4">
-              <Reveal delay={0.1 * i}>
-                <div style={{ background: '#f8f8f8', border: '1px solid #eee', borderRadius: 14, padding: '1.25rem' }}>
-                  <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#5c9200', marginBottom: '.75rem' }} />
-                  <p style={{ fontFamily: '"Poppins",sans-serif', fontWeight: 700, color: '#111', fontSize: 14, margin: '0 0 .25rem' }}>{f.title}</p>
-                  <p style={{ color: '#888', fontSize: 13, margin: 0 }}>{f.desc}</p>
-                </div>
-              </Reveal>
-            </div>
-          ))}
-        </div>
-
-        <Reveal delay={0.3}>
-          <div style={{ marginTop: '2.5rem', display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <Link to="/urunler/ticari-olimpik-trambolinler" className="btn fw-bold" style={{ background: '#5c9200', color: '#fff', borderRadius: 10, padding: '12px 28px' }}>
-              Kataloğu İncele <ArrowRight size={15} style={{ marginLeft: 6 }} />
-            </Link>
-            <Link to="/iletisim" className="btn fw-bold" style={{ background: '#f0f0f0', color: '#111', borderRadius: 10, padding: '12px 28px', border: '1px solid #e0e0e0' }}>
-              Teklif Al
-            </Link>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
 
 function SparePartsBanner() {
   return (
@@ -570,13 +477,12 @@ function SparePartsBanner() {
               <div className="row g-3">
                 {BANNER_TILES.map((tile, i) => (
                   <div key={i} className="col-6">
-                    <Link to={tile.href} className="tp-banner-card text-decoration-none">
+                    <div className="tp-banner-card">
                       <img src={thumb(tile.img, 400, 300)} alt={tile.name} loading="lazy" style={tile.imgPos ? { objectPosition: tile.imgPos } : undefined} />
                       <div className="tp-banner-card-overlay">
-                        <p className="tp-banner-card-sub">{tile.sub}</p>
                         <p className="tp-banner-card-name">{tile.name}</p>
                       </div>
-                    </Link>
+                    </div>
                   </div>
                 ))}
               </div>
