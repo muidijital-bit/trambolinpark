@@ -847,6 +847,7 @@ img { display: block; max-width: 100%; }
   border-radius: 20px; overflow: hidden;
   transition: transform .3s var(--ease), box-shadow .3s, border-color .3s;
   cursor: none;
+  display: flex; flex-direction: column;
 }
 .tp-spare-glass:hover {
   transform: translateY(-6px);
@@ -859,9 +860,9 @@ img { display: block; max-width: 100%; }
 }
 .tp-spare-glass-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s var(--ease); }
 .tp-spare-glass:hover .tp-spare-glass-img img { transform: scale(1.08); }
-.tp-spare-glass-body { padding: 1rem 1.1rem 1.25rem; }
+.tp-spare-glass-body { padding: 1rem 1.1rem 1.25rem; display: flex; flex-direction: column; flex: 1; }
 .tp-spare-glass-name { font-size: 14px; font-weight: 600; color: var(--black); margin-bottom: .3rem; }
-.tp-spare-glass-desc { font-size: 12px; color: #777; line-height: 1.5; margin-bottom: .85rem; }
+.tp-spare-glass-desc { font-size: 12px; color: #777; line-height: 1.5; margin-bottom: .85rem; flex: 1; }
 
 /* ── Process Timeline ─────────────────────────── */
 .tp-tl-wrap { position: relative; padding-top: 1.5rem; }

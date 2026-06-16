@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight, Phone, Mail, MessageCircle, MapPin, Zap, Layers, Circle, Wind, Wrench, Triangle } from 'lucide-react';
 import { thumb } from '../lib/imageUtils';
 
+const WA = '905433494947';
+const buildWa = (name: string) =>
+  `https://api.whatsapp.com/send?phone=${WA}&text=${encodeURIComponent(`Merhaba, "${name}" hakkında bilgi almak istiyorum.`)}`;
+
 /* ── Data ─────────────────────────────────────────────────── */
 
 const PROCESS = [
@@ -284,7 +288,7 @@ function SparePartsSection() {
               <div className="tp-spare-glass-body">
                 <p className="tp-spare-glass-name">{p.name}</p>
                 <p className="tp-spare-glass-desc">{p.desc}</p>
-                <Link to={`/yedek-parcalar/${p.key}`} className="btn-accent" style={{ fontSize: 12, padding: '.45rem 1rem' }}>Sipariş Ver <ArrowRight size={13} /></Link>
+                <a href={buildWa(p.name)} target="_blank" rel="noreferrer" className="btn-accent" style={{ fontSize: 12, padding: '.45rem 1rem' }}>Whatsapp'tan Bilgi Al</a>
               </div>
             </div>
           ))}
