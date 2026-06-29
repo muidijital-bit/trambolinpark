@@ -12,6 +12,13 @@ const CAT_OPTIONS = [
   { key: 'sisme-yedek',      label: 'Şişme Yedek' },
 ];
 
+const TR_MAP: Record<string, string> = { ç: 'c', ğ: 'g', ı: 'i', ö: 'o', ş: 's', ü: 'u', Ç: 'c', Ğ: 'g', İ: 'i', Ö: 'o', Ş: 's', Ü: 'u' };
+const slugify = (s: string) =>
+  s.replace(/[çğıöşüÇĞİÖŞÜ]/g, c => TR_MAP[c] ?? c)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
 const emptyRow = (): Partial<SparePartRow> => ({
   category_key: 'trambolin-yedek', category_title: 'Trambolin Yedek Parçaları',
   category_short: '', category_cover: '', category_icon: '',
@@ -79,7 +86,13 @@ export default function AdminSpareParts() {
     if (!modal) return;
     setSaving(true);
     const cat = CAT_OPTIONS.find(c => c.key === modal.category_key);
-    const payload = { ...modal, category_title: cat?.label ?? modal.category_title };
+    let itemKey = modal.item_key?.trim() || slugify(modal.title ?? '');
+    if (!modal.id && rows.some(r => r.item_key === itemKey)) {
+      let i = 2;
+      while (rows.some(r => r.item_key === `${itemKey}-${i}`)) i++;
+      itemKey = `${itemKey}-${i}`;
+    }
+    const payload = { ...modal, item_key: itemKey, category_title: cat?.label ?? modal.category_title };
     const { error } = modal.id
       ? await supabase.from('spare_parts').update(payload).eq('id', modal.id)
       : await supabase.from('spare_parts').insert([payload]);
