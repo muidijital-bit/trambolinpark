@@ -126,7 +126,7 @@ export const spareCategories: PartCategory[] = [
   /* ── 4. Şişme Oyun Park Yedek Parça ───────────────────────── */
   {
     key: 'sisme-yedek',
-    title: 'Şişme Oyun Park Yedek Parça',
+    title: 'Şişme Oyun Grupları Yedek Parçaları',
     short: 'Şişme oyun parkları için fan motoru yedekleri.',
     cover: `https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/spare-parts/migrated-album-trambolinparkyeni-urunler-JXpjkJYZtJQObKrb9grG.jpg`,
     icon: '🎈',

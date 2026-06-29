@@ -9,7 +9,7 @@ const CAT_OPTIONS = [
   { key: 'trambolin-yedek',  label: 'Trambolin Yedek' },
   { key: 'salto-yedek',      label: 'Salto Yedek' },
   { key: 'top-havuzu-yedek', label: 'Top Havuzu Yedek' },
-  { key: 'sisme-yedek',      label: 'Şişme Yedek' },
+  { key: 'sisme-yedek',      label: 'Şişme Oyun Grupları Yedek Parçaları' },
 ];
 
 const TR_MAP: Record<string, string> = { ç: 'c', ğ: 'g', ı: 'i', ö: 'o', ş: 's', ü: 'u', Ç: 'c', Ğ: 'g', İ: 'i', Ö: 'o', Ş: 's', Ü: 'u' };
