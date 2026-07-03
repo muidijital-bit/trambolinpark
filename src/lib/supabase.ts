@@ -29,6 +29,7 @@ export type SparePartRow = {
   item_key: string;
   title: string;
   description: string;
+  card_description?: string;
   image: string;
   gallery: string[];
   created_at?: string;

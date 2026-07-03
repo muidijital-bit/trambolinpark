@@ -59,6 +59,7 @@ function mergeWithStatic(rows: any[]): PartCategory[] {
       key: r.item_key,
       title: r.title,
       desc: r.description,
+      cardDesc: r.card_description || r.description,
       image: r.image,
       gallery: r.gallery ?? [],
     });

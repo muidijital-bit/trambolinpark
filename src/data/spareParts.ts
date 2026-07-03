@@ -5,6 +5,7 @@ export type SparePart = {
   key: string;
   title: string;
   desc: string;
+  cardDesc?: string;
   image?: string;
   gallery?: string[];
 };

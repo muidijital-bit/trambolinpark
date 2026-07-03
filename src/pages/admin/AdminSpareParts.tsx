@@ -23,7 +23,7 @@ const emptyRow = (): Partial<SparePartRow> => ({
   category_key: 'trambolin-yedek', category_title: 'Trambolin Yedek Parçaları',
   category_short: '', category_cover: '', category_icon: '',
   sub_key: null, sub_title: null,
-  item_key: '', title: '', description: '', image: '', gallery: [],
+  item_key: '', title: '', description: '', card_description: '', image: '', gallery: [],
 });
 
 export default function AdminSpareParts() {
@@ -228,9 +228,14 @@ export default function AdminSpareParts() {
                 <p style={{ color: '#bbb', fontSize: 11, margin: '4px 0 0' }}>200 KB üzeri görseller otomatik WebP'ye dönüştürülür.</p>
               </div>
               <div className="mb-3">
-                <label style={lbl}>AÇIKLAMA</label>
+                <label style={lbl}>AÇIKLAMA (Detay Sayfası)</label>
                 <textarea value={modal.description ?? ''} onChange={e => setModal({ ...modal, description: e.target.value })}
                   rows={3} style={{ ...inp, width: '100%', resize: 'vertical' }} />
+              </div>
+              <div className="mb-3">
+                <label style={lbl}>KART AÇIKLAMASI (Liste sayfasında görünür, boş bırakılırsa yukarıdaki kullanılır)</label>
+                <textarea value={modal.card_description ?? ''} onChange={e => setModal({ ...modal, card_description: e.target.value })}
+                  rows={2} style={{ ...inp, width: '100%', resize: 'vertical' }} />
               </div>
               <F label="Kategori Kapak Görseli" value={modal.category_cover ?? ''} onChange={v => setModal({ ...modal, category_cover: v })} />
               <F label="Kategori İkon (emoji)" value={modal.category_icon ?? ''} onChange={v => setModal({ ...modal, category_icon: v })} placeholder="🔧" />

@@ -246,7 +246,7 @@ function SparePartCard({ item, fallbackImage, onZoom }: { item: SparePart; fallb
       <div className="p-3 d-flex flex-column gap-2 flex-grow-1">
         <h4 className="fw-black mb-0" style={{ fontSize: 13, color: '#1a1a1a', lineHeight: 1.3 }}>{item.title}</h4>
         <p className="mb-0 text-muted flex-grow-1" style={{ fontSize: 12, lineHeight: 1.4, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
-          {item.desc}
+          {item.cardDesc ?? item.desc}
         </p>
         <Link to={`/yedek-parcalar/${item.key}`}
           className="btn btn-sm rounded-3 fw-black d-flex align-items-center justify-content-center gap-1 mt-1"
