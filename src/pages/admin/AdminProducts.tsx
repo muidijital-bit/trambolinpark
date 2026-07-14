@@ -36,6 +36,7 @@ export default function AdminProducts() {
   const [featInput, setFeatInput] = useState('');
   const [delConfirm, setDelConfirm] = useState<string | null>(null);
   const [customCategory, setCustomCategory] = useState(false);
+  const [isNewProduct, setIsNewProduct] = useState(true);
 
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 2500); };
   const [uploading, setUploading] = useState(false);
@@ -65,20 +66,20 @@ export default function AdminProducts() {
     return acc;
   }, {});
 
-  const openNew = () => { setModal(empty()); setFeatInput(''); setCustomCategory(false); };
+  const openNew = () => { setModal(empty()); setFeatInput(''); setCustomCategory(false); setIsNewProduct(true); };
   const openEdit = (r: ProductRow) => {
     const isPreset = PRESET_CATEGORIES.some(c => c.key === r.category);
     setCustomCategory(!isPreset);
     setModal({ ...r, gallery: (r as any).gallery ?? [] });
     setFeatInput('');
+    setIsNewProduct(false);
   };
 
   // Auto-generate ID from title
   const onTitleChange = (title: string) => {
-    const isNew = !rows.find(r => r.id === modal?.id);
     setModal(prev => ({
       ...prev!, title,
-      id: isNew ? toSlug(title) : prev!.id,
+      id: isNewProduct ? toSlug(title) : prev!.id,
     }));
   };
 
@@ -132,13 +133,19 @@ export default function AdminProducts() {
       const preset = PRESET_CATEGORIES.find(c => c.key === modal.category);
       if (preset) payload.category_name = preset.label;
     }
-    const isEdit = rows.find(r => r.id === modal.id);
+    const isEdit = !isNewProduct;
     let error: { message: string } | null = null;
     if (isEdit) {
       const { error: rpcErr } = await supabase.rpc('update_product', { p_id: modal.id!, p_data: payload });
       error = rpcErr;
     } else {
-      const { error: insErr } = await supabase.from('products').insert([payload]);
+      let id = modal.id?.trim() || toSlug(modal.title ?? '');
+      if (rows.some(r => r.id === id)) {
+        let i = 2;
+        while (rows.some(r => r.id === `${id}-${i}`)) i++;
+        id = `${id}-${i}`;
+      }
+      const { error: insErr } = await supabase.from('products').insert([{ ...payload, id }]);
       error = insErr;
     }
     setSaving(false);
