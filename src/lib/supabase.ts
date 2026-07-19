@@ -13,6 +13,7 @@ export type ProductRow = {
   category: string;
   category_name: string;
   features: string[];
+  gallery?: string[];
   created_at?: string;
   updated_at?: string;
 };

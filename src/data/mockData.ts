@@ -8,6 +8,7 @@ export interface Product {
   category: string;
   categoryName?: string;
   features?: string[];
+  gallery?: string[];
 }
 
 const OLIMPiK_FEATURES = [

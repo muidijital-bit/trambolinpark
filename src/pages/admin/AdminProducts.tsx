@@ -365,13 +365,20 @@ export default function AdminProducts() {
               {/* Açıklama */}
               <div className="mb-3">
                 <label style={lbl}>AÇIKLAMA</label>
+                <p style={{ color: '#bbb', fontSize: 11, margin: '0 0 6px' }}>
+                  Kısa bir satır "?" veya ":" ile bitiyorsa başlık gibi gösterilir. "Etiket: açıklama" formatındaki satırlar madde işaretli liste olur. Örnek:<br />
+                  Tekli trambolin nedir?<br />
+                  Açıklama paragrafı...<br /><br />
+                  Tekli trambolin özellikleri:<br />
+                  Esnek Yüzey: açıklaması...
+                </p>
                 <textarea value={modal.description ?? ''} onChange={e => setModal({ ...modal, description: e.target.value })}
-                  rows={3} style={{ ...inp, width: '100%', resize: 'vertical' }} />
+                  rows={10} style={{ ...inp, width: '100%', resize: 'vertical' }} />
               </div>
 
               {/* Özellikler */}
               <div className="mb-3">
-                <label style={lbl}>ÖZELLİKLER</label>
+                <label style={lbl}>ÖZELLİKLER <span style={{ color: '#bbb', fontWeight: 400, textTransform: 'none', letterSpacing: 0 }}>(detay sayfasında açıklamanın altında madde madde gösterilir, "Etiket: Değer" formatında girebilirsin)</span></label>
                 <div style={{ display: 'flex', gap: 6, marginBottom: 8 }}>
                   <input value={featInput} onChange={e => setFeatInput(e.target.value)}
                     onKeyDown={e => e.key === 'Enter' && (e.preventDefault(), addFeature())}
