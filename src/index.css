@@ -769,9 +769,11 @@ img { display: block; max-width: 100%; }
   width: 56px; height: 56px; border-radius: 50%;
   background: #25D366; display: flex; align-items: center; justify-content: center;
   box-shadow: 0 4px 16px rgba(37,211,102,.4);
-  transition: transform .2s, box-shadow .2s; border: none;
+  transition: transform .2s, box-shadow .2s, opacity .25s; border: none;
+  opacity: 0; transform: scale(.7); pointer-events: none;
 }
-.tp-wa:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(37,211,102,.5); }
+.tp-wa.tp-wa--visible { opacity: 1; transform: scale(1); pointer-events: auto; }
+.tp-wa.tp-wa--visible:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(37,211,102,.5); }
 
 /* Blog sidebar */
 @media (min-width: 992px) {

@@ -1,26 +1,24 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ChevronRight, ChevronLeft, ChevronRight as ChevronRightIcon, X, ArrowLeft, Wrench, Tag } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSparePartByKey } from '../hooks/useSparePartByKey';
 import { thumb } from '../lib/imageUtils';
+import { WaIcon, TRUST_BADGES, renderDescription } from '../components/ProductDetailShared';
 
 const WA = '905433494947';
 const buildWa = (title: string) =>
   `https://api.whatsapp.com/send?phone=${WA}&text=${encodeURIComponent(`Merhaba, "${title}" hakkında bilgi almak istiyorum.`)}`;
 
-const WaIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 16, height: 16 }}>
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-  </svg>
-);
-
 export default function YedekParcaDetay() {
   const { key } = useParams<{ key: string }>();
   const navigate = useNavigate();
-  const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
+  const [activeImg, setActiveImg] = useState(0);
+  const [lightbox, setLightbox] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
   const { result, loading } = useSparePartByKey(key);
+
+  useEffect(() => { setActiveImg(0); setLightbox(false); }, [key]);
 
   if (loading) return (
     <div className="text-center" style={{ paddingTop: '12rem' }}>
@@ -41,7 +39,7 @@ export default function YedekParcaDetay() {
   }
 
   const { part, category, subcategory, relatedItems } = result;
-  const images = part.gallery?.length ? part.gallery : part.image ? [part.image] : [];
+  const images = [part.image, ...(part.gallery ?? [])].filter(Boolean);
 
   const scroll = (dir: 'left' | 'right') => {
     if (!carouselRef.current) return;
@@ -71,82 +69,103 @@ export default function YedekParcaDetay() {
         </div>
       </div>
 
-      {/* ── Hero ── */}
-      <div className="tp-page-hero tp-page-hero--after-breadcrumb">
-        <div aria-hidden="true" className="tp-hero-watermark">{(subcategory?.title ?? category.title).toUpperCase()}</div>
-
+      {/* ── Parça Kartı ── */}
+      <div style={{ background: '#f5f5f5', padding: '2.5rem 0' }}>
         <div className="container">
-          <div className="row g-0 g-lg-5 align-items-center">
+          <div style={{ background: '#fff', border: '1px solid #ececec', borderRadius: 24, boxShadow: '0 8px 30px rgba(0,0,0,.04)', overflow: 'hidden' }}>
+            <div className="row g-0">
 
-            {/* Image */}
-            <div className="col-12 col-lg-5 d-flex justify-content-center mb-4 mb-lg-0">
-              <div style={{ position: 'relative', width: '100%', maxWidth: 420, maxHeight: '55vw' }}>
-                <div style={{
-                  position: 'absolute', inset: '10%', borderRadius: '50%',
-                  background: 'radial-gradient(circle, rgba(195,233,45,.22) 0%, transparent 70%)',
-                  filter: 'blur(40px)', pointerEvents: 'none',
-                }} />
-                <div
-                  style={{
-                    aspectRatio: '1/1', borderRadius: 24,
-                    border: '1px solid rgba(255,255,255,.08)',
-                    background: 'rgba(255,255,255,.04)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    cursor: images.length ? 'zoom-in' : 'default', position: 'relative', overflow: 'hidden',
-                  }}
-                  onClick={() => images.length && setLightboxIdx(0)}>
-                  {images[0]
-                    ? <img src={thumb(images[0], 700, 700)} alt={part.title} style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'drop-shadow(0 12px 32px rgba(0,0,0,.5))' }} />
-                    : <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12, color: 'rgba(255,255,255,.3)' }}>
-                        <Wrench size={48} />
-                        <span style={{ fontSize: 12 }}>Görsel mevcut değil</span>
-                      </div>}
-                  {images.length > 1 && (
-                    <div style={{ position: 'absolute', bottom: 12, right: 12, background: 'rgba(0,0,0,.55)', color: '#fff', fontSize: 10, fontWeight: 700, borderRadius: 100, padding: '3px 8px' }}>
-                      +{images.length - 1} fotoğraf
+              {/* Görsel + galeri */}
+              <div className="col-12 col-lg-5 d-flex flex-column align-items-center p-4 p-lg-5" style={{ background: '#fafafa', borderRight: '1px solid #ececec' }}>
+                <div style={{ position: 'relative', width: '100%', maxWidth: 380 }}>
+                  <button onClick={() => images.length && setLightbox(true)} disabled={!images.length}
+                    style={{ all: 'unset', display: 'block', width: '100%', cursor: images.length ? 'zoom-in' : 'default' }}>
+                    <div style={{
+                      aspectRatio: '1/1', borderRadius: 16,
+                      border: '1px solid #ececec',
+                      background: '#fff',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      overflow: 'hidden', position: 'relative',
+                    }}>
+                      {images[activeImg]
+                        ? <img src={thumb(images[activeImg], 800, 800)} alt={part.title}
+                            style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                        : <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12, color: '#ccc' }}>
+                            <Wrench size={48} />
+                            <span style={{ fontSize: 12 }}>Görsel mevcut değil</span>
+                          </div>}
                     </div>
-                  )}
+                  </button>
                 </div>
 
                 {images.length > 1 && (
-                  <div className="d-flex gap-2 mt-3 flex-wrap">
+                  <div className="d-flex gap-2 mt-3 flex-wrap justify-content-center" style={{ maxWidth: 380, maxHeight: 128, overflowY: 'auto', padding: 2 }}>
                     {images.map((img, i) => (
-                      <button key={i} onClick={() => setLightboxIdx(i)}
-                        style={{ width: 56, height: 56, borderRadius: 10, border: `2px solid ${lightboxIdx === i ? '#c3e92d' : 'rgba(255,255,255,.15)'}`, background: 'rgba(255,255,255,.06)', overflow: 'hidden', padding: 4, cursor: 'zoom-in' }}>
-                        <img src={thumb(img, 120)} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                      <button key={i} onClick={() => setActiveImg(i)}
+                        style={{ width: 56, height: 56, borderRadius: 10, border: `2px solid ${activeImg === i ? '#5c9200' : '#ececec'}`, background: '#fff', overflow: 'hidden', padding: 4, cursor: 'pointer' }}>
+                        <img src={thumb(img, 120)} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 6 }} />
                       </button>
                     ))}
                   </div>
                 )}
               </div>
-            </div>
 
-            {/* Info */}
-            <div className="col-12 col-lg-7">
-              <span className="badge rounded-pill mb-3" style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.1em', padding: '.4rem 1rem' }}>
-                <Tag size={10} style={{ marginRight: 4 }} />{subcategory?.title ?? category.title}
-              </span>
-              <div className="tp-hero-line" />
-              <h1>{part.title}</h1>
-              <p>{part.desc}</p>
+              {/* Bilgi */}
+              <div className="col-12 col-lg-7 p-4 p-lg-5">
+                <span className="d-inline-flex align-items-center rounded-pill mb-3" style={{ background: '#f0f7e6', color: '#3a7500', fontSize: 11, fontWeight: 800, letterSpacing: '.1em', padding: '.4rem 1rem' }}>
+                  <Tag size={10} style={{ marginRight: 4 }} />{subcategory?.title ?? category.title}
+                </span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
+                  <span style={{ display: 'inline-block', width: 32, height: 3, borderRadius: 2, background: 'linear-gradient(90deg, #c3e92d, #5c9200)' }} />
+                </div>
+                <h1 className="font-poppins fw-black" style={{ fontSize: 'clamp(1.75rem, 4vw, 2.75rem)', lineHeight: 1.1, letterSpacing: '-.02em', color: '#1a1a1a', marginBottom: '1.25rem' }}>
+                  {part.title}
+                </h1>
 
-              <div className="d-flex flex-wrap gap-3">
-                <a href={buildWa(part.title)} target="_blank" rel="noreferrer"
-                  className="btn btn-brand rounded-pill px-4 py-3 fw-black d-flex align-items-center gap-2"
-                  style={{ fontSize: 14 }}>
-                  <WaIcon /> WhatsApp ile Sor
-                </a>
-                <Link to="/yedek-parcalar"
-                  className="btn rounded-pill px-4 py-3 fw-black d-flex align-items-center gap-2"
-                  style={{ background: 'rgba(255,255,255,.08)', border: '1px solid rgba(255,255,255,.2)', color: '#fff', fontSize: 14 }}>
-                  <ArrowLeft size={15} /> Geri Dön
-                </Link>
+                <div className="d-flex flex-wrap gap-3 mb-4">
+                  <a href={buildWa(part.title)} target="_blank" rel="noreferrer"
+                    className="btn btn-brand rounded-pill px-4 py-3 fw-black d-flex align-items-center gap-2"
+                    style={{ fontSize: 14 }}>
+                    <WaIcon /> WhatsApp ile Sor
+                  </a>
+                  <Link to="/yedek-parcalar"
+                    className="btn rounded-pill px-4 py-3 fw-black d-flex align-items-center gap-2"
+                    style={{ background: '#f5f5f5', border: '1px solid #e0e0e0', color: '#1a1a1a', fontSize: 14 }}>
+                    <ArrowLeft size={15} /> Geri Dön
+                  </Link>
+                </div>
+
+                <div className="d-flex flex-wrap mb-1" style={{ columnGap: 28, rowGap: 14 }}>
+                  {TRUST_BADGES.map(b => (
+                    <div key={b.title} className="d-flex align-items-center gap-2">
+                      <div style={{ width: 32, height: 32, borderRadius: 9, background: '#f0f7e6', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                        <b.icon size={15} color="#5c9200" strokeWidth={1.75} />
+                      </div>
+                      <span style={{ color: '#444', fontSize: 12.5, fontWeight: 700 }}>{b.title}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
 
+            </div>
           </div>
         </div>
       </div>
+
+      {/* ── Açıklama ── */}
+      {part.desc && (
+        <div className="container py-5">
+          <div className="row">
+            <div className="col-12 col-lg-8">
+              <span className="d-inline-block font-poppins fw-black mb-4" style={{ background: '#c3e92d', color: '#0a0a0a', fontSize: 14, padding: '.55rem 1.25rem', borderRadius: 8 }}>
+                Açıklama
+              </span>
+
+              {renderDescription(part.desc)}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ── İlgili Parçalar Carousel ── */}
       {relatedItems.length > 0 && (
@@ -204,29 +223,29 @@ export default function YedekParcaDetay() {
 
       {/* Lightbox */}
       <AnimatePresence>
-        {lightboxIdx !== null && images.length > 0 && (
+        {lightbox && images.length > 0 && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="tp-lightbox" onClick={() => setLightboxIdx(null)}>
-            <button onClick={() => setLightboxIdx(null)}
+            className="tp-lightbox" onClick={() => setLightbox(false)}>
+            <button onClick={() => setLightbox(false)}
               style={{ position: 'absolute', top: 16, right: 16, width: 44, height: 44, borderRadius: '50%', background: 'rgba(255,255,255,.1)', border: 'none', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <X size={20} />
             </button>
             {images.length > 1 && <>
-              <button onClick={e => { e.stopPropagation(); setLightboxIdx(i => (i! - 1 + images.length) % images.length); }}
+              <button onClick={e => { e.stopPropagation(); setActiveImg(i => (i - 1 + images.length) % images.length); }}
                 style={{ position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)', width: 44, height: 44, borderRadius: '50%', background: 'rgba(255,255,255,.1)', border: 'none', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <ChevronLeft size={24} />
               </button>
-              <button onClick={e => { e.stopPropagation(); setLightboxIdx(i => (i! + 1) % images.length); }}
+              <button onClick={e => { e.stopPropagation(); setActiveImg(i => (i + 1) % images.length); }}
                 style={{ position: 'absolute', right: 16, top: '50%', transform: 'translateY(-50%)', width: 44, height: 44, borderRadius: '50%', background: 'rgba(255,255,255,.1)', border: 'none', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <ChevronRightIcon size={24} />
               </button>
             </>}
-            <motion.img key={lightboxIdx} initial={{ opacity: 0, scale: .96 }} animate={{ opacity: 1, scale: 1 }}
-              src={images[lightboxIdx]} alt={part.title}
+            <motion.img key={activeImg} initial={{ opacity: 0, scale: .96 }} animate={{ opacity: 1, scale: 1 }}
+              src={images[activeImg]} alt={part.title}
               onClick={e => e.stopPropagation()}
               style={{ maxWidth: '90vw', maxHeight: '85vh', objectFit: 'contain', borderRadius: 12 }} />
             <div style={{ position: 'absolute', bottom: 16, left: '50%', transform: 'translateX(-50%)', background: 'rgba(255,255,255,.1)', backdropFilter: 'blur(8px)', padding: '.35rem 1rem', borderRadius: 100, color: '#fff', fontWeight: 800, fontSize: 13 }}>
-              {part.title}{images.length > 1 && ` · ${lightboxIdx + 1} / ${images.length}`}
+              {part.title}{images.length > 1 && ` · ${activeImg + 1} / ${images.length}`}
             </div>
           </motion.div>
         )}

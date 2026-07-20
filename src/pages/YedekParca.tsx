@@ -225,7 +225,7 @@ export default function YedekParca() {
 }
 
 function SparePartCard({ item, fallbackImage, onZoom }: { item: SparePart; fallbackImage?: string; onZoom: (images: string[], idx: number) => void }) {
-  const images = item.gallery?.length ? item.gallery : item.image ? [item.image] : [];
+  const images = [item.image, ...(item.gallery ?? [])].filter(Boolean) as string[];
   const displayImg = images[0] ?? fallbackImage;
   return (
     <div className="tp-spare-card h-100 d-flex flex-column">

@@ -3,7 +3,7 @@ import { supabase } from '../../lib/supabase';
 import type { SparePartRow } from '../../lib/supabase';
 import { optimizeImage } from '../../lib/imageUtils';
 import { AdminPageHeader } from './AdminLayout';
-import { Plus, Pencil, Trash2, X, Check, Search, Upload, Link, Wrench } from 'lucide-react';
+import { Plus, Pencil, Trash2, X, Check, Search, Upload, Link, Wrench, ImagePlus } from 'lucide-react';
 
 const CAT_OPTIONS = [
   { key: 'trambolin-yedek',  label: 'Trambolin Yedek' },
@@ -34,7 +34,9 @@ export default function AdminSpareParts() {
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [delConfirm, setDelConfirm] = useState<string | null>(null);
+  const [galleryUrlInput, setGalleryUrlInput] = useState('');
   const fileRef = useRef<HTMLInputElement>(null);
+  const galleryFileRef = useRef<HTMLInputElement>(null);
 
   const [toast, setToast] = useState('');
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 2500); };
@@ -74,6 +76,31 @@ export default function AdminSpareParts() {
       alert('Yükleme hatası: ' + e.message);
     }
     setUploading(false);
+  };
+
+  const uploadGalleryImage = async (file: File) => {
+    setUploading(true);
+    try {
+      const optimized = await optimizeImage(file);
+      const path = `spare-parts/gallery/${Date.now()}-${optimized.name}`;
+      const { error } = await supabase.storage.from('urunler').upload(path, optimized, { upsert: true });
+      if (error) throw error;
+      const { data } = supabase.storage.from('urunler').getPublicUrl(path);
+      setModal(prev => ({ ...prev!, gallery: [...(prev!.gallery ?? []), data.publicUrl] }));
+    } catch (e: any) {
+      alert('Yükleme hatası: ' + e.message);
+    }
+    setUploading(false);
+  };
+
+  const addGalleryUrl = () => {
+    if (!galleryUrlInput.trim() || !modal) return;
+    setModal(prev => ({ ...prev!, gallery: [...(prev!.gallery ?? []), galleryUrlInput.trim()] }));
+    setGalleryUrlInput('');
+  };
+
+  const removeGalleryItem = (i: number) => {
+    setModal(prev => ({ ...prev!, gallery: prev!.gallery?.filter((_, idx) => idx !== i) }));
   };
 
   const del = async (id: string) => {
@@ -227,6 +254,38 @@ export default function AdminSpareParts() {
                 </div>
                 <p style={{ color: '#bbb', fontSize: 11, margin: '4px 0 0' }}>200 KB üzeri görseller otomatik WebP'ye dönüştürülür.</p>
               </div>
+
+              <div className="mb-3">
+                <label style={lbl}>GALERİ GÖRSELLERİ <span style={{ color: '#bbb', fontWeight: 400, textTransform: 'none', letterSpacing: 0 }}>(opsiyonel, birden fazla eklenebilir)</span></label>
+                {(modal.gallery ?? []).length > 0 && (
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 8 }}>
+                    {(modal.gallery ?? []).map((url, i) => (
+                      <div key={i} style={{ position: 'relative' }}>
+                        <img src={url} alt="" style={{ width: 56, height: 56, objectFit: 'cover', borderRadius: 6, border: '1px solid #e8e8e8' }} />
+                        <button onClick={() => removeGalleryItem(i)}
+                          style={{ position: 'absolute', top: -5, right: -5, background: '#dc2626', border: 'none', borderRadius: '50%', width: 16, height: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: '#fff', padding: 0 }}>
+                          <X size={9} />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                <div style={{ display: 'flex', gap: 8, marginBottom: 6 }}>
+                  <button onClick={() => galleryFileRef.current?.click()} disabled={uploading}
+                    style={{ ...inp, display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer', color: '#555', fontWeight: 600, fontSize: 12, border: '1.5px dashed #d0d0d0', background: '#fafafa', padding: '8px 14px' }}>
+                    <ImagePlus size={13} /> Görsel Ekle
+                  </button>
+                  <input ref={galleryFileRef} type="file" accept="image/*" style={{ display: 'none' }}
+                    onChange={e => e.target.files?.[0] && uploadGalleryImage(e.target.files[0])} />
+                </div>
+                <div style={{ display: 'flex', gap: 6 }}>
+                  <input value={galleryUrlInput} onChange={e => setGalleryUrlInput(e.target.value)}
+                    onKeyDown={e => e.key === 'Enter' && (e.preventDefault(), addGalleryUrl())}
+                    placeholder="veya URL ile ekle" style={{ ...inp, flex: 1, fontSize: 12 }} />
+                  <button onClick={addGalleryUrl} style={{ background: '#eff6ff', border: '1px solid #93c5fd', borderRadius: 8, padding: '8px 14px', fontWeight: 700, fontSize: 12, color: '#1d4ed8', cursor: 'pointer' }}>Ekle</button>
+                </div>
+              </div>
+
               <div className="mb-3">
                 <label style={lbl}>AÇIKLAMA (Detay Sayfası)</label>
                 <textarea value={modal.description ?? ''} onChange={e => setModal({ ...modal, description: e.target.value })}
