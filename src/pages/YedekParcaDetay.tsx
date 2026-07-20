@@ -39,7 +39,7 @@ export default function YedekParcaDetay() {
   }
 
   const { part, category, subcategory, relatedItems } = result;
-  const images = [part.image, ...(part.gallery ?? [])].filter(Boolean);
+  const images = [part.image, ...(part.gallery ?? [])].filter(Boolean) as string[];
 
   const scroll = (dir: 'left' | 'right') => {
     if (!carouselRef.current) return;
