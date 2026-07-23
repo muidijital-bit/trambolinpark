@@ -23,9 +23,7 @@ export function useProducts() {
             categoryName: r.category_name,
             features: r.features ?? [],
           }));
-          const remoteIds = new Set(data.map(r => r.id));
-          const staticFallback = allProducts.filter(p => !remoteIds.has(p.id));
-          setProducts([...remote, ...staticFallback]);
+          setProducts(remote);
         } else {
           setProducts(allProducts);
         }
