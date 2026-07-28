@@ -1,6 +1,37 @@
+import { useEffect, useState } from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
-const WA = '905433494947';
+type Phone2 = { label: string; num: string; href: string; hint: string };
+
+const DEFAULT_WA      = '905433494947';
+const DEFAULT_PHONES: Phone2[] = [
+  { label: 'Sabit Hat', num: '0 (312) 911 27 87', href: 'tel:+903129112787', hint: 'Pazartesi – Cumartesi, 09:00 – 18:00' },
+  { label: 'Cep Hattı', num: '0 (543) 349 49 47', href: 'tel:+905433494947', hint: 'Hafta içi & hafta sonu' },
+];
+const DEFAULT_EMAIL   = 'info@trambolinpark.com';
+const DEFAULT_ADDRESS = 'İvedik OSB 1372 Sok. No. 33/2, Yenimahalle / Ankara';
+
+function useContactSettings() {
+  const [wa,      setWa]      = useState(DEFAULT_WA);
+  const [phones,  setPhones]  = useState(DEFAULT_PHONES);
+  const [email,   setEmail]   = useState(DEFAULT_EMAIL);
+  const [address, setAddress] = useState(DEFAULT_ADDRESS);
+  useEffect(() => {
+    supabase.from('about_settings').select('key,value')
+      .in('key', ['contact_wa', 'contact_phones', 'contact_email', 'contact_address'])
+      .then(({ data }) => {
+        if (!data || data.length === 0) return;
+        const map: Record<string, string> = {};
+        data.forEach((r: { key: string; value: string }) => { map[r.key] = r.value; });
+        if (map.contact_wa)      setWa(map.contact_wa);
+        if (map.contact_phones)  setPhones(JSON.parse(map.contact_phones));
+        if (map.contact_email)   setEmail(map.contact_email);
+        if (map.contact_address) setAddress(map.contact_address);
+      });
+  }, []);
+  return { wa, phones, email, address };
+}
 
 const waStyles = `
 @keyframes waDot  { 0%,80%,100% { transform:scale(0); opacity:.4; } 40% { transform:scale(1); opacity:1; } }
@@ -13,6 +44,7 @@ const waStyles = `
 
 
 export default function Contact() {
+  const { wa, phones, email, address } = useContactSettings();
   return (
     <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
 
@@ -35,7 +67,7 @@ export default function Contact() {
 
         {/* Sol: WhatsApp chat mockup */}
         <div className="col-12 col-lg-6">
-        <a href={`https://api.whatsapp.com/send?phone=${WA}`} target="_blank" rel="noreferrer"
+        <a href={`https://api.whatsapp.com/send?phone=${wa}`} target="_blank" rel="noreferrer"
           style={{ textDecoration: 'none', display: 'block', height: '100%' }}>
           <div style={{
             borderRadius: 20, overflow: 'hidden',
@@ -120,10 +152,7 @@ export default function Contact() {
 
             {/* Numara kartları */}
             <div style={{ padding: '1.5rem 2rem', display: 'flex', flexDirection: 'column', gap: 12, flex: 1 }}>
-              {[
-                { label: 'Sabit Hat', num: '0 (312) 911 27 87', href: 'tel:+903129112787', hint: 'Pazartesi – Cumartesi, 09:00 – 18:00' },
-                { label: 'Cep Hattı', num: '0 (543) 349 49 47', href: 'tel:+905433494947', hint: 'Hafta içi & hafta sonu' },
-              ].map((c, i) => (
+              {phones.map((c, i) => (
                 <a key={i} href={c.href} style={{ textDecoration: 'none', display: 'block' }}>
                   <div style={{
                     background: '#f8f8f8', border: '1px solid #eee',
@@ -147,7 +176,7 @@ export default function Contact() {
               ))}
 
               {/* E-posta */}
-              <a href="mailto:info@trambolinpark.com" style={{ textDecoration: 'none', display: 'block' }}>
+              <a href={`mailto:${email}`} style={{ textDecoration: 'none', display: 'block' }}>
                 <div style={{
                   background: '#f8f8f8', border: '1px solid #eee',
                   borderRadius: 14, padding: '1.1rem 1.25rem',
@@ -159,7 +188,7 @@ export default function Contact() {
                 >
                   <div>
                     <p style={{ color: '#aaa', fontSize: 10, fontWeight: 800, letterSpacing: '.15em', textTransform: 'uppercase', margin: '0 0 4px' }}>E-Posta</p>
-                    <p style={{ color: '#0a0a0a', fontFamily: '"Poppins",sans-serif', fontWeight: 700, fontSize: 15, margin: '0 0 3px' }}>info@trambolinpark.com</p>
+                    <p style={{ color: '#0a0a0a', fontFamily: '"Poppins",sans-serif', fontWeight: 700, fontSize: 15, margin: '0 0 3px' }}>{email}</p>
                     <p style={{ color: '#bbb', fontSize: 11, margin: 0 }}>İş günleri yanıtlanır</p>
                   </div>
                   <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'rgba(92,146,0,.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
@@ -172,7 +201,7 @@ export default function Contact() {
             {/* Adres alt şerit */}
             <div style={{ padding: '1.25rem 2rem', borderTop: '1px solid #f0f0f0', display: 'flex', alignItems: 'center', gap: 10 }}>
               <MapPin size={15} color="#bbb" strokeWidth={1.75} />
-              <p style={{ color: '#aaa', fontSize: 12, margin: 0 }}>İvedik OSB 1372 Sok. No. 33/2, Yenimahalle / Ankara</p>
+              <p style={{ color: '#aaa', fontSize: 12, margin: 0 }}>{address}</p>
             </div>
           </div>
         </div>{/* /col sağ */}

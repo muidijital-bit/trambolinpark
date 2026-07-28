@@ -31,6 +31,7 @@ const AdminBlog       = lazy(() => import('./pages/admin/AdminBlog'));
 const AdminSeo        = lazy(() => import('./pages/admin/AdminSeo'));
 const AdminAbout      = lazy(() => import('./pages/admin/AdminAbout'));
 const AdminGaleri     = lazy(() => import('./pages/admin/AdminGaleri'));
+const AdminContact    = lazy(() => import('./pages/admin/AdminContact'));
 import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import Catalog from './pages/Catalog';
@@ -129,6 +130,7 @@ function App() {
           <Route path="seo" element={<AdminSeo />} />
           <Route path="hakkimizda" element={<AdminAbout />} />
           <Route path="galeri" element={<AdminGaleri />} />
+          <Route path="iletisim" element={<AdminContact />} />
         </Route>
 
         {/* Public site */}
