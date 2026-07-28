@@ -72,30 +72,30 @@ export default function About() {
       <div className="container" style={{ paddingTop: '6rem', paddingBottom: '6rem' }}>
         <div className="row g-5 align-items-center">
 
-          {/* Image stack */}
+          {/* Image grid */}
           <div className="col-12 col-lg-6">
-            <motion.div {...fade(0)} style={{ position: 'relative', paddingBottom: 72, paddingRight: 56 }}>
-
-              {/* Main image */}
-              <div style={{ borderRadius: 20, overflow: 'hidden', boxShadow: '0 28px 72px rgba(0,0,0,.18)', aspectRatio: '4/3' }}>
-                <img src={`https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/products/migrated--VkT.jpg`} alt="Kurulum sahası"
+            <motion.div {...fade(0)} style={{ position: 'relative' }}>
+              {/* Top big image */}
+              <div style={{ borderRadius: 20, overflow: 'hidden', boxShadow: '0 28px 72px rgba(0,0,0,.18)', aspectRatio: '16/9', marginBottom: 12 }}>
+                <img src="/images/about-story-1.jpeg" alt="Üretim atölyesi"
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
               </div>
-
-              {/* Floating secondary image */}
-              <div style={{ position: 'absolute', bottom: 0, right: 0, width: '52%', borderRadius: 16, overflow: 'hidden', boxShadow: '0 20px 56px rgba(0,0,0,.22)', border: '4px solid #f5f5f5', aspectRatio: '4/3' }}>
-                <img src={`https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/products/migrated-1-kisilik-olimpik-trambolin-tp-110-EAr.jpg`} alt="Saha detay"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+              {/* Bottom two images */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                <div style={{ borderRadius: 16, overflow: 'hidden', boxShadow: '0 12px 36px rgba(0,0,0,.14)', aspectRatio: '4/3' }}>
+                  <img src="/images/about-story-2.jpeg" alt="Kaynak atölyesi"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+                </div>
+                <div style={{ borderRadius: 16, overflow: 'hidden', boxShadow: '0 12px 36px rgba(0,0,0,.14)', aspectRatio: '4/3' }}>
+                  <img src="/images/about-story-3.jpeg" alt="File üretimi"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+                </div>
               </div>
-
               {/* Year badge */}
-              <div style={{ position: 'absolute', top: 28, left: -24, background: '#c3e92d', borderRadius: 14, padding: '14px 22px', boxShadow: '0 12px 32px rgba(195,233,45,.4)', zIndex: 2 }}>
+              <div style={{ position: 'absolute', top: -20, left: -20, background: '#c3e92d', borderRadius: 14, padding: '14px 22px', boxShadow: '0 12px 32px rgba(195,233,45,.4)', zIndex: 2 }}>
                 <p className="font-poppins fw-black mb-0" style={{ fontSize: 30, lineHeight: 1, color: '#0a0a0a' }}>2008</p>
                 <p style={{ fontSize: 9, fontWeight: 900, letterSpacing: '.15em', color: 'rgba(0,0,0,.55)', margin: '3px 0 0', textTransform: 'uppercase' }}>Kuruluş</p>
               </div>
-
-              {/* Subtle dot accent */}
-              <div style={{ position: 'absolute', bottom: 28, left: -12, width: 80, height: 80, backgroundImage: 'radial-gradient(rgba(92,146,0,.5) 1.5px, transparent 1.5px)', backgroundSize: '12px 12px', borderRadius: 8, zIndex: 0 }} />
             </motion.div>
           </div>
 
