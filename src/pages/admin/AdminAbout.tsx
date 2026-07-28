@@ -90,7 +90,7 @@ export default function AdminAbout() {
 
   if (loading) return <div style={{ padding: '4rem', textAlign: 'center', color: '#aaa' }}>Yükleniyor...</div>;
 
-  const imgBox = (src: string, label: string, onUpload: (f: File) => void, inputRef: React.RefObject<HTMLInputElement>) => (
+  const imgBox = (src: string, label: string, onUpload: (f: File) => void, inputRef: React.RefObject<HTMLInputElement | null>) => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
       <p style={{ fontSize: 12, fontWeight: 700, color: '#555', margin: 0 }}>{label}</p>
       <div style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', border: '1.5px solid #ebebeb', background: '#f8f8f8', aspectRatio: '4/3', maxWidth: 220 }}>
