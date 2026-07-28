@@ -29,6 +29,8 @@ const AdminProducts   = lazy(() => import('./pages/admin/AdminProducts'));
 const AdminSpareParts = lazy(() => import('./pages/admin/AdminSpareParts'));
 const AdminBlog       = lazy(() => import('./pages/admin/AdminBlog'));
 const AdminSeo        = lazy(() => import('./pages/admin/AdminSeo'));
+const AdminAbout      = lazy(() => import('./pages/admin/AdminAbout'));
+const AdminGaleri     = lazy(() => import('./pages/admin/AdminGaleri'));
 import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import Catalog from './pages/Catalog';
@@ -125,6 +127,8 @@ function App() {
           <Route path="yedek-parcalar" element={<AdminSpareParts />} />
           <Route path="blog" element={<AdminBlog />} />
           <Route path="seo" element={<AdminSeo />} />
+          <Route path="hakkimizda" element={<AdminAbout />} />
+          <Route path="galeri" element={<AdminGaleri />} />
         </Route>
 
         {/* Public site */}

@@ -1,13 +1,34 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, ShieldCheck, Zap, Wrench, Palette, Medal, Users, Target, Compass } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
-const STATS = [
+const DEFAULT_STATS = [
   { value: '18+',  label: 'Yıllık Deneyim' },
   { value: '623+', label: 'Tamamlanan Proje' },
   { value: '81',   label: 'İlde Kurulum' },
   { value: '%100', label: 'Yerli Üretim' },
 ];
+const DEFAULT_STORY = ['/images/about-story-1.jpeg', '/images/about-story-2.jpeg', '/images/about-story-3.jpeg'];
+const DEFAULT_STRIP  = ['/images/about-1.jpeg', '/images/about-2.jpeg', '/images/about-3.jpeg'];
+
+function useAboutSettings() {
+  const [stats, setStats] = useState(DEFAULT_STATS);
+  const [storyImages, setStoryImages] = useState(DEFAULT_STORY);
+  const [stripImages, setStripImages] = useState(DEFAULT_STRIP);
+  useEffect(() => {
+    supabase.from('about_settings').select('key,value').then(({ data }) => {
+      if (!data || data.length === 0) return;
+      const map: Record<string, string> = {};
+      data.forEach((r: { key: string; value: string }) => { map[r.key] = r.value; });
+      if (map.stats)        setStats(JSON.parse(map.stats));
+      if (map.story_images) setStoryImages(JSON.parse(map.story_images));
+      if (map.strip_images) setStripImages(JSON.parse(map.strip_images));
+    });
+  }, []);
+  return { stats, storyImages, stripImages };
+}
 
 const VALUES = [
   { icon: <ShieldCheck size={20} strokeWidth={1.75} />, title: 'Güvenlik Standartları', desc: 'Uluslararası güvenlik standartlarını karşılayan CE belgeli ürünlerden tasarımlar.' },
@@ -32,6 +53,7 @@ const fade = (delay = 0) => ({
 });
 
 export default function About() {
+  const { stats, storyImages, stripImages } = useAboutSettings();
   return (
     <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
 
@@ -50,7 +72,7 @@ export default function About() {
       <div style={{ background: '#0a0a0a', borderBottom: '1px solid rgba(255,255,255,.05)' }}>
         <div className="container">
           <div className="row g-0">
-            {STATS.map((s, i) => (
+            {stats.map((s, i) => (
               <div key={i} className="col-6 col-md-3">
                 <motion.div {...fade(i * 0.06)}
                   style={{ padding: '2.25rem 1.5rem', textAlign: 'center', borderRight: i < 3 ? '1px solid rgba(255,255,255,.06)' : 'none' }}>
@@ -77,17 +99,17 @@ export default function About() {
             <motion.div {...fade(0)} style={{ position: 'relative' }}>
               {/* Top big image */}
               <div style={{ borderRadius: 20, overflow: 'hidden', boxShadow: '0 28px 72px rgba(0,0,0,.18)', aspectRatio: '16/9', marginBottom: 12 }}>
-                <img src="/images/about-story-1.jpeg" alt="Üretim atölyesi"
+                <img src={storyImages[0]} alt="Üretim atölyesi"
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
               </div>
               {/* Bottom two images */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
                 <div style={{ borderRadius: 16, overflow: 'hidden', boxShadow: '0 12px 36px rgba(0,0,0,.14)', aspectRatio: '4/3' }}>
-                  <img src="/images/about-story-2.jpeg" alt="Kaynak atölyesi"
+                  <img src={storyImages[1]} alt="Kaynak atölyesi"
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
                 </div>
                 <div style={{ borderRadius: 16, overflow: 'hidden', boxShadow: '0 12px 36px rgba(0,0,0,.14)', aspectRatio: '4/3' }}>
-                  <img src="/images/about-story-3.jpeg" alt="File üretimi"
+                  <img src={storyImages[2]} alt="File üretimi"
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
                 </div>
               </div>
@@ -173,7 +195,7 @@ export default function About() {
 
       {/* ── Full-bleed gallery strip ── */}
       <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', height: 360, overflow: 'hidden' }}>
-        {[`/images/about-1.jpeg`, `/images/about-2.jpeg`, `/images/about-3.jpeg`].map((src, i) => (
+        {stripImages.map((src, i) => (
           <div key={i} style={{ overflow: 'hidden', position: 'relative' }}>
             <img src={src} alt="" loading="lazy"
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: i > 0 ? 'brightness(.85)' : 'none', transition: 'transform .6s ease' }}
