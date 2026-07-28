@@ -113,7 +113,7 @@ export default function About() {
       </div>
 
       {/* ── Story section ── */}
-      <div className="container" style={{ paddingTop: '6rem', paddingBottom: '6rem' }}>
+      <div className="container" style={{ paddingTop: 'clamp(3rem, 8vw, 6rem)', paddingBottom: 'clamp(3rem, 8vw, 6rem)' }}>
         <div className="row g-5 align-items-center">
 
           {/* Image grid */}
@@ -136,7 +136,7 @@ export default function About() {
                 </div>
               </div>
               {/* Year badge */}
-              <div style={{ position: 'absolute', top: -20, left: -20, background: '#c3e92d', borderRadius: 14, padding: '14px 22px', boxShadow: '0 12px 32px rgba(195,233,45,.4)', zIndex: 2 }}>
+              <div className="tp-about-badge">
                 <p className="font-poppins fw-black mb-0" style={{ fontSize: 30, lineHeight: 1, color: '#0a0a0a' }}>2008</p>
                 <p style={{ fontSize: 9, fontWeight: 900, letterSpacing: '.15em', color: 'rgba(0,0,0,.55)', margin: '3px 0 0', textTransform: 'uppercase' }}>Kuruluş</p>
               </div>
@@ -178,7 +178,7 @@ export default function About() {
 
       {/* ── Values grid ── */}
       <div style={{ background: '#fff', borderTop: '1.5px solid #ebebeb', borderBottom: '1.5px solid #ebebeb' }}>
-        <div className="container" style={{ paddingTop: '5rem', paddingBottom: '5rem' }}>
+        <div className="container" style={{ paddingTop: 'clamp(2.5rem, 6vw, 5rem)', paddingBottom: 'clamp(2.5rem, 6vw, 5rem)' }}>
           <motion.div {...fade()} className="text-center mb-5">
             <p className="font-poppins fw-black text-uppercase mb-2"
               style={{ fontSize: 10, letterSpacing: '.22em', color: '#5c9200' }}>Değerlerimiz</p>
@@ -209,7 +209,7 @@ export default function About() {
       </div>
 
       {/* ── Full-bleed gallery strip ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', height: 360, overflow: 'hidden' }}>
+      <div className="tp-about-strip">
         {stripImages.map((src, i) => (
           <div key={i} style={{ overflow: 'hidden', position: 'relative' }}>
             <img src={src} alt="" loading="lazy"
@@ -233,7 +233,7 @@ export default function About() {
         <div aria-hidden="true" style={{ position: 'absolute', top: -120, right: -80, width: 500, height: 500, background: 'radial-gradient(circle, rgba(92,146,0,.35) 0%, transparent 65%)', filter: 'blur(60px)', borderRadius: '50%', pointerEvents: 'none' }} />
         <div aria-hidden="true" style={{ position: 'absolute', bottom: -80, left: -60, width: 380, height: 380, background: 'radial-gradient(circle, rgba(195,233,45,.15) 0%, transparent 65%)', filter: 'blur(50px)', borderRadius: '50%', pointerEvents: 'none' }} />
 
-        <div className="container" style={{ paddingTop: '6rem', paddingBottom: '6rem', position: 'relative', zIndex: 1 }}>
+        <div className="container" style={{ paddingTop: 'clamp(3rem, 8vw, 6rem)', paddingBottom: 'clamp(3rem, 8vw, 6rem)', position: 'relative', zIndex: 1 }}>
           <motion.div {...fade()} className="text-center mb-5">
             <p className="font-poppins fw-black text-uppercase mb-2"
               style={{ fontSize: 10, letterSpacing: '.22em', color: '#c3e92d' }}>İlkelerimiz</p>

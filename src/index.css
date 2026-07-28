@@ -708,6 +708,32 @@ img { display: block; max-width: 100%; }
 .tp-acc-chevron { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #f0f0f0; color: #555; transition: all .25s; }
 .tp-acc-chevron.open { background: var(--black); color: #fff; transform: rotate(180deg); }
 
+/* About page – gallery strip */
+.tp-about-strip {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  height: 360px;
+  overflow: hidden;
+}
+@media (max-width: 767px) {
+  .tp-about-strip { grid-template-columns: 1fr 1fr; height: 260px; }
+  .tp-about-strip > *:last-child { display: none; }
+}
+@media (max-width: 480px) {
+  .tp-about-strip { grid-template-columns: 1fr; height: 240px; }
+  .tp-about-strip > *:not(:first-child) { display: none; }
+}
+
+/* About page – story year badge */
+.tp-about-badge {
+  position: absolute; top: -20px; left: -20px;
+  background: #c3e92d; border-radius: 14px; padding: 14px 22px;
+  box-shadow: 0 12px 32px rgba(195,233,45,.4); z-index: 2;
+}
+@media (max-width: 575px) {
+  .tp-about-badge { top: 10px; left: 10px; padding: 10px 16px; border-radius: 10px; }
+}
+
 /* Gallery grid */
 /* Gallery – masonry tile */
 .tp-masonry {
