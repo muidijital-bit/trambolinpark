@@ -173,7 +173,7 @@ export default function About() {
 
       {/* ── Full-bleed gallery strip ── */}
       <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', height: 360, overflow: 'hidden' }}>
-        {[`https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/products/migrated--VkT.jpg`, `https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/products/migrated--Wao.png`, `https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/products/migrated-album-trambolinparkyeni-urunler-kjgxoxbLjL8vG5l.jpg`].map((src, i) => (
+        {[`/images/about-1.jpeg`, `/images/about-2.jpeg`, `/images/about-3.jpeg`].map((src, i) => (
           <div key={i} style={{ overflow: 'hidden', position: 'relative' }}>
             <img src={src} alt="" loading="lazy"
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: i > 0 ? 'brightness(.85)' : 'none', transition: 'transform .6s ease' }}
