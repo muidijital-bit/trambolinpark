@@ -4,12 +4,19 @@ import { optimizeImage } from '../../lib/imageUtils';
 import { AdminPageHeader } from './AdminLayout';
 import { Save, Upload } from 'lucide-react';
 
-type Stat = { value: string; label: string };
+type Stat  = { value: string; label: string };
+type Value = { title: string; desc: string };
+type Card  = { heading: string; body: string };
 
 type AboutData = {
   stats: Stat[];
   story_images: string[];
   strip_images: string[];
+  text1: string;
+  text2: string;
+  values: Value[];
+  vision: Card;
+  mission: Card;
 };
 
 const DEFAULTS: AboutData = {
@@ -21,6 +28,18 @@ const DEFAULTS: AboutData = {
   ],
   story_images: ['/images/about-story-1.jpeg', '/images/about-story-2.jpeg', '/images/about-story-3.jpeg'],
   strip_images: ['/images/about-1.jpeg', '/images/about-2.jpeg', '/images/about-3.jpeg'],
+  text1: 'Kapalı ve açık alan eğlence merkezleri, trambolin parkları ve soft play sistemleri üretiminde Türkiye\'nin öncü markalarından biri olmanın gururunu yaşıyoruz.',
+  text2: 'Tasarımından üretimine, anahtar teslim kurulumuna kadar projenin her aşamasını profesyonel ekibimizle yönetiyor; maksimum güvenlikli oyun alanları inşa ediyoruz.',
+  values: [
+    { title: 'Güvenlik Standartları', desc: 'Uluslararası güvenlik standartlarını karşılayan CE belgeli ürünlerden tasarımlar.' },
+    { title: 'Özel Tasarım',          desc: 'Her mekân için sıfırdan hazırlanan özgün proje ve çizimler.' },
+    { title: 'Hızlı Kurulum',         desc: 'Kısa sürede anahtar teslim kurulum garantisi.' },
+    { title: 'Kalite Güvencesi',      desc: 'Her üründe titiz kalite kontrolü ve uzun ömürlü malzeme seçimi.' },
+    { title: 'Satış Sonrası Destek',  desc: 'Bakım, yedek parça temini ve uzaktan teknik destek hizmetleri.' },
+    { title: 'Deneyimli Ekibimiz',    desc: 'Tasarımdan montaja kadar aynı ekip, kesintisiz proje yönetimi.' },
+  ],
+  vision:  { heading: 'Sektörün küresel referans markası olmak.', body: 'Teknolojik gelişmeleri ve küresel trendleri yakından takip ederek, güvenli eğlencenin sınırlarını yeniden çizen, Türkiye genelinde referans alınan bir marka olmak.' },
+  mission: { heading: 'Çocukların gelişimine katkı sağlayan alanlar.', body: 'Müşterilerimize yaratıcı, maksimum güvenli özelleştirilmiş çözümler sunarken; çocukların fiziksel ve zihinsel gelişimini destekleyen sağlıklı oyun alanları tasarlamak.' },
 };
 
 async function loadSettings(): Promise<AboutData> {
@@ -29,15 +48,24 @@ async function loadSettings(): Promise<AboutData> {
   const map: Record<string, string> = {};
   data.forEach((r: { key: string; value: string }) => { map[r.key] = r.value; });
   return {
-    stats: map.stats ? JSON.parse(map.stats) : DEFAULTS.stats,
+    stats:        map.stats        ? JSON.parse(map.stats)        : DEFAULTS.stats,
     story_images: map.story_images ? JSON.parse(map.story_images) : DEFAULTS.story_images,
     strip_images: map.strip_images ? JSON.parse(map.strip_images) : DEFAULTS.strip_images,
+    text1:        map.text1        ?? DEFAULTS.text1,
+    text2:        map.text2        ?? DEFAULTS.text2,
+    values:       map.values       ? JSON.parse(map.values)       : DEFAULTS.values,
+    vision:       map.vision       ? JSON.parse(map.vision)       : DEFAULTS.vision,
+    mission:      map.mission      ? JSON.parse(map.mission)      : DEFAULTS.mission,
   };
 }
 
 async function saveKey(key: string, value: string) {
   await supabase.from('about_settings').upsert({ key, value, updated_at: new Date().toISOString() }, { onConflict: 'key' });
 }
+
+const inputStyle: React.CSSProperties = { width: '100%', border: '1.5px solid #e0e0e0', borderRadius: 8, padding: '8px 10px', fontSize: 13, color: '#1a1a1a', background: '#fafafa' };
+const labelStyle: React.CSSProperties = { fontSize: 11, fontWeight: 700, color: '#555', display: 'block', marginBottom: 4 };
+const sectionHead: React.CSSProperties = { fontSize: 14, fontWeight: 800, color: '#1a1a1a', marginBottom: '1rem', paddingBottom: '0.5rem', borderBottom: '1.5px solid #ebebeb' };
 
 export default function AdminAbout() {
   const [data, setData] = useState<AboutData>(DEFAULTS);
@@ -79,9 +107,14 @@ export default function AdminAbout() {
   const save = async () => {
     setSaving(true);
     await Promise.all([
-      saveKey('stats', JSON.stringify(data.stats)),
+      saveKey('stats',        JSON.stringify(data.stats)),
       saveKey('story_images', JSON.stringify(data.story_images)),
       saveKey('strip_images', JSON.stringify(data.strip_images)),
+      saveKey('text1',        data.text1),
+      saveKey('text2',        data.text2),
+      saveKey('values',       JSON.stringify(data.values)),
+      saveKey('vision',       JSON.stringify(data.vision)),
+      saveKey('mission',      JSON.stringify(data.mission)),
     ]);
     setSaving(false);
     setSaved(true);
@@ -125,23 +158,40 @@ export default function AdminAbout() {
 
         {/* Stats */}
         <section>
-          <h3 style={{ fontSize: 14, fontWeight: 800, color: '#1a1a1a', marginBottom: '1rem', paddingBottom: '0.5rem', borderBottom: '1.5px solid #ebebeb' }}>İstatistikler</h3>
+          <h3 style={sectionHead}>İstatistikler</h3>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 12 }}>
             {data.stats.map((stat, i) => (
               <div key={i} style={{ background: '#fff', border: '1.5px solid #ebebeb', borderRadius: 12, padding: '1rem' }}>
                 <p style={{ fontSize: 11, fontWeight: 700, color: '#aaa', textTransform: 'uppercase', letterSpacing: '.1em', margin: '0 0 8px' }}>İstatistik {i + 1}</p>
                 <input value={stat.value} onChange={e => setData(prev => { const s = [...prev.stats]; s[i] = { ...s[i], value: e.target.value }; return { ...prev, stats: s }; })}
-                  placeholder="18+" style={{ width: '100%', marginBottom: 8, border: '1.5px solid #e0e0e0', borderRadius: 8, padding: '7px 10px', fontSize: 18, fontWeight: 800, color: '#3a7500' }} />
+                  placeholder="18+" style={{ ...inputStyle, marginBottom: 8, fontSize: 18, fontWeight: 800, color: '#3a7500' }} />
                 <input value={stat.label} onChange={e => setData(prev => { const s = [...prev.stats]; s[i] = { ...s[i], label: e.target.value }; return { ...prev, stats: s }; })}
-                  placeholder="Yıllık Deneyim" style={{ width: '100%', border: '1.5px solid #e0e0e0', borderRadius: 8, padding: '7px 10px', fontSize: 12, color: '#555' }} />
+                  placeholder="Yıllık Deneyim" style={inputStyle} />
               </div>
             ))}
           </div>
         </section>
 
+        {/* Biz Kimiz texts */}
+        <section>
+          <h3 style={sectionHead}>Biz Kimiz? — Paragraf Metinleri</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <div>
+              <label style={labelStyle}>1. Paragraf</label>
+              <textarea value={data.text1} rows={3} onChange={e => setData(prev => ({ ...prev, text1: e.target.value }))}
+                style={{ ...inputStyle, resize: 'vertical' }} />
+            </div>
+            <div>
+              <label style={labelStyle}>2. Paragraf</label>
+              <textarea value={data.text2} rows={3} onChange={e => setData(prev => ({ ...prev, text2: e.target.value }))}
+                style={{ ...inputStyle, resize: 'vertical' }} />
+            </div>
+          </div>
+        </section>
+
         {/* Story images */}
         <section>
-          <h3 style={{ fontSize: 14, fontWeight: 800, color: '#1a1a1a', marginBottom: '0.5rem', paddingBottom: '0.5rem', borderBottom: '1.5px solid #ebebeb' }}>Biz Kimiz? Bölümü Görselleri</h3>
+          <h3 style={{ ...sectionHead, marginBottom: '0.5rem' }}>Biz Kimiz? Bölümü Görselleri</h3>
           <p style={{ fontSize: 12, color: '#aaa', marginBottom: '1rem' }}>Büyük (üst) görsel + 2 küçük (alt) görsel</p>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
             {data.story_images.map((src, i) => imgBox(
@@ -156,7 +206,7 @@ export default function AdminAbout() {
 
         {/* Strip images */}
         <section>
-          <h3 style={{ fontSize: 14, fontWeight: 800, color: '#1a1a1a', marginBottom: '0.5rem', paddingBottom: '0.5rem', borderBottom: '1.5px solid #ebebeb' }}>Alt Galeri Şeridi Görselleri</h3>
+          <h3 style={{ ...sectionHead, marginBottom: '0.5rem' }}>Alt Galeri Şeridi Görselleri</h3>
           <p style={{ fontSize: 12, color: '#aaa', marginBottom: '1rem' }}>Sayfanın alt kısmındaki 3'lü galeri şeridi</p>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
             {data.strip_images.map((src, i) => imgBox(
@@ -167,6 +217,40 @@ export default function AdminAbout() {
             ))}
           </div>
           {uploading?.startsWith('strip') && <p style={{ fontSize: 12, color: '#3a7500', marginTop: 8 }}>Yükleniyor...</p>}
+        </section>
+
+        {/* Values */}
+        <section>
+          <h3 style={sectionHead}>Değerlerimiz (6 Kart)</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 12 }}>
+            {data.values.map((v, i) => (
+              <div key={i} style={{ background: '#fff', border: '1.5px solid #ebebeb', borderRadius: 12, padding: '1rem' }}>
+                <p style={{ fontSize: 11, fontWeight: 700, color: '#aaa', textTransform: 'uppercase', letterSpacing: '.1em', margin: '0 0 8px' }}>Değer {i + 1}</p>
+                <input value={v.title} placeholder="Başlık" onChange={e => setData(prev => { const vals = [...prev.values]; vals[i] = { ...vals[i], title: e.target.value }; return { ...prev, values: vals }; })}
+                  style={{ ...inputStyle, marginBottom: 8, fontWeight: 700 }} />
+                <textarea value={v.desc} placeholder="Açıklama" rows={2} onChange={e => setData(prev => { const vals = [...prev.values]; vals[i] = { ...vals[i], desc: e.target.value }; return { ...prev, values: vals }; })}
+                  style={{ ...inputStyle, resize: 'vertical' }} />
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Vision & Mission */}
+        <section>
+          <h3 style={sectionHead}>Vizyon & Misyon</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+            {(['vision', 'mission'] as const).map(key => (
+              <div key={key} style={{ background: '#fff', border: '1.5px solid #ebebeb', borderRadius: 12, padding: '1rem' }}>
+                <p style={{ fontSize: 11, fontWeight: 700, color: '#aaa', textTransform: 'uppercase', letterSpacing: '.1em', margin: '0 0 10px' }}>{key === 'vision' ? 'Vizyonumuz' : 'Misyonumuz'}</p>
+                <label style={labelStyle}>Başlık</label>
+                <input value={data[key].heading} placeholder="Başlık" onChange={e => setData(prev => ({ ...prev, [key]: { ...prev[key], heading: e.target.value } }))}
+                  style={{ ...inputStyle, marginBottom: 10, fontWeight: 700 }} />
+                <label style={labelStyle}>Açıklama</label>
+                <textarea value={data[key].body} placeholder="Açıklama" rows={4} onChange={e => setData(prev => ({ ...prev, [key]: { ...prev[key], body: e.target.value } }))}
+                  style={{ ...inputStyle, resize: 'vertical' }} />
+              </div>
+            ))}
+          </div>
         </section>
 
       </div>

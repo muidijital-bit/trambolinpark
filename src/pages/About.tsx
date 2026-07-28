@@ -12,31 +12,53 @@ const DEFAULT_STATS = [
 ];
 const DEFAULT_STORY = ['/images/about-story-1.jpeg', '/images/about-story-2.jpeg', '/images/about-story-3.jpeg'];
 const DEFAULT_STRIP  = ['/images/about-1.jpeg', '/images/about-2.jpeg', '/images/about-3.jpeg'];
+const DEFAULT_TEXT1 = 'Kapalı ve açık alan eğlence merkezleri, trambolin parkları ve soft play sistemleri üretiminde Türkiye\'nin öncü markalarından biri olmanın gururunu yaşıyoruz.';
+const DEFAULT_TEXT2 = 'Tasarımından üretimine, anahtar teslim kurulumuna kadar projenin her aşamasını profesyonel ekibimizle yönetiyor; maksimum güvenlikli oyun alanları inşa ediyoruz.';
+const DEFAULT_VALUES = [
+  { title: 'Güvenlik Standartları', desc: 'Uluslararası güvenlik standartlarını karşılayan CE belgeli ürünlerden tasarımlar.' },
+  { title: 'Özel Tasarım',          desc: 'Her mekân için sıfırdan hazırlanan özgün proje ve çizimler.' },
+  { title: 'Hızlı Kurulum',         desc: 'Kısa sürede anahtar teslim kurulum garantisi.' },
+  { title: 'Kalite Güvencesi',      desc: 'Her üründe titiz kalite kontrolü ve uzun ömürlü malzeme seçimi.' },
+  { title: 'Satış Sonrası Destek',  desc: 'Bakım, yedek parça temini ve uzaktan teknik destek hizmetleri.' },
+  { title: 'Deneyimli Ekibimiz',    desc: 'Tasarımdan montaja kadar aynı ekip, kesintisiz proje yönetimi.' },
+];
+const DEFAULT_VISION  = { heading: 'Sektörün küresel referans markası olmak.', body: 'Teknolojik gelişmeleri ve küresel trendleri yakından takip ederek, güvenli eğlencenin sınırlarını yeniden çizen, Türkiye genelinde referans alınan bir marka olmak.' };
+const DEFAULT_MISSION = { heading: 'Çocukların gelişimine katkı sağlayan alanlar.', body: 'Müşterilerimize yaratıcı, maksimum güvenli özelleştirilmiş çözümler sunarken; çocukların fiziksel ve zihinsel gelişimini destekleyen sağlıklı oyun alanları tasarlamak.' };
 
 function useAboutSettings() {
   const [stats, setStats] = useState(DEFAULT_STATS);
   const [storyImages, setStoryImages] = useState(DEFAULT_STORY);
   const [stripImages, setStripImages] = useState(DEFAULT_STRIP);
+  const [text1, setText1] = useState(DEFAULT_TEXT1);
+  const [text2, setText2] = useState(DEFAULT_TEXT2);
+  const [values, setValues] = useState(DEFAULT_VALUES);
+  const [vision, setVision] = useState(DEFAULT_VISION);
+  const [mission, setMission] = useState(DEFAULT_MISSION);
   useEffect(() => {
     supabase.from('about_settings').select('key,value').then(({ data }) => {
       if (!data || data.length === 0) return;
       const map: Record<string, string> = {};
       data.forEach((r: { key: string; value: string }) => { map[r.key] = r.value; });
-      if (map.stats)        setStats(JSON.parse(map.stats));
-      if (map.story_images) setStoryImages(JSON.parse(map.story_images));
-      if (map.strip_images) setStripImages(JSON.parse(map.strip_images));
+      if (map.stats)          setStats(JSON.parse(map.stats));
+      if (map.story_images)   setStoryImages(JSON.parse(map.story_images));
+      if (map.strip_images)   setStripImages(JSON.parse(map.strip_images));
+      if (map.text1)          setText1(map.text1);
+      if (map.text2)          setText2(map.text2);
+      if (map.values)         setValues(JSON.parse(map.values));
+      if (map.vision)         setVision(JSON.parse(map.vision));
+      if (map.mission)        setMission(JSON.parse(map.mission));
     });
   }, []);
-  return { stats, storyImages, stripImages };
+  return { stats, storyImages, stripImages, text1, text2, values, vision, mission };
 }
 
-const VALUES = [
-  { icon: <ShieldCheck size={20} strokeWidth={1.75} />, title: 'Güvenlik Standartları', desc: 'Uluslararası güvenlik standartlarını karşılayan CE belgeli ürünlerden tasarımlar.' },
-  { icon: <Palette size={20} strokeWidth={1.75} />,     title: 'Özel Tasarım',          desc: 'Her mekân için sıfırdan hazırlanan özgün proje ve çizimler.' },
-  { icon: <Zap size={20} strokeWidth={1.75} />,         title: 'Hızlı Kurulum',         desc: 'Kısa sürede anahtar teslim kurulum garantisi.' },
-  { icon: <Medal size={20} strokeWidth={1.75} />,       title: 'Kalite Güvencesi',      desc: 'Her üründe titiz kalite kontrolü ve uzun ömürlü malzeme seçimi.' },
-  { icon: <Wrench size={20} strokeWidth={1.75} />,      title: 'Satış Sonrası Destek',  desc: 'Bakım, yedek parça temini ve uzaktan teknik destek hizmetleri.' },
-  { icon: <Users size={20} strokeWidth={1.75} />,       title: 'Deneyimli Ekibimiz',    desc: 'Tasarımdan montaja kadar aynı ekip, kesintisiz proje yönetimi.' },
+const VALUE_ICONS = [
+  <ShieldCheck size={20} strokeWidth={1.75} />,
+  <Palette size={20} strokeWidth={1.75} />,
+  <Zap size={20} strokeWidth={1.75} />,
+  <Medal size={20} strokeWidth={1.75} />,
+  <Wrench size={20} strokeWidth={1.75} />,
+  <Users size={20} strokeWidth={1.75} />,
 ];
 
 const CHECKS = [
@@ -53,7 +75,7 @@ const fade = (delay = 0) => ({
 });
 
 export default function About() {
-  const { stats, storyImages, stripImages } = useAboutSettings();
+  const { stats, storyImages, stripImages, text1, text2, values, vision, mission } = useAboutSettings();
   return (
     <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
 
@@ -130,14 +152,8 @@ export default function About() {
                 style={{ fontSize: 'clamp(1.9rem, 3.5vw, 3rem)', lineHeight: 1.1, letterSpacing: '-.02em', color: '#0a0a0a' }}>
                 Türkiye'nin Öncü<br /><span style={{ color: '#5c9200' }}>Trambolin Parkı</span><br />Üreticisi
               </h2>
-              <p style={{ fontSize: 15, lineHeight: 1.85, color: '#555', marginBottom: '1.25rem' }}>
-                Kapalı ve açık alan eğlence merkezleri, trambolin parkları ve soft play sistemleri üretiminde
-                Türkiye'nin öncü markalarından biri olmanın gururunu yaşıyoruz.
-              </p>
-              <p style={{ fontSize: 15, lineHeight: 1.85, color: '#555', marginBottom: '2rem' }}>
-                Tasarımından üretimine, anahtar teslim kurulumuna kadar projenin her aşamasını
-                profesyonel ekibimizle yönetiyor; maksimum güvenlikli oyun alanları inşa ediyoruz.
-              </p>
+              <p style={{ fontSize: 15, lineHeight: 1.85, color: '#555', marginBottom: '1.25rem' }}>{text1}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.85, color: '#555', marginBottom: '2rem' }}>{text2}</p>
 
               {/* Checklist */}
               <div className="d-flex flex-column gap-2 mb-4">
@@ -174,14 +190,14 @@ export default function About() {
           </motion.div>
 
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-            {VALUES.map((v, i) => (
+            {values.map((v, i) => (
               <div key={i} className="col">
                 <motion.div {...fade((i % 3) * 0.07)}>
                   <div className="h-100" style={{ background: '#f8f8f8', borderRadius: 16, border: '1.5px solid #ebebeb', padding: '2rem 1.75rem', transition: 'border-color .2s, transform .2s, box-shadow .2s' }}
                     onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(92,146,0,.35)'; (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-4px)'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 12px 32px rgba(0,0,0,.07)'; }}
                     onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = '#ebebeb'; (e.currentTarget as HTMLDivElement).style.transform = 'none'; (e.currentTarget as HTMLDivElement).style.boxShadow = 'none'; }}>
                     <div style={{ width: 48, height: 48, borderRadius: 12, background: 'rgba(92,146,0,.07)', border: '1.5px solid rgba(92,146,0,.18)', color: '#5c9200', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.25rem' }}>
-                      {v.icon}
+                      {VALUE_ICONS[i % VALUE_ICONS.length]}
                     </div>
                     <h3 className="font-poppins fw-black mb-2" style={{ fontSize: 15, color: '#0a0a0a', letterSpacing: '-.01em' }}>{v.title}</h3>
                     <p style={{ fontSize: 13, color: '#666', lineHeight: 1.7, margin: 0 }}>{v.desc}</p>
@@ -230,18 +246,8 @@ export default function About() {
 
           <div className="row g-4">
             {[
-              {
-                icon: <Target size={22} strokeWidth={1.5} />,
-                tag: 'Vizyonumuz',
-                heading: 'Sektörün küresel referans markası olmak.',
-                body: 'Teknolojik gelişmeleri ve küresel trendleri yakından takip ederek, güvenli eğlencenin sınırlarını yeniden çizen, Türkiye genelinde referans alınan bir marka olmak.',
-              },
-              {
-                icon: <Compass size={22} strokeWidth={1.5} />,
-                tag: 'Misyonumuz',
-                heading: 'Çocukların gelişimine katkı sağlayan alanlar.',
-                body: 'Müşterilerimize yaratıcı, maksimum güvenli özelleştirilmiş çözümler sunarken; çocukların fiziksel ve zihinsel gelişimini destekleyen sağlıklı oyun alanları tasarlamak.',
-              },
+              { icon: <Target size={22} strokeWidth={1.5} />, tag: 'Vizyonumuz',  heading: vision.heading,  body: vision.body  },
+              { icon: <Compass size={22} strokeWidth={1.5} />, tag: 'Misyonumuz', heading: mission.heading, body: mission.body },
             ].map((item, i) => (
               <div key={i} className="col-12 col-md-6">
                 <motion.div {...fade(i * 0.1)}>
