@@ -721,7 +721,8 @@ img { display: block; max-width: 100%; }
 }
 @media (max-width: 480px) {
   .tp-about-strip { grid-template-columns: 1fr; height: 240px; }
-  .tp-about-strip > *:not(:first-child) { display: none; }
+  .tp-about-strip > *:first-child { display: none; }
+  .tp-about-strip > *:last-child  { display: none; }
 }
 
 /* About page – story year badge */
