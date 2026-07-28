@@ -710,20 +710,23 @@ img { display: block; max-width: 100%; }
 
 /* Gallery grid */
 /* Gallery – masonry tile */
-.tp-masonry { columns: 3; column-gap: 14px; }
-@media (max-width: 991px) { .tp-masonry { columns: 2; column-gap: 10px; } }
-@media (max-width: 575px)  { .tp-masonry { columns: 2; column-gap: 8px;  } }
-@media (max-width: 360px)  { .tp-masonry { columns: 1; column-gap: 0;    } }
+.tp-masonry {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+@media (max-width: 991px) { .tp-masonry { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+@media (max-width: 575px)  { .tp-masonry { grid-template-columns: repeat(2, 1fr); gap: 8px;  } }
 
 .tp-masonry-item {
-  break-inside: avoid; margin-bottom: 14px;
+  aspect-ratio: 4 / 3;
   border-radius: 14px; overflow: hidden; background: #e5e5e5;
   position: relative; cursor: pointer;
 }
-@media (max-width: 575px) { .tp-masonry-item { margin-bottom: 8px; border-radius: 10px; } }
+@media (max-width: 575px) { .tp-masonry-item { border-radius: 10px; } }
 
 .tp-masonry-item img {
-  width: 100%; display: block;
+  width: 100%; height: 100%; display: block; object-fit: cover;
   transition: transform .45s cubic-bezier(0.16,1,0.3,1);
 }
 .tp-masonry-item:hover img { transform: scale(1.05); }
