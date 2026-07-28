@@ -12,8 +12,8 @@ const DEFAULT_STATS = [
 ];
 const DEFAULT_STORY = ['/images/about-story-1.jpeg', '/images/about-story-2.jpeg', '/images/about-story-3.jpeg'];
 const DEFAULT_STRIP  = ['/images/about-1.jpeg', '/images/about-2.jpeg', '/images/about-3.jpeg'];
-const DEFAULT_TEXT1 = 'Kapalı ve açık alan eğlence merkezleri, trambolin parkları ve soft play sistemleri üretiminde Türkiye\'nin öncü markalarından biri olmanın gururunu yaşıyoruz.';
-const DEFAULT_TEXT2 = 'Tasarımından üretimine, anahtar teslim kurulumuna kadar projenin her aşamasını profesyonel ekibimizle yönetiyor; maksimum güvenlikli oyun alanları inşa ediyoruz.';
+const DEFAULT_BIZ_HEADING = 'Türkiye\'nin Öncü Trambolin Parkı Üreticisi';
+const DEFAULT_TEXT1 = 'Kapalı ve açık alan eğlence merkezleri, trambolin parkları ve soft play sistemleri üretiminde Türkiye\'nin öncü markalarından biri olmanın gururunu yaşıyoruz. Tasarımından üretimine, anahtar teslim kurulumuna kadar projenin her aşamasını profesyonel ekibimizle yönetiyor; maksimum güvenlikli oyun alanları inşa ediyoruz.';
 const DEFAULT_VALUES = [
   { title: 'Güvenlik Standartları', desc: 'Uluslararası güvenlik standartlarını karşılayan CE belgeli ürünlerden tasarımlar.' },
   { title: 'Özel Tasarım',          desc: 'Her mekân için sıfırdan hazırlanan özgün proje ve çizimler.' },
@@ -29,8 +29,8 @@ function useAboutSettings() {
   const [stats, setStats] = useState(DEFAULT_STATS);
   const [storyImages, setStoryImages] = useState(DEFAULT_STORY);
   const [stripImages, setStripImages] = useState(DEFAULT_STRIP);
+  const [bizHeading, setBizHeading] = useState(DEFAULT_BIZ_HEADING);
   const [text1, setText1] = useState(DEFAULT_TEXT1);
-  const [text2, setText2] = useState(DEFAULT_TEXT2);
   const [values, setValues] = useState(DEFAULT_VALUES);
   const [vision, setVision] = useState(DEFAULT_VISION);
   const [mission, setMission] = useState(DEFAULT_MISSION);
@@ -42,14 +42,14 @@ function useAboutSettings() {
       if (map.stats)          setStats(JSON.parse(map.stats));
       if (map.story_images)   setStoryImages(JSON.parse(map.story_images));
       if (map.strip_images)   setStripImages(JSON.parse(map.strip_images));
+      if (map.biz_heading)    setBizHeading(map.biz_heading);
       if (map.text1)          setText1(map.text1);
-      if (map.text2)          setText2(map.text2);
       if (map.values)         setValues(JSON.parse(map.values));
       if (map.vision)         setVision(JSON.parse(map.vision));
       if (map.mission)        setMission(JSON.parse(map.mission));
     });
   }, []);
-  return { stats, storyImages, stripImages, text1, text2, values, vision, mission };
+  return { stats, storyImages, stripImages, bizHeading, text1, values, vision, mission };
 }
 
 const VALUE_ICONS = [
@@ -75,7 +75,7 @@ const fade = (delay = 0) => ({
 });
 
 export default function About() {
-  const { stats, storyImages, stripImages, text1, text2, values, vision, mission } = useAboutSettings();
+  const { stats, storyImages, stripImages, bizHeading, text1, values, vision, mission } = useAboutSettings();
   return (
     <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
 
@@ -150,10 +150,9 @@ export default function About() {
                 style={{ fontSize: 10, letterSpacing: '.22em', color: '#5c9200' }}>Biz Kimiz?</p>
               <h2 className="font-poppins fw-black mb-4"
                 style={{ fontSize: 'clamp(1.9rem, 3.5vw, 3rem)', lineHeight: 1.1, letterSpacing: '-.02em', color: '#0a0a0a' }}>
-                Türkiye'nin Öncü<br /><span style={{ color: '#5c9200' }}>Trambolin Parkı</span><br />Üreticisi
+                {bizHeading}
               </h2>
-              <p style={{ fontSize: 15, lineHeight: 1.85, color: '#555', marginBottom: '1.25rem' }}>{text1}</p>
-              <p style={{ fontSize: 15, lineHeight: 1.85, color: '#555', marginBottom: '2rem' }}>{text2}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.85, color: '#555', marginBottom: '2rem' }}>{text1}</p>
 
               {/* Checklist */}
               <div className="d-flex flex-column gap-2 mb-4">

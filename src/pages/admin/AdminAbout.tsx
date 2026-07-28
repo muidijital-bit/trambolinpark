@@ -12,8 +12,8 @@ type AboutData = {
   stats: Stat[];
   story_images: string[];
   strip_images: string[];
+  biz_heading: string;
   text1: string;
-  text2: string;
   values: Value[];
   vision: Card;
   mission: Card;
@@ -28,8 +28,8 @@ const DEFAULTS: AboutData = {
   ],
   story_images: ['/images/about-story-1.jpeg', '/images/about-story-2.jpeg', '/images/about-story-3.jpeg'],
   strip_images: ['/images/about-1.jpeg', '/images/about-2.jpeg', '/images/about-3.jpeg'],
-  text1: 'Kapalı ve açık alan eğlence merkezleri, trambolin parkları ve soft play sistemleri üretiminde Türkiye\'nin öncü markalarından biri olmanın gururunu yaşıyoruz.',
-  text2: 'Tasarımından üretimine, anahtar teslim kurulumuna kadar projenin her aşamasını profesyonel ekibimizle yönetiyor; maksimum güvenlikli oyun alanları inşa ediyoruz.',
+  biz_heading: 'Türkiye\'nin Öncü Trambolin Parkı Üreticisi',
+  text1: 'Kapalı ve açık alan eğlence merkezleri, trambolin parkları ve soft play sistemleri üretiminde Türkiye\'nin öncü markalarından biri olmanın gururunu yaşıyoruz. Tasarımından üretimine, anahtar teslim kurulumuna kadar projenin her aşamasını profesyonel ekibimizle yönetiyor; maksimum güvenlikli oyun alanları inşa ediyoruz.',
   values: [
     { title: 'Güvenlik Standartları', desc: 'Uluslararası güvenlik standartlarını karşılayan CE belgeli ürünlerden tasarımlar.' },
     { title: 'Özel Tasarım',          desc: 'Her mekân için sıfırdan hazırlanan özgün proje ve çizimler.' },
@@ -51,8 +51,8 @@ async function loadSettings(): Promise<AboutData> {
     stats:        map.stats        ? JSON.parse(map.stats)        : DEFAULTS.stats,
     story_images: map.story_images ? JSON.parse(map.story_images) : DEFAULTS.story_images,
     strip_images: map.strip_images ? JSON.parse(map.strip_images) : DEFAULTS.strip_images,
+    biz_heading:  map.biz_heading  ?? DEFAULTS.biz_heading,
     text1:        map.text1        ?? DEFAULTS.text1,
-    text2:        map.text2        ?? DEFAULTS.text2,
     values:       map.values       ? JSON.parse(map.values)       : DEFAULTS.values,
     vision:       map.vision       ? JSON.parse(map.vision)       : DEFAULTS.vision,
     mission:      map.mission      ? JSON.parse(map.mission)      : DEFAULTS.mission,
@@ -110,8 +110,8 @@ export default function AdminAbout() {
       saveKey('stats',        JSON.stringify(data.stats)),
       saveKey('story_images', JSON.stringify(data.story_images)),
       saveKey('strip_images', JSON.stringify(data.strip_images)),
+      saveKey('biz_heading',  data.biz_heading),
       saveKey('text1',        data.text1),
-      saveKey('text2',        data.text2),
       saveKey('values',       JSON.stringify(data.values)),
       saveKey('vision',       JSON.stringify(data.vision)),
       saveKey('mission',      JSON.stringify(data.mission)),
@@ -174,16 +174,16 @@ export default function AdminAbout() {
 
         {/* Biz Kimiz texts */}
         <section>
-          <h3 style={sectionHead}>Biz Kimiz? — Paragraf Metinleri</h3>
+          <h3 style={sectionHead}>Biz Kimiz? — Başlık & Paragraf</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             <div>
-              <label style={labelStyle}>1. Paragraf</label>
-              <textarea value={data.text1} rows={3} onChange={e => setData(prev => ({ ...prev, text1: e.target.value }))}
-                style={{ ...inputStyle, resize: 'vertical' }} />
+              <label style={labelStyle}>Başlık</label>
+              <input value={data.biz_heading} onChange={e => setData(prev => ({ ...prev, biz_heading: e.target.value }))}
+                style={{ ...inputStyle, fontWeight: 700 }} />
             </div>
             <div>
-              <label style={labelStyle}>2. Paragraf</label>
-              <textarea value={data.text2} rows={3} onChange={e => setData(prev => ({ ...prev, text2: e.target.value }))}
+              <label style={labelStyle}>Paragraf</label>
+              <textarea value={data.text1} rows={4} onChange={e => setData(prev => ({ ...prev, text1: e.target.value }))}
                 style={{ ...inputStyle, resize: 'vertical' }} />
             </div>
           </div>
