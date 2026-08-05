@@ -131,7 +131,7 @@ export default function Catalog() {
             </span>
             <button onClick={() => setDrawerOpen(true)}
               className="d-flex align-items-center gap-2 border-0"
-              style={{ background: '#1a1a1a', color: '#fff', borderRadius: 10, padding: '10px 18px', fontSize: 13, fontWeight: 800, cursor: 'pointer', boxShadow: '0 4px 14px rgba(0,0,0,.22)', letterSpacing: '-.01em' }}>
+              style={{ background: '#5c9200', color: '#fff', borderRadius: 10, padding: '10px 18px', fontSize: 13, fontWeight: 800, cursor: 'pointer', boxShadow: '0 4px 14px rgba(92,146,0,.4)', letterSpacing: '-.01em' }}>
               <SlidersHorizontal size={15} strokeWidth={2.5} />
               Tüm Kategoriler
             </button>
