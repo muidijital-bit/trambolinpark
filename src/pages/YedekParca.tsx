@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -53,6 +54,10 @@ export default function YedekParca() {
 
   return (
     <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
+      <Helmet>
+        <title>Trambolin Yedek Parça | Yaylar, Zıplama Filesi & Parçalar | Trambolinpark</title>
+        <meta name="description" content="Orijinal trambolin yedek parçaları: trambolin yayları, zıplama filesi, güvenlik ağı ve daha fazlası. Hızlı kargo, uygun fiyat, tüm markalarla uyumlu." />
+      </Helmet>
 
       {/* Hero */}
       <div className="tp-page-hero">

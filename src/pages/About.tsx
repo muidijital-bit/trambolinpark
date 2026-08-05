@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -78,6 +79,10 @@ export default function About() {
   const { stats, storyImages, stripImages, bizHeading, text1, values, vision, mission } = useAboutSettings();
   return (
     <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
+      <Helmet>
+        <title>Hakkımızda | Trambolinpark – Türkiye'nin Öncü Trambolin Üreticisi</title>
+        <meta name="description" content="2008'den bu yana Türkiye'nin önde gelen trambolin ve softplay üreticisi. 623+ tamamlanan proje, 81 ilde kurulum, %100 yerli üretim." />
+      </Helmet>
 
       {/* Hero */}
       <div className="tp-page-hero">

@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight, Phone, Mail, MessageCircle, MapPin, Zap, Layers, Circle, Wind, Wrench, Triangle } from 'lucide-react';
@@ -45,6 +46,10 @@ function Reveal({ children, dir = 'up', delay = 0, className = '' }: { children:
 export default function Home() {
   return (
     <>
+      <Helmet>
+        <title>Trambolinpark | Trambolin Üreticisi & Softplay Üreticisi</title>
+        <meta name="description" content="Türkiye'nin lider trambolin ve softplay üreticisi. Ticari olimpik trambolinler, çocuk oyun grubu, top havuzu ve softplay oyun alanları. 81 ilde anahtar teslim kurulum." />
+      </Helmet>
       <HeroSection />
       <CategoryMarquee />
       <ProductsSection />

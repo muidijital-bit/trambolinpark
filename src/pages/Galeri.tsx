@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { useEffect, useState, useMemo } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
@@ -73,6 +74,10 @@ export default function Galeri() {
 
   return (
     <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
+      <Helmet>
+        <title>Galeri | Tamamlanan Trambolin Parkı & Softplay Projeleri | Trambolinpark</title>
+        <meta name="description" content="623+ tamamlanan trambolin parkı ve softplay projesi. Saha kurulumları, top havuzları ve çocuk oyun alanlarından fotoğraflar." />
+      </Helmet>
 
       {/* Hero */}
       <div className="tp-page-hero">

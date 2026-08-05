@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { useEffect, useState } from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { supabase } from '../lib/supabase';
@@ -47,6 +48,10 @@ export default function Contact() {
   const { wa, phones, email, address } = useContactSettings();
   return (
     <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
+      <Helmet>
+        <title>İletişim | Trambolinpark – Trambolin & Softplay Üreticisi</title>
+        <meta name="description" content="Trambolinpark ile iletişime geçin. Trambolin parkı, softplay veya çocuk oyun alanı projeniz için teklif alın. Ankara merkezli, 81 ilde hizmet." />
+      </Helmet>
 
       {/* Hero */}
       <div className="tp-page-hero">

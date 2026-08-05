@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { useState, useMemo, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -29,6 +30,22 @@ const GROUPS = [
     { id: 'sisme-buyuk',       name: 'Şişme Büyük' },
   ]},
 ];
+
+const PAGE_SEO: Record<string, { title: string; desc: string }> = {
+  'ticari-olimpik-trambolinler': { title: 'Ticari Olimpik Trambolin Üreticisi | Trambolinpark', desc: 'CE belgeli ticari olimpik trambolinler. 1 kişilikten 12 kişiliğe geniş ürün yelpazesi. İşletmeler için anahtar teslim kurulum.' },
+  'ticari-junior':               { title: 'Ticari Junior Trambolin | Trambolinpark',              desc: 'Çocuklar için ticari junior trambolinler. Güvenli, dayanıklı ve CE belgeli. Eğlence merkezleri için ideal.' },
+  'trambolin-parklari':          { title: 'Trambolin Parkı Ekipmanları & Kurulumu | Trambolinpark', desc: 'Profesyonel trambolin parkı ekipmanları. Tasarımdan kuruluma tam anahtar teslim trambolin park çözümleri.' },
+  'yer-zemin-trambolin':         { title: 'Yer (Zemin) Trambolini | Trambolinpark',               desc: 'Güvenli yer trambolin modelleri. Zemin hizasında kurulum, maksimum güvenlik. Ticari ve spor amaçlı.' },
+  'salto-trambolin':             { title: 'Salto Trambolin | Trambolinpark',                      desc: 'Profesyonel salto trambolin ekipmanları. Spor kulüpleri ve eğlence merkezleri için idealdir.' },
+  'tekli-trambolinler':          { title: 'Tekli Trambolin Modelleri | Trambolinpark',            desc: 'Çeşitli boyutlarda tekli trambolin modelleri. Ticari kalite, uzun ömürlü malzeme.' },
+  'profesyonel-trambolin':       { title: 'Profesyonel Trambolin Üreticisi | Trambolinpark',     desc: 'Profesyonel spor trambolinleri. CE belgeli, uluslararası standartlarda üretim.' },
+  'kucuk-top-havuzlari':         { title: 'Küçük Top Havuzu Üreticisi | Trambolinpark',          desc: 'Küçük top havuzu modelleri. İşletmeler ve çocuk oyun alanları için güvenli ve renkli top havuzları.' },
+  'isletmelere-top-havuzlari':   { title: 'Ticari Top Havuzu | İşletmeler İçin | Trambolinpark', desc: 'AVM ve eğlence merkezleri için büyük kapasiteli ticari top havuzları. CE belgeli, dayanıklı malzeme.' },
+  'softplay-oyun-alanlari':      { title: 'Softplay Oyun Alanı Üreticisi | Trambolinpark',       desc: 'Softplay oyun alanları ve çocuk oyun grubu sistemleri. Güvenli, renkli ve özelleştirilebilir softplay çözümleri.' },
+  'softplay-oyuncaklar':         { title: 'Softplay Oyuncaklar & Ekipmanları | Trambolinpark',   desc: 'Çocuk oyun alanları için softplay oyuncaklar. Yumuşak, güvenli ve CE belgeli softplay ürünleri.' },
+  'sisme-park-junior':           { title: 'Şişme Park Junior | Trambolinpark',                   desc: 'Çocuklar için şişme oyun parkları. Renkli, güvenli ve eğlenceli junior şişme park modelleri.' },
+  'sisme-buyuk':                 { title: 'Büyük Şişme Oyun Parkı | Trambolinpark',              desc: 'Büyük kapasiteli şişme oyun parkları. Etkinlik ve eğlence merkezleri için profesyonel şişme park çözümleri.' },
+};
 
 const GROUP_KEYS  = GROUPS.map(g => g.key);
 const ALL_SUB_IDS = GROUPS.flatMap(g => g.subs.map(s => s.id));
@@ -95,6 +112,12 @@ export default function Catalog() {
 
   return (
     <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
+      {activeSub && PAGE_SEO[activeSub.id] && (
+        <Helmet>
+          <title>{PAGE_SEO[activeSub.id].title}</title>
+          <meta name="description" content={PAGE_SEO[activeSub.id].desc} />
+        </Helmet>
+      )}
 
       {/* Hero */}
       <div className="tp-page-hero">
