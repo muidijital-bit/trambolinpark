@@ -13,9 +13,9 @@ type SiteSettings = {
 };
 
 const DEFAULTS: SiteSettings = {
-  site_title: 'Ticari Trambolin Park Ekipmanı Üreticisi | TrambolinPark',
-  site_description: 'TrambolinPark: CE belgeli ticari trambolin, softplay ve oyun parkı ekipmanları. 81 ilde kurulum ve satış. AVM, işletme ve eğlence merkezlerine anahtar teslim çözüm.',
-  keywords: 'ticari trambolin üretici, trambolin park ekipmanı, soft play üretici türkiye, top havuzu imalatçı, trambolin park kurulum, kapalı oyun alanı üretimi, CE belgeli trambolin, oyun parkı ekipmanı, AVM oyun parkı, profesyonel trambolin imalatı',
+  site_title: 'Trambolinpark | Trambolin Üreticisi & Softplay Üreticisi',
+  site_description: 'Türkiye\'nin lider trambolin ve softplay üreticisi. Ticari olimpik trambolinler, çocuk oyun grubu, top havuzu ve çocuk oyun alanları. 81 ilde anahtar teslim kurulum.',
+  keywords: 'trambolin üreticisi, çocuk oyun grubu üreticisi, softplay üreticisi, ticari trambolin, olimpik trambolin, trambolin yedek parça, top havuzu, çocuk oyun alanı, trambolin yayları, trambolin zıplama filesi, trambolin parkı kurulumu, CE belgeli trambolin',
   og_image: 'https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/products/migrated--VkT.jpg',
   favicon_url: '',
   google_analytics_id: '',
