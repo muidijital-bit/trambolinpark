@@ -122,14 +122,35 @@ export default function Catalog() {
 
       <div className="container py-4 py-md-5">
 
-        {/* Mobile filter button */}
-        <div className="d-flex align-items-center justify-content-between mb-3 d-lg-none">
-          <span style={{ fontSize: 12, fontWeight: 700, color: '#888' }}>{displayed.length} ürün</span>
-          <button onClick={() => setDrawerOpen(true)}
-            className="d-flex align-items-center gap-2 border-0 rounded-pill"
-            style={{ background: '#fff', border: '1.5px solid #e0e0e0', padding: '7px 14px', fontSize: 12, fontWeight: 700, color: '#555', cursor: 'pointer' }}>
-            <SlidersHorizontal size={13} /> Kategoriler
-          </button>
+        {/* Mobile category bar */}
+        <div className="d-lg-none mb-3">
+          {/* Üst satır: ürün sayısı + kategori butonu */}
+          <div className="d-flex align-items-center justify-content-between mb-3">
+            <span style={{ fontSize: 13, fontWeight: 700, color: '#555' }}>
+              <span style={{ color: '#1a1a1a', fontWeight: 800 }}>{displayed.length}</span> ürün
+            </span>
+            <button onClick={() => setDrawerOpen(true)}
+              className="d-flex align-items-center gap-2 border-0"
+              style={{ background: '#1a1a1a', color: '#fff', borderRadius: 10, padding: '10px 18px', fontSize: 13, fontWeight: 800, cursor: 'pointer', boxShadow: '0 4px 14px rgba(0,0,0,.22)', letterSpacing: '-.01em' }}>
+              <SlidersHorizontal size={15} strokeWidth={2.5} />
+              Tüm Kategoriler
+            </button>
+          </div>
+          {/* Kaydırılabilir alt kategori çipleri */}
+          <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 6, scrollbarWidth: 'none' }}>
+            {activeGroup.subs.filter(s => countSub(s.id) > 0).map(sub => {
+              const isActive = activeId === sub.id;
+              return (
+                <button key={sub.id} onClick={() => goTo(sub.id)}
+                  style={{ flexShrink: 0, display: 'flex', alignItems: 'center', gap: 5, padding: '8px 14px', borderRadius: 100, border: `1.5px solid ${isActive ? '#5c9200' : '#e0e0e0'}`, background: isActive ? '#5c9200' : '#fff', color: isActive ? '#fff' : '#444', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap', transition: 'all .15s', boxShadow: isActive ? '0 2px 8px rgba(92,146,0,.35)' : 'none' }}>
+                  {sub.name}
+                  <span style={{ background: isActive ? 'rgba(255,255,255,.25)' : '#f0f0f0', color: isActive ? '#fff' : '#888', borderRadius: 100, padding: '1px 6px', fontSize: 10, fontWeight: 800 }}>
+                    {countSub(sub.id)}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         <div className="row g-4 align-items-start">
