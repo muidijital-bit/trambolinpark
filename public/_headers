@@ -6,7 +6,7 @@
 # CSP'de izin verilen kaynaklar — sitenin gerçekten kullandığı harici servisler:
 #   - fonts.googleapis.com / fonts.gstatic.com  → Google Fonts
 #   - www.googletagmanager.com / www.google-analytics.com → GA4 (gtag.js)
-#   - *.supabase.co → ürün/yedek parça/blog verisi + görselleri + auth
+#   - *.supabase.co → ürün/yedek parça/blog verisi + görselleri + hero videosu + auth
 #   - maps.google.com → İletişim sayfasındaki harita iframe'i
 /*
   X-Content-Type-Options: nosniff
@@ -14,4 +14,4 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://www.google-analytics.com https://www.googletagmanager.com; frame-src https://www.google.com https://maps.google.com; base-uri 'self'; form-action 'self'; frame-ancestors 'self'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self' https://*.supabase.co; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://www.google-analytics.com https://www.googletagmanager.com; frame-src https://www.google.com https://maps.google.com; base-uri 'self'; form-action 'self'; frame-ancestors 'self'
