@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { useEffect, useState } from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { trackEvent } from '../lib/analytics';
 
 type Phone2 = { label: string; num: string; href: string; hint: string };
 
@@ -46,6 +47,12 @@ const waStyles = `
 
 export default function Contact() {
   const { wa, phones, email, address } = useContactSettings();
+
+  // GA4'ün önerilen "lead" event'i — /iletisim'e iniş, checklist'teki
+  // "Teklif alma aksiyonlarının ölçümlenmesi" için proxy sinyal (sitede form yok,
+  // dönüşümler tel/WhatsApp/e-posta tıklamasıyla gerçekleşiyor).
+  useEffect(() => { trackEvent('generate_lead', { page_path: '/iletisim' }); }, []);
+
   return (
     <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
       <Helmet>

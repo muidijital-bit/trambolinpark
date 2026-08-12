@@ -3,6 +3,7 @@ import { useEffect, useRef, useState, lazy, Suspense } from 'react';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import { supabase } from './lib/supabase';
 import { useSiteSettings } from './hooks/useSiteSettings';
+import { trackPageView, initClickTracking } from './lib/analytics';
 import type { Session } from '@supabase/supabase-js';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -51,7 +52,21 @@ import SeoPage from './pages/SeoPage';
 
 function Layout() {
   const { pathname } = useLocation();
+  const firstRender = useRef(true);
   useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+
+  // İlk sayfa yüklemesinde gtag.js kendi otomatik page_view'ini zaten atıyor —
+  // burada yalnızca SONRAKİ React Router geçişlerini manuel ölçüyoruz, aksi halde
+  // ilk sayfa çift sayılır.
+  useEffect(() => {
+    if (firstRender.current) { firstRender.current = false; return; }
+    trackPageView(pathname);
+  }, [pathname]);
+
+  // tel: / mailto: / WhatsApp tıklamalarını GA4 dönüşüm event'i olarak yakalar
+  // (bkz. src/lib/analytics.ts) — tek seferlik, tüm site için geçerli.
+  useEffect(() => initClickTracking(), []);
+
   return (
     <>
       <CustomCursor />
