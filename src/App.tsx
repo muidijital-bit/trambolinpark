@@ -33,22 +33,26 @@ const AdminSeo        = lazy(() => import('./pages/admin/AdminSeo'));
 const AdminAbout      = lazy(() => import('./pages/admin/AdminAbout'));
 const AdminGaleri     = lazy(() => import('./pages/admin/AdminGaleri'));
 const AdminContact    = lazy(() => import('./pages/admin/AdminContact'));
+
+// Public route'lar da lazy-load — tek bir başlangıç bundle'ı yerine her rota kendi
+// JS parçasını (chunk) taşır. Bir ürün/kategori sayfasına doğrudan gelen (SEO
+// trafiğinin çoğu) ziyaretçi artık yalnızca o sayfanın kodunu indirir.
 import NotFound from './pages/NotFound';
-import Home from './pages/Home';
-import Catalog from './pages/Catalog';
-import YedekParca from './pages/YedekParca';
-import YedekParcaDetay from './pages/YedekParcaDetay';
-import ProductDetail from './pages/ProductDetail';
-import Contact from './pages/Contact';
-import About from './pages/About';
-import Galeri from './pages/Galeri';
-import Kvkk from './pages/Kvkk';
-import CerezPolitikasi from './pages/CerezPolitikasi';
-import Blog from './pages/Blog';
-import BlogPost from './pages/BlogPost';
-import Giris from './pages/Giris';
-import Hesabim from './pages/Hesabim';
-import SeoPage from './pages/SeoPage';
+const Home            = lazy(() => import('./pages/Home'));
+const Catalog         = lazy(() => import('./pages/Catalog'));
+const YedekParca      = lazy(() => import('./pages/YedekParca'));
+const YedekParcaDetay = lazy(() => import('./pages/YedekParcaDetay'));
+const ProductDetail   = lazy(() => import('./pages/ProductDetail'));
+const Contact         = lazy(() => import('./pages/Contact'));
+const About           = lazy(() => import('./pages/About'));
+const Galeri          = lazy(() => import('./pages/Galeri'));
+const Kvkk            = lazy(() => import('./pages/Kvkk'));
+const CerezPolitikasi = lazy(() => import('./pages/CerezPolitikasi'));
+const Blog            = lazy(() => import('./pages/Blog'));
+const BlogPost        = lazy(() => import('./pages/BlogPost'));
+const Giris           = lazy(() => import('./pages/Giris'));
+const Hesabim         = lazy(() => import('./pages/Hesabim'));
+const SeoPage         = lazy(() => import('./pages/SeoPage'));
 
 function Layout() {
   const { pathname } = useLocation();
@@ -72,12 +76,24 @@ function Layout() {
       <CustomCursor />
       <Navbar />
       <main className="tp-main">
-        <Outlet />
+        <Suspense fallback={<PageFallback />}>
+          <Outlet />
+        </Suspense>
       </main>
       <Footer />
       <WhatsAppButton />
       <CookieBanner />
     </>
+  );
+}
+
+// Route chunk'ı indirilirken kısa süreliğine görünen, sitedeki mevcut spinner
+// deseniyle (Catalog/ProductDetail vb.) tutarlı, marka rengiyle uyumlu yer tutucu.
+function PageFallback() {
+  return (
+    <div className="text-center" style={{ paddingTop: '30vh', minHeight: '60vh' }}>
+      <div className="spinner-border" style={{ color: '#5c9200', width: 32, height: 32, borderWidth: 3 }} role="status" />
+    </div>
   );
 }
 
