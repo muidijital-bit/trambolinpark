@@ -310,11 +310,13 @@ function SidebarContentInner({ activeId, goTo, countGroup, countSub }: { activeI
 }
 
 function CatalogCard({ product, index }: { product: Product; index: number }) {
-  const navigate = useNavigate();
   return (
     <motion.div initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.05 }}
       transition={{ delay: (index % 6) * 0.04 }}>
-      <button onClick={() => navigate(`/urunler/${product.category}/${product.id}`)} className="tp-card w-100 border-0 text-start" style={{ display: 'block' }}>
+      {/* Gerçek <a href> — buton+navigate() kullanan önceki hali Googlebot'un ilk
+          (render öncesi) taramasında ve JS çalıştırmayan araçlarda hiç görünmüyordu,
+          bu da ürün sayfalarını "orphan" (dahili bağlantısız) bırakıyordu. */}
+      <Link to={`/urunler/${product.category}/${product.id}`} className="tp-card w-100 border-0 text-start" style={{ display: 'block' }}>
         <div className="tp-card-img">
           <img loading="lazy" src={thumb(product.imageUrl, 480, 360)} alt={product.title} />
         </div>
@@ -322,7 +324,7 @@ function CatalogCard({ product, index }: { product: Product; index: number }) {
           <span className="tp-card-cat">{product.categoryName}</span>
           <p className="tp-card-title">{product.title}</p>
         </div>
-      </button>
+      </Link>
     </motion.div>
   );
 }

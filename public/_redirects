@@ -8,18 +8,22 @@
 
 # Ürün kategorileri
 /urunler/trambolin-parklari                                                 /trambolin-parklari             301
-/urunler/top-havuzlari                                                      /urunler/soft-play-havuzlar     301
-/urunler/top-havuzlari/*                                                    /urunler/soft-play-havuzlar     301
-/urunler/sisme-oyun-gruplari                                                /urunler/sisme-park             301
-/urunler/sisme-oyun-gruplari/*                                              /urunler/sisme-park             301
-/urunler/bahce-ozel-trambolinler                                            /urunler/trambolinler           301
-/urunler/bahce-ozel-trambolinler/*                                          /urunler/trambolinler           301
-/urunler/zemin-yer-trambolini                                               /urunler/trambolinler           301
-/urunler/zemin-yer-trambolini/*                                             /urunler/trambolinler           301
-/urunler/tekli-trambolinler                                                 /urunler/trambolinler           301
-/urunler/tekli-trambolinler/*                                               /urunler/trambolinler           301
-/urunler/ticari-trambolinler                                                /urunler/trambolinler           301
-/urunler/ticari-trambolinler/*                                              /urunler/trambolinler           301
+# Not: eski hedef "/urunler/soft-play-havuzlar" gerçek bir kategori değildi — Catalog
+# bileşeni bilinmeyen kategoride sessizce ilk trambolin kategorisine düşüyordu (yanlış içerik).
+/urunler/top-havuzlari                                                      /urunler/kucuk-top-havuzlari    301
+/urunler/top-havuzlari/*                                                    /urunler/kucuk-top-havuzlari    301
+/urunler/soft-play-top-havuzlari                                            /urunler/kucuk-top-havuzlari    301
+/urunler/soft-play-top-havuzlari/*                                          /urunler/kucuk-top-havuzlari    301
+/urunler/sisme-oyun-gruplari                                                /urunler/sisme-park-junior      301
+/urunler/sisme-oyun-gruplari/*                                              /urunler/sisme-park-junior      301
+/urunler/bahce-ozel-trambolinler                                            /urunler/yer-zemin-trambolin    301
+/urunler/bahce-ozel-trambolinler/*                                          /urunler/yer-zemin-trambolin    301
+/urunler/zemin-yer-trambolini                                               /urunler/yer-zemin-trambolin    301
+/urunler/zemin-yer-trambolini/*                                             /urunler/yer-zemin-trambolin    301
+# Not: "/urunler/tekli-trambolinler" artık kendisi gerçek bir kategori — eskiden
+# gruba yönlendiriliyordu, kendi geçerli sayfasını ezip gereksiz sıçrama yaratıyordu.
+/urunler/ticari-trambolinler                                                /urunler/ticari-olimpik-trambolinler 301
+/urunler/ticari-trambolinler/*                                              /urunler/ticari-olimpik-trambolinler 301
 /urunler/pilsan                                                             /urunler                        301
 /urunler/pilsan/*                                                           /urunler                        301
 /urunler/park-ve-bahce                                                      /urunler                        301
@@ -29,4 +33,9 @@
 
 # Genel fallback — bilinmeyen /urunler/* alt yolları
 /urunler/trambolin-fiyatlari                                                /urunler                        301
-/urunler/cocuk-trambolini                                                   /urunler/trambolinler           301
+/urunler/cocuk-trambolini                                                   /urunler/ticari-olimpik-trambolinler 301
+
+# Arama Görünürlüğü Raporu (12.08.2026) — sıralanan ama şehir listesinde eksik gramer
+# varyantı yüzünden 404 veren sayfa. Diğer şehir/konu 404'leri SeoPage.tsx > CITIES
+# listesine şehir eklenerek çözüldü (bursa/antalya/kayseri/samsun).
+/bursa-trambolin-ureticileri                                                /bursa-trambolin-ureticisi      301

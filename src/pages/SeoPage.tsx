@@ -3,11 +3,20 @@ import { Helmet } from 'react-helmet-async';
 import { CheckCircle2, Phone, ChevronRight } from 'lucide-react';
 import NotFound from './NotFound';
 
-/* ── Cities ── */
+/* ── Cities ──
+   Not: bursa/antalya/kayseri/samsun, Arama Görünürlüğü Raporu'nda (12.08.2026) zaten
+   Google'da sıralanıp trafik getirdiği tespit edildiği için eklendi — bu şehir
+   önekleriyle eski URL'ler (örn. /kayseri-trambolin-kurulumu) o rapora kadar 404
+   veriyordu. Yeni bir şehir eklemek isterseniz sadece bu listeye satır eklemeniz
+   yeterli, TOPICS'teki tüm konular otomatik olarak o şehir için de üretilir. */
 const CITIES: Record<string, string> = {
   ankara: 'Ankara',
   istanbul: 'İstanbul',
   izmir: 'İzmir',
+  bursa: 'Bursa',
+  antalya: 'Antalya',
+  kayseri: 'Kayseri',
+  samsun: 'Samsun',
 };
 
 /* ── Types ── */

@@ -124,7 +124,7 @@ export default function YedekParcaDetay() {
                       overflow: 'hidden', position: 'relative',
                     }}>
                       {images[activeImg]
-                        ? <img src={thumb(images[activeImg], 800, 800)} alt={part.title}
+                        ? <img src={thumb(images[activeImg], 800, 800)} alt={part.title} fetchPriority="high"
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                         : <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12, color: '#ccc' }}>
                             <Wrench size={48} />

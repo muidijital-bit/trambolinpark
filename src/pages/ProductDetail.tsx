@@ -115,7 +115,7 @@ export default function ProductDetail() {
                       overflow: 'hidden', position: 'relative',
                     }}>
                       {images[activeImg]
-                        ? <img src={thumb(images[activeImg], 800, 800)} alt={product.title}
+                        ? <img src={thumb(images[activeImg], 800, 800)} alt={product.title} fetchPriority="high"
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                         : null}
                     </div>
@@ -242,7 +242,7 @@ export default function ProductDetail() {
             paddingBottom: 4, scrollSnapType: 'x mandatory',
           }}>
             {related.map(p => (
-              <button key={p.id} onClick={() => navigate(`/urunler/${p.category}/${p.id}`)}
+              <Link key={p.id} to={`/urunler/${p.category}/${p.id}`}
                 className="tp-card border-0 text-start flex-shrink-0"
                 style={{ width: 'clamp(160px, 55vw, 220px)', scrollSnapAlign: 'start', display: 'block', cursor: 'pointer' }}>
                 <div className="tp-card-img">
@@ -252,7 +252,7 @@ export default function ProductDetail() {
                   <span className="tp-card-cat">{p.categoryName}</span>
                   <p className="tp-card-title">{p.title}</p>
                 </div>
-              </button>
+              </Link>
             ))}
           </div>
         </div>
