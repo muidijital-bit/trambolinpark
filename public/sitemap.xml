@@ -1,140 +1,1072 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- Ana Sayfa -->
   <url>
     <loc>https://trambolinpark.com/</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-
-  <!-- Ürünler -->
   <url>
     <loc>https://trambolinpark.com/urunler</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-
-  <!-- Trambolinler -->
   <url>
     <loc>https://trambolinpark.com/urunler/ticari-olimpik-trambolinler</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://trambolinpark.com/urunler/ticari-junior</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://trambolinpark.com/urunler/trambolin-parklari</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://trambolinpark.com/urunler/yer-zemin-trambolin</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://trambolinpark.com/urunler/salto-trambolin</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://trambolinpark.com/urunler/tekli-trambolinler</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://trambolinpark.com/urunler/profesyonel-trambolin</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- Softplay & Top Havuzları -->
   <url>
     <loc>https://trambolinpark.com/urunler/softplay-oyun-alanlari</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://trambolinpark.com/urunler/softplay-oyuncaklar</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://trambolinpark.com/urunler/kucuk-top-havuzlari</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://trambolinpark.com/urunler/isletmelere-top-havuzlari</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <!-- Şişme Parklar -->
   <url>
     <loc>https://trambolinpark.com/urunler/sisme-park-junior</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://trambolinpark.com/urunler/sisme-buyuk</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- Yedek Parçalar -->
   <url>
     <loc>https://trambolinpark.com/yedek-parcalar</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <!-- Blog -->
   <url>
     <loc>https://trambolinpark.com/blog</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- Kurumsal -->
   <url>
     <loc>https://trambolinpark.com/hakkimizda</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://trambolinpark.com/galeri</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://trambolinpark.com/iletisim</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <!-- Ürün Detay Sayfaları (Supabase) -->
+  <url>
+    <loc>https://trambolinpark.com/urunler/ticari-junior/ticari-junior-trambolin-3-kisilik-</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyun-alanlari/softplay-sp-112</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyuncaklar/soft-play-oyuncak-tp-711</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/trambolin-parklari/trambolin-park-tp-106</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/salto-trambolin/salto-trambolin-st-103</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/yer-zemin-trambolin/zemin-trambolin-kare</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyuncaklar/soft-play-oyuncak-tp-712</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyun-alanlari/softplay-sp-103</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyun-alanlari/softplay-sp-115</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/trambolin-parklari/trambolin-park-tp-107</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/sisme-park-junior/super-mario-kaydirakli-sisme-oyun-parki</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/ticari-junior/ticari-junior-trambolin-10-kisilik-</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/trambolin-parklari/trambolin-park-tp-108</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyuncaklar/soft-play-oyuncak-tp-713</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyun-alanlari/softplay-sp-104</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/ticari-olimpik-trambolinler/4-kisilik-ince-uzun-olimpik-trambolin-</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyuncaklar/soft-play-oyuncak-tp-706</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyuncaklar/soft-play-oyuncak-tp-701</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/sisme-park-junior/ejderha-macera-temali-sisme-oyun-parki-</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyuncaklar/soft-play-oyuncak-tp-714</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyuncaklar/soft-play-oyuncak-tp-705</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyuncaklar/soft-play-oyuncak-tp-708</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/yer-zemin-trambolin/zemin-trambolin-185-x-185-cm</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/ticari-olimpik-trambolinler/5-kisilik-ince-uzun-olimpik-trambolin-</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/tekli-trambolinler/ticari-kare-trambolin-3-kisilik</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/tekli-trambolinler/ticari-kare-trambolin-10-kisilik</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/tekli-trambolinler/ticari-kare-trambolin-12-kisilik</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/tekli-trambolinler/ticari-kare-trambolin-15-kisilik</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/ticari-olimpik-trambolinler/10-kisilik-olimpik-trambolin-</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/ticari-olimpik-trambolinler/3-kisilik-olimpik-trambolin-</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/ticari-olimpik-trambolinler/4-kisilik-olimpik-trambolin-</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/trambolin-parklari/trambolin-park-tp-110</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/ticari-olimpik-trambolinler/6-kisilik-ince-uzun-olimpik-trambolin</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyuncaklar/soft-play-oyuncak-tp-715</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/ticari-olimpik-trambolinler/2-kisilik-olimpik-trambolin-</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/ticari-olimpik-trambolinler/8-kisilik-olimpik-trambolin-</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/ticari-junior/ticari-junior-trambolin-12-kisilik-</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/trambolin-parklari/trambolin-park-tp-111</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/ticari-olimpik-trambolinler/8-kisilik-ince-uzun-olimpik-trambolin-</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/ticari-junior/ticari-junior-trambolin-8-kisilik-</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/ticari-junior/ticari-junior-trambolin-1-kisilik-</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/ticari-junior/ticari-junior-trambolin-2-kisilik-</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/profesyonel-trambolin/trambolin-track-</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/ticari-junior/ticari-junior-trambolin-4-kisilik-</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/trambolin-parklari/trambolin-park-tp-113</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/yer-zemin-trambolin/zemin-trambolin-175-x-175-cm</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/profesyonel-trambolin/profesyonel-trambolin-110-x-110-</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyun-alanlari/softplay-sp-108</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/ticari-olimpik-trambolinler/12-kisilik-olimpik-trambolin-</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/ticari-olimpik-trambolinler/6-kisilik-olimpik-trambolin</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/ticari-junior/ticari-junior-trambolin-5-kisilik-</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/trambolin-parklari/trambolin-park-tp-114</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyun-alanlari/softplay-sp-110</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/yer-zemin-trambolin/zemin-trambolin-200-x-200-cm</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/ticari-olimpik-trambolinler/1-kisilik-olimpik-trambolin</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/tekli-trambolinler/ticari-kare-trambolin-4-kisilik</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/tekli-trambolinler/ticari-kare-trambolin-2-kisilik</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyuncaklar/soft-play-oyuncak-tp-703</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyuncaklar/soft-play-oyuncak-tp-716</loc>
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/ticari-junior/ticari-junior-trambolin-6-kisilik-</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/profesyonel-trambolin/profesyonel-olimpiyat-trambolini-</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyuncaklar/soft-play-oyuncak-tp-702</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/trambolin-parklari/trambolin-park-tp-109</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/trambolin-parklari/trambolin-park-tp-116</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/yer-zemin-trambolin/zemin-trambolin-dikdortgen</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/profesyonel-trambolin/profesyonel-trambolin-125-x-125-</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyun-alanlari/softplay-sp-109</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyuncaklar/soft-play-oyuncak-tp-717</loc>
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/trambolin-parklari/trambolin-park-tp-112</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/yer-zemin-trambolin/yuvarlak-zemin-trambolin-capi-175-cm</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyuncaklar/soft-play-oyuncak-tp-718</loc>
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/kucuk-top-havuzlari/-top-havuzu-160-x-160</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/kucuk-top-havuzlari/top-havuzu-185-x-185</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyun-alanlari/softplay-sp-111</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/sisme-park-junior/disneyland-eglence-sisme-park</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/trambolin-parklari/trambolin-park-tp-115</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/trambolin-parklari/trambolin-park-tp101</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/trambolin-parklari/trambolin-park-tp-117</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyun-alanlari/softplay-sp-101</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/kucuk-top-havuzlari/kaydirakli-top-havuzu-185-x-185</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/trambolin-parklari/trambolin-park-tp-102</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/sisme-park-junior/unicorn-engelli-sisme-park</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyun-alanlari/softplay-sp-102</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/trambolin-parklari/trambolin-park-tp-118</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/kucuk-top-havuzlari/top-havuzu-180-x-180</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/kucuk-top-havuzlari/kaydirakli-top-havuzu-160-x-160</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/sisme-park-junior/fil-kaydirakli-sisme-oyun-parki</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/trambolin-parklari/trambolin-park-tp-103</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/yer-zemin-trambolin/yuvarlak-zemin-trambolin-capi-200-cm</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/trambolin-parklari/trambolin-park-tp-119</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/kucuk-top-havuzlari/top-havuzu-200-x200</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyun-alanlari/softplay-sp-105</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyun-alanlari/softplay-sp-106</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/sisme-park-junior/paw-patrol-sisme-oyun-parki</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/trambolin-parklari/trambolin-park-tp-104</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/yer-zemin-trambolin/zemin-trambolin</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/salto-trambolin/salto-trambolin-st-102</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyun-alanlari/softplay-sp-107</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/tekli-trambolinler/ticari-kare-trambolin-1-kisilik</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/trambolin-parklari/trambolin-park-tp-105</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/salto-trambolin/salto-trambolin-st-101</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/softplay-oyuncaklar/soft-play-oyuncak-tp-709</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/urunler/sisme-park-junior/doraemon-kaydirak-sisme-oyun-parki</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+
+  <!-- Yedek Parça Detay Sayfaları (Supabase) -->
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/yuvarlak-branda</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/yay-85</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/salto-makara</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/salto-germe</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/yay-25</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/merdiven</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/salto-toka</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/salto-kemer-tokasi</loc>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/salto-kemer-ticari</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/ayak-stoper</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/yay-15</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/file-olimpik-ithal</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/salto-kemer-2</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/salto-lastik-10</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/sisme-motor-2</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/yay-18</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/file-orme-olimpik</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/branda-kilif</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/yay-cekme-aparat</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/yay-22</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/sunger</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/sisme-motor-480</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/step-branda</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/salto-lastik-12</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/sisme-motor-950</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/pilsan-funny-kaydirak</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/bingo-kaydirak</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/zemin-plastik-aparat</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/yay-28</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/yay-kanca</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/file-orme-junior</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/file-junior-ithal</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/roller-makara</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/file-yuvarlak-zip</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/yay-20</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/ucgen-halka</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/file-cevre</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/salto-firdondu</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/sunger-kup-blok</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/eva-tatami-13</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/top-havuzu-toplar</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/sisme-motor</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/file-yuvarlak-cevre</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/eva-tatami-26</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/boru-kopuk</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/orme-plastik-aparat</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/yedek-parcalar/kisa-ayak</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+
+  <!-- Blog Yazıları -->
+  <url>
+    <loc>https://trambolinpark.com/blog/trambolin-park-yatirim-rehberi-2025</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/blog/trambolin-parki-guvenlik-standartlari</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/blog/soft-play-alani-tasarim-ipuclari</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/blog/trambolin-parki-isletmeciligi-ipuclari</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/blog/ankara-sisme-oyun-parki-modelleri</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/blog/ankara-sisme-oyun-parki-fiyatlari</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://trambolinpark.com/blog/ankara-oyun-parki-ureticileri</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 
 </urlset>

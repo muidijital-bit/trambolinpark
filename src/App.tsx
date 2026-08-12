@@ -72,18 +72,30 @@ function AdminGuard({ session }: { session: Session | null }) {
   return <AdminLayout />;
 }
 
+// Her route'un kendi canonical URL'ini üretir. Sayfaya özel Helmet (Home, Catalog, ProductDetail, ...)
+// gerektiğinde bunun üzerine kendi <link rel="canonical"> / <meta name="robots"> etiketini yazabilir —
+// react-helmet-async'te ağaçta daha derinde (sonra) render edilen Helmet, aynı etiketi ezer.
+function canonicalFor(pathname: string) {
+  const clean = pathname.length > 1 ? pathname.replace(/\/+$/, '') : '/';
+  return `https://trambolinpark.com${clean}`;
+}
+
 function SiteHelmet() {
   const s = useSiteSettings();
+  const { pathname } = useLocation();
+  const canonicalUrl = canonicalFor(pathname);
   return (
     <Helmet>
       <title>{s.site_title}</title>
       <meta name="description" content={s.site_description} />
       <meta name="keywords" content={s.keywords} />
+      <meta name="robots" content="index, follow" />
+      <link rel="canonical" href={canonicalUrl} />
       <meta property="og:title" content={s.site_title} />
       <meta property="og:description" content={s.site_description} />
       {s.og_image && <meta property="og:image" content={s.og_image} />}
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://trambolinpark.com" />
+      <meta property="og:url" content={canonicalUrl} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={s.site_title} />
       <meta name="twitter:description" content={s.site_description} />

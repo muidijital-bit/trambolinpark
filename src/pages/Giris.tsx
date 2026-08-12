@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { supabase } from '../lib/supabase';
 import { Eye, EyeOff } from 'lucide-react';
 
@@ -45,6 +46,10 @@ const [showPw, setShowPw] = useState(false);
 
   return (
     <div style={{ minHeight: '100vh', background: '#f5f5f5', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '5rem 1rem 2rem' }}>
+      <Helmet>
+        <title>Giriş Yap | Trambolinpark</title>
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
       <div style={{ width: '100%', maxWidth: 420 }}>
 
         <div className="text-center mb-4">

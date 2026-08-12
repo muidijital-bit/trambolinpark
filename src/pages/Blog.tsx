@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Clock, Tag } from 'lucide-react';
 import { useBlogPosts } from '../hooks/useBlogPosts';
 
@@ -12,6 +13,11 @@ export default function Blog() {
 
   return (
     <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
+      <Helmet>
+        <title>Blog | Trambolin Parkı, Softplay & Oyun Alanı Rehberi | Trambolinpark</title>
+        <meta name="description" content="Trambolin parkı yatırımı, softplay üretimi, güvenlik standartları ve oyun alanı işletmeciliği üzerine sektör içgörüleri ve güncel rehberler." />
+        <link rel="canonical" href="https://trambolinpark.com/blog" />
+      </Helmet>
 
       {/* Hero */}
       <div className="tp-page-hero">

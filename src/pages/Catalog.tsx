@@ -8,6 +8,7 @@ import { useProducts } from '../hooks/useProducts';
 import { thumb } from '../lib/imageUtils';
 import SidebarSearch from '../components/SidebarSearch';
 import type { SearchItem } from '../components/SidebarSearch';
+import { breadcrumbJsonLd } from '../components/ProductDetailShared';
 
 const GROUPS = [
   { key: 'trambolinler', name: 'Trambolinler', subs: [
@@ -112,10 +113,17 @@ export default function Catalog() {
 
   return (
     <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
-      {activeSub && PAGE_SEO[activeSub.id] && (
+      {activeSub && (
         <Helmet>
-          <title>{PAGE_SEO[activeSub.id].title}</title>
-          <meta name="description" content={PAGE_SEO[activeSub.id].desc} />
+          {PAGE_SEO[activeSub.id] && <title>{PAGE_SEO[activeSub.id].title}</title>}
+          {PAGE_SEO[activeSub.id] && <meta name="description" content={PAGE_SEO[activeSub.id].desc} />}
+          <link rel="canonical" href={`https://trambolinpark.com/urunler/${activeSub.id}`} />
+          <script type="application/ld+json">{JSON.stringify(breadcrumbJsonLd([
+            { name: 'Anasayfa', url: '/' },
+            { name: 'Ürünler', url: '/urunler' },
+            { name: activeGroup.name, url: `/urunler/${activeGroup.key}` },
+            { name: activeSub.name, url: `/urunler/${activeSub.id}` },
+          ]))}</script>
         </Helmet>
       )}
 

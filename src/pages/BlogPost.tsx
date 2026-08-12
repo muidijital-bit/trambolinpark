@@ -1,6 +1,8 @@
 import { useParams, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Clock, Tag, ArrowRight, ChevronRight } from 'lucide-react';
 import { useBlogPost, useBlogPosts } from '../hooks/useBlogPosts';
+import { breadcrumbJsonLd, toMetaDescription } from '../components/ProductDetailShared';
 type BlogSection = { type: string; text?: string; items?: string[] };
 
 function formatDate(d: string) {
@@ -60,8 +62,46 @@ export default function BlogPost() {
     allPosts.filter(p => p.slug !== post.slug && p.category !== post.category)
   ).slice(0, 3);
 
+  const canonicalUrl = `https://trambolinpark.com/blog/${post.slug}`;
+  const pageTitle = `${post.title} | Trambolinpark Blog`;
+  const metaDescription = toMetaDescription(post.excerpt, `${post.title} — Trambolinpark blogunda okuyun.`);
+  const breadcrumbLd = breadcrumbJsonLd([
+    { name: 'Anasayfa', url: '/' },
+    { name: 'Blog', url: '/blog' },
+    { name: post.title, url: `/blog/${post.slug}` },
+  ]);
+  const articleLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: metaDescription,
+    image: post.cover_image ? [post.cover_image] : undefined,
+    datePublished: post.date,
+    dateModified: post.date,
+    articleSection: post.category,
+    author: { '@type': 'Organization', name: 'Trambolinpark' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Trambolinpark',
+      logo: { '@type': 'ImageObject', url: 'https://trambolinpark.com/logo-dark.png' },
+    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
+  };
+
   return (
     <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={metaDescription} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:url" content={canonicalUrl} />
+        {post.cover_image && <meta property="og:image" content={post.cover_image} />}
+        <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(articleLd)}</script>
+      </Helmet>
 
       {/* Breadcrumb — normal flow */}
       <div className="tp-pt-nav" style={{ background: '#080808', borderBottom: '1px solid rgba(255,255,255,.06)', paddingBottom: 0 }}>

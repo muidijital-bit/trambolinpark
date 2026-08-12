@@ -10,30 +10,34 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Primary SEO -->
+    <!-- Primary SEO — bu etiketler ilk boyama (JS öncesi) ve JS çalıştırmayan botlar için varsayılandır.
+         data-rh="true" işaretli olanlar React Helmet tarafından route'a özel içerikle DEVRALINIR
+         (App.tsx > SiteHelmet + sayfa bazlı Helmet bileşenleri) — aksi halde React Helmet bu etiketleri
+         KALDIRMAZ, sadece yanına yenisini ekler ve sayfada iki farklı description/canonical/OG etiketi
+         birden bulunur (arama motorları ve WhatsApp/Facebook gibi paylaşım botları için çelişkili sinyal). -->
     <title>Trambolinpark | Trambolin Parkı, Softplay & Top Havuzu Üreticisi — Ankara</title>
-    <meta name="description" content="Ticari trambolin, olimpik trambolin, junior trambolin, softplay oyun alanları, top havuzları ve şişme park üretimi. EN-1176 sertifikalı, anahtar teslim kurulum. Ankara — Türkiye geneli teslimat." />
-    <meta name="keywords" content="trambolin üreticisi, çocuk oyun grubu üreticisi, softplay üreticisi, ticari trambolin, olimpik trambolin, trambolin yedek parça, top havuzu, çocuk oyun alanı, trambolin yayları, trambolin zıplama filesi, trambolin parkı kurulumu, CE belgeli trambolin" />
+    <meta data-rh="true" name="description" content="Ticari trambolin, olimpik trambolin, junior trambolin, softplay oyun alanları, top havuzları ve şişme park üretimi. EN-1176 sertifikalı, anahtar teslim kurulum. Ankara — Türkiye geneli teslimat." />
+    <meta data-rh="true" name="keywords" content="trambolin üreticisi, çocuk oyun grubu üreticisi, softplay üreticisi, ticari trambolin, olimpik trambolin, trambolin yedek parça, top havuzu, çocuk oyun alanı, trambolin yayları, trambolin zıplama filesi, trambolin parkı kurulumu, CE belgeli trambolin" />
     <meta name="author" content="Trambolinpark" />
-    <meta name="robots" content="index, follow" />
+    <meta data-rh="true" name="robots" content="index, follow" />
     <meta name="geo.region" content="TR-06" />
     <meta name="geo.placename" content="Ankara" />
-    <link rel="canonical" href="https://trambolinpark.com/" />
+    <link data-rh="true" rel="canonical" href="https://trambolinpark.com/" />
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://trambolinpark.com/" />
-    <meta property="og:title" content="Trambolinpark | Trambolin Parkı & Softplay Üreticisi" />
-    <meta property="og:description" content="EN-1176 sertifikalı ticari trambolin, softplay alanları ve top havuzu üretimi. Anahtar teslim kurulum, Türkiye geneli teslimat." />
-    <meta property="og:image" content="https://trambolinpark.com/logo.png" />
+    <meta data-rh="true" property="og:type" content="website" />
+    <meta data-rh="true" property="og:url" content="https://trambolinpark.com/" />
+    <meta data-rh="true" property="og:title" content="Trambolinpark | Trambolin Parkı & Softplay Üreticisi" />
+    <meta data-rh="true" property="og:description" content="EN-1176 sertifikalı ticari trambolin, softplay alanları ve top havuzu üretimi. Anahtar teslim kurulum, Türkiye geneli teslimat." />
+    <meta data-rh="true" property="og:image" content="https://trambolinpark.com/logo.png" />
     <meta property="og:locale" content="tr_TR" />
     <meta property="og:site_name" content="Trambolinpark" />
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Trambolinpark | Trambolin Parkı & Softplay Üreticisi" />
-    <meta name="twitter:description" content="EN-1176 sertifikalı ticari trambolin, softplay alanları ve top havuzu üretimi." />
-    <meta name="twitter:image" content="https://trambolinpark.com/logo.png" />
+    <meta data-rh="true" name="twitter:card" content="summary_large_image" />
+    <meta data-rh="true" name="twitter:title" content="Trambolinpark | Trambolin Parkı & Softplay Üreticisi" />
+    <meta data-rh="true" name="twitter:description" content="EN-1176 sertifikalı ticari trambolin, softplay alanları ve top havuzu üretimi." />
+    <meta data-rh="true" name="twitter:image" content="https://trambolinpark.com/logo.png" />
 
     <!-- JSON-LD Yapısal Veri -->
     <script type="application/ld+json">

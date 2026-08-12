@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { supabase } from '../lib/supabase';
 import type { User } from '@supabase/supabase-js';
 import { User as UserIcon, Lock, LogOut, Check } from 'lucide-react';
@@ -54,6 +55,10 @@ export default function Hesabim() {
 
   return (
     <div style={{ background: '#f5f5f5', minHeight: '100vh', paddingTop: 'calc(76px + 2rem)', paddingBottom: '3rem' }}>
+      <Helmet>
+        <title>Hesabım | Trambolinpark</title>
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
       <div className="container" style={{ maxWidth: 640 }}>
 
         {/* Header */}

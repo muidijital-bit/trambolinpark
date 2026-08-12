@@ -7,6 +7,7 @@ import type { SparePart } from '../data/spareParts';
 import { useSpareParts } from '../hooks/useSpareParts';
 import SidebarSearch from '../components/SidebarSearch';
 import type { SearchItem } from '../components/SidebarSearch';
+import { breadcrumbJsonLd } from '../components/ProductDetailShared';
 
 const WA = '905433494947';
 
@@ -57,6 +58,11 @@ export default function YedekParca() {
       <Helmet>
         <title>Trambolin Yedek Parça | Yaylar, Zıplama Filesi & Parçalar | Trambolinpark</title>
         <meta name="description" content="Orijinal trambolin yedek parçaları: trambolin yayları, zıplama filesi, güvenlik ağı ve daha fazlası. Hızlı kargo, uygun fiyat, tüm markalarla uyumlu." />
+        <link rel="canonical" href="https://trambolinpark.com/yedek-parcalar" />
+        <script type="application/ld+json">{JSON.stringify(breadcrumbJsonLd([
+          { name: 'Anasayfa', url: '/' },
+          { name: 'Yedek Parçalar', url: '/yedek-parcalar' },
+        ]))}</script>
       </Helmet>
 
       {/* Hero */}

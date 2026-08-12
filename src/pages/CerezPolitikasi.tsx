@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { Settings2, BarChart3, Megaphone, ToggleRight } from 'lucide-react';
 
 const types = [
@@ -17,6 +18,11 @@ const sections = [
 export default function CerezPolitikasi() {
   return (
     <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
+      <Helmet>
+        <title>Çerez Politikası | Trambolinpark</title>
+        <meta name="description" content="Trambolinpark web sitesinde kullanılan çerez türleri ve çerez tercihlerinizi nasıl yönetebileceğiniz hakkında bilgilendirme." />
+        <link rel="canonical" href="https://trambolinpark.com/cerez-politikasi" />
+      </Helmet>
       <div className="tp-page-hero">
         <div aria-hidden="true" className="tp-hero-watermark">ÇEREZ</div>
         <div className="container">

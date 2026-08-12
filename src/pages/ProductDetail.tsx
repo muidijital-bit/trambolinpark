@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { ChevronRight, ChevronLeft, Tag, ArrowLeft, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useProduct } from '../hooks/useProduct';
 import { thumb } from '../lib/imageUtils';
-import { WaIcon, TRUST_BADGES, renderDescription } from '../components/ProductDetailShared';
+import { WaIcon, TRUST_BADGES, renderDescription, breadcrumbJsonLd, toMetaDescription } from '../components/ProductDetailShared';
 
 const WA = '905433494947';
 const buildWa = (title: string, msg = 'hakkında bilgi almak istiyorum') =>
@@ -41,8 +42,44 @@ export default function ProductDetail() {
     carouselRef.current.scrollBy({ left: dir === 'right' ? 280 : -280, behavior: 'smooth' });
   };
 
+  const categoryName = product.categoryName ?? 'Ürünler';
+  const canonicalUrl = `https://trambolinpark.com/urunler/${product.category}/${product.id}`;
+  const pageTitle = `${product.title} | ${categoryName} | Trambolinpark`;
+  const metaDescription = toMetaDescription(
+    product.description,
+    `${product.title} — ${categoryName} kategorisinde, CE belgeli ve anahtar teslim kurulum ile Trambolinpark üretimi. Fiyat teklifi için hemen iletişime geçin.`
+  );
+  const breadcrumbLd = breadcrumbJsonLd([
+    { name: 'Anasayfa', url: '/' },
+    { name: 'Ürünler', url: '/urunler' },
+    { name: categoryName, url: `/urunler/${product.category}` },
+    { name: product.title, url: `/urunler/${product.category}/${product.id}` },
+  ]);
+  const productLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.title,
+    description: metaDescription,
+    category: categoryName,
+    ...(images.length ? { image: images } : {}),
+    brand: { '@type': 'Brand', name: 'Trambolinpark' },
+    url: canonicalUrl,
+  };
+
   return (
     <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={metaDescription} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:type" content="product" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:url" content={canonicalUrl} />
+        {images[0] && <meta property="og:image" content={thumb(images[0], 1200, 630)} />}
+        <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(productLd)}</script>
+      </Helmet>
 
       {/* Breadcrumb — normal flow, navbar altında */}
       <div className="tp-pt-nav" style={{ background: '#080808', borderBottom: '1px solid rgba(255,255,255,.06)', paddingBottom: 0 }}>

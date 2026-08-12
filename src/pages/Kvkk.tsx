@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { FileText, Lock, Mail } from 'lucide-react';
 
 const sections = [
@@ -13,6 +14,11 @@ const sections = [
 export default function Kvkk() {
   return (
     <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
+      <Helmet>
+        <title>KVKK Aydınlatma Metni | Trambolinpark</title>
+        <meta name="description" content="Trambolinpark KVKK aydınlatma metni: kişisel verilerinizin işlenme amaçları, hukuki sebepleri ve haklarınız hakkında bilgilendirme." />
+        <link rel="canonical" href="https://trambolinpark.com/kvkk" />
+      </Helmet>
       <div className="tp-page-hero">
         <div aria-hidden="true" className="tp-hero-watermark">KVKK</div>
         <div className="container">
