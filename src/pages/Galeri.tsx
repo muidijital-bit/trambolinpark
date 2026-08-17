@@ -77,6 +77,7 @@ export default function Galeri() {
       <Helmet>
         <title>Galeri | Tamamlanan Trambolin Parkı & Softplay Projeleri | Trambolinpark</title>
         <meta name="description" content="623+ tamamlanan trambolin parkı ve softplay projesi. Saha kurulumları, top havuzları ve çocuk oyun alanlarından fotoğraflar." />
+        <link rel="canonical" href="https://trambolinpark.com/galeri" />
       </Helmet>
 
       {/* Hero */}

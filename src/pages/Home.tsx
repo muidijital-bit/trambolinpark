@@ -47,8 +47,9 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Trambolinpark | Trambolin Üreticisi & Softplay Üreticisi</title>
-        <meta name="description" content="Türkiye'nin lider trambolin ve softplay üreticisi. Ticari olimpik trambolinler, çocuk oyun grubu, top havuzu ve softplay oyun alanları. 81 ilde anahtar teslim kurulum." />
+        <title>Trambolin Üreticisi ve Oyun Parkı Sistemleri | Trambolinpark</title>
+        <meta name="description" content="Ticari ve olimpik trambolin, softplay, top havuzu ve şişme oyun parkı üretimi. Ankara'dan Türkiye geneline projelendirme ve anahtar teslim kurulum." />
+        <link rel="canonical" href="https://trambolinpark.com/" />
       </Helmet>
       <HeroSection />
       <CategoryMarquee />
@@ -77,8 +78,8 @@ function HeroSection() {
         <div className="container">
           <div className="col-12 col-lg-8">
             <h1 className="tp-hero-title">
-              Eğlenceyi Tasarlıyoruz,
-              <span className="accent-text">Güvenle İnşa Ediyoruz.</span>
+              Trambolin ve Oyun Parkı Üreticisi
+              <span className="accent-text">Eğlenceyi Güvenle İnşa Ediyoruz.</span>
             </h1>
             <p className="tp-hero-desc">
               Softplay alanları ve top havuzları, ticari trambolinler ile trambolin parklar; tasarımdan kuruluma anahtar teslim çözümler.

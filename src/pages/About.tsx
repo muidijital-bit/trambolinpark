@@ -82,6 +82,7 @@ export default function About() {
       <Helmet>
         <title>Hakkımızda | Trambolinpark – Türkiye'nin Öncü Trambolin Üreticisi</title>
         <meta name="description" content="2008'den bu yana Türkiye'nin önde gelen trambolin ve softplay üreticisi. 623+ tamamlanan proje, 81 ilde kurulum, %100 yerli üretim." />
+        <link rel="canonical" href="https://trambolinpark.com/hakkimizda" />
       </Helmet>
 
       {/* Hero */}

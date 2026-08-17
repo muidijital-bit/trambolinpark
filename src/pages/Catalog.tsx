@@ -113,19 +113,23 @@ export default function Catalog() {
 
   return (
     <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
-      {activeSub && (
-        <Helmet>
-          {PAGE_SEO[activeSub.id] && <title>{PAGE_SEO[activeSub.id].title}</title>}
-          {PAGE_SEO[activeSub.id] && <meta name="description" content={PAGE_SEO[activeSub.id].desc} />}
-          <link rel="canonical" href={`https://trambolinpark.com/urunler/${activeSub.id}`} />
-          <script type="application/ld+json">{JSON.stringify(breadcrumbJsonLd([
+      <Helmet>
+          <title>{activeSub && PAGE_SEO[activeSub.id]
+            ? PAGE_SEO[activeSub.id].title
+            : 'Ticari Trambolin ve Oyun Parkı Ürünleri | Trambolinpark'}</title>
+          <meta name="description" content={activeSub && PAGE_SEO[activeSub.id]
+            ? PAGE_SEO[activeSub.id].desc
+            : 'Ticari trambolin, softplay, top havuzu, junior trambolin ve şişme oyun parkı modellerini inceleyin. İşletmelere özel üretim ve kurulum.'} />
+          <link rel="canonical" href={activeSub
+            ? `https://trambolinpark.com/urunler/${activeSub.id}`
+            : 'https://trambolinpark.com/urunler'} />
+          {activeSub && <script type="application/ld+json">{JSON.stringify(breadcrumbJsonLd([
             { name: 'Anasayfa', url: '/' },
             { name: 'Ürünler', url: '/urunler' },
             { name: activeGroup.name, url: `/urunler/${activeGroup.key}` },
             { name: activeSub.name, url: `/urunler/${activeSub.id}` },
-          ]))}</script>
-        </Helmet>
-      )}
+          ]))}</script>}
+      </Helmet>
 
       {/* Hero */}
       <div className="tp-page-hero">

@@ -14,8 +14,8 @@ export default function Blog() {
   return (
     <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
       <Helmet>
-        <title>Blog | Trambolin Parkı, Softplay & Oyun Alanı Rehberi | Trambolinpark</title>
-        <meta name="description" content="Trambolin parkı yatırımı, softplay üretimi, güvenlik standartları ve oyun alanı işletmeciliği üzerine sektör içgörüleri ve güncel rehberler." />
+        <title>Trambolin ve Oyun Parkı Rehberleri | Trambolinpark Blog</title>
+        <meta name="description" content="Trambolin yatırımı, fiyatlar, güvenlik standartları, bakım, yedek parçalar ve oyun parkı kurulumu hakkında uzman içerikleri inceleyin." />
         <link rel="canonical" href="https://trambolinpark.com/blog" />
       </Helmet>
 
@@ -27,7 +27,7 @@ export default function Blog() {
             Sektör & Bilgi
           </span>
           <div className="tp-hero-line" />
-          <h1>Trambolinpark <span>Blog</span></h1>
+          <h1>Trambolin ve Oyun Parkı <span>Rehberleri</span></h1>
           <p>Trambolin parkı yatırımı, güvenlik standartları ve işletme stratejileri üzerine sektör içgörüleri.</p>
         </div>
       </div>
