@@ -3,7 +3,7 @@ import { useEffect, useRef, useState, lazy, Suspense } from 'react';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import { supabase } from './lib/supabase';
 import { useSiteSettings } from './hooks/useSiteSettings';
-import { trackPageView, initClickTracking } from './lib/analytics';
+import { trackPageView, initClickTracking, initGtag } from './lib/analytics';
 import type { Session } from '@supabase/supabase-js';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -115,6 +115,13 @@ function SiteHelmet() {
   const s = useSiteSettings();
   const { pathname } = useLocation();
   const canonicalUrl = canonicalFor(pathname);
+
+  // gtag kurulumu artık burada JSX <script> olarak değil, imperatif olarak yapılıyor —
+  // bkz. src/lib/analytics.ts > initGtag için sebep.
+  useEffect(() => {
+    if (s.google_analytics_id) initGtag(s.google_analytics_id);
+  }, [s.google_analytics_id]);
+
   return (
     <Helmet>
       <title>{s.site_title}</title>
@@ -131,12 +138,6 @@ function SiteHelmet() {
       <meta name="twitter:title" content={s.site_title} />
       <meta name="twitter:description" content={s.site_description} />
       {s.og_image && <meta name="twitter:image" content={s.og_image} />}
-      {s.google_analytics_id && (
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${s.google_analytics_id}`} />
-      )}
-      {s.google_analytics_id && (
-        <script>{`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${s.google_analytics_id}');`}</script>
-      )}
     </Helmet>
   );
 }
