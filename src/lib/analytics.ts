@@ -34,8 +34,18 @@ export function initGtag(measurementId: string) {
 }
 
 export function trackEvent(name: string, params: Record<string, unknown> = {}) {
-  if (typeof window === 'undefined' || typeof window.gtag !== 'function') return;
-  window.gtag('event', name, params);
+  if (typeof window === 'undefined') return;
+  // gtag.js (doğrudan GA4 config) dizi formatı bekliyor: ['event', name, params].
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', name, params);
+  }
+  // GTM'in custom event trigger'ları YALNIZCA obje formatını ({event: name, ...params})
+  // tanıyor, gtag'in dizi formatını değil — ikisi aynı window.dataLayer'ı paylaşsa bile.
+  // GTM container boşsa veya bu event için trigger yoksa bu push'un hiçbir etkisi olmaz;
+  // zararsız. (Kök neden: bkz. initGtag üstündeki yorum — bu iki push birbirinin yerini
+  // tutmuyor, iki farklı tüketici için iki farklı format gerekiyor.)
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: name, ...params });
 }
 
 // SPA route değişiminde manuel page_view — gtag.js yalnızca ilk script yüklendiğinde
