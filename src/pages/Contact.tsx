@@ -58,6 +58,7 @@ export default function Contact() {
       <Helmet>
         <title>İletişim | Trambolinpark – Trambolin & Softplay Üreticisi</title>
         <meta name="description" content="Trambolinpark ile iletişime geçin. Trambolin parkı, softplay veya çocuk oyun alanı projeniz için teklif alın. Ankara merkezli, 81 ilde hizmet." />
+        <link rel="canonical" href="https://trambolinpark.com/iletisim" />
       </Helmet>
 
       {/* Hero */}
@@ -233,4 +234,3 @@ export default function Contact() {
     </div>
   );
 }
-

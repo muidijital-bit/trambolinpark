@@ -56,8 +56,8 @@ export default function YedekParca() {
   return (
     <div style={{ background: '#f5f5f5', minHeight: '100vh' }}>
       <Helmet>
-        <title>Trambolin Yedek Parça | Yaylar, Zıplama Filesi & Parçalar | Trambolinpark</title>
-        <meta name="description" content="Orijinal trambolin yedek parçaları: trambolin yayları, zıplama filesi, güvenlik ağı ve daha fazlası. Hızlı kargo, uygun fiyat, tüm markalarla uyumlu." />
+        <title>Trambolin Yedek Parçaları, File ve Yaylar | Trambolinpark</title>
+        <meta name="description" content="Trambolin zıplama filesi, koruma filesi, çevre koruma minderi, yay, ayak ve diğer yedek parçaları inceleyin. Uyumlu parça ve teklif desteği alın." />
         <link rel="canonical" href="https://trambolinpark.com/yedek-parcalar" />
         <script type="application/ld+json">{JSON.stringify(breadcrumbJsonLd([
           { name: 'Anasayfa', url: '/' },
@@ -71,7 +71,7 @@ export default function YedekParca() {
         <div className="container">
           <span className="badge rounded-pill mb-3" style={{ background: 'rgba(195,233,45,.15)', color: '#c3e92d', fontSize: 11, fontWeight: 800, letterSpacing: '.1em', padding: '.4rem 1rem' }}>DESTEK & BAKIM</span>
           <div className="tp-hero-line" />
-          <h1 className="display-5 fw-black text-white mb-2">Yedek <span style={{ color: '#c3e92d' }}>Parçalar</span></h1>
+          <h1 className="display-5 fw-black text-white mb-2">Trambolin <span style={{ color: '#c3e92d' }}>Yedek Parçaları</span></h1>
           <p style={{ color: 'rgba(255,255,255,.55)', fontSize: 15, maxWidth: 520 }}>Yaydan süngere, fileden aksesuara — tüm ürünlerimize ait orijinal yedek parçalar stokta hazır.</p>
         </div>
       </div>
