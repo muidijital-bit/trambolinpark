@@ -4,7 +4,33 @@
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
+    dataLayer?: unknown[];
   }
+}
+
+// gtag.js kurulumunu JS üzerinden, imperatif olarak yapar. Daha önce bu kurulum
+// Helmet içinde satır içi <script>{...}</script> olarak render ediliyordu — ama
+// React/react-helmet-async boş bir <script> elementini önce DOM'a ekleyip içeriğini
+// sonradan dolduruyor, tarayıcılar bu şekilde eklenen satır içi script'leri
+// ÇALIŞTIRMAZ (script içeriği, elemente eklenmeden önce hazır olmalı). Sonuç:
+// window.gtag hiç tanımlanmıyor, trackEvent/trackPageView sessizce no-op oluyor,
+// hiçbir event GA4'e ulaşmıyordu. Bu fonksiyon dataLayer/gtag'i doğrudan JS ile
+// kurup script'i document.createElement ile ekleyerek bu tuzağı bypass eder.
+export function initGtag(measurementId: string) {
+  if (typeof window === 'undefined' || !measurementId) return;
+  if (typeof window.gtag === 'function') return; // zaten kurulu (StrictMode / re-render)
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function gtag(...args: unknown[]) {
+    window.dataLayer!.push(args);
+  };
+  window.gtag('js', new Date());
+  window.gtag('config', measurementId);
+
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+  document.head.appendChild(script);
 }
 
 export function trackEvent(name: string, params: Record<string, unknown> = {}) {
