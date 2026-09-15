@@ -67,9 +67,10 @@ function HeroSection() {
   return (
     <section className="tp-hero">
       {/* Video background */}
-      <video autoPlay loop muted playsInline
+      <video autoPlay loop muted playsInline preload="auto" poster="/videos/hero-20260914-poster.jpg"
         style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', pointerEvents: 'none' }}>
-        <source src="https://skucanbrmuceruasvjui.supabase.co/storage/v1/object/public/urunler/site/hero.mp4" type="video/mp4" />
+        <source src="/videos/hero-20260914.webm" type="video/webm" />
+        <source src="/videos/hero-20260914.mp4" type="video/mp4" />
       </video>
       <div className="tp-hero-overlay" />
 
