@@ -63,12 +63,17 @@ export default function Home() {
 }
 
 /* ── 1. HERO ──────────────────────────────────────────────── */
+// The closing logo animation starts at 11.5 seconds in hero-20260914.
+const HERO_LOGO_START_SECONDS = 11.5;
+
 function HeroSection() {
+  const [isLogoScene, setIsLogoScene] = useState(false);
+
   return (
-    <section className="tp-hero">
+    <section className={`tp-hero${isLogoScene ? ' tp-hero--logo' : ''}`}>
       {/* Video background */}
-      <video autoPlay loop muted playsInline preload="auto" poster="/videos/hero-20260914-poster.jpg"
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', pointerEvents: 'none' }}>
+      <video className="tp-hero-video" autoPlay loop muted playsInline preload="auto" poster="/videos/hero-20260914-poster.jpg"
+        onTimeUpdate={(event) => setIsLogoScene(event.currentTarget.currentTime >= HERO_LOGO_START_SECONDS)}>
         <source src="/videos/hero-20260914.webm" type="video/webm" />
         <source src="/videos/hero-20260914.mp4" type="video/mp4" />
       </video>
