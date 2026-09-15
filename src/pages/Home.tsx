@@ -63,7 +63,7 @@ export default function Home() {
 }
 
 /* ── 1. HERO ──────────────────────────────────────────────── */
-const HERO_PLAYBACK_RATE = 0.5;
+const HERO_PRODUCT_PLAYBACK_RATE = 0.5;
 // Source-video times: products overlap the logo until frame 291 (12.125s).
 // Change the crop only after the product image has faded completely.
 function getHeroPhase(time: number) {
@@ -81,18 +81,26 @@ function HeroSection() {
     const video = videoRef.current;
     if (!video) return;
 
+    const updatePlayback = (time: number) => {
+      const nextPhase = getHeroPhase(time);
+      // The logo starts during the transition; products slow down again on loop.
+      const playbackRate = nextPhase === 'products' ? HERO_PRODUCT_PLAYBACK_RATE : 1;
+      if (video.playbackRate !== playbackRate) video.playbackRate = playbackRate;
+      setPhase(nextPhase);
+    };
+
     // Follow presented frames so slow playback and loops keep the crop in sync.
     if (typeof video.requestVideoFrameCallback === 'function') {
       let callbackId: number;
       const updateFrame: VideoFrameRequestCallback = (_now, metadata) => {
-        setPhase(getHeroPhase(metadata.mediaTime));
+        updatePlayback(metadata.mediaTime);
         callbackId = video.requestVideoFrameCallback(updateFrame);
       };
       callbackId = video.requestVideoFrameCallback(updateFrame);
       return () => video.cancelVideoFrameCallback(callbackId);
     }
 
-    const updateTime = () => setPhase(getHeroPhase(video.currentTime));
+    const updateTime = () => updatePlayback(video.currentTime);
     video.addEventListener('timeupdate', updateTime);
     return () => video.removeEventListener('timeupdate', updateTime);
   }, []);
@@ -105,8 +113,8 @@ function HeroSection() {
       {/* Video background */}
       <video ref={videoRef} className="tp-hero-video" autoPlay loop muted playsInline preload="auto" poster="/videos/hero-20260914-poster.jpg"
         onLoadedMetadata={(event) => {
-          event.currentTarget.defaultPlaybackRate = HERO_PLAYBACK_RATE;
-          event.currentTarget.playbackRate = HERO_PLAYBACK_RATE;
+          event.currentTarget.defaultPlaybackRate = HERO_PRODUCT_PLAYBACK_RATE;
+          event.currentTarget.playbackRate = HERO_PRODUCT_PLAYBACK_RATE;
         }}>
         <source src="/videos/hero-20260914-black.webm" type="video/webm" />
         <source src="/videos/hero-20260914-black.mp4" type="video/mp4" />
