@@ -64,21 +64,50 @@ export default function Home() {
 
 /* ── 1. HERO ──────────────────────────────────────────────── */
 const HERO_PLAYBACK_RATE = 0.75;
-// The closing logo animation starts at 11.5 seconds in hero-20260914.
-const HERO_LOGO_START_SECONDS = 11.5;
+// Source-video times: products overlap the logo until frame 291 (12.125s).
+// Change the crop only after the product image has faded completely.
+function getHeroPhase(time: number) {
+  if (time >= 15.25) return 'loop';
+  if (time >= 12.125) return 'logo';
+  if (time >= 11.5) return 'transition';
+  return 'products';
+}
 
 function HeroSection() {
-  const [isLogoScene, setIsLogoScene] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [phase, setPhase] = useState<ReturnType<typeof getHeroPhase>>('products');
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Follow presented frames so slow playback and loops keep the crop in sync.
+    if (typeof video.requestVideoFrameCallback === 'function') {
+      let callbackId: number;
+      const updateFrame: VideoFrameRequestCallback = (_now, metadata) => {
+        setPhase(getHeroPhase(metadata.mediaTime));
+        callbackId = video.requestVideoFrameCallback(updateFrame);
+      };
+      callbackId = video.requestVideoFrameCallback(updateFrame);
+      return () => video.cancelVideoFrameCallback(callbackId);
+    }
+
+    const updateTime = () => setPhase(getHeroPhase(video.currentTime));
+    video.addEventListener('timeupdate', updateTime);
+    return () => video.removeEventListener('timeupdate', updateTime);
+  }, []);
+
+  const isLogoScene = phase === 'logo' || phase === 'loop';
+  const isFading = phase === 'transition' || phase === 'loop';
 
   return (
-    <section className={`tp-hero${isLogoScene ? ' tp-hero--logo' : ''}`}>
+    <section className={`tp-hero${phase !== 'products' ? ' tp-hero--outro' : ''}${isLogoScene ? ' tp-hero--logo' : ''}${isFading ? ' tp-hero--fade' : ''}`}>
       {/* Video background */}
-      <video className="tp-hero-video" autoPlay loop muted playsInline preload="auto" poster="/videos/hero-20260914-poster.jpg"
+      <video ref={videoRef} className="tp-hero-video" autoPlay loop muted playsInline preload="auto" poster="/videos/hero-20260914-poster.jpg"
         onLoadedMetadata={(event) => {
           event.currentTarget.defaultPlaybackRate = HERO_PLAYBACK_RATE;
           event.currentTarget.playbackRate = HERO_PLAYBACK_RATE;
-        }}
-        onTimeUpdate={(event) => setIsLogoScene(event.currentTarget.currentTime >= HERO_LOGO_START_SECONDS)}>
+        }}>
         <source src="/videos/hero-20260914.webm" type="video/webm" />
         <source src="/videos/hero-20260914.mp4" type="video/mp4" />
       </video>
