@@ -108,8 +108,8 @@ function HeroSection() {
           event.currentTarget.defaultPlaybackRate = HERO_PLAYBACK_RATE;
           event.currentTarget.playbackRate = HERO_PLAYBACK_RATE;
         }}>
-        <source src="/videos/hero-20260914.webm" type="video/webm" />
-        <source src="/videos/hero-20260914.mp4" type="video/mp4" />
+        <source src="/videos/hero-20260914-black.webm" type="video/webm" />
+        <source src="/videos/hero-20260914-black.mp4" type="video/mp4" />
       </video>
       <div className="tp-hero-overlay" />
 

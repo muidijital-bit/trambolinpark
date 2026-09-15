@@ -15,8 +15,8 @@
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 html:has(.tp-hero) {
-  background-color: var(--black);
-  scrollbar-color: var(--gray-500) var(--black);
+  background-color: #000;
+  scrollbar-color: var(--gray-500) #000;
 }
 body {
   font-family: "Inter", system-ui, sans-serif;
@@ -201,10 +201,10 @@ img { display: block; max-width: 100%; }
 /* ── Hero ────────────────────────────────────── */
 .tp-hero {
   position: relative; width: 100%; height: 100vh;
-  overflow: hidden; background: var(--black);
+  overflow: hidden; background: #000;
 }
 .tp-hero-video {
-  display: block; background-color: var(--black);
+  display: block; background-color: #000;
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover; pointer-events: none;
 }
@@ -227,7 +227,7 @@ img { display: block; max-width: 100%; }
 }
 .tp-hero-overlay {
   position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(to bottom, rgba(10,10,10,.2) 0%, rgba(10,10,10,.55) 60%, rgba(10,10,10,.85) 100%);
+  background: linear-gradient(to bottom, rgba(0,0,0,.2) 0%, rgba(0,0,0,.55) 60%, rgba(0,0,0,.85) 100%);
 }
 .tp-hero-content {
   position: absolute; inset: 0;
