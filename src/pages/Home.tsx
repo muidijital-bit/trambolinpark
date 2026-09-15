@@ -63,7 +63,7 @@ export default function Home() {
 }
 
 /* ── 1. HERO ──────────────────────────────────────────────── */
-const HERO_PLAYBACK_RATE = 0.75;
+const HERO_PLAYBACK_RATE = 0.5;
 // Source-video times: products overlap the logo until frame 291 (12.125s).
 // Change the crop only after the product image has faded completely.
 function getHeroPhase(time: number) {
