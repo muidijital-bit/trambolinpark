@@ -153,8 +153,8 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2">
           <p className="mb-0" style={{ fontSize: 12, color: '#bbb' }}>
-            © 2026 TRAMBOLİNPARK · Created by{' '}
-            <a href="https://muimedya.com" target="_blank" rel="noreferrer" style={{ color: '#5c9200', textDecoration: 'none', fontWeight: 600 }}>muimedya</a>
+            © 2026 TRAMBOLİNPARK · Web tasarım ve geliştirme:{' '}
+            <a href="https://muimedya.com/" target="_blank" rel="noreferrer" style={{ color: '#5c9200', textDecoration: 'none', fontWeight: 600 }}>Mui Medya</a>
           </p>
           <div className="d-flex gap-3" style={{ fontSize: 12 }}>
             <Link to="/kvkk" style={{ color: '#bbb', textDecoration: 'none', transition: 'color .2s' }}
