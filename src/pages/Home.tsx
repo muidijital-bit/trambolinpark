@@ -55,6 +55,7 @@ export default function Home() {
       <CategoryMarquee />
       <ProductsSection />
       <SparePartsSection />
+      <KargoBedavaBanner />
       <ProcessSection />
       <SparePartsBanner />
       <FooterCTA />
@@ -506,6 +507,36 @@ const BANNER_TILES: { name: string; img: string; imgPos?: string }[] = [
   { name: 'Roller Kaydırak',  img: '/images/roller-kaydirak.jpeg' },
   { name: 'Softplay Zipline', img: '/images/softplay-zipline.jpeg' },
 ];
+
+/* ── KARGO BEDAVA KAMPANYA BANNER ─────────────────────────── */
+function KargoBedavaBanner() {
+  return (
+    <section className="tp-home-sec" style={{ background: '#fff', padding: '3.5rem 0' }}>
+      <div className="container">
+        <Reveal dir="up">
+          <Link
+            to="/yedek-parcalar"
+            className="tp-kargo-banner"
+            aria-label="Yedek parçalarda 1500 TL ve üzeri alışverişlerde kargo bedava — Yedek Parçalar'a git"
+          >
+            <picture>
+              <source media="(max-width: 575px)" type="image/webp" srcSet="/images/kargo-bedava-sm.webp" />
+              <source type="image/webp" srcSet="/images/kargo-bedava.webp" />
+              <img
+                src="/images/kargo-bedava.jpg"
+                alt="Yedek parçalarda 1500 TL ve üzeri alışverişlerde kargo bedava"
+                width={1280}
+                height={433}
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </Link>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
 
 function SparePartsBanner() {
   return (
